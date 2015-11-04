@@ -11,5 +11,24 @@ class MainController < ApplicationController
 
   def about
   end
+  
+    
+  def radiologist
+  end
+  
+  def technologist
+  end
+  
+  def sche_registrar
+  end
+  
+  def transcript
+  end
+  
+  def others
+  end
+  
+  def search
+  end
 
 end

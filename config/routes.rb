@@ -8,6 +8,13 @@ VanillaApplication::Application.routes.draw do
   get 'demo/real-time' => 'demo#real_time'
   get 'demo/accession-search' => 'demo#accession_search'
 
+  get 'radiologist', to: 'main#radiologist'
+  get 'technologist', to: 'main#technologist'
+  get 'sche-registrar', to: 'main#sche_registrar'
+  get 'transcript', to: 'main#transcript'
+  get 'others', to: 'main#others'
+  get 'search', to: 'main#search'
+
   # Vanilla of regular route:
   #   match 'products/:id' => 'catalog#view'
   # Keep in mind you can assign values other than :controller and :action

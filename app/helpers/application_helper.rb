@@ -5,4 +5,21 @@ module ApplicationHelper
     matches.include?(false) ? active = "" : active = "active"
     content_tag(:li, link_to(title, url_opts, :name => title.downcase.gsub(" ","-").gsub("/","")), :class => active)
   end
+  
+  def javascriptHead(*files)
+    content_for(:head_javascript) { javascript_include_tag(*files) }
+  end
+ 
+  def stylesheetHead(*files)
+    content_for(:head_stylesheet) { stylesheet_link_tag(*files) }
+  end
+
+  def javascriptBody(*files)
+    content_for(:body_javascript) { javascript_include_tag(*files) }
+  end
+ 
+  #def stylesheet(*files)
+  #  content_for(:body_stylesheet) { stylesheet_link_tag(*files) }
+  #end
+  
 end
