@@ -1,0 +1,11 @@
+//= require jquery
+//= require jquery_ujs
+//= require bootstrap
+//= require harbinger-rails-extensions
+//= require harbinger-js/core
+//= require harbinger-js/cometd/cometd.js
+//= require harbinger-js/cometd/jquery.cometd.js
+//= require harbinger-js/flot.js
+//= require harbinger-js/amqp-listener.js
+//= require harbinger-js/integration.js
+//= require_self

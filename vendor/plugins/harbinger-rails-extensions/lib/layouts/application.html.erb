@@ -1,0 +1,32 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"> 
+<html>
+<head>
+  <title>Analytical Informatics</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=9" />
+  <%= stylesheet_link_tag "harbinger.css" %>
+</head>
+
+<body>
+
+  <div id="wrapper">
+    <div id="main">
+      <div id="login-bar">
+	<span class="login-info"><%= "Logged in as " + session[:username] + " | " unless session[:username].blank? %></span>
+	<a href="<%= Java::HarbingerSdk::SSO.logoutUrl() %>">Logout</a>
+      </div>
+
+      <div id="globalNavigation">
+	<%= link_to("Home", {:controller => :home}, :class => (params[:controller] == 'home' ? 'active' : '')) %>
+      </div>
+
+      <div class="workspace">
+	<%= yield %>
+      </div>
+    </div>
+  </div>
+
+  <div id="footer">
+  </div>
+
+</body>
+</html>

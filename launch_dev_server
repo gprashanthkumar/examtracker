@@ -1,0 +1,2 @@
+DEV_MODE="on" jruby -J-XX:MaxPermSize=256m \
+-S rails server -p 4001

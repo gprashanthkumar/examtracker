@@ -1,0 +1,213 @@
+/*
+ * blue-grey - #424d67;
+ * deep-blue - #f6a828;
+ * dark-blue - #103262;
+ * light-purple - #846abd;
+ * avacado green - #759700;
+ * burnt orange - #dc9624;
+ */
+* { margin: 0; padding: 0; }
+
+html { height: 100%; overflow-y: scroll; }
+
+body
+{
+  height: 100%; line-height: 1.4;
+  margin: 0;
+  background-color: #fff;
+  font: 0.8em helvetica,arial,freesans,clean,sans-serif;
+}
+
+pre, code
+{ display: block; background-color: #000; color: #fff; padding: 10px; margin: 5px; border: 5px solid #ccc; }
+
+a
+{ color: #424d67; text-decoration: none; font-weight: bold; }
+
+a:hover
+{ color: #f6a828; }
+
+a:visited
+{ color: #846abd; text-decoration: none; font-weight: bold; }
+
+h1
+{ font-size: 1.6em; font-weight: bold; margin: 0; margin-bottom: 20px; color: #103262; }
+h1.page-title
+{ display: block; width: 95%; margin: auto; margin-bottom: 20px; }
+
+h2
+{ font-size: 1.0em; font-weight: bold; margin: 0; color: #759700; }
+
+h3
+{ font-size: 0.9em; font-weight: bold; margin: 0; color: #424d67; }
+
+h4
+{ font-size: 0.8em; font-weight: bold; margin: 0; color: #424d67; }
+
+.hide { display: none; }
+
+span.stand-out { color: #dc9624; font-weight: bold; }
+
+#wrapper { min-height: 100%; }
+
+#wrapper #main { overflow: auto; padding-bottom: 170px; }
+
+#wrapper #login-bar
+{
+  height: 20px;
+  line-height: 20px;
+  text-align: right;
+  background-color: #eee;
+  border-bottom: 2px solid #ccc;
+  color: black;
+  padding: 3px;
+  padding-right: 20px;
+}
+
+/* Global Navigation */
+#wrapper #main #globalNavigation
+{
+  height: 30px;
+  text-align: right;
+  padding-top: 15px; padding-right: 2%;
+  /*border-bottom: 2px solid #909090;*/
+}
+
+#wrapper #main #globalNavigation a
+{
+  display: inline-block;
+  position: relative; top: 0; width: 150px;
+  text-align: center;
+  margin-right: 10px; padding: 5px;
+  border: 2px solid #909090;
+  font-size: 16px; font-weight: bold;
+  color: #424d67;
+
+  border-radius: 5px 5px 5px 5px; -moz-border-radius: 5px; -webkit-border-radius: 5px;
+  -moz-background-clip: padding; -webkit-background-clip: padding-box; background-clip: padding-box;
+}
+
+#wrapper #main #globalNavigation a.active, #wrapper #main #globalNavigation a:hover
+{
+  border-bottom: 2px solid #909090;
+  background-color: #424d67;
+  color: #fff;
+}
+
+.workspace
+{
+  margin: 1%;
+  min-height: 500px;
+  clear: both; padding-top: 20px; padding-bottom: 50px;
+  background-image: url('/images/umms-logo-trans-12.png');
+  background-repeat: no-repeat;
+  background-position: 50% 45px;
+}
+
+#footer {
+  position: relative; height: 148px;
+  margin-top: -150px;
+  clear:both;
+  background-color: #424d67;
+  border-top: 2px solid #909090;
+}
+
+div.two-column
+{ float: left; width: 47%; padding: 0.5%; }
+
+div.left-column
+{ margin-right: 1%; }
+
+
+/* Tabs */
+/* This needs to be cleaned up. The names are bad*/
+ul.primary {
+  border-collapse: collapse;
+  padding: 0 0 0 1em;
+  white-space: nowrap;
+  list-style: none;
+  margin: 5px;
+  height: auto;
+  line-height: normal;
+  border-bottom: 1px solid #bbb;
+}
+ul.primary li {
+  display: inline;
+}
+ul.primary li a {
+  background-color: #ddd;
+  border-color: #bbb;
+  border-width: 1px;
+  border-style: solid solid none solid;
+  height: auto;
+  margin-right: 0.5em;
+  padding: 0 1em;
+  text-decoration: none;
+}
+ul.primary li.active a {
+  background-color: #fff;
+  border: 1px solid #bbb;
+  border-bottom: #fff 1px solid;
+}
+ul.primary li a:hover {
+  background-color: #eee;
+  border-color: #ccc;
+  border-bottom-color: #eee;
+}
+ul.secondary {
+  border-bottom: 1px solid #bbb;
+  padding: 0.5em 1em 0.5em 1em;
+  margin: 5px;
+}
+ul.secondary li {
+  display: inline;
+  padding: 0 1em;
+  border-right: 1px solid #ccc;
+}
+ul.secondary a {
+  padding: 0;
+  text-decoration: none;
+}
+ul.secondary a.active {
+  border-bottom: 4px solid #999;
+}
+
+
+/* Scaffold CSS */
+
+
+.fieldWithErrors {
+  padding: 2px;
+  background-color: red;
+  display: inline-block;
+}
+
+#errorExplanation {
+  width: 90%;
+  margin: auto;
+  border: 2px solid red;
+  padding: 7px;
+  padding-bottom: 12px;
+  margin-bottom: 20px;
+  background-color: #f0f0f0;
+}
+
+#errorExplanation h2 {
+  text-align: left;
+  font-weight: bold;
+  padding: 5px 5px 5px 15px;
+  font-size: 12px;
+  margin: -7px;
+  background-color: #c00;
+  color: #fff;
+}
+
+#errorExplanation p {
+  color: #333;
+  margin-bottom: 0;
+  margin-top: 5px;
+  padding: 5px;
+  font-weight: bold;
+}
+
+#errorExplanation ul li {}

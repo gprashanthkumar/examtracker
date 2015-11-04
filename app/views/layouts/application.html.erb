@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Vanilla Application</title>
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+  <%= harbingerjs_setup %>
+  <%= yield(:javascript_includes) %>
+  <%= @web_analytics_tracker.html_safe %>
+
+</head>
+<body>
+  <!-- Start Navbar -->
+  <div id="primary-navbar" class="navbar navbar-default navbar-static-top" role="navigation">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand" id="app-name" href="<%= root_url %>">Vanilla Application</a>
+
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+        </div>
+      </div>
+      <div class="collapse navbar-collapse" id="navbar-collapse">
+        <ul class="nav navbar-nav pull-right">
+          <li><%= global_navigation_link "About", :controller => :main,  :action => :about %></li>
+          <li><%= global_navigation_link "Help", :controller => :main,  :action => :help %></li>
+          <% any_authorized(["ai-staff", "it-staff"]) do %>
+            <li><%= global_navigation_link "Admin", :controller => :admin, :action => :index %></li>
+          <% end %>
+          <li><a href="<%= Java::HarbingerSdk::SSO.logoutUrl() %>">Logout</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <%= yield %>
+  </div>
+</body>
+</html>

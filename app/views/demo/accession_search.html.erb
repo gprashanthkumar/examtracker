@@ -1,0 +1,33 @@
+<div class="page-header">
+  <h1>Demo</h1>
+  <div class="well"> This demo highlights an accession search. Click <a href="<%= demo_real_time_url %>">here</a> to view a real-time demo.</div>
+</div>
+
+
+<h3>Accession Search:</h3>
+<div class="col-md-6">
+<form>
+  <div class="form-group">
+    <input type="text" class="form-control" name="accession" id="accession" placeholder="accession"/>
+  </div>
+
+  <button type="submit" class="btn btn-primary btn-lg">Submit</button>
+</form>
+</div>
+
+<% if @acc_search %>
+<div class="col-md-12" style="margin-top:30px">
+  <h3>Results for <%= @acc_search %></h3>
+  <% if @exams.size > 0 %>
+    <%= harbinger_table_for @exams, :class => "table table-striped" do |ht| %>
+      <% ht.column("MRN") {|e| e.patientMrn.mrn if e.patientMrn } %>
+      <% ht.column("Accession") {|e| e.accession  if e.accession } %>
+      <% ht.column("Current Status") {|e| e.currentStatus.universalEventTypeId ? "#{e.currentStatus.universalEventType.eventType} (#{e.currentStatus.status})" : e.currentStatus.status } %>
+      <% ht.column("Procedure Code") {|e| e.procedure.code if e.procedure } %>
+      <% ht.column("Procedure Description") {|e| e.procedure.description if e.procedure  } %>
+    <% end %>
+  <% else %>
+   No exams.
+  <% end %>
+  </div>
+<% end %>

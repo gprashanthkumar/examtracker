@@ -1,0 +1,15 @@
+/.bundle
+/db/*.sqlite3
+/log/*.log
+/log
+/tmp
+*.war.*
+*.war
+*~
+\#*
+.\#*
+*.swp
+app/views/overread/_version.html.erb
+public/assets/
+target/
+sdk/*
