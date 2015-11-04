@@ -1,2 +1,2 @@
-DEV_MODE="on" jruby -J-XX:MaxPermSize=256m \
--S rails server -p 4001
+DEV_MODE="on" JRUBY_OPTS="-J-Xmx4096m -J-XX:MaxPermSize=512m -J-Dharbinger.sso.url=http://clouddev1.analytical.info:8088/openam" \
+rails server -p 3001
