@@ -12,8 +12,8 @@
 
 development:
   adapter: jdbc
-  jndi: jdbc/vanilla
+  jndi: jdbc/examtracker
 
 production:
   adapter: jdbc
-  jndi: jdbc/vanilla
+  jndi: jdbc/examtracket
