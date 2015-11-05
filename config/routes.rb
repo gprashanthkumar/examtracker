@@ -8,12 +8,12 @@ VanillaApplication::Application.routes.draw do
   get 'demo/real-time' => 'demo#real_time'
   get 'demo/accession-search' => 'demo#accession_search'
 
-  get 'radiologist', to: 'main#radiologist'
-  get 'technologist', to: 'main#technologist'
-  get 'sche-registrar', to: 'main#sche_registrar'
-  get 'transcript', to: 'main#transcript'
-  get 'others', to: 'main#others'
-  get 'search', to: 'main#search'
+  get 'radiologist', to: 'home#radiologist'
+  get 'technologist', to: 'home#technologist'
+  get 'sche-registrar', to: 'home#sche_registrar'
+  get 'transcript', to: 'home#transcript'
+  get 'others', to: 'home#others'
+  get 'search', to: 'home#search'
   match ':controller(/:action(/:id(.:format)))', via: [:get, :post]
   # Vanilla of regular route:
   #   match 'products/:id' => 'catalog#view'
