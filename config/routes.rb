@@ -14,7 +14,7 @@ VanillaApplication::Application.routes.draw do
   get 'transcript', to: 'main#transcript'
   get 'others', to: 'main#others'
   get 'search', to: 'main#search'
-
+  match ':controller(/:action(/:id(.:format)))', via: [:get, :post]
   # Vanilla of regular route:
   #   match 'products/:id' => 'catalog#view'
   # Keep in mind you can assign values other than :controller and :action
