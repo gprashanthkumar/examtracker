@@ -34,6 +34,7 @@
           <% any_authorized(["ai-staff", "it-staff"]) do %>
             <li><%= global_navigation_link "Admin", :controller => :admin, :action => :index %></li>
           <% end %>
+		    <li><%= global_navigation_link "Tracker", :controller => :home, :action => :radiologist %></li>
           <li><a href="<%= Java::HarbingerSdk::SSO.logoutUrl() %>">Logout</a></li>
         </ul>
       </div>

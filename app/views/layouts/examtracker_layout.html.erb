@@ -68,7 +68,7 @@
             <a href="#" class="navbar-btn sidebar-toggle" data-toggle="offcanvas" role="button"><span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></a>
             <div class="navbar-right">
                 <ul class="nav navbar-nav">
-                    <li class="dropdown user user-menu"><a href="#" class="dropdown-toggle" data-toggle="dropdown"><span>Home</span> </a></li>
+                    <li class="dropdown user user-menu"><a href="<%= root_url %>" class="dropdown-toggle" data-toggle="dropdown"><span>Home</span> </a></li>
                     <!-- User Account: style can be found in dropdown.less -->
                     <li class="dropdown user user-menu"><a href="#" class="dropdown-toggle" data-toggle="dropdown"><span>Reports <i class="caret"></i></span></a>
                         <ul class="dropdown-menu" style="width: 150px;">
@@ -92,7 +92,7 @@
                             </li>
                         </ul>
                     </li>
-                    <li class="dropdown user user-menu"><a href="#" class="dropdown-toggle" data-toggle="dropdown"><span>Logout</span> </a></li>
+                    <li class="dropdown user user-menu"><a href="<%= Java::HarbingerSdk::SSO.logoutUrl() %>" class="dropdown-toggle" data-toggle="dropdown"><span>Logout</span> </a></li>
                 </ul>
             </div>
         </nav>
