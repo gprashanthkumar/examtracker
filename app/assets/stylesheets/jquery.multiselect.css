@@ -3,6 +3,14 @@
 .ui-multiselect-single .ui-multiselect-checkboxes input { position:absolute !important; top: auto !important; left:-9999px; }
 .ui-multiselect-single .ui-multiselect-checkboxes label { padding:5px !important }
 
+.ui-widget-header {
+	/*border: 1px solid #e78f08;
+	background: #f6a828 url(images/ui-bg_gloss-wave_35_f6a828_500x100.png) 50% 50% repeat-x;*/
+	border: 1px solid #367fa9 !important;
+	background: #3c8dbc url(images/ui-bg_gloss-wave_35_f6a828_500x100.png) 50% 50% repeat-x !important;
+	color: #ffffff;
+	font-weight: bold;
+}
 .ui-multiselect-header { margin-bottom:3px; padding:3px 0 3px 4px }
 .ui-multiselect-header ul { font-size:0.9em }
 .ui-multiselect-header ul li { float:left; padding:0 10px 0 0 }

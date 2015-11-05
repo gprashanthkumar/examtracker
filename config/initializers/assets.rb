@@ -17,6 +17,7 @@ Rails.application.config.assets.precompile += %w( bootstrap.min.css
                                                   jquery-ui.css
                                                   AdminLTE.css 
                                                   custom_popup.css
+												  radiologist.css
                                                   jquery.min.js 
                                                   bootstrap.min.js
                                                   plugins/datatables/jquery.dataTables.js
