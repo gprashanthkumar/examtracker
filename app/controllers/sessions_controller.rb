@@ -11,7 +11,7 @@ class SessionsController < ApplicationController
     #puts sessions_json
     
     @y = ActionDispatch::Request::Session;
-    @x = @y.to_hash();
+    @x = @y.to_hash;
   end
   
   def create
