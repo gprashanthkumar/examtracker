@@ -9,8 +9,7 @@ class SessionsController < ApplicationController
   def get_sessions
     session.delete 'init' 
       @employee = Employee.get_employee(session[:username])   
-      @h = Hash[@employee.first.attributes.map { |k, v| [ k.to_sym, v ] }]
-      puts @h.to_s;
+      
   end
   
   def create    
