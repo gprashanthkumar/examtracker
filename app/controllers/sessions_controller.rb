@@ -5,13 +5,11 @@ class SessionsController < ApplicationController
   end
   
   def get_sessions
-  
+    session.delete 'init'
+    do_stuff
   end
   
-  def create
-  session.delete 'init'
-    do_stuff
-    
+  def create    
     render 'new'
   end
 
