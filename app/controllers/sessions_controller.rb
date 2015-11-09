@@ -10,8 +10,7 @@ class SessionsController < ApplicationController
     #sessions_json = [{:session_user_id=>session[:user_id], :session_user_name=>session[:user_name]}].to_json
     #puts sessions_json
     
-    @y = ActionDispatch::Request::Session;
-    @x = @y.to_hash;
+   
   end
   
   def create

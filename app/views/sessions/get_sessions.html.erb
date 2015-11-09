@@ -28,11 +28,7 @@
                                 <label>session[:user_name] = <%= session[:user_name] %></label><br/>
                             </div>
 							
-							<% @x.each do |key,value| %>
-									 <div class="box-body table-responsive">
-									 <label>session[:<%=key %>] = <%= value %></label><br/>
-									 </div>
-							<% end %>
+							<%= session.inspect %>
 							
                             <!-- /.box-body -->
                         </div>
