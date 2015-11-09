@@ -5,7 +5,7 @@ class SessionsController < ApplicationController
   end
   
   def get_sessions
-    #session.delete 'init'
+    session.delete 'init'
     
   end
   
