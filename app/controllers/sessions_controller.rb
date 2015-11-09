@@ -9,7 +9,7 @@ class SessionsController < ApplicationController
   def get_sessions
     session.delete 'init' 
       @employee = Employee.get_employee(session[:username])
-      puts "Prashanth" + @employee;
+      puts "Prashanth" + @employee.to_s;
   end
   
   def create    
