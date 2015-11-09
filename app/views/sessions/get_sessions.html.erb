@@ -28,7 +28,7 @@
                                 <label>session[:user_name] = <%= session[:user_name] %></label><br/>
                             </div>
 							
-							<% Session.each do |key,value| %>
+							<% @x.each do |key,value| %>
 									 <div class="box-body table-responsive">
 									 <label>session[:<%=key %>] = <%= value %></label><br/>
 									 </div>
