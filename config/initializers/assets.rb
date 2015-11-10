@@ -13,13 +13,16 @@ Rails.application.config.assets.precompile += %w( bootstrap.min.css
                                                   font-awesome.min.css
                                                   ionicons.min.css
                                                   datatables/dataTables.bootstrap.css 
-                                                  jquery.multiselect.css 
+                                                  jquery.multiselect.css
+                                                  jqgrid_style/ui.jqgrid.css 
                                                   jquery-ui.css
                                                   AdminLTE.css 
                                                   custom_popup.css
-												  radiologist.css
+                                                  radiologist.css
                                                   jquery.min.js 
                                                   bootstrap.min.js
+                                                  jqgrid/grid.locale-en.js
+                                                  jqgrid/jquery.jqGrid.js
                                                   plugins/datatables/jquery.dataTables.js
                                                   plugins/datatables/dataTables.bootstrap.js
                                                   AdminLTE/app.js
