@@ -33,7 +33,11 @@
                             </div>
                             <!-- /.box-body -->
                         </div>
-							<%= session.inspect %>
+                        ID: <%= @employee.id.to_s %></br>
+                        name   <%= @employee.name.to_s %></br>                        
+                        fte   <%= @employee.fte.to_s %></br>
+                        last updated   <%= @employee.updated_at.to_s %></br>
+                        
                         <!-- /.box -->
                     </div>
                 </div>
