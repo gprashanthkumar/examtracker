@@ -11,6 +11,7 @@ class SessionsController < ApplicationController
       @employee = Employee.get_employee(session[:username])   
       @exams = Rad_Exam.get_rad_exams(@employee)
       puts @exams.count
+      puts @exams.to_json
       
   end
   

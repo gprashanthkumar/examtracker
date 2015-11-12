@@ -41,18 +41,21 @@
                         <!-- /.box -->
                     </div>
 		<div>
-					
-          <% if @exams.size > 0 %>
-          <%= harbinger_table_for @exams, :class => "table table-striped" do |ht| %>
-      <% ht.column("Accession") {|e| e.accession  if e.accession } %>        
-      <% ht.column("MRN") {|e| e.patient_mrn_id if e.patient_mrn_id } %>          
-     <% ht.column("Current Status") {|e| e.current_status_id if e.current_status_id} %>
-     <% ht.column("Procedure Code") {|e| e.procedure_id if e.procedure_id } %>          
-        <% end %>
-      <% else %>
-      No exams.
-      <% end %>
-					</div>
+
+                    <% if @exams.size > 0 %>
+                      <%= harbinger_table_for @exams, :class => "table table-striped" do |ht| %>
+                        <% ht.column("Accession") {|e| e.accession  if e.accession } %>        
+                        <% ht.column("MRN") {|e| e.patient_mrn_id if e.patient_mrn_id } %>          
+                        <% ht.column("Current Status") {|e| e.current_status_id if e.current_status_id} %>
+                          <% ht.column("Procedure Code") {|e| e.procedure_id if e.procedure_id } %>          
+                        <% end %>
+                      <% else %>
+                        No exams.
+                      <% end %>
+                </div>
+                    <div>
+                        <%= @exams.to_json %>
+                    </div>
                 </div>
 
 
