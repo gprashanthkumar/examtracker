@@ -49,7 +49,7 @@ class HomeController < ApplicationController
 		:page=>"1",
 		:total=>3,
 		:records=>"6", 
-		:rows=> JSON.parse(@exams.to_json(:only => [ :accession,:mrn,:code,:description,:modality ])) 
+		:rows=> JSON.parse(@exams.to_json(:only => [ :accession,:mrn,:code,:description,:modality,:resource_name ])) 
     }
     
     respond_to do |format|
