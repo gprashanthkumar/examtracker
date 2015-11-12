@@ -1,12 +1,10 @@
 class Rad_Exam < ActiveRecord::Base
    self.table_name = "public.rad_exams"
-  scope :join_patient_mrns, -> { joins("LEFT JOIN patient_mrns pmrn ON pmrn.id = rad_exams.patient_mrn_id" )
-  .select("pmrn.mrn,pmrn.patient_id,rad_exams.*")    
-  }
-  scope :join_patient, -> {
-    joins("LEFT JOIN patients p ON p.id = join_patient_mrns.patient_id" )
-  .select("p.name,p.birthdate,join_patient_mrns.*")    
-  }
+  scope :join_patient_mrns, -> { 
+    joins("LEFT JOIN patient_mrns pmrn ON pmrn.id = rad_exams.patient_mrn_id" )
+    .joins("LEFT JOIN patients p ON p.id = join_patient_mrns.patient_id" )
+    .select("p.name,p.birthdate,pmrn.mrn,rad_exams.*")    
+  } 
   #scope :join_tech_employees_name, -> { joins("LEFT JOIN patient_mrns pmrn ON pmrn.patient_id = patients.id" ) }
   #scope :join_patient_mrns, -> { joins("LEFT JOIN patient_mrns pmrn ON pmrn.patient_id = patients.id" ) }
   #scope :join_cdc_mrn, -> { joins("LEFT JOIN patient_mrns cdc_mrn ON cdc_mrn.patient_id = patients.id AND cdc_mrn.external_system_id = ( select id from external_systems where external_system = 'CDC')") }
@@ -15,6 +13,6 @@ class Rad_Exam < ActiveRecord::Base
   
   def self.get_rad_exams(employeeid)
     #self.where({patient_mrn_id: mrn}).order("created_at desc").first
-    self.join_patient.order("id desc").all;
+    self.join_patient_mrns.order("id desc").all;
   end
 end
