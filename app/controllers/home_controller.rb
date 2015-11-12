@@ -33,7 +33,13 @@ class HomeController < ApplicationController
   def jqgrid_page   
   end
   
-  def search_exams(accesession_ids, exam_status)  
+  def search_exams
+    accession_ids = params[:accession_ids]
+    exam_status = params[:exam_status]
+    json_data = {:aaData=> [["1","10516","CT Scan"],["sdf","adsdf","sadfsd"],["sdf","adsdf","sadfsd"]]}.to_json
+    respond_to do |format|
+     format.json { render :json => json_data }
+    end
   end
   
   def get_jqgrid

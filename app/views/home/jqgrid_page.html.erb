@@ -133,6 +133,23 @@
   		var ddlStatusSelectedValues_Var = $("#DdlStatusSrch").val();
   		
   		debugger;
+		$.ajax({
+  			url:'/home/search_exams',
+  			type:'POST',
+  			dataType:'json',
+  			//contentType: "application/json; charset=utf-8",
+  			data:{
+  				accession_ids: ddlAccessionIdSelectedValues_Var,
+  				exam_status: ddlStatusSelectedValues_Var,
+  				authenticity_token: window._token
+  			},
+  			success:function(data){
+  				debugger;
+  			},
+  			error:function(data){
+  				debugger;
+  			}
+  		});
   	});
   	//=====End Search functionality==============
   	
