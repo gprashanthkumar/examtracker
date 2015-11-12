@@ -4,7 +4,7 @@ class Rad_Exam < ActiveRecord::Base
     joins("LEFT JOIN patient_mrns pmrn ON pmrn.id = rad_exams.patient_mrn_id" )
     .joins("LEFT JOIN patients p ON p.id = pmrn.patient_id" )
     .joins("LEFT JOIN procedures proc on proc.id = rad_exams.procedure_id ")
-    .select("p.name,p.birthdate,pmrn.mrn,proc.code,proc.description,rad_exams.*")    
+    .select("p.name,p.birthdate,pmrn.mrn,proc.code,proc.description, proc.description decrip,rad_exams.*")    
   } 
   #scope :join_tech_employees_name, -> { joins("LEFT JOIN patient_mrns pmrn ON pmrn.patient_id = patients.id" ) }
   #scope :join_patient_mrns, -> { joins("LEFT JOIN patient_mrns pmrn ON pmrn.patient_id = patients.id" ) }
