@@ -4,7 +4,6 @@ class HomeController < ApplicationController
   after_filter :close_entity_manager
   layout 'examtracker_layout'
   
-  
     
   def radiologist
   end
@@ -43,19 +42,14 @@ class HomeController < ApplicationController
   end
   
   def get_jqgrid
-  #currently this is used to get data for jqgrid_page.
+	#currently this is used to get data for jqgrid_page.
+	@employee = Employee.get_employee(session[:username])   
+	@exams = Rad_Exam.get_rad_exams(@employee)
     json_data = {
-   :page=>"1",
-   :total=>2,
-   :records=>"6", 
-   :rows=>[ 
-      {:id=>"12345",:status=>{:initialstage=>"current",:patclass=>"current",:appttime=>"current",:scheduledstop=>""},:MRN=>"Desktop Computers",:procdescription=>"CT Scan for Needle blopsy",:signin=>"10-11-2015"}, 
-      {:id=>"23456",:status=>{:initialstage=>"current",:patclass=>"current",:appttime=>"red",:scheduledstop=>""},:MRN=>"laptop",:procdescription=>"CT Scan for Needle blopsy",:signin=>"09-11-2015"},
-      {:id=>"34567",:status=>{:initialstage=>"current",:patclass=>"current",:appttime=>"current",:scheduledstop=>""},:MRN=>"LCD Monitor",:procdescription=>"CT Scan for Needle blopsy",:signin=>"10-12-2015"},
-      {:id=>"34567",:status=>{:initialstage=>"current",:patclass=>"current",:appttime=>"current",:scheduledstop=>""},:MRN=>"TFT Monitor",:procdescription=>"CT Scan for Needle blopsy",:signin=>"22-08-2014"},
-      {:id=>"34567",:status=>{:initialstage=>"current",:patclass=>"current",:appttime=>"current",:scheduledstop=>"green"},:MRN=>"LCD Monitor",:procdescription=>"CT Scan for Needle blopsy",:signin=>"10-11-2015"},
-      {:id=>"45678",:status=>{:initialstage=>"current",:patclass=>"current",:appttime=>"current",:scheduledstop=>""},:MRN=>"Speakers",:procdescription=>"CT Scan for Needle blopsy",:signin=>"10-11-2014"} 
-    ] 
+		:page=>"1",
+		:total=>(@exams.count/5),
+		:records=>"6", 
+		:rows=> @exams.to_json(:only => [ :accession ]) 
     }
     
     respond_to do |format|
