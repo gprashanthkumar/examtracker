@@ -120,7 +120,7 @@
   $(document).ready(function(){
   	
   	var ddlAccessionSrch_Var = $("#DdlAccessionIdSrch").multiselect({
-        							noneSelectedText: "Select AccessionIds"
+        							noneSelectedText: "Select Accession"
      							});
   	var ddlStatusSrch_Var = $("#DdlStatusSrch").multiselect({
         						noneSelectedText: "Select Status"
@@ -225,10 +225,10 @@
                 
                 //****Binding data to AccessionId dropdown****//
                 $("#DdlAccessionIdSrch").empty();
-                $.each(data.rows,function(index, value){
-                	debugger;
-                	$("#DdlAccessionIdSrch").append($('<option>', { value: value.accession, text: value.accession }));
-                });
+                //$.each(data.rows,function(index, value){
+                	//debugger;
+                	//$("#DdlAccessionIdSrch").append($('<option>', { value: value.accession, text: value.accession }));
+               // });
                 ddlAccessionSrch_Var.multiselect('refresh');
                 //****End Binding data to AccessionId dropdown****//
             },
