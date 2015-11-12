@@ -1,6 +1,9 @@
 class Rad_Exam < ActiveRecord::Base
    self.table_name = "public.rad_exams"
-  scope :join_patient_mrns, -> { joins("LEFT JOIN patient_mrns pmrn ON pmrn.patient_id = rad_exams.patient_mrn_id" ) }
+  scope :join_patient_mrns, -> { joins("LEFT JOIN patient_mrns pmrn ON pmrn.patient_id = rad_exams.patient_mrn_id" )
+  .select("pmrn.mrn,rad_exams.*")
+    
+  }
   #scope :join_tech_employees_name, -> { joins("LEFT JOIN patient_mrns pmrn ON pmrn.patient_id = patients.id" ) }
   #scope :join_patient_mrns, -> { joins("LEFT JOIN patient_mrns pmrn ON pmrn.patient_id = patients.id" ) }
   #scope :join_cdc_mrn, -> { joins("LEFT JOIN patient_mrns cdc_mrn ON cdc_mrn.patient_id = patients.id AND cdc_mrn.external_system_id = ( select id from external_systems where external_system = 'CDC')") }
