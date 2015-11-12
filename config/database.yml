@@ -12,7 +12,7 @@
 
 development:
   adapter: jdbc
-  jndi: jdbc/examtracker
+  jndi: jdbc/harbinger
 
 production:
   adapter: jdbc
