@@ -9,6 +9,6 @@ class Rad_Exam < ActiveRecord::Base
   
   def self.get_rad_exams(employeeid)
     #self.where({patient_mrn_id: mrn}).order("created_at desc").first
-    self.order("id desc").all;
+    self.join_patient_mrns.order("id desc").all;
   end
 end
