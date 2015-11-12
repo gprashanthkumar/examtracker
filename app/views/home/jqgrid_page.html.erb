@@ -18,9 +18,14 @@
 
 <% content_for :head_javascript_section do %>
 	<style>
-		table#Example1 tbody tr td:first-child a{
+		table#example1 tbody tr td:first-child a{
 			color:skyblue;
 		}
+		
+		#fbox_example1 table tbody tr td.columns select{
+			max-width:160px;
+		}
+		
 	</style>
   <script type='text/javascript'>
   $(document).ready(function () {
@@ -49,29 +54,23 @@
 <!-- Main content -->
             <section class="content">
                 <div class="row">
-                    <div class="col-xs-12">
+                    <div class="col-xs-12" style=" text-align: center;">
                         <div>
-                            <div class="col-xs-3">
-                                <select id="DdlStatusSrch" title="Basic example" multiple="multiple" name="example-basic" size="5">
-                                    <option value="option1">Delay</option>
-                                    <option value="option2">InProgress</option>
-                                    <option value="option2">Final</option>
+                        	<div class="col-xs-4">
+                                <select id="DdlAccessionIdSrch" title="Basic example" multiple="multiple" name="example-basic" size="5">
                                 </select>
                             </div>
-                            <div class="col-xs-3">
-                                <select id="DdlCaseIdSrch" title="Basic example" multiple="multiple" name="example-basic" size="5">
-                                    <option value="option1">16853</option>
-                                    <option value="option2">16854</option>
+                            <div class="col-xs-4" >
+                                <select id="DdlStatusSrch" title="Basic example" multiple="multiple" name="example-basic" >
+                                    <option value="status_1">Delay</option>
+                                    <option value="status_2">InProgress</option>
+                                    <option value="status_3">Final</option>
                                 </select>
-                            </div>
-                            <div class="col-xs-3">
-                                <select id="DdlProcDescSrch" title="Basic example" multiple="multiple" name="example-basic" size="5">
-                                    <option value="option1">CT Scan for Needle blopsy</option>
-                                    <option value="option2">MR Scan for Needle blopsy</option>
-                                </select>
-                            </div>
-
-                            <input type="button" id="BtnSearch" value="Filter" />
+                            </div> 
+							<div class="col-xs-4" style=" text-align: left;">
+								<input type="button" id="BtnFilter" value="Filter" />
+							</div>
+                            
                         </div>
                     </div>
                     <br />
@@ -120,6 +119,23 @@
   <script type='text/javascript'>
   $(document).ready(function(){
   	
+  	var ddlAccessionSrch_Var = $("#DdlAccessionIdSrch").multiselect({
+        							noneSelectedText: "Select AccessionIds"
+     							});
+  	var ddlStatusSrch_Var = $("#DdlStatusSrch").multiselect({
+        						noneSelectedText: "Select Status"
+     						});
+    
+            
+  	//========Search functionality=================
+  	$("#BtnFilter").click(function(){
+  		var ddlAccessionIdSelectedValues_Var = $("#DdlAccessionIdSrch").val();
+  		var ddlStatusSelectedValues_Var = $("#DdlStatusSrch").val();
+  		
+  		debugger;
+  	});
+  	//=====End Search functionality==============
+  	
   	$.ajax({
   		url:"/home/get_data",
   		//dataType: 'json',
@@ -136,11 +152,11 @@
   	
   	function makeIdAsLinkFormatter( cellvalue, option, rowobj ){
   		//debugger;
-  		return '<a class="clsuname" id="lnk$#'+ cellvalue +'" onclick="showExamDetail(this.id)">' + cellvalue + '</a>';
+  		return '<a class="" id="lnk$#'+ cellvalue +'" onclick="showExamDetail(this.id)">' + cellvalue + '</a>';
   	}
   	
   	function parseStatusOfExamFormatter (cellvalue, option, rowobj ) {
-		debugger;
+		//debugger;
 		return '<div class="wizard"><a class="'+cellvalue.initialstage+'"><span class="badge"></span></a><a class="'+cellvalue.patclass+'"><span class="badge"></span></a><a class="'+cellvalue.appttime+'"><span class="badge badge-inverse"></span></a><a class="'+cellvalue.scheduledstop+'"><i class="fa fa-check" style="display: table-cell; float: right; margin: 8px;"></i></a></div>'   
 	  }
   	
@@ -150,7 +166,7 @@
             datatype: "json",
             url: '/home/get_jqgrid/',
             mtype: 'GET',
-            colNames: ['Exam Id', 'MRN','Proc Description','Pat_Class &nbsp;|&nbsp; Appt_Time &nbsp;|&nbsp; Scheduled_Stop', 'Sign In'],
+            colNames: ['A#', 'MRN','Proc Description','Pat_Class &nbsp;|&nbsp; Appt_Time &nbsp;|&nbsp; Scheduled_Stop', 'Sign In'],
             colModel: [
                 { name: 'id', index: 'id', align: 'center', width:35, formatter: makeIdAsLinkFormatter },                
                 { name: 'MRN', index: 'MRN', align: 'center' },
@@ -165,6 +181,7 @@
             jsonReader: { repeatitems: false, id: "id", root: function (obj) { return obj.rows; }, page: function (obj) { return obj.page; }, total: function (obj) { return obj.total; },
     records: function (obj) { return (obj.rows.length ); }
 			},
+			beforeSelectRow: function() { return false; },
             multiselect: false,
             autowidth: true,
             //width:'90%',
@@ -184,16 +201,23 @@
             	//debugger;
                 var datacount = $("#example1").getGridParam("reccount");
                 if (datacount == 0) {
-                	//$('#Example1').jqGrid('setGridHeight','150');
                     $('.ui-jqgrid-bdiv').removeClass('JqgridAutoHeight'); 
-                    $('#Example1').jqGrid('setGridHeight','250'); 
+                    $('#example1').jqGrid('setGridHeight','250'); 
                 }
                 if (datacount > 0) {   /*grid heigth */
                	debugger;
 					$('#example1').jqGrid('setGridHeight','auto');
                     //$('.ui-jqgrid-bdiv').addClass('JqgridAutoHeight');
                 }
-                //lColHeight();
+                
+                //****Binding data to AccessionId dropdown****//
+                $("#DdlAccessionIdSrch").empty();
+                $.each(data.rows,function(index, value){
+                	debugger;
+                	$("#DdlAccessionIdSrch").append($('<option>', { value: value.id, text: value.id }));
+                });
+                ddlAccessionSrch_Var.multiselect('refresh');
+                //****End Binding data to AccessionId dropdown****//
             },
         }).hideCol([ ]).navGrid('#example1pager', {
             edit: false, add: false, del: false, search: true, refresh: true, beforeRefresh: function () {
@@ -219,15 +243,8 @@
        });
             
 
-            $("#DdlStatusSrch").multiselect({
-                noneSelectedText: "Select Status"
-            });
-            $("#DdlCaseIdSrch").multiselect({
-                noneSelectedText: "Select CaseId"
-            });
-            $("#DdlProcDescSrch").multiselect({
-                noneSelectedText: "Select Proc Description"
-            });
+            
+            
   });
   
   function showExamDetail(id) {

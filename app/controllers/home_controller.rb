@@ -33,6 +33,9 @@ class HomeController < ApplicationController
   def jqgrid_page   
   end
   
+  def search_exams(accesession_ids, exam_status)  
+  end
+  
   def get_jqgrid
   #currently this is used to get data for jqgrid_page.
     json_data = {
