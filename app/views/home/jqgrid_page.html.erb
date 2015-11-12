@@ -183,9 +183,11 @@
             datatype: "json",
             url: '/home/get_jqgrid/',
             mtype: 'GET',
-            colNames: ['A#'],
+            colNames: ['A#','MRN'],
             colModel: [
                 { name: 'accession', index: 'accession', align: 'center', width:35, formatter: makeIdAsLinkFormatter },
+                { name: 'mrn', index: 'mrn', align: 'center', width:35},
+                
             ],
             //jsonReader: { repeatitems:false, root:"rows" },
             //jsonReader: { repeatitems: false, id: "id", root: "rows", page: "page", total: "total",
