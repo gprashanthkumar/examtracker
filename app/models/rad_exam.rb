@@ -2,7 +2,7 @@ class Rad_Exam < ActiveRecord::Base
    self.table_name = "public.rad_exams"
   scope :join_patient_mrns, -> { 
     joins("LEFT JOIN patient_mrns pmrn ON pmrn.id = rad_exams.patient_mrn_id" )
-    .joins("LEFT JOIN patients p ON p.id = join_patient_mrns.patient_id" )
+    .joins("LEFT JOIN patients p ON p.id = pmrn.patient_id" )
     .select("p.name,p.birthdate,pmrn.mrn,rad_exams.*")    
   } 
   #scope :join_tech_employees_name, -> { joins("LEFT JOIN patient_mrns pmrn ON pmrn.patient_id = patients.id" ) }
