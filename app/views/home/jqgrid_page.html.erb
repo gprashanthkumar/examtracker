@@ -227,7 +227,7 @@
                 $("#DdlAccessionIdSrch").empty();
                 $.each(data.rows,function(index, value){
                 	debugger;
-                	$("#DdlAccessionIdSrch").append($('<option>', { value: value.id, text: value.id }));
+                	$("#DdlAccessionIdSrch").append($('<option>', { value: value.accession, text: value.accession }));
                 });
                 ddlAccessionSrch_Var.multiselect('refresh');
                 //****End Binding data to AccessionId dropdown****//
