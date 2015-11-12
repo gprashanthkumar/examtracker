@@ -47,7 +47,7 @@ class HomeController < ApplicationController
 	@exams = Rad_Exam.get_rad_exams(@employee)
     json_data = {
 		:page=>"1",
-		:total=>(@exams.count/5),
+		:total=>3,
 		:records=>"6", 
 		:rows=> JSON.parse(@exams.to_json(:only => [ :accession ])) 
     }
