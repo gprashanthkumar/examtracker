@@ -534,7 +534,7 @@
 				//****Binding data to Status dropdown****//
                 $("#DdlStatusSrch").empty();
                 var uniqueStatus = $.unique(data.rows.map(function (value) {    				
-    				return value.MRN
+    				return value.mrn;
     			}));
                 $.each(uniqueStatus,function(index, value){
                 	debugger;
