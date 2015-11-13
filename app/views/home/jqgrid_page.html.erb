@@ -444,7 +444,7 @@
             datatype: "json",
             url: '/home/get_jqgrid/',
             mtype: 'GET',
-            colNames: ['A#','Appt Time','Begin Exam','End Exam','SignIn','CheckIn','Current Status','Status Last Changed','Patient Name','Patient MRN','Patient DOB','Patient Class','Patient Type','Patient Location at exam','Radiology Department','Exam Resource','Modality','Proc Code','Proc Description','Ordering Provider','Scheduler','Technologist','PACS Image Count'],
+            colNames: ['A#','Appt Time','Begin Exam','End Exam','SignIn','CheckIn','Current Status','Status Last Changed','Patient Name','Patient MRN','Patient DOB','Site','Patient Class','Patient Type','Patient Location at exam','Radiology Department','Exam Resource','Modality','Proc Code','Proc Description','Ordering Provider','Scheduler','Technologist','PACS Image Count'],
             colModel: [
                 { name: 'accession', index: 'accession', align: 'center', width:35, fixed:true, formatter: makeIdAsLinkFormatter }
 				,{ name: 'appt_time', index: 'appt_time', align: 'center', width:150, fixed:true }
@@ -457,8 +457,9 @@
 				,{ name: 'patient_name', index: 'patient_name', align: 'center', width:140, fixed:true }
                 ,{ name: 'mrn', index: 'mrn', align: 'center', width:120, fixed:true }
 				,{ name: 'birthdate', index: 'birthdate', align: 'center', width:140, fixed:true }
+				,{ name: 'site_name', index: 'site_name', align: 'center', width:80, fixed:true }
 				,{ name: 'patient_class', index: 'patient_class', align: 'center', width:80, fixed:true }
-				,{ name: 'patient_type', index: 'patient_type', align: 'center', width:80, fixed:true}
+				,{ name: 'patient_type', index: 'patient_type', align: 'center', width:80, fixed:true }
 				,{ name: 'patient_location_at_exam', index: 'patient_location_at_exam', align: 'center', width:150, fixed:true }
 				,{ name: 'radiology_department', index: 'radiology_department', align: 'center', width:150, fixed:true }
 				,{ name: 'resource_name', index: 'resource_name', align: 'center', width:130, fixed:true }
