@@ -444,7 +444,7 @@
             datatype: "json",
             url: '/home/get_jqgrid/',
             mtype: 'GET',
-            colNames: ['A#','MRN','Proc Code','Proc Description','Modality','Exam Resource','Current Status'],
+            colNames: ['A#','MRN','Proc Code','Proc Description','Modality','Exam Resource','Current Status','Status Last Changed'],
             colModel: [
                 { name: 'accession', index: 'accession', align: 'center', width:35, formatter: makeIdAsLinkFormatter }
                 ,{ name: 'mrn', index: 'mrn', align: 'center'}
@@ -453,6 +453,7 @@
                 ,{ name: 'modality', index: 'modality', align: 'center'}
                 ,{ name: 'resource_name', index: 'resource_name', align: 'center'}
                 ,{ name: 'current_status', index: 'current_status', align: 'center'}
+                ,{ name: 'updated_at', index: 'updated_at', align: 'center'}
                 
             ],
             //jsonReader: { repeatitems:false, root:"rows" },
