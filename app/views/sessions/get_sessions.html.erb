@@ -49,6 +49,9 @@
                         <% ht.column("Current Status") {|e| e.current_status if e.current_status} %>
                           <% ht.column("Procedure Code") {|e| e.procedure_id if e.procedure_id } %>  
                      <% ht.column("proc description") {|e| e.description if e.description } %>      
+                    <% ht.column("proc description") {|e| e.ordering_provider if e.ordering_provider } %>      
+                    <% ht.column("proc description") {|e| e.scheduler if e.scheduler } %>      
+                    <% ht.column("proc description") {|e| e.technologist if e.technologist } %>      
                     
                         <% end %>
                       <% else %>
