@@ -1,6 +1,6 @@
 class Rad_Exam < ActiveRecord::Base
    self.table_name = "public.rad_exams"
-   scope :join_patient_mrns, -> { 
+   scope :join_Main, -> { 
     joins("LEFT JOIN patient_mrns pmrn ON pmrn.id = rad_exams.patient_mrn_id" )
     .joins("LEFT JOIN patients p ON p.id = pmrn.patient_id" )
     .joins("LEFT JOIN procedures proc on proc.id = rad_exams.procedure_id ")
@@ -44,6 +44,6 @@ class Rad_Exam < ActiveRecord::Base
   
   def self.get_rad_exams(employeeid)
     #self.where({patient_mrn_id: mrn}).order("created_at desc").first
-    self.join_patient_mrns.order("id desc").all;
+    self.join_Main.order("id desc").all;
   end
 end
