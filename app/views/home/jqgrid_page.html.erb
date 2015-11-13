@@ -444,29 +444,31 @@
             datatype: "json",
             url: '/home/get_jqgrid/',
             mtype: 'GET',
-            colNames: ['A#','Appt Time','Begin Exam','End Exam','SignIn','CheckIn','Current Status','Status Last Changed','MRN','Patient Class','Patient Type','Patient Location at exam','Radiology Department','Exam Resource','Modality','Proc Code','Proc Description','Ordering Provider','Scheduler','Technologist','PACS Image Count'],
+            colNames: ['A#','Appt Time','Begin Exam','End Exam','SignIn','CheckIn','Current Status','Status Last Changed','Patient Name','Patient MRN','Patient DOB','Patient Class','Patient Type','Patient Location at exam','Radiology Department','Exam Resource','Modality','Proc Code','Proc Description','Ordering Provider','Scheduler','Technologist','PACS Image Count'],
             colModel: [
                 { name: 'accession', index: 'accession', align: 'center', width:35, fixed:true, formatter: makeIdAsLinkFormatter }
-				,{ name: 'appt_time', index: 'appt_time', align: 'center', width:140, fixed:true }
-				,{ name: 'begin_exam', index: 'begin_exam', align: 'center', width:140, fixed:true }
-				,{ name: 'end_exam', index: 'end_exam', align: 'center', width:140, fixed:true }
-				,{ name: 'sign_in', index: 'sign_in', align: 'center', width:140, fixed:true }
+				,{ name: 'appt_time', index: 'appt_time', align: 'center', width:150, fixed:true }
+				,{ name: 'begin_exam', index: 'begin_exam', align: 'center', width:150, fixed:true }
+				,{ name: 'end_exam', index: 'end_exam', align: 'center', width:150, fixed:true }
+				,{ name: 'sign_in', index: 'sign_in', align: 'center', width:150, fixed:true }
                 ,{ name: 'check_in', index: 'check_in', align: 'center', width:140, fixed:true }
-				,{ name: 'current_status', index: 'current_status', align: 'center', width:70, fixed:true }
-				,{ name: 'updated_at', index: 'updated_at', align: 'center', width:140, fixed:true }				
-                ,{ name: 'mrn', index: 'mrn', align: 'center', width:140, fixed:true }
-				,{ name: 'patient_class', index: 'patient_class', align: 'center', width:60, fixed:true }
-				,{ name: 'patient_type', index: 'patient_type', align: 'center', width:60, fixed:true}
+				,{ name: 'current_status', index: 'current_status', align: 'center', width:80, fixed:true }
+				,{ name: 'updated_at', index: 'updated_at', align: 'center', width:140, fixed:true }
+				,{ name: 'patient_name', index: 'patient_name', align: 'center', width:140, fixed:true }
+                ,{ name: 'mrn', index: 'mrn', align: 'center', width:120, fixed:true }
+				,{ name: 'birthdate', index: 'birthdate', align: 'center', width:140, fixed:true }
+				,{ name: 'patient_class', index: 'patient_class', align: 'center', width:80, fixed:true }
+				,{ name: 'patient_type', index: 'patient_type', align: 'center', width:80, fixed:true}
 				,{ name: 'patient_location_at_exam', index: 'patient_location_at_exam', align: 'center', width:150, fixed:true }
 				,{ name: 'radiology_department', index: 'radiology_department', align: 'center', width:150, fixed:true }
-				,{ name: 'resource_name', index: 'resource_name', align: 'center', width:150, fixed:true }
+				,{ name: 'resource_name', index: 'resource_name', align: 'center', width:130, fixed:true }
 				,{ name: 'modality', index: 'modality', align: 'center', width:80, fixed:true }			
                 ,{ name: 'code', index: 'code', align: 'center', width:80, fixed:true }
                 ,{ name: 'description', index: 'description', align: 'center', width:150, fixed:true }	
 				,{ name: 'ordering_provider', index: 'ordering_provider', align: 'center', width:150, fixed:true }
 				,{ name: 'scheduler', index: 'scheduler', align: 'center', width:80, fixed:true }
 				,{ name: 'technologist', index: 'technologist', align: 'center', width:80, fixed:true }
-                ,{ name: 'pacs_image_count', index: 'pacs_image_count', align: 'center', width:150, fixed:true }
+                ,{ name: 'pacs_image_count', index: 'pacs_image_count', align: 'center', width:140, fixed:true }
                     
                 
             ],
