@@ -52,9 +52,8 @@ class Rad_Exam < ActiveRecord::Base
     self.join_Main.order("id desc").all;
   end
   def self.get_tech_exams(employeeid)
-    #self.where({patient_mrn_id: mrn}).order("created_at desc").first
-    puts employeeid.to_s + ' kumar \n' ;
-    s = self.join_Main.Radiologist.where("rr.rad1_id = ? ",employeeid).order("id desc").all ;
+    
+    s = self.join_Main.Radiologist.where("( (rr.rad1_id = ?) or (rr.rad2_id = ?) or  (rr.rad3_id = ?) or (rr.rad4_id = ?) or",employeeid,employeeid,employeeid,employeeid).order("id desc").all ;
    #s.where("name ILIKE ?", wildcard_name) unless params[:patient_name].blank?
    #s.where("rad_reports.rad1_id = ? or rad_reports.rad2_id = ? or rad_reports.rad3_id = ? or rad_reports.rad4_id = ? ", employeeid, employeeid, employeeid, employeeid) ;
    #unless employeeid.blank?
