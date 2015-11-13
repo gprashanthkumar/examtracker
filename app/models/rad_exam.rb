@@ -9,8 +9,10 @@ class Rad_Exam < ActiveRecord::Base
     .joins("LEFT join external_system_statuses ess on ess.id = rad_exams.current_status_id ")
     .joins("LEFT join universal_event_types uet on uet.id = ess.universal_event_type_id ")
     .joins("LEFT join  sites s on s.id = rad_exams.site_id")
+    .joins("LEFT join  site_classes sc on sc.id = rad_exams.site_class_id")
     .select("p.name,p.birthdate,pmrn.mrn,proc.code,proc.description,modality,res.name as resource_name
-     ,uet.event_type as current_status,CASE WHEN s.name IS NULL THEN s.site ELSE s.name END  site_name,rad_exams.*")    
+     ,uet.event_type as current_status,CASE WHEN s.name IS NULL THEN s.site ELSE s.name END  site_name
+     ,CASE WHEN sc.name IS NULL THEN sc.site_class ELSE sc.name END  patient_class,rad_exams.*")    
   } 
   #scope :join_tech_employees_name, -> { joins("LEFT JOIN patient_mrns pmrn ON pmrn.patient_id = patients.id" ) }
   #scope :join_patient_mrns, -> { joins("LEFT JOIN patient_mrns pmrn ON pmrn.patient_id = patients.id" ) }
