@@ -23,7 +23,9 @@ class Rad_Exam < ActiveRecord::Base
     .joins("left join rad_pacs_metadata rpmd on rpmd.rad_exam_id = rad_exams.id") 
     .joins("left join rad_exam_times ret on ret.rad_exam_id =  rad_exams.id")
     .select("p.name patient_name,p.birthdate,pmrn.mrn,proc.code,proc.description,modality,res.name as resource_name
-     ,uet.event_type as current_status,CASE WHEN s.name IS NULL THEN s.site ELSE s.name END  site_name
+     ,uet.event_type as graph_status
+    ,uet.event_type as current_status
+    ,CASE WHEN s.name IS NULL THEN s.site ELSE s.name END  site_name
      ,CASE WHEN sc.name IS NULL THEN sc.site_class ELSE sc.name END  patient_class
      ,pt.patient_type
      ,CASE WHEN sloc.location IS NULL THEN '' ELSE sloc.location END 
@@ -42,8 +44,19 @@ class Rad_Exam < ActiveRecord::Base
      ,rad_exams.*")      
   }   
   
+   scope :Radiologist, -> { 
+    joins("LEFT JOIN rad_reports rr ON rr.rad_exam_id = rad_exams.id" )   
+   }
   def self.get_rad_exams(employeeid)
     #self.where({patient_mrn_id: mrn}).order("created_at desc").first
     self.join_Main.order("id desc").all;
+  end
+  def self.get_tech_exams(employeeid)
+    #self.where({patient_mrn_id: mrn}).order("created_at desc").first
+    s = self.join_Main.Radiologist
+   #s.where("name ILIKE ?", wildcard_name) unless params[:patient_name].blank?
+   s.where("rad_reports.rad1_id = ? or rad_reports.rad2_id = ? or rad_reports.rad3_id = ? or rad_reports.rad4_id = ? ", employeeid, employeeid, employeeid, employeeid) unless employeeid.blank?
+    s.order("id desc").all;
+    return s
   end
 end
