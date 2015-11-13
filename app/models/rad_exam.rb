@@ -20,7 +20,8 @@ class Rad_Exam < ActiveRecord::Base
     .joins("left join employees empsched on empsched.id = repsched.scheduler_id") 
     .joins("left join rad_exam_personnel repstech on repstech.rad_exam_id = rad_exams.id") 
     .joins("left join employees emptech on emptech.id = repstech.technologist_id")     
-    .joins("left join rad_pacs_metadata rpmd on rpmd.rad_exam_id = rad_exams.id")     
+    .joins("left join rad_pacs_metadata rpmd on rpmd.rad_exam_id = rad_exams.id") 
+    .joins("left join rad_exam_times ret on ret.rad_exam_id =  rad_exams.id")
     .select("p.name,p.birthdate,pmrn.mrn,proc.code,proc.description,modality,res.name as resource_name
      ,uet.event_type as current_status,CASE WHEN s.name IS NULL THEN s.site ELSE s.name END  site_name
      ,CASE WHEN sc.name IS NULL THEN sc.site_class ELSE sc.name END  patient_class
@@ -33,6 +34,11 @@ class Rad_Exam < ActiveRecord::Base
      ,CASE WHEN empsched.name IS NULL THEN '' ELSE empsched.name END  scheduler
      ,CASE WHEN emptech.name IS NULL THEN '' ELSE emptech.name END  technologist
      ,Case WHEN rpmd.image_count IS NULL THEN 0 ELSE rpmd.image_count END  pacs_image_count
+ ,CASE WHEN ret.appointment is null then ret.appointment else ret.appointment END appt_time
+ ,CASE WHEN ret.sign_in is null then ret.sign_in else ret.sign_in END sign_in
+,CASE WHEN ret.check_in is null then ret.check_in else ret.check_in END check_in
+,CASE WHEN ret.begin_exam is null then ret.begin_exam else ret.begin_exam END begin_exam
+,CASE WHEN ret.end_exam is null then ret.end_exam else ret.end_exam END end_exam
      ,rad_exams.*")    
   } 
   #scope :join_tech_employees_name, -> { joins("LEFT JOIN patient_mrns pmrn ON pmrn.patient_id = patients.id" ) }
