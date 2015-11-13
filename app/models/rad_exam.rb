@@ -13,6 +13,7 @@ class Rad_Exam < ActiveRecord::Base
     .joins("LEFT join patient_types pt on pt.id = sc.patient_type_id")    
     .joins("LEFT join site_sublocations ssloc on ssloc.id = rad_exams.site_sublocation_id")
     .joins("LEFT join site_locations sloc on sloc.id = ssloc.site_location_id")    
+    .joins("LEFT join rad_exam_departments red on red.id = rad_exams.rad_exam_department_id")    
     .select("p.name,p.birthdate,pmrn.mrn,proc.code,proc.description,modality,res.name as resource_name
      ,uet.event_type as current_status,CASE WHEN s.name IS NULL THEN s.site ELSE s.name END  site_name
      ,CASE WHEN sc.name IS NULL THEN sc.site_class ELSE sc.name END  patient_class
@@ -20,6 +21,7 @@ class Rad_Exam < ActiveRecord::Base
      ,CASE WHEN sloc.location IS NULL THEN '' ELSE sloc.location END 
      || CASE WHEN ssloc.room IS NULL THEN '' ELSE ssloc.room END 
       || CASE WHEN ssloc.bed IS NULL THEN '' ELSE ssloc.bed END  patient_location_at_exam
+     ,CASE WHEN red.description IS NULL THEN red.department ELSE red.description END  radiology_department
       ,rad_exams.*")    
   } 
   #scope :join_tech_employees_name, -> { joins("LEFT JOIN patient_mrns pmrn ON pmrn.patient_id = patients.id" ) }
