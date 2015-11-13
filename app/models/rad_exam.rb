@@ -21,7 +21,7 @@ class Rad_Exam < ActiveRecord::Base
      ,CASE WHEN sloc.location IS NULL THEN '' ELSE sloc.location END 
      || CASE WHEN ssloc.room IS NULL THEN '' ELSE ssloc.room END 
       || CASE WHEN ssloc.bed IS NULL THEN '' ELSE ssloc.bed END  patient_location_at_exam
-     ,CASE WHEN red.description IS NULL THEN red.department ELSE red.description END  radiology_department
+     ,CASE WHEN rad_exams.rad_exam_department_id IS NULL THEN '' WHEN red.description IS NULL THEN red.department ELSE red.description END  radiology_department
       ,rad_exams.*")    
   } 
   #scope :join_tech_employees_name, -> { joins("LEFT JOIN patient_mrns pmrn ON pmrn.patient_id = patients.id" ) }
