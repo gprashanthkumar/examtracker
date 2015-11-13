@@ -8,7 +8,7 @@ class Rad_Exam < ActiveRecord::Base
     .joins("LEFT JOIN modalities mod on mod.id = res.modality_id ")
     .joins("LEFT join external_system_statuses ess on ess.id = rad_exams.current_status_id ")
     .joins("LEFT join universal_event_types uet on uet.id = ess.universal_event_type_id ")
-    .joins("LEFT join  sites s on s.id = e.site_id")
+    .joins("LEFT join  sites s on s.id = rad_exams.site_id")
     .select("p.name,p.birthdate,pmrn.mrn,proc.code,proc.description,modality,res.name as resource_name
      ,uet.event_type as current_status,CASE WHEN s.name IS NULL THEN s.site ELSE s.name END  site_name,rad_exams.*")    
   } 
