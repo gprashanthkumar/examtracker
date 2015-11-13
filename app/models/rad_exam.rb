@@ -1,6 +1,6 @@
 class Rad_Exam < ActiveRecord::Base
    self.table_name = "public.rad_exams"
-  scope :join_patient_mrns, -> { 
+   scope :join_patient_mrns, -> { 
     joins("LEFT JOIN patient_mrns pmrn ON pmrn.id = rad_exams.patient_mrn_id" )
     .joins("LEFT JOIN patients p ON p.id = pmrn.patient_id" )
     .joins("LEFT JOIN procedures proc on proc.id = rad_exams.procedure_id ")
@@ -14,6 +14,12 @@ class Rad_Exam < ActiveRecord::Base
     .joins("LEFT join site_sublocations ssloc on ssloc.id = rad_exams.site_sublocation_id")
     .joins("LEFT join site_locations sloc on sloc.id = ssloc.site_location_id")    
     .joins("LEFT join rad_exam_departments red on red.id = rad_exams.rad_exam_department_id")    
+    .joins("left join rad_exam_personnel repop on repop.rad_exam_id = rad_exams.id") 
+    .joins("left join employees empop on empop.id = repop.ordering_id") 
+    .joins("left join rad_exam_personnel repsched on repsched.rad_exam_id = rad_exams.id") 
+    .joins("left join employees empsched on empsched.id = repsched.scheduler_id") 
+    .joins("left join rad_exam_personnel repstech on repstech.rad_exam_id = rad_exams.id") 
+    .joins("left join employees emptech on emptech.id = repstech.technologist_id")     
     .select("p.name,p.birthdate,pmrn.mrn,proc.code,proc.description,modality,res.name as resource_name
      ,uet.event_type as current_status,CASE WHEN s.name IS NULL THEN s.site ELSE s.name END  site_name
      ,CASE WHEN sc.name IS NULL THEN sc.site_class ELSE sc.name END  patient_class
@@ -22,7 +28,10 @@ class Rad_Exam < ActiveRecord::Base
      || CASE WHEN ssloc.room IS NULL THEN '' ELSE ssloc.room END 
       || CASE WHEN ssloc.bed IS NULL THEN '' ELSE ssloc.bed END  patient_location_at_exam
      ,CASE WHEN rad_exams.rad_exam_department_id IS NULL THEN '' WHEN red.description IS NULL THEN red.department ELSE red.description END  radiology_department
-      ,rad_exams.*")    
+     ,CASE WHEN empop.name IS NULL THEN '' ELSE empop.name END  ordering_provider
+     ,CASE WHEN empsched.name IS NULL THEN '' ELSE empsched.name END  scheduler
+     ,CASE WHEN emptech.name IS NULL THEN '' ELSE emptech.name END  technologist
+     ,rad_exams.*")    
   } 
   #scope :join_tech_employees_name, -> { joins("LEFT JOIN patient_mrns pmrn ON pmrn.patient_id = patients.id" ) }
   #scope :join_patient_mrns, -> { joins("LEFT JOIN patient_mrns pmrn ON pmrn.patient_id = patients.id" ) }
