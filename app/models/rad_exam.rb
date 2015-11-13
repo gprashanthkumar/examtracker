@@ -13,7 +13,7 @@ class Rad_Exam < ActiveRecord::Base
     .joins("LEFT join patient_types pt on pt.id = sc.patient_type_id")    
     .joins("LEFT join site_sublocations ssloc on ssloc.id = rad_exams.site_sublocation_id")
     .joins("LEFT join site_locations sloc on sloc.id = ssloc.site_location_id")    
-    .joins("LEFT join rad_exam_departments red on red.id = rad_exams.rad_exam_department_id")    
+    .joins("LEFT join rad_exam_departments red on red.id = rad_exams.rad_exam_department_id")        
     .joins("left join rad_exam_personnel repop on repop.rad_exam_id = rad_exams.id") 
     .joins("left join employees empop on empop.id = repop.ordering_id") 
     .joins("left join rad_exam_personnel repsched on repsched.rad_exam_id = rad_exams.id") 
@@ -45,7 +45,8 @@ class Rad_Exam < ActiveRecord::Base
   }   
   
    scope :Radiologist, -> { 
-    joins("LEFT JOIN rad_reports rr ON rr.rad_exam_id = rad_exams.id" )   
+    joins("LEFT JOIN rad_reports rr ON rr.rad_exam_id = rad_exams.id" )
+    .joins("left join rad_exam_personnel repp on repp.rad_exam_id = rad_exams.id") 
    }
   def self.get_rad_exams(employeeid)
     #self.where({patient_mrn_id: mrn}).order("created_at desc").first
@@ -53,7 +54,7 @@ class Rad_Exam < ActiveRecord::Base
   end
   def self.get_tech_exams(employeeid)
     
-    s = self.join_Main.Radiologist.where("( (rr.rad1_id = ?) or (rr.rad2_id = ?) or  (rr.rad3_id = ?) or (rr.rad4_id = ?)) ",employeeid,employeeid,employeeid,employeeid).order("id desc").all ;
+    s = self.join_Main.Radiologist.where("( (rr.rad1_id = ?) or (rr.rad2_id = ?) or  (rr.rad3_id = ?) or (rr.rad4_id = ?)) or (repp.performing_id = ?) ",employeeid,employeeid,employeeid,employeeid,employeeid).order("id desc").all ;
    #s.where("name ILIKE ?", wildcard_name) unless params[:patient_name].blank?
    #s.where("rad_reports.rad1_id = ? or rad_reports.rad2_id = ? or rad_reports.rad3_id = ? or rad_reports.rad4_id = ? ", employeeid, employeeid, employeeid, employeeid) ;
    #unless employeeid.blank?
