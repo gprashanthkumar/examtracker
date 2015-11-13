@@ -20,7 +20,7 @@ class Rad_Exam < ActiveRecord::Base
     .joins("left join employees empsched on empsched.id = repsched.scheduler_id") 
     .joins("left join rad_exam_personnel repstech on repstech.rad_exam_id = rad_exams.id") 
     .joins("left join employees emptech on emptech.id = repstech.technologist_id")     
-    .joins("left join rad_pacs_metadata rpmd on rpmd.rad_exam_id = e.id")     
+    .joins("left join rad_pacs_metadata rpmd on rpmd.rad_exam_id = rad_exams.id")     
     .select("p.name,p.birthdate,pmrn.mrn,proc.code,proc.description,modality,res.name as resource_name
      ,uet.event_type as current_status,CASE WHEN s.name IS NULL THEN s.site ELSE s.name END  site_name
      ,CASE WHEN sc.name IS NULL THEN sc.site_class ELSE sc.name END  patient_class
