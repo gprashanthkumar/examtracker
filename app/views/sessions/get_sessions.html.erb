@@ -48,6 +48,7 @@
                         <% ht.column("MRN") {|e| e.patient_mrn_id if e.patient_mrn_id } %>          
                         <% ht.column("Current Status") {|e| e.current_status_id if e.current_status_id} %>
                           <% ht.column("Procedure Code") {|e| e.procedure_id if e.procedure_id } %>          
+                       <% ht.column("MRN") {|e| e.mrn if e.mrn } %>   
                         <% end %>
                       <% else %>
                         No exams.
