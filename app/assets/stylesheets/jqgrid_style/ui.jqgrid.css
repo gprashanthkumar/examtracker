@@ -11,7 +11,7 @@ table tbody tr.ui-widget-content td{
 
 .ui-jqgrid .ui-jqgrid-btable
 {
-  table-layout:auto !important;
+  /*table-layout:auto !important;*/
 }
 
 .ui-jqgrid {
