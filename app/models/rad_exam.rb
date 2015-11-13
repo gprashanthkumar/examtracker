@@ -1,6 +1,6 @@
 class Rad_Exam < ActiveRecord::Base
-   self.table_name = "public.rad_exams"
-   scope :join_Main, -> { 
+  self.table_name = "public.rad_exams"
+  scope :join_Main, -> { 
     joins("LEFT JOIN patient_mrns pmrn ON pmrn.id = rad_exams.patient_mrn_id" )
     .joins("LEFT JOIN patients p ON p.id = pmrn.patient_id" )
     .joins("LEFT JOIN procedures proc on proc.id = rad_exams.procedure_id ")
@@ -44,22 +44,17 @@ class Rad_Exam < ActiveRecord::Base
      ,rad_exams.*")      
   }   
   
-   scope :Radiologist, -> { 
+  scope :Radiologist, -> { 
     joins("LEFT JOIN rad_reports rr ON rr.rad_exam_id = rad_exams.id" )
     .joins("left join rad_exam_personnel repp on repp.rad_exam_id = rad_exams.id") 
-   }
+  }
   def self.get_rad_exams(employeeid)
     #self.where({patient_mrn_id: mrn}).order("created_at desc").first
     self.join_Main.order("id desc").all;
   end
   def self.get_tech_exams(employeeid)
     
-    s = self.join_Main.Radiologist.where("( (rr.rad1_id = ?) or (rr.rad2_id = ?) or  (rr.rad3_id = ?) or (rr.rad4_id = ?)) or (repp.performing_id = ?) ",employeeid,employeeid,employeeid,employeeid,employeeid).order("id desc").all ;
-   #s.where("name ILIKE ?", wildcard_name) unless params[:patient_name].blank?
-   #s.where("rad_reports.rad1_id = ? or rad_reports.rad2_id = ? or rad_reports.rad3_id = ? or rad_reports.rad4_id = ? ", employeeid, employeeid, employeeid, employeeid) ;
-   #unless employeeid.blank?
-    #s.order("id desc").all;
-    
-    return s
+    tech_exams = self.join_Main.Radiologist.where("( (rr.rad1_id = ?) or (rr.rad2_id = ?) or  (rr.rad3_id = ?) or (rr.rad4_id = ?)) or (repp.performing_id = ?) ",employeeid,employeeid,employeeid,employeeid,employeeid).order("id desc").all ;   
+    return tech_exams;
   end
 end
