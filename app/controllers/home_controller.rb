@@ -59,7 +59,7 @@ class HomeController < ApplicationController
   end
   
   def get_jqgridTech
-    get_jqgrid_common("rad");
+    get_jqgrid_common("tech");
   end
   def get_jqgrid_common(roletype)
 	#currently this is used to get data for jqgrid_page.
