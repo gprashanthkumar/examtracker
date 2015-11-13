@@ -444,29 +444,30 @@
             datatype: "json",
             url: '/home/get_jqgrid/',
             mtype: 'GET',
-            colNames: ['A#','MRN','Proc Code','Proc Description','Modality','Exam Resource','Current Status','Status Last Changed','Patient Class','Patient Type','Patient Location at exam','Radiology Department','Ordering Provider','Scheduler','Technologist','PACS Image Count','Appt Time','SignIn','CheckIn','Begin Exam','End Exam'],
+            colNames: ['A#','Appt Time','Begin Exam','End Exam','SignIn','CheckIn','Current Status','Status Last Changed','MRN','Patient Class','Patient Type','Patient Location at exam','Radiology Department','Exam Resource','Modality','Proc Code','Proc Description','Ordering Provider','Scheduler','Technologist','PACS Image Count'],
             colModel: [
                 { name: 'accession', index: 'accession', align: 'center', width:35, formatter: makeIdAsLinkFormatter }
+				,{ name: 'appt_time', index: 'appt_time', align: 'center'}
+				,{ name: 'begin_exam', index: 'begin_exam', align: 'center'}
+				,{ name: 'end_exam', index: 'end_exam', align: 'center'}
+				,{ name: 'sign_in', index: 'sign_in', align: 'center'}
+                ,{ name: 'check_in', index: 'check_in', align: 'center'}
+				,{ name: 'current_status', index: 'current_status', align: 'center'}
+				,{ name: 'updated_at', index: 'updated_at', align: 'center'}				
                 ,{ name: 'mrn', index: 'mrn', align: 'center'}
-                ,{ name: 'code', index: 'code', align: 'center'}
-                ,{ name: 'description', index: 'description', align: 'center'}
-                ,{ name: 'modality', index: 'modality', align: 'center'}
-                ,{ name: 'resource_name', index: 'resource_name', align: 'center'}
-                ,{ name: 'current_status', index: 'current_status', align: 'center'}
-                ,{ name: 'updated_at', index: 'updated_at', align: 'center'}
 				,{ name: 'patient_class', index: 'patient_class', align: 'center'}
 				,{ name: 'patient_type', index: 'patient_type', align: 'center'}
 				,{ name: 'patient_location_at_exam', index: 'patient_location_at_exam', align: 'center'}
 				,{ name: 'radiology_department', index: 'radiology_department', align: 'center'}
+				,{ name: 'resource_name', index: 'resource_name', align: 'center'}
+				,{ name: 'modality', index: 'modality', align: 'center'}			
+                ,{ name: 'code', index: 'code', align: 'center'}
+                ,{ name: 'description', index: 'description', align: 'center'}	
 				,{ name: 'ordering_provider', index: 'ordering_provider', align: 'center'}
 				,{ name: 'scheduler', index: 'scheduler', align: 'center'}
 				,{ name: 'technologist', index: 'technologist', align: 'center'}
-                                ,{ name: 'pacs_image_count', index: 'pacs_image_count', align: 'center'}
-                                ,{ name: 'appt_time', index: 'appt_time', align: 'center'}
-                                ,{ name: 'sign_in', index: 'sign_in', align: 'center'}
-                                ,{ name: 'check_in', index: 'check_in', align: 'center'}
-                                ,{ name: 'begin_exam', index: 'begin_exam', align: 'center'}
-                                ,{ name: 'end_exam', index: 'end_exam', align: 'center'}
+                ,{ name: 'pacs_image_count', index: 'pacs_image_count', align: 'center'}
+                    
                 
             ],
             //jsonReader: { repeatitems:false, root:"rows" },
