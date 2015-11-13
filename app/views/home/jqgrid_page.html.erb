@@ -530,6 +530,18 @@
                 });
                 ddlAccessionSrch_Var.multiselect('refresh');
                 //****End Binding data to AccessionId dropdown****//
+				
+				//****Binding data to Status dropdown****//
+                $("#DdlStatusSrch").empty();
+                var uniqueStatus = $.unique(data.rows.map(function (value) {    				
+    				return value.MRN
+    			}));
+                $.each(uniqueStatus,function(index, value){
+                	debugger;
+                	$("#DdlStatusSrch").append($('<option>', { value: value, text: value }));
+                });
+                ddlStatusSrch_Var.multiselect('refresh');
+                //****End Binding data to Status dropdown****//
             },
         }).hideCol([ ]).navGrid('#example1pager', {
             edit: false, add: false, del: false, search: true, refresh: true, beforeRefresh: function () {
