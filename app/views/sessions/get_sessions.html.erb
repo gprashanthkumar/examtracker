@@ -45,10 +45,11 @@
                     <% if @exams.size > 0 %>
                       <%= harbinger_table_for @exams, :class => "table table-striped" do |ht| %>
                         <% ht.column("Accession") {|e| e.accession  if e.accession } %>        
-                        <% ht.column("MRN") {|e| e.patient_mrn_id if e.patient_mrn_id } %>          
-                        <% ht.column("Current Status") {|e| e.current_status_id if e.current_status_id} %>
-                          <% ht.column("Procedure Code") {|e| e.procedure_id if e.procedure_id } %>          
-                       <% ht.column("MRN") {|e| e.mrn if e.mrn } %>   
+                          <% ht.column("MRN") {|e| e.mrn if e.mrn } %>          
+                        <% ht.column("Current Status") {|e| e.current_status if e.current_status} %>
+                          <% ht.column("Procedure Code") {|e| e.procedure_id if e.procedure_id } %>  
+                     <% ht.column("proc description") {|e| e.description if e.description } %>      
+                    
                         <% end %>
                       <% else %>
                         No exams.
