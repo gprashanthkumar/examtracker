@@ -444,7 +444,7 @@
             datatype: "json",
             url: '/home/get_jqgrid/',
             mtype: 'GET',
-            colNames: ['A#','MRN','Proc Code','Proc Description','Modality','Exam Resource','Current Status','Status Last Changed','Patient Class','Patient Type','Patient Location_at_exam','Radiology Department','ordering_provider','scheduler','technologist'],
+            colNames: ['A#','MRN','Proc Code','Proc Description','Modality','Exam Resource','Current Status','Status Last Changed','Patient Class','Patient Type','Patient Location at exam','Radiology Department','Ordering Provider','Scheduler','Technologist','PACS Image Count','Appt Time','SignIn','CheckIn','Begin Exam','End Exam'],
             colModel: [
                 { name: 'accession', index: 'accession', align: 'center', width:35, formatter: makeIdAsLinkFormatter }
                 ,{ name: 'mrn', index: 'mrn', align: 'center'}
@@ -461,6 +461,12 @@
 				,{ name: 'ordering_provider', index: 'ordering_provider', align: 'center'}
 				,{ name: 'scheduler', index: 'scheduler', align: 'center'}
 				,{ name: 'technologist', index: 'technologist', align: 'center'}
+                                ,{ name: 'pacs_image_count', index: 'pacs_image_count', align: 'center'}
+                                ,{ name: 'appt_time', index: 'appt_time', align: 'center'}
+                                ,{ name: 'sign_in', index: 'sign_in', align: 'center'}
+                                ,{ name: 'check_in', index: 'check_in', align: 'center'}
+                                ,{ name: 'begin_exam', index: 'begin_exam', align: 'center'}
+                                ,{ name: 'end_exam', index: 'end_exam', align: 'center'}
                 
             ],
             //jsonReader: { repeatitems:false, root:"rows" },
