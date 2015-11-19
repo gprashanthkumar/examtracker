@@ -58,12 +58,18 @@ class HomeController < ApplicationController
     end
   end
   
+  def get_jqgridRad
+    get_jqgrid_common("rad");
+    puts "its in get_jqgridRad"
+  end
   def get_jqgridTech
     get_jqgrid_common("tech");
+     puts "its in get_jqgridTech"
   end
   def get_jqgrid_common(roletype)
 	#currently this is used to get data for jqgrid_page.
-	@employee = Employee.get_employee(session[:username])   
+	@employee = Employee.get_employee(session[:username])
+  @roleType = roletype
   case roletype
   when "rad"
     @exams = Rad_Exam.get_rad_exams(@employee.id)
