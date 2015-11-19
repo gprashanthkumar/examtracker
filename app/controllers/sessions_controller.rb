@@ -7,11 +7,13 @@ class SessionsController < ApplicationController
   end
   
   def  radiologist   
-    redirect_to url_for(:controller => HomeController, :action => radiologist)    
+    redirect_to "/radiologist"
   end
   
   def  technologist   
-    redirect_to url_for(:controller => HomeController, :action => technologist)    
+    #redirect_to url_for(:controller => HomeController, :action => technologist)    
+    redirect_to "/technologist"
+    
   end
   def get_sessions
     session.delete 'init' 
