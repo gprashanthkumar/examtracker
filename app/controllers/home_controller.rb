@@ -11,7 +11,7 @@ class HomeController < ApplicationController
   def technologist
   end
   
-  def sche_registrar
+  def scheregistrar
   end
   
   def transcript
