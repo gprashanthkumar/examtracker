@@ -6,11 +6,13 @@ class SessionsController < ApplicationController
   def new
   end
   
-  def  radiologists    
+  def  radiologist   
     redirect_to url_for(:controller => home, :action => radiologist)    
   end
   
-  
+  def  technologist   
+    redirect_to url_for(:controller => home, :action => technologist)    
+  end
   def get_sessions
     session.delete 'init' 
     @employee = 0;  
