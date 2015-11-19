@@ -55,7 +55,16 @@ class Rad_Exam < ActiveRecord::Base
   end
   def self.get_tech_exams(employeeid)
     
-    tech_exams = self.join_Main.Radiologist.where("( (rr.rad1_id = ?) or (rr.rad2_id = ?) or  (rr.rad3_id = ?) or (rr.rad4_id = ?)) or (repp.performing_id = ?) ",employeeid,employeeid,employeeid,employeeid,employeeid).order("id desc").all ;   
+    tech_exams = self.join_Main.Radiologist.where("( 
+(repp.performing_id = ?) OR
+(repp.scheduler_id  = ?) OR
+(repp.technologist_id  = ?)  OR
+(repp.assisting_tech1_id  = ?)  OR
+(repp.assisting_tech2_id  = ?)  OR
+(repp.assisting_tech3_id  = ?)  OR
+(repp.attending_id  = ?)  OR
+(repp.ordering_id  = ?)  OR
+(repp.authorizing_id  = ?) ) ",employeeid,employeeid,employeeid,employeeid,employeeid).order("id desc").all ;   
     return tech_exams;
   end
   def self.get_exams_all(employeeid)
