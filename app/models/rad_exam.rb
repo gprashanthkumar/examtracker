@@ -49,7 +49,7 @@ class Rad_Exam < ActiveRecord::Base
     .joins("left join rad_exam_personnel repp on repp.rad_exam_id = rad_exams.id") 
   }
   
-  scope Technologist, -> { 
+  scope :Technologist, -> { 
     joins("left join rad_exam_personnel repp on repp.rad_exam_id = rad_exams.id") 
   }
   def self.get_rad_exams(employeeid)
