@@ -48,6 +48,10 @@ class Rad_Exam < ActiveRecord::Base
     joins("LEFT JOIN rad_reports rr ON rr.rad_exam_id = rad_exams.id" )
     .joins("left join rad_exam_personnel repp on repp.rad_exam_id = rad_exams.id") 
   }
+  
+  scope Technologist, -> { 
+    joins("left join rad_exam_personnel repp on repp.rad_exam_id = rad_exams.id") 
+  }
   def self.get_rad_exams(employeeid)
     #self.where({patient_mrn_id: mrn}).order("created_at desc").first
     rad_exams = self.join_Main.Radiologist.where("( (rr.rad1_id = ?) or (rr.rad2_id = ?) or  (rr.rad3_id = ?) or (rr.rad4_id = ?)) or (repp.performing_id = ?) ",employeeid,employeeid,employeeid,employeeid,employeeid).order("id desc").all ;   
@@ -55,7 +59,7 @@ class Rad_Exam < ActiveRecord::Base
   end
   def self.get_tech_exams(employeeid)
     
-    tech_exams = self.join_Main.Radiologist.where("( 
+    tech_exams = self.join_Main.Technologist.where("( 
 (repp.performing_id = ?) OR
 (repp.scheduler_id  = ?) OR
 (repp.technologist_id  = ?)  OR
