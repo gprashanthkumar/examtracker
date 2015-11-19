@@ -50,11 +50,16 @@ class Rad_Exam < ActiveRecord::Base
   }
   def self.get_rad_exams(employeeid)
     #self.where({patient_mrn_id: mrn}).order("created_at desc").first
-    self.join_Main.order("id desc").all;
+    rad_exams = self.join_Main.Radiologist.where("( (rr.rad1_id = ?) or (rr.rad2_id = ?) or  (rr.rad3_id = ?) or (rr.rad4_id = ?)) or (repp.performing_id = ?) ",employeeid,employeeid,employeeid,employeeid,employeeid).order("id desc").all ;   
+    return rad_exams;
   end
   def self.get_tech_exams(employeeid)
     
     tech_exams = self.join_Main.Radiologist.where("( (rr.rad1_id = ?) or (rr.rad2_id = ?) or  (rr.rad3_id = ?) or (rr.rad4_id = ?)) or (repp.performing_id = ?) ",employeeid,employeeid,employeeid,employeeid,employeeid).order("id desc").all ;   
     return tech_exams;
+  end
+  def self.get_exams_all(employeeid)
+    #self.where({patient_mrn_id: mrn}).order("created_at desc").first
+    self.join_Main.order("id desc").all;
   end
 end
