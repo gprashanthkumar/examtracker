@@ -20,6 +20,17 @@ class SessionsController < ApplicationController
     redirect_to "/sche-registrar"
     
   end
+  def  transcript   
+    #redirect_to url_for(:controller => HomeController, :action => technologist)    
+    redirect_to "/transcript"
+    
+  end
+  
+   def  others   
+    #redirect_to url_for(:controller => HomeController, :action => technologist)    
+    redirect_to "/others"
+    
+  end
   
   def get_sessions
     session.delete 'init' 

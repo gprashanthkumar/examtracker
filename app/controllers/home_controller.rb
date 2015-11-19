@@ -70,9 +70,18 @@ class HomeController < ApplicationController
   
   def get_jqgridScheReg
     get_jqgrid_common("schedreg");
-     puts "its in get_jqgridTech"
+     puts "its in get_jqgridScheReg"
   end
   
+  def get_jqgridTranscript
+    get_jqgrid_common("trans");
+     puts "its in get_jqgridTranscript"
+  end
+    
+  def get_jqgridOthers
+    get_jqgrid_common("others");
+     puts "its in get_jqgridOthers"
+  end
   def get_jqgrid_common(roletype)
 	#currently this is used to get data for jqgrid_page.
 	@employee = Employee.get_employee(session[:username])
@@ -83,6 +92,12 @@ class HomeController < ApplicationController
     when "tech"
     @exams = Rad_Exam.get_tech_exams(@employee.id)
   when "schedreg"
+     @exams = Rad_Exam.get_rad_exams(@employee.id) 
+  when "trans"
+     @exams = Rad_Exam.get_rad_exams(@employee.id)  
+  when "schedreg"
+     @exams = Rad_Exam.get_rad_exams(@employee.id)
+  when "others"
      @exams = Rad_Exam.get_rad_exams(@employee.id)
   end
 	
