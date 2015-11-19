@@ -64,7 +64,7 @@ class Rad_Exam < ActiveRecord::Base
 (repp.assisting_tech3_id  = ?)  OR
 (repp.attending_id  = ?)  OR
 (repp.ordering_id  = ?)  OR
-(repp.authorizing_id  = ?) ) ",employeeid,employeeid,employeeid,employeeid,employeeid).order("id desc").all ;   
+(repp.authorizing_id  = ?) ) ",employeeid,employeeid,employeeid,employeeid,employeeid,employeeid,employeeid,employeeid,employeeid).order("id desc").all ;   
     return tech_exams;
   end
   def self.get_exams_all(employeeid)
