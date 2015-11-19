@@ -92,7 +92,7 @@ class HomeController < ApplicationController
     when "tech"
     @exams = Rad_Exam.get_tech_exams(@employee.id)
   when "schedreg"
-     @exams = Rad_Exam.get_exams_all(@employee.id) 
+     @exams = Rad_Exam.get_sched_exams(@employee.id) 
   when "trans"
      @exams = Rad_Exam.get_exams_all(@employee.id)  
   when "schedreg"
