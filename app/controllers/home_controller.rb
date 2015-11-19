@@ -94,11 +94,9 @@ class HomeController < ApplicationController
   when "schedreg"
      @exams = Rad_Exam.get_sched_exams(@employee.id) 
   when "trans"
-     @exams = Rad_Exam.get_exams_all(@employee.id)  
-  when "schedreg"
-     @exams = Rad_Exam.get_exams_all(@employee.id)
+     @exams = Rad_Exam.get_trans_exams(@employee.id)   
   when "others"
-     @exams = Rad_Exam.get_exams_all(@employee.id)
+     @exams = Rad_Exam.get_other_exams(@employee.id)
   end
 	
     json_data = {

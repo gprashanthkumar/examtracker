@@ -17,7 +17,7 @@ class SessionsController < ApplicationController
   end
   def  scheregistrar   
     #redirect_to url_for(:controller => HomeController, :action => technologist)    
-    redirect_to "/sche-registrar"
+    redirect_to "/scheregistrar"
     
   end
   def  transcript   
