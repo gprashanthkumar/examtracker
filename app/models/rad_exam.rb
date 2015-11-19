@@ -49,7 +49,7 @@ class Rad_Exam < ActiveRecord::Base
     .joins("left join rad_exam_personnel repp on repp.rad_exam_id = rad_exams.id") 
   }
   
-  scope :Tech_sched_Transcript, -> { 
+  scope :Tech_sched_Other, -> { 
     joins("left join rad_exam_personnel repp on repp.rad_exam_id = rad_exams.id") 
   }
   def self.get_rad_exams(employeeid)
@@ -59,7 +59,7 @@ class Rad_Exam < ActiveRecord::Base
   end
   def self.get_tech_exams(employeeid)
     
-    tech_exams = self.join_Main.Tech_sched_Transcript.where("( 
+    tech_exams = self.join_Main.Tech_sched_Other.where("( 
 (repp.performing_id = ?) OR
 (repp.scheduler_id  = ?) OR
 (repp.technologist_id  = ?)  OR
@@ -74,7 +74,7 @@ class Rad_Exam < ActiveRecord::Base
   
    def self.get_sched_exams(employeeid)
     
-    sched_exams = self.join_Main.Tech_sched_Transcript.where("( 
+    sched_exams = self.join_Main.Tech_sched_Other.where("( 
 (repp.scheduler_id  = ?) OR
 (repp.signin_id  = ?)  OR
 (repp.checkin_id  = ?) ) ",employeeid,employeeid,employeeid).order("id desc").all ;   
