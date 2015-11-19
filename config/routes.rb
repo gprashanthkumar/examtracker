@@ -10,7 +10,7 @@ VanillaApplication::Application.routes.draw do
 
   get 'radiologist', to: 'home#radiologist'
   get 'technologist', to: 'home#technologist'
-  get 'sche-registrar', to: 'home#sche_registrar'
+  get 'scheregistrar', to: 'home#sche_registrar'
   get 'transcript', to: 'home#transcript'
   get 'others', to: 'home#others'
   get 'search', to: 'home#search'

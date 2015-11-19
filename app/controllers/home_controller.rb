@@ -62,10 +62,17 @@ class HomeController < ApplicationController
     get_jqgrid_common("rad");
     puts "its in get_jqgridRad"
   end
+  
   def get_jqgridTech
     get_jqgrid_common("tech");
      puts "its in get_jqgridTech"
   end
+  
+  def get_jqgridScheReg
+    get_jqgrid_common("schedreg");
+     puts "its in get_jqgridTech"
+  end
+  
   def get_jqgrid_common(roletype)
 	#currently this is used to get data for jqgrid_page.
 	@employee = Employee.get_employee(session[:username])
@@ -75,7 +82,8 @@ class HomeController < ApplicationController
     @exams = Rad_Exam.get_rad_exams(@employee.id)
     when "tech"
     @exams = Rad_Exam.get_tech_exams(@employee.id)
-  when 'sche'  
+  when "schedreg"
+     @exams = Rad_Exam.get_rad_exams(@employee.id)
   end
 	
     json_data = {

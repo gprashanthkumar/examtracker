@@ -45,7 +45,7 @@
                 <h1>Technologist<small></small> </h1>
                 <ol class="breadcrumb">
                     <li><a href="#"><i class="fa fa-home"></i>Home</a></li>
-                    <li class="active">Radiologist</li>
+                    <li class="active">Scheduled-Registrar</li>
                 </ol>
             </section>
 			
@@ -453,7 +453,7 @@
   	//$('#reqgrid').html('').append('<table id="example1" class="scroll"></table> <div id="UsersGridPager" class="scroll text-center"></div>');
         $("#example1").jqGrid({
             datatype: "json",
-            url: '/home/get_jqgridRad/',
+            url: '/home/get_jqgridScheReg/',
             mtype: 'GET',
             colNames: ['A#','Appt Time','Begin Exam','End Exam','SignIn','CheckIn','Progress Status','Current Status','Status Last Changed','Patient Name','Patient MRN','Patient DOB','Site','Patient Class','Patient Type','Patient Location at exam','Radiology Department','Exam Resource','Modality','Proc Code','Proc Description','Ordering Provider','Scheduler','Technologist','PACS Image Count'],
             colModel: [

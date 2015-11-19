@@ -15,6 +15,12 @@ class SessionsController < ApplicationController
     redirect_to "/technologist"
     
   end
+  def  scheregistrar   
+    #redirect_to url_for(:controller => HomeController, :action => technologist)    
+    redirect_to "/sche-registrar"
+    
+  end
+  
   def get_sessions
     session.delete 'init' 
     @employee = 0;  
