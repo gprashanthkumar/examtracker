@@ -141,5 +141,12 @@ class HomeController < ApplicationController
      format.json { render :json => json_data }
     end
   end
+  
+  def logout
+    reset_session
+    @employee = nil
+    redirect_to Java::HarbingerSdk::SSO.logoutUrl()
+    
+  end
 
 end

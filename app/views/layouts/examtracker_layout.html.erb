@@ -52,7 +52,7 @@
           <% any_authorized(["ai-staff", "it-staff"]) do %>
             <li><%= global_navigation_link "Admin", :controller => :admin, :action => :index %></li>
           <% end %>
-          <li><a href="<%= Java::HarbingerSdk::SSO.logoutUrl() %>">Logout</a></li>
+          <li><a href="<%= root_url %>/home/logout">Logout</a></li>
         </ul>
       </div>
     </div>
