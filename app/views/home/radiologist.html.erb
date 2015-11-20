@@ -585,8 +585,9 @@
   			success:function(data){
                             alert("success");
                             try {
-                              alert(data);
-                            obj = JSON.parse(data);
+                              mydata = JSON.stringify(data);
+                              alert(mydata);
+                            obj = JSON.parse(mydata);
                             alert(obj.count);
                             
                             }
