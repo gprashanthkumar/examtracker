@@ -154,6 +154,7 @@ class HomeController < ApplicationController
      puts "its in get_accession_details: " +  accession_id.to_s
      
       @exams = Rad_Exam.get_accession_details(accession_id);
+      puts @exams.to_s
     
     respond_to do |format|
       format.json { render :json => @exams.to_json(:only => [ :accession,:mrn,:current_status,:code,:description,:modality,:resource_name,:graph_status,:current_status,:updated_at,:patient_name,:birthdate,:site_name,:patient_class,:patient_type,:patient_location_at_exam,:radiology_department,:ordering_provider,:scheduler,:technologist,:pacs_image_count,:appt_time,:sign_in,:check_in,:begin_exam,:end_exam]) }
