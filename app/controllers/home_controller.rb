@@ -148,5 +148,11 @@ class HomeController < ApplicationController
     redirect_to Java::HarbingerSdk::SSO.logoutUrl()
     
   end
+  def get_accession_details
+     accession_ids = params[:accession_ids];
+    authenticity_token = params[:authenticity_token];
+     puts "its in get_accession_details: " +  accession_ids.to_s
+    
+  end
 
 end

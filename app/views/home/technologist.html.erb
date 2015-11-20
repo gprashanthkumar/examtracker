@@ -66,9 +66,9 @@
                                     <option value="status_3">Final</option>
                                 </select>
                             </div> 
-							<div class="col-xs-4" style=" text-align: left;">
-								<input type="button" id="BtnFilter" value="Filter" />
-							</div>
+                            <div class="col-xs-4" style=" text-align: left;">
+                                    <input type="button" id="BtnFilter" value="Filter" />
+                            </div>
                             
                         </div>
                     </div>
@@ -572,6 +572,26 @@
   
   function showExamDetail(id) {
 		debugger;
+                
+                  //obj = JSON.parse(json);
+                  //alert(obj.count);
+                  
+                  $.ajax({
+  			url:'/home/get_accession_details',
+  			type:'POST',
+  			dataType:'json',
+  			//contentType: "application/json; charset=utf-8",
+  			data:{
+  				accession_id: id,  				
+  				authenticity_token: window._token
+  			},
+  			success:function(data){
+  				debugger;
+  			},
+  			error:function(data){
+  				debugger;
+  			}
+  		});
 		$("#ExamDetailPopupDiv").modal('show');
 	  }
 
