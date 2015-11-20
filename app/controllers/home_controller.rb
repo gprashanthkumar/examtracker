@@ -153,7 +153,8 @@ class HomeController < ApplicationController
      authenticity_token = params[:authenticity_token];     
      puts "its in get_accession_details: " +  @accession_id.to_s
      puts "before process \n";
-      @exams = Rad_Exam.get_accession_detail( @accession_id )
+     @employee = Employee.get_employee(session[:username])
+     @exams = Rad_Exam.get_rad_exams(@employee.id)
       puts "after process";
       puts @exams.to_s
     
