@@ -573,6 +573,7 @@
   function showExamDetail(id) {
 		debugger;
                   id = id.replace("lnk$#","");
+                   var myobj;
                   $.ajax({
   			url:'/home/get_accession',
   			type:'POST',
@@ -583,12 +584,13 @@
   				authenticity_token: window._token
   			},
   			success:function(data){
+                         
                             alert("success");
                             try {
                               mydata = JSON.stringify(data);
                               alert(mydata);
-                            var obj = JSON.parse(mydata);
-                            alert(obj.mrn)
+                            myobj  = JSON.parse(mydata);
+                            alert(myobj.mrn);
                             
                             }
                             catch(err) {
