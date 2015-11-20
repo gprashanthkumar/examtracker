@@ -109,7 +109,7 @@ class Rad_Exam < ActiveRecord::Base
   end
   
   def get_accession_details(accessionid)
-    accession = self.join_Main.where(" rad_exams.accession = ? ",accessionid).orderby(rad_exams.id desc).all;
+    accession = self.join_Main.where(" rad_exams.accession = ? ",accessionid).orderby(rad_exams.id desc).first;
     return accession;
   end
 end
