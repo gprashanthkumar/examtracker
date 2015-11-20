@@ -150,9 +150,9 @@ class HomeController < ApplicationController
   end
   def get_accession_details
      accession_id = params[:accession_id];
-    authenticity_token = params[:authenticity_token];
+    authenticity_token = params[:authenticity_token];     
+     accession_id = accession_id.replace("lnk$3","")
      puts "its in get_accession_details: " +  accession_id.to_s
-     
      json_data = {:aaData=> [["sdf","adsdf","sadfsd"],["sdf","adsdf","sadfsd"],["sdf","adsdf","sadfsd"]]}.to_json
     respond_to do |format|
      format.json { render :json => json_data }
