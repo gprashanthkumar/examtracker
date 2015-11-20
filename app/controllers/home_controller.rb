@@ -149,9 +149,9 @@ class HomeController < ApplicationController
     
   end
   def get_accession_details
-     accession_ids = params[:accession_ids];
+     accession_id = params[:accession_id];
     authenticity_token = params[:authenticity_token];
-     puts "its in get_accession_details: " +  accession_ids.to_s
+     puts "its in get_accession_details: " +  accession_id.to_s
     
   end
 
