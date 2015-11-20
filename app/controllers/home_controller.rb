@@ -150,12 +150,13 @@ class HomeController < ApplicationController
   end
   def get_accession_details
      accession_id = params[:accession_id];
-    authenticity_token = params[:authenticity_token];     
-      accession_id.sub! "lnk$#",""
+     authenticity_token = params[:authenticity_token];     
      puts "its in get_accession_details: " +  accession_id.to_s
-     json_data = {:aaData=> [["sdf","adsdf","sadfsd"],["sdf","adsdf","sadfsd"],["sdf","adsdf","sadfsd"]]}.to_json
+     
+      @exams = Rad_Exam.get_accession_details(accession_id);
+    
     respond_to do |format|
-     format.json { render :json => json_data }
+      format.json { render :json => @exams.to_json(:only => [ :accession,:mrn,:current_status,:code,:description,:modality,:resource_name,:graph_status,:current_status,:updated_at,:patient_name,:birthdate,:site_name,:patient_class,:patient_type,:patient_location_at_exam,:radiology_department,:ordering_provider,:scheduler,:technologist,:pacs_image_count,:appt_time,:sign_in,:check_in,:begin_exam,:end_exam]) }
     end
     
   end
