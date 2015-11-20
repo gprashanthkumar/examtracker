@@ -573,7 +573,7 @@
   function showExamDetail(id) {
 		debugger;
                   alert(id)               
-                  
+                  id = id.replace("lnk$#","");
                   $.ajax({
   			url:'/home/get_accession_details',
   			type:'POST',
