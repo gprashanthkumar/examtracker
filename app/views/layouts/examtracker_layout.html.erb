@@ -190,8 +190,263 @@
                         
         </aside>
        </div>
+<!-- popp modal start -->
+        <div class="modal fade" id="ExamDetailPopupDiv" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+
+                    <button aria-hidden="true" data-dismiss="modal" class="close" type="button">X</button>
+                    <h4 id="AcrLabel" class="modal-title clrwhite">Exam Details</h4>
+                    <!-- color changed-->
+                </div>
+                <div class="modal-body">
+                    <div>
+                        <section class="content">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <!-- general form elements disabled -->
+                                    <!--<h1>Exam Details</h1>-->
+                                    <h3><font color="green">Delivered</font></h3>
+                                    <div class="wizard">
+                                        <a class="current"><span class="badge"></span></a>
+                                        <a class="current"><span class="badge"></span></a>
+                                        <a class="current"><span class="badge badge-inverse"></span></a>
+                                        <a class="current green"><span class="badge"></span></a>
+                                    </div>
+                                    <!-- /.box -->
+                                    <h3><font color="purple">Delivered</font></h3>
+                                    <h4><font color="purple">Signed by: Mr Hello World</font></h4>
+                                    <div>
+
+                                        <table border="0" cellpadding="0" cellspacing="0" width="489" style='border-collapse: collapse; table-layout: fixed; width: 367pt'>
+                                            <col width="193" style='mso-width-source: userset; mso-width-alt: 7058; width: 145pt'>
+                                            <col width="196" style='mso-width-source: userset; mso-width-alt: 7168; width: 147pt'>
+                                            <col width="100" style='mso-width-source: userset; mso-width-alt: 3657; width: 75pt'>
+                                            <tr height="21" style='height: 15.75pt'>
+                                                <td height="21" class="xl65" width="193" style='height: 15.75pt; width: 145pt'>Highlighted
+  tracker on top</td>
+                                                <td class="xl66" width="196" style='border-left: none; width: 147pt'>&nbsp;</td>
+                                                <td class="xl67" width="100" style='border-left: none; width: 75pt'>Type</td>
+                                            </tr>
+                                            <tr height="21" style='height: 15.75pt'>
+                                                <td height="21" class="xl65" style='height: 15.75pt; border-top: none'>Exam
+  Information</td>
+                                                <td class="xl66" style='border-top: none; border-left: none'>&nbsp;</td>
+                                                <td class="xl66" style='border-top: none; border-left: none'>&nbsp;</td>
+                                            </tr>
+                                            <tr height="21" style='height: 15.75pt'>
+                                                <td height="21" class="xl65" style='height: 15.75pt; border-top: none'>&nbsp;</td>
+                                                <td class="xl66" style='border-top: none; border-left: none'>Procedure</td>
+                                                <td id="lblProcedure" class="xl66" style='border-top: none; border-left: none'>label</td>
+                                            </tr>
+                                            <tr height="21" style='height: 15.75pt'>
+                                                <td height="21" class="xl65" style='height: 15.75pt; border-top: none'>&nbsp;</td>
+                                                <td class="xl66" style='border-top: none; border-left: none'>Patient type class</td>
+                                                <td id="lblpatient_class" class="xl66" style='border-top: none; border-left: none'>label</td>
+                                            </tr>
+                                            <tr height="21" style='height: 15.75pt'>
+                                                <td height="21" class="xl65" style='height: 15.75pt; border-top: none'>&nbsp;</td>
+                                                <td class="xl66" style='border-top: none; border-left: none'>Trauma Emg</td>
+                                                <td id="lbltrauma" class="xl66" style='border-top: none; border-left: none'>label</td>
+                                            </tr>
+                                            <tr height="21" style='height: 15.75pt'>
+                                                <td height="21" class="xl65" style='height: 15.75pt; border-top: none'>&nbsp;</td>
+                                                <td class="xl66" style='border-top: none; border-left: none'>Resource</td>
+                                                <td id="lblresource" class="xl66" style='border-top: none; border-left: none'>label</td>
+                                            </tr>
+                                            <tr height="21" style='height: 15.75pt'>
+                                                <td height="21" class="xl65" style='height: 15.75pt; border-top: none'>&nbsp;</td>
+                                                <td class="xl66" style='border-top: none; border-left: none'>Modality</td>
+                                                <td id="lblmodality" class="xl66" style='border-top: none; border-left: none'>label</td>
+                                            </tr>
+                                            <tr height="21" style='height: 15.75pt'>
+                                                <td height="21" class="xl65" style='height: 15.75pt; border-top: none'>Staff</td>
+                                                <td class="xl66" style='border-top: none; border-left: none'>&nbsp;</td>
+                                                <td class="xl66" style='border-top: none; border-left: none'>&nbsp;</td>
+                                            </tr>
+                                            <tr height="21" style='height: 15.75pt'>
+                                                <td height="21" class="xl65" style='height: 15.75pt; border-top: none'>&nbsp;</td>
+                                                <td class="xl66" style='border-top: none; border-left: none'>Techno</td>
+                                                <td id="lbltechnologist" class="xl66" style='border-top: none; border-left: none'>label</td>
+                                            </tr>
+                                            <tr height="21" style='height: 15.75pt'>
+                                                <td height="21" class="xl65" style='height: 15.75pt; border-top: none'>&nbsp;</td>
+                                                <td class="xl66" style='border-top: none; border-left: none'>Finalizing
+  Radiologist</td>
+                                                <td class="xl66" style='border-top: none; border-left: none'>label</td>
+                                            </tr>
+                                            <tr height="21" style='height: 15.75pt'>
+                                                <td height="21" class="xl65" style='height: 15.75pt; border-top: none'>&nbsp;</td>
+                                                <td class="xl66" style='border-top: none; border-left: none'>&nbsp;</td>
+                                                <td class="xl66" style='border-top: none; border-left: none'>&nbsp;</td>
+                                            </tr>
+                                            <tr height="21" style='height: 15.75pt'>
+                                                <td height="21" class="xl65" style='height: 15.75pt; border-top: none'>Time</td>
+                                                <td class="xl66" style='border-top: none; border-left: none'>&nbsp;</td>
+                                                <td class="xl66" style='border-top: none; border-left: none'>&nbsp;</td>
+                                            </tr>
+                                            <tr height="21" style='height: 15.75pt'>
+                                                <td height="21" class="xl65" style='height: 15.75pt; border-top: none'>&nbsp;</td>
+                                                <td class="xl66" style='border-top: none; border-left: none'>Order</td>
+                                                <td id="lblorder" class="xl66" style='border-top: none; border-left: none'>label</td>
+                                            </tr>
+                                            <tr height="21" style='height: 15.75pt'>
+                                                <td height="21" class="xl65" style='height: 15.75pt; border-top: none'>&nbsp;</td>
+                                                <td class="xl66" style='border-top: none; border-left: none'>Sign In</td>
+                                                <td id="lblsign_in" class="xl66" style='border-top: none; border-left: none'>label</td>
+                                            </tr>
+                                            <tr height="21" style='height: 15.75pt'>
+                                                <td height="21" class="xl65" style='height: 15.75pt; border-top: none'>&nbsp;</td>
+                                                <td class="xl66" style='border-top: none; border-left: none'>Appointment</td>
+                                                <td id="lblappt_time" class="xl66" style='border-top: none; border-left: none'>label</td>
+                                            </tr>
+                                            <tr height="21" style='height: 15.75pt'>
+                                                <td height="21" class="xl65" style='height: 15.75pt; border-top: none'>&nbsp;</td>
+                                                <td class="xl66" style='border-top: none; border-left: none'>Begin Exam</td>
+                                                <td id="lblbegin_exam" class="xl66" style='border-top: none; border-left: none'>label</td>
+                                            </tr>
+                                            <tr height="21" style='height: 15.75pt'>
+                                                <td height="21" class="xl65" style='height: 15.75pt; border-top: none'>&nbsp;</td>
+                                                <td class="xl66" style='border-top: none; border-left: none'>End Exam</td>
+                                                <td id="lblend_exam" class="xl66" style='border-top: none; border-left: none'>label</td>
+                                            </tr>
+                                            <tr height="21" style='height: 15.75pt'>
+                                                <td height="21" class="xl65" style='height: 15.75pt; border-top: none'>&nbsp;</td>
+                                                <td class="xl66" style='border-top: none; border-left: none'>First Final</td>
+                                                <td class="xl66" style='border-top: none; border-left: none'>label</td>
+                                            </tr>
+                                            <tr height="21" style='height: 15.75pt'>
+                                                <td height="21" class="xl65" style='height: 15.75pt; border-top: none'>&nbsp;</td>
+                                                <td class="xl66" style='border-top: none; border-left: none'>Last Final</td>
+                                                <td class="xl66" style='border-top: none; border-left: none'>label</td>
+                                            </tr>
+                                            <tr height="21" style='height: 15.75pt'>
+                                                <td height="21" class="xl65" style='height: 15.75pt; border-top: none'>Metrics</td>
+                                                <td class="xl66" style='border-top: none; border-left: none'>&nbsp;</td>
+                                                <td class="xl66" style='border-top: none; border-left: none'>&nbsp;</td>
+                                            </tr>
+                                            <tr height="21" style='height: 15.75pt'>
+                                                <td height="21" class="xl65" style='height: 15.75pt; border-top: none'>&nbsp;</td>
+                                                <td class="xl66" style='border-top: none; border-left: none'>Sche Event to app
+  time</td>
+                                                <td class="xl66" style='border-top: none; border-left: none'>label</td>
+                                            </tr>
+                                            <tr height="21" style='height: 15.75pt'>
+                                                <td height="21" class="xl65" style='height: 15.75pt; border-top: none'>&nbsp;</td>
+                                                <td class="xl66" style='border-top: none; border-left: none'>Appt to Begin</td>
+                                                <td class="xl66" style='border-top: none; border-left: none'>label</td>
+                                            </tr>
+                                            <tr height="21" style='height: 15.75pt'>
+                                                <td height="21" class="xl65" style='height: 15.75pt; border-top: none'>&nbsp;</td>
+                                                <td class="xl66" style='border-top: none; border-left: none'>Total patient Wait</td>
+                                                <td class="xl66" style='border-top: none; border-left: none'>label</td>
+                                            </tr>
+                                            <tr height="21" style='height: 15.75pt'>
+                                                <td height="21" class="xl65" style='height: 15.75pt; border-top: none'>&nbsp;</td>
+                                                <td class="xl66" style='border-top: none; border-left: none'>Exam Duration</td>
+                                                <td class="xl66" style='border-top: none; border-left: none'>label</td>
+                                            </tr>
+                                            <tr height="21" style='height: 15.75pt'>
+                                                <td height="21" class="xl65" style='height: 15.75pt; border-top: none'>&nbsp;</td>
+                                                <td class="xl66" style='border-top: none; border-left: none'>Final Turnaround Time</td>
+                                                <td class="xl66" style='border-top: none; border-left: none'>label</td>
+                                            </tr>
+                                            <tr height="21" style='height: 15.75pt'>
+                                                <td height="21" class="xl65" style='height: 15.75pt; border-top: none'>Indentifiers</td>
+                                                <td class="xl66" style='border-top: none; border-left: none'>&nbsp;</td>
+                                                <td class="xl66" style='border-top: none; border-left: none'>&nbsp;</td>
+                                            </tr>
+                                            <tr height="21" style='height: 15.75pt'>
+                                                <td height="21" class="xl65" style='height: 15.75pt; border-top: none'>&nbsp;</td>
+                                                <td class="xl66" style='border-top: none; border-left: none'>Accession#</td>
+                                                <td id="lblaccession" class="xl66" style='border-top: none; border-left: none'>label</td>
+                                            </tr>
+                                            <tr height="20" style='height: 15.0pt'>
+                                                <td height="20" class="xl66" style='height: 15.0pt; border-top: none'>&nbsp;</td>
+                                                <td class="xl66" style='border-top: none; border-left: none'>MRN(AI:MWebWare Hospital)</td>
+                                                <td id="lblmrn" class="xl66" style='border-top: none; border-left: none'>label</td>
+                                            </tr>
+                                            <![if supportMisalignedColumns]>
+	<tr height="0" style='display: none'>
+     <td width="193" style='width: 145pt'></td>
+     <td width="196" style='width: 147pt'></td>
+     <td width="100" style='width: 75pt'></td>
+ </tr>
+                                            <![endif]>
+                                        </table>
+                                    </div>
+
+                                </div>
+
+                                <div class="col-md-6">
+                                    <!-- general form elements disabled -->
+                                    Column 2
+		  <!-- Div#1 -->
+                                    <div>
+                                        <h2>Report History</h2>
+                                        <b>status:</b>Final<br>
+                                        <b>Time:</b>2015-10-21 14:10:35<br>
+                                            <b>Radiologist:</b>Dr XML ABC<br>
+                                                <b>Radiologist:</b>Dr ABC ABC<br></br>
+                                            </br>
+                                        </br>
+                                        <p>
+                                            An Accountable Care Organization (ACO), according to the Centers for Medicare & Medicaid Services (CMS) "is an organization of health care providers that agrees to be accountable for the quality, cost, and overall care of Medicare beneficiaries who are enrolled in the traditional fee-for-service program who are assigned to it." Under the health care reform legislation passed in March 2010, the Medicare program is authorized to contract with ACOs.
+                                        </p>
 
 
+
+
+                                    </div>
+                                    <!-- Div#2 -->
+                                    <div>
+                                        <h2>Report History</h2>
+                                        <b>status:</b>Pref Final<br>
+                                        <b>Time:</b>2015-9-21 14:10:35<br>
+                                            <b>Radiologist:</b>Dr XML ABC<br>
+                                                <b>Radiologist:</b>Dr ABC ABC<br></br>
+                                            </br>
+                                        </br>
+                                        <p>
+                                            An Accountable Care Organization (ACO), according to the Centers for Medicare & Medicaid Services (CMS) "is an organization of health care providers that agrees to be accountable for the quality, cost, and overall care of Medicare beneficiaries who are enrolled in the traditional fee-for-service program who are assigned to it." Under the health care reform legislation passed in March 2010, the Medicare program is authorized to contract with ACOs.
+                                        </p>
+
+
+
+
+                                    </div>
+
+                                    <!-- Div#3 -->
+
+                                    <div>
+                                        <h2>Report History</h2>
+                                        <b>status:</b>Draft<br>
+                                        <b>Time:</b>2015-8-21 14:10:35<br>
+                                            <b>Radiologist:</b>Dr XML ABC<br>
+                                                <b>Radiologist:</b>Dr ABC ABC<br></br>
+                                            </br>
+                                        </br>
+                                        <p>
+                                            An Accountable Care Organization (ACO), according to the Centers for Medicare & Medicaid Services (CMS) "is an organization of health care providers that agrees to be accountable for the quality, cost, and overall care of Medicare beneficiaries who are enrolled in the traditional fee-for-service program who are assigned to it." Under the health care reform legislation passed in March 2010, the Medicare program is authorized to contract with ACOs.
+                                        </p>
+
+                                    </div>
+                                    <!-- /.box -->
+                                </div>
+
+                            </div>
+                            <!-- /.row -->
+                        </section>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="Btns BtnClose pull-right" id="" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+</div>
+<!-- popp modal End -->
 
   <!--div class="container">
     <%#= yield %>
@@ -199,6 +454,65 @@
   
  <%= yield(:body_javascript) %>
  <%= yield :body_javascript_section %>
-  
+  <script type='text/javascript' >
+    function showExamDetail(id) {
+		debugger;
+                  id = id.replace("lnk$#","");
+                   var myobj;
+                  $.ajax({
+  			url:'/home/get_accession',
+  			type:'POST',
+  			dataType:'json',
+  			//contentType: "application/json; charset=utf-8",
+  			data:{
+  				accession_id: id,  				
+  				authenticity_token: window._token
+  			},
+  			success:function(data){
+                         
+                            alert("success");
+                            try {
+                              mydata = JSON.stringify(data);
+                             // alert(mydata);
+                            myobj  = JSON.parse(mydata);
+                            
+                            // start processing data from here into a function if possible
+                          
+                            //exam information
+                            
+                            $("#lblProcedure").text(myobj.description + "(" +  myobj.code + ")");
+                            $("#lblpatient_class").text(myobj.patient_type + "-" + myobj.patient_class);
+                            $("#lbltrauma").text(myobj.trauma);
+                            $("#lblmodality").text(myobj.modality);
+                            $("#lblresource").text(myobj.resource_name);
+                            
+                            //staff parts
+                             $("#lbltechnologist").text(myobj.technologist);
+                            
+                            //time parts
+                            $("#lblorder").text(myobj.Order);
+                            $("#lblsign_in").text(myobj.sign_in);
+                            $("#lblappt_time").text(myobj.appt_time);
+                            $("#lblbegin_exam").text(myobj.begin_exam);
+                            $("#lblend_exam").text(myobj.end_exam);
+                            
+                            //indentifiers
+                            $("#lblaccession").text(myobj.accession);
+                            $("#lblmrn").text(myobj.mrn);
+                            $("#ExamDetailPopupDiv").modal('show');
+                            
+                            }
+                            catch(err) {
+                                alert(err.message);
+                            }
+  				
+  			},
+  			error:function(data){
+  				debugger;
+  			}
+  		});
+		
+	  }
+  </script>
 </body>
 </html>
