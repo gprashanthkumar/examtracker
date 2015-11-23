@@ -272,9 +272,8 @@
                                             </tr>
                                             <tr height="20" style='height: 15.0pt'>
                                                 <td height="20" class="xl66" style='height: 15.0pt; border-top: none'>&nbsp;</td>
-                                                <td class="xl66" style='border-top: none; border-left: none'>MRN(AI:MWebWare
-  Hospital)</td>
-                                                <td class="xl66" style='border-top: none; border-left: none'>label</td>
+                                                <td class="xl66" style='border-top: none; border-left: none'>MRN(AI:MWebWare Hospital)</td>
+                                                <td id="lblmrn" class="xl66" style='border-top: none; border-left: none'>label</td>
                                             </tr>
                                             <![if supportMisalignedColumns]>
 	<tr height="0" style='display: none'>
@@ -591,6 +590,7 @@
                               alert(mydata);
                             myobj  = JSON.parse(mydata);
                             alert(myobj.mrn);
+                            $("#lblmrn").text(myobj.mrn);
                             
                             }
                             catch(err) {
