@@ -208,12 +208,15 @@
                                     <!-- general form elements disabled -->
                                     <!--<h1>Exam Details</h1>-->
                                     <h3><font color="green">Delivered</font></h3>
-                                    <div class="wizard">
-                                        <a class="current"><span class="badge"></span></a>
-                                        <a class="current"><span class="badge"></span></a>
-                                        <a class="current"><span class="badge badge-inverse"></span></a>
-                                        <a class="current green"><span class="badge"></span></a>
+                                    <div id="divstatus">
+                                        <div class="wizard">
+                                           <a class="current"><span class="badge"></span></a>
+                                           <a class="current"><span class="badge"></span></a>
+                                           <a class="current"><span class="badge badge-inverse"></span></a>
+                                           <a class="current green"><span class="badge"></span></a>
+                                       </div> 
                                     </div>
+                                    
                                     <!-- /.box -->
                                     <h3><font color="purple">Delivered</font></h3>
                                     <h4><font color="purple">Signed by: Mr Hello World</font></h4>
@@ -501,6 +504,11 @@
                             //indentifiers
                             $("#lblaccession").text(myobj.accession);
                             $("#lblmrn").text(myobj.mrn);
+                            
+                              var statusdiv = parseStatusOfExamFormatter(myobj.graph_status,"","");
+                              $("#divstatus").html(statusdiv);
+
+
                             $("#ExamDetailPopupDiv").modal('show');
                             
                             }
