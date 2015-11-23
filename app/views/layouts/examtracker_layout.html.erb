@@ -190,7 +190,7 @@
                         
         </aside>
        </div>
-
+<!-- popp modal start -->
         <div class="modal fade" id="ExamDetailPopupDiv" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -446,7 +446,7 @@
             </div>
         </div>
 </div>
-
+<!-- popp modal End -->
 
   <!--div class="container">
     <%#= yield %>
@@ -499,7 +499,7 @@
                             //indentifiers
                             $("#lblaccession").text(myobj.accession);
                             $("#lblmrn").text(myobj.mrn);
-                            
+                            $("#ExamDetailPopupDiv").modal('show');
                             
                             }
                             catch(err) {
@@ -511,7 +511,7 @@
   				debugger;
   			}
   		});
-		$("#ExamDetailPopupDiv").modal('show');
+		
 	  }
   </script>
 </body>
