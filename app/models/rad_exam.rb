@@ -27,6 +27,7 @@ class Rad_Exam < ActiveRecord::Base
     ,uet.event_type as current_status
     ,CASE WHEN s.name IS NULL THEN s.site ELSE s.name END  site_name
     ,CASE WHEN sc.name IS NULL THEN sc.site_class ELSE sc.name END  patient_class
+    ,sc.trauma
     ,pt.patient_type
     ,CASE WHEN sloc.location IS NULL THEN '' ELSE sloc.location END 
      || CASE WHEN ssloc.room IS NULL THEN '' ELSE ssloc.room END 
