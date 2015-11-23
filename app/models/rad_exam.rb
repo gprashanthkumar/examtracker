@@ -53,6 +53,11 @@ class Rad_Exam < ActiveRecord::Base
   scope :Tech_sched_Other, -> { 
     joins("left join rad_exam_personnel repp on repp.rad_exam_id = rad_exams.id") 
   }
+  scope :Rad_report_event, -> {
+    joins("LEFT JOIN rad_reports rrff ON rrff.rad_exam_id = rad_exams.id" )
+    .joins("LEFT JOIN rad_reports rrlf ON rrlf.rad_exam_id = rad_exams.id" )
+    .select("rrff.report_event as first_final, rrlf.report_event as last_final")
+  }
   def self.get_rad_exams(employeeid)
     #self.where({patient_mrn_id: mrn}).order("created_at desc").first
     rad_exams = self.join_Main.Radiologist_Transcript.where("( (rr.rad1_id = ?) or (rr.rad2_id = ?) or  (rr.rad3_id = ?) or (rr.rad4_id = ?)) or (repp.performing_id = ?) ",employeeid,employeeid,employeeid,employeeid,employeeid).order("id desc").all ;   
@@ -110,7 +115,7 @@ class Rad_Exam < ActiveRecord::Base
   end
   
   def self.get_accession_detail(accessionid)
-    accession = self.join_Main.where(" rad_exams.accession = ? ",accessionid).first;
+    accession = self.join_Main.Rad_report_event.where(" rad_exams.accession = ? ",accessionid).first;
     return accession;
   end
 end
