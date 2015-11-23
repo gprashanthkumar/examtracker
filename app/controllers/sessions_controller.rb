@@ -41,6 +41,7 @@ class SessionsController < ApplicationController
       @exams = Rad_Exam.get_tech_exams(@employee.id)
       
      # puts @exams.count
+     puts 'Session_username->:' + session[:username].to_s
      puts ' this is @employee' + @employee.name.to_s + ' <--> ' + @employee.id.to_s + ' <--> '
       puts @exams.to_json
       
