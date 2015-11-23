@@ -6,30 +6,38 @@ class HomeController < ApplicationController
   
     
   def radiologist
+    @employee = Employee.get_employee(session[:username])
   end
   
   def technologist
+    @employee = Employee.get_employee(session[:username])
   end
   
   def scheregistrar
+    @employee = Employee.get_employee(session[:username])
   end
   
   def transcript
+    @employee = Employee.get_employee(session[:username])
   end
   
   def others
+    @employee = Employee.get_employee(session[:username])
   end
   
   def search
+    @employee = Employee.get_employee(session[:username])
   end
   
   def experiment
+    @employee = Employee.get_employee(session[:username])
     #json_text = [{"aaData"=>{:Id =>"Ashish Kumar", :MRN => "7842141835", :ProcDescription=>"aasfsdfsdf"}}].to_json
     #arary_text = [{"aaData"=>{:Id =>"Ashish Kumar", :MRN => "7842141835", :ProcDescription=>"aasfsdfsdf"}}].to_a
     #puts array_text
   end
   
-  def jqgrid_page   
+  def jqgrid_page  
+    @employee = Employee.get_employee(session[:username])
   end
   
   def search_exams
