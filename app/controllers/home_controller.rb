@@ -6,30 +6,38 @@ class HomeController < ApplicationController
   
     
   def radiologist
+    @employee = Employee.get_employee(session[:username])
   end
   
   def technologist
+    @employee = Employee.get_employee(session[:username])
   end
   
   def scheregistrar
+    @employee = Employee.get_employee(session[:username])
   end
   
   def transcript
+    @employee = Employee.get_employee(session[:username])
   end
   
   def others
+    @employee = Employee.get_employee(session[:username])
   end
   
   def search
+    @employee = Employee.get_employee(session[:username])
   end
   
   def experiment
+    @employee = Employee.get_employee(session[:username])
     #json_text = [{"aaData"=>{:Id =>"Ashish Kumar", :MRN => "7842141835", :ProcDescription=>"aasfsdfsdf"}}].to_json
     #arary_text = [{"aaData"=>{:Id =>"Ashish Kumar", :MRN => "7842141835", :ProcDescription=>"aasfsdfsdf"}}].to_a
     #puts array_text
   end
   
-  def jqgrid_page   
+  def jqgrid_page  
+    @employee = Employee.get_employee(session[:username])
   end
   
   def search_exams
@@ -156,6 +164,14 @@ class HomeController < ApplicationController
     respond_to do |format|
       format.json { render :json => @exams.to_json(:only => [ :accession,:mrn,:current_status,:code,:description,:modality,:resource_name,:graph_status,:current_status,:updated_at,:patient_name,:birthdate,:site_name,:patient_class,:patient_type,:patient_location_at_exam,:radiology_department,:ordering_provider,:scheduler,:technologist,:pacs_image_count,:appt_time,:sign_in,:check_in,:begin_exam,:end_exam]) }
     end    
+  end
+  
+  def search_examdata
+  
+    @employee = Employee.get_employee(session[:username])
+    @roleType = roletype
+     @exams = Rad_Exam.get_exams_all(@employee.id)   
+    
   end
 
 end
