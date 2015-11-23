@@ -567,66 +567,7 @@
 
             
             
-  });
-  
-  function showExamDetail(id) {
-		debugger;
-                  id = id.replace("lnk$#","");
-                   var myobj;
-                  $.ajax({
-  			url:'/home/get_accession',
-  			type:'POST',
-  			dataType:'json',
-  			//contentType: "application/json; charset=utf-8",
-  			data:{
-  				accession_id: id,  				
-  				authenticity_token: window._token
-  			},
-  			success:function(data){
-                         
-                            alert("success");
-                            try {
-                              mydata = JSON.stringify(data);
-                             // alert(mydata);
-                            myobj  = JSON.parse(mydata);
-                            
-                            // start processing data from here into a function if possible
-                          
-                            //exam information
-                            
-                            $("#lblProcedure").text(myobj.description + "(" +  myobj.code + ")");
-                            $("#lblpatient_class").text(myobj.patient_type + "-" + myobj.patient_class);
-                            $("#lbltrauma").text(myobj.trauma);
-                            $("#lblmodality").text(myobj.modality);
-                            $("#lblresource").text(myobj.resource_name);
-                            
-                            //staff parts
-                             $("#lbltechnologist").text(myobj.technologist);
-                            
-                            //time parts
-                            $("#lblorder").text(myobj.Order);
-                            $("#lblsign_in").text(myobj.sign_in);
-                            $("#lblappt_time").text(myobj.appt_time);
-                            $("#lblbegin_exam").text(myobj.begin_exam);
-                            $("#lblend_exam").text(myobj.end_exam);
-                            
-                            //indentifiers
-                            $("#lblaccession").text(myobj.accession);
-                            $("#lblmrn").text(myobj.mrn);
-                            
-                            
-                            }
-                            catch(err) {
-                                alert(err.message);
-                            }
-  				
-  			},
-  			error:function(data){
-  				debugger;
-  			}
-  		});
-		$("#ExamDetailPopupDiv").modal('show');
-	  }
+  }); 
 
   </script>
 <% end %>  
