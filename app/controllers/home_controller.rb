@@ -90,6 +90,31 @@ class HomeController < ApplicationController
     get_jqgrid_common("others");
      puts "its in get_jqgridOthers"
   end
+  
+  def get_jqgridSearch_exam_data 
+    @employee = Employee.get_employee(session[:username])
+    @roleType = roletype
+     @exams = Rad_Exam.get_exams_all(@employee.id)   
+    
+	json_data = {
+      :page=>"1",
+      :total=>2,
+      :records=>"6", 
+      :rows=>[ 
+          {:id=>"12345",:MRN=>"Desktop Computers",:procdescription=>"CT Scan for Needle blopsy",:signin=>"10-11-2015"}, 
+          {:id=>"23456",:MRN=>"laptop",:procdescription=>"CT Scan for Needle blopsy",:signin=>"09-11-2015"},
+          {:id=>"34568",:MRN=>"LCD Monitor",:procdescription=>"CT Scan for Needle blopsy",:signin=>"10-12-2015"},
+          {:id=>"34569",:MRN=>"TFT Monitor",:procdescription=>"CT Scan for Needle blopsy",:signin=>"22-08-2014"},
+          {:id=>"34570",:MRN=>"LCD Monitor",:procdescription=>"CT Scan for Needle blopsy",:signin=>"10-11-2015"},
+          {:id=>"45678",:MRN=>"Speakers",:procdescription=>"CT Scan for Needle blopsy",:signin=>"10-11-2014"} 
+      ] 
+    }
+    
+    respond_to do |format|
+     format.json { render :json => json_data }
+    end
+  end
+  
   def get_jqgrid_common(roletype)
 	#currently this is used to get data for jqgrid_page.
 	@employee = Employee.get_employee(session[:username])
@@ -166,12 +191,6 @@ class HomeController < ApplicationController
     end    
   end
   
-  def search_examdata
   
-    @employee = Employee.get_employee(session[:username])
-    @roleType = roletype
-     @exams = Rad_Exam.get_exams_all(@employee.id)   
-    
-  end
 
 end

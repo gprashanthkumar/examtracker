@@ -262,8 +262,8 @@
   		$("#RowForGridDiv").show();
   		$('#SearchExamGridContainerDiv').html('').append('<table id="tblSearchExam" class="scroll"></table> <div id="searchExamGridPagerDiv" class="scroll text-center"></div>');
         $("#tblSearchExam").jqGrid({
-            datatype: "local",
-            url: '/home/get_jqgrid/',
+            datatype: "json",
+            url: '/home/get_jqgridSearch_exam_data/',
             mtype: 'GET',
             colNames: ['A#', 'MRN','Proc Description', 'Sign In'],
             colModel: [
