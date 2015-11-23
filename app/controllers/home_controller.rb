@@ -157,5 +157,13 @@ class HomeController < ApplicationController
     end
     
   end
+  
+  def search_examdata
+  
+    @employee = Employee.get_employee(session[:username])
+    @roleType = roletype
+     @exams = Rad_Exam.get_exams_all(@employee.id)   
+    
+  end
 
 end
