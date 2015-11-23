@@ -314,12 +314,12 @@
                                             <tr height="21" style='height: 15.75pt'>
                                                 <td height="21" class="xl65" style='height: 15.75pt; border-top: none'>&nbsp;</td>
                                                 <td class="xl66" style='border-top: none; border-left: none'>First Final</td>
-                                                <td class="xl66" style='border-top: none; border-left: none'>label</td>
+                                                <td id="lblfirst_final" class="xl66" style='border-top: none; border-left: none'>label</td>
                                             </tr>
                                             <tr height="21" style='height: 15.75pt'>
                                                 <td height="21" class="xl65" style='height: 15.75pt; border-top: none'>&nbsp;</td>
                                                 <td class="xl66" style='border-top: none; border-left: none'>Last Final</td>
-                                                <td class="xl66" style='border-top: none; border-left: none'>label</td>
+                                                <td id="lbllast_final" class="xl66" style='border-top: none; border-left: none'>label</td>
                                             </tr>
                                             <tr height="21" style='height: 15.75pt'>
                                                 <td height="21" class="xl65" style='height: 15.75pt; border-top: none'>Metrics</td>
@@ -495,6 +495,8 @@
                             $("#lblappt_time").text(myobj.appt_time);
                             $("#lblbegin_exam").text(myobj.begin_exam);
                             $("#lblend_exam").text(myobj.end_exam);
+                            $("#lblfirst_final").text(myobj.first_final);
+                            $("#lbllast_final").text(myobj.last_final);
                             
                             //indentifiers
                             $("#lblaccession").text(myobj.accession);
