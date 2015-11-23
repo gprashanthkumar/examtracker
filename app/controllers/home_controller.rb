@@ -92,9 +92,8 @@ class HomeController < ApplicationController
   end
   
   def get_jqgridSearch_exam_data 
-    @employee = Employee.get_employee(session[:username])
-    @roleType = roletype
-     @exams = Rad_Exam.get_exams_all(@employee.id)   
+    @employee = Employee.get_employee(session[:username])   
+    @exams = Rad_Exam.get_exams_all(@employee.id)   
     
 	json_data = {
       :page=>"1",
