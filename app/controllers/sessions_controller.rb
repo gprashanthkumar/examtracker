@@ -3,6 +3,7 @@ class SessionsController < ApplicationController
   layout 'examtracker_layout'
   before_filter :general_authentication
   before_filter :get_entity_manager
+  after_filter :close_entity_manager
   def new
   end
   
@@ -40,6 +41,7 @@ class SessionsController < ApplicationController
       @exams = Rad_Exam.get_tech_exams(@employee.id)
       
      # puts @exams.count
+     puts ' this is @employee' + @employee.to_s + ''
       puts @exams.to_json
       
   end
