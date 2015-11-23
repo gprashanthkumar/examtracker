@@ -1,6 +1,39 @@
 
 
-<!-- Right side column. Contains the navbar and content of the page -->
+<% stylesheetHead 'bootstrap.min' %>
+<% stylesheetHead 'font-awesome.min' %>
+<% stylesheetHead 'ionicons.min' %>
+<% stylesheetHead 'jquery.multiselect' %>
+<% stylesheetHead 'jqgrid_style/ui.jqgrid' %>
+<% stylesheetHead 'jquery-ui' %>
+<% stylesheetHead 'AdminLTE' %>
+
+
+<% content_for :head_javascript_section do %>
+	<style>
+		table#example1 tbody tr td:first-child a{
+			color:skyblue;
+		}
+		
+		#fbox_example1 table tbody tr td.columns select{
+			max-width:160px;
+		}
+		
+	</style>
+  <script type='text/javascript'>
+  $(document).ready(function () {
+  	
+            $("#example1 tr td:first-child a").click(function (e) {
+            	debugger;
+                e.preventDefault();
+                $("#ExamDetailPopupDiv").modal('show');
+            });
+
+        });
+  </script>
+ <% end %>
+            
+ <!-- Right side column. Contains the navbar and content of the page -->
   <aside class="right-side"> 
     <!-- Content Header (Page header) -->
     <section class="content-header">
@@ -13,7 +46,7 @@
     
     <!-- Main content -->
     <section class="content">
-      <div class="row"> 
+      <div id="RowForSearchCriteria" class="row"> 
         <!-- left column --> 
         
         <!-- right column -->
@@ -24,7 +57,8 @@
                                     <h3 class="box-title">General Elements</h3>
                                 </div> --><!-- /.box-header -->
             <div class="box-body">
-              <form role="form">
+            	<div id="SearchCriteriaContainerDiv">
+              		<form role="form">
                 <!-- text input -->
                 <div class="form-group">
                   <div>
@@ -157,20 +191,40 @@
                   <div class="form-group">
                     <div></div>
                     <div>
-                      <button class="btn btn-primary" type="submit">Search</button>
+                      <button id="btnSearchExam" class="btn btn-primary" type="submit">Search</button>
                       <button class="btn btn-danger" type="reset">Reset</button>
                     </div>
                   </div>
                 </div>
               </form>
+             	</div>
             </div>
             <!-- /.box-body --> 
           </div>
+          
           <!-- /.box --> 
         </div>
         <!--/.col (right) --> 
       </div>
       <!-- /.row --> 
+      
+      <div id="RowForGridDiv" class="row" style="display:none;">
+      	<div class="col-md-12">  		
+          <div class="box box-warning">
+          	<div class="box-header">
+                 <!--h3 class="box-title">General Elements</h3-->
+                 <button id="btnShowSearchCriteria" style="float: right; margin:10px 40px 0 0;">Back To Search</button>
+            </div>
+          	<div class="box-body">
+          		<div id="SearchExamGridContainerDiv">
+          			<table id="tblSearchExam"></table>
+          			<div id="searchExamGridPagerDiv"></div>
+          		</div>
+          	</div>
+          </div>
+      	</div>
+      </div>
+      
     </section>
     <!-- /.content --> 
   </aside>
@@ -179,27 +233,134 @@
 </div>
 <!-- ./wrapper --> 
 
-<!-- jQuery 2.0.2 --> 
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script> 
-<!-- Bootstrap --> 
-<script src="js/bootstrap.min.js" type="text/javascript"></script> 
-<!-- DATA TABES SCRIPT --> 
-<script src="js/plugins/datatables/jquery.dataTables.js" type="text/javascript"></script> 
-<script src="js/plugins/datatables/dataTables.bootstrap.js" type="text/javascript"></script> 
-<!-- AdminLTE App --> 
-<script src="js/AdminLTE/app.js" type="text/javascript"></script> 
 
-<!-- page script --> 
-<script type="text/javascript">
-            $(function() {
-                $("#example1").dataTable();
-                $('#example2').dataTable({
-                    "bPaginate": true,
-                    "bLengthChange": false,
-                    "bFilter": false,
-                    "bSort": true,
-                    "bInfo": true,
-                    "bAutoWidth": false
-                });
-            });
- </script>
+
+    
+
+<!--<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>-->
+
+<% javascriptBody 'jquery.min.js' %>
+<% javascriptBody 'bootstrap.min' %>
+<% javascriptBody 'AdminLTE/app' %>
+<% javascriptBody 'jquery-ui-1.10.3.min' %>
+<% javascriptBody 'jquery.multiselect' %>
+
+<% content_for :body_javascript_section do %>
+  <%= javascript_include_tag 'jqgrid/grid.locale-en.js' %>
+  <%= javascript_include_tag 'jqgrid/jquery.jqGrid.js' %>
+  <%= javascript_tag "window._token = '#{form_authenticity_token}'" %>
+  <script type='text/javascript'>
+  
+  $(document).ready(function(){
+  	
+               
+  	//========Search functionality=================
+  	$("#btnSearchExam").click(function(e){
+  		e.preventDefault();
+  		$("#SearchCriteriaContainerDiv").slideUp('slow');
+  		$("#RowForSearchCriteria").hide();
+  		$("#RowForGridDiv").show();
+  		$('#SearchExamGridContainerDiv').html('').append('<table id="tblSearchExam" class="scroll"></table> <div id="searchExamGridPagerDiv" class="scroll text-center"></div>');
+        $("#tblSearchExam").jqGrid({
+            datatype: "local",
+            url: '/home/get_jqgrid/',
+            mtype: 'GET',
+            colNames: ['A#', 'MRN','Proc Description', 'Sign In'],
+            colModel: [
+                { name: 'id', index: 'id', align: 'center', width:35, fixed:true },                
+                { name: 'MRN', index: 'MRN', align: 'center', width:140, fixed:true},
+                { name: 'procdescription', index: 'procdescription', align: 'center' , width:150, fixed:true},
+                { name: 'signin', index: 'signin', align: 'center', formatter: 'date', formatoptions: { srcformat: 'd-m-Y', newformat: 'm/d/Y'} },
+            ],
+            jsonReader: { repeatitems: false, id: "id", root: function (obj) { return obj.rows; }, page: function (obj) { return obj.page; }, total: function (obj) { return obj.total; },
+    records: function (obj) { return (obj.rows.length ); }
+			},
+			beforeSelectRow: function() { return false; },
+            multiselect: false,
+            autowidth: true,
+            //width:'90%',
+            scrollOffset: 0,
+            rowNum: 5,
+            rowList: [5, 10, 15, 20],
+            height: '250',
+            sortname: 'Id',
+            sortorder: "asc",
+            viewrecords: true,
+            ignoreCase: true,
+            pager: '#searchExamGridPagerDiv',
+            caption: "Exam Details",
+            rownumbers: true,
+            loadonce:true,
+            loadComplete: function (data) {
+            	//debugger;
+                var datacount = $("#example1").getGridParam("reccount");
+                if (datacount == 0) {
+                    $('.ui-jqgrid-bdiv').removeClass('JqgridAutoHeight'); 
+                    $('#tblSearchExam').jqGrid('setGridHeight','250'); 
+                }
+                if (datacount > 0) {   /*grid heigth */
+               	debugger;
+					$('#tblSearchExam').jqGrid('setGridHeight','auto');
+                    //$('.ui-jqgrid-bdiv').addClass('JqgridAutoHeight');
+                }
+                              
+            },
+        }).hideCol([ ]).navGrid('#example1pager', {
+            edit: false, add: false, del: false, search: true, refresh: true, beforeRefresh: function () {
+                //$("#tblUsersGrid").setGridParam({ postData: { pageXL: '_pageXL' } });
+                //$('#searchExamGridPagerDiv table:eq(1) tr td.nRCls').remove();
+            }, afterRefresh: function () {
+                //$('#SearchGridPager table:eq(1) tr td.nRCls').remove();
+            }
+        },
+       {}, {}, {}, {
+           width: 500, onSearch: function () {
+               //$('#searchExamGridPagerDiv table:eq(1) tr td.nRCls').remove();
+               //if ($('#searchExamGridPagerDiv table:eq(1) tr td.nRCls').length == 0 && $('#fbox_tblUsersGrid').find(':input').eq(2).val() != "") {
+                   //$('#searchExamGridPagerDiv table:eq(1) tr').append('<td class="nRCls"><span class="fntSiz11">Filtered Results Shown. Click on Refresh Data to clear filter.</span></td>');
+               //}
+               //if ($('#fbox_tblUsersGrid').find(':input').eq(2).val() != "") {
+                   //$('.ui-jqdialog-titlebar-close:eq(0)').click();
+               //}
+           },
+           onReset: function () {
+               //$('#searchExamGridPagerDiv table:eq(1) tr td.nRCls').remove();
+           }, sopt: ['cn', 'nc']
+       });
+         		
+  	});
+  	//==========End #btnSearchExam functionality==============
+  	
+  	$("#btnShowSearchCriteria").click(function(){
+  		$("#RowForSearchCriteria").show();
+  		$("#SearchCriteriaContainerDiv").slideDown('slow');
+  		$("#RowForGridDiv").hide();
+  	});
+  	
+	
+  	function makeIdAsLinkFormatter( cellvalue, option, rowobj ){
+  		//debugger;
+  		if (cellvalue != undefinded && cellvalue != null) {
+  			return '<a class="" id="lnk$#'+ cellvalue +'" onclick="showExamDetail(this.id)">' + cellvalue + '</a>';
+  		}
+  		else{
+  			return '';
+  		}
+  	}
+  	
+  	       
+            
+  });
+  // =======End of documnet.ready()
+  
+  function showExamDetail(id) {
+		debugger;
+		$("#ExamDetailPopupDiv").modal('show');
+	  }
+
+  </script>
+<% end %>  
+<!-- End of :body_javascript_section -->
+
+
+ 
