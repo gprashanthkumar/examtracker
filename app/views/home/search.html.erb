@@ -369,6 +369,22 @@
   		}
   	}
   	
+	function parseStatusOfExamFormatter (cellvalue, option, rowobj ) {
+		//debugger;
+		if(cellvalue=="complete"){
+			return '<div class="wizard"><a class="current"><span class="badge"></span></a><a class="current"><span class="badge"></span></a><a class="current"><span class="badge badge-inverse"></span></a><a class="green"><i class="fa fa-check" style="display: table-cell; float: right; margin: 8px;"></i></a></div>';
+		}
+		else if(cellvalue=="final"){
+			return '<div class="wizard"><a class="current"><span class="badge"></span></a><a class="current"><span class="badge"></span></a><a class="green"><span class="badge badge-inverse"></span></a><a><span class="badge"></span></a></div>';
+		}
+		else if(cellvalue=="scheduled"){
+			return '<div class="wizard"><a class="green"><span class="badge"></span></a><a class="current"><span class="badge"></span></a><a class="current"><span class="badge badge-inverse"></span></a><a><span class="badge"></span></a></div>';
+		}
+		else{
+			return 'Can not parse "' + cellvalue + '" status';
+		}
+		//return '<div class="wizard"><a class="'+cellvalue.initialstage+'"><span class="badge"></span></a><a class="'+cellvalue.patclass+'"><span class="badge"></span></a><a class="'+cellvalue.appttime+'"><span class="badge badge-inverse"></span></a><a class="'+cellvalue.scheduledstop+'"><i class="fa fa-check" style="display: table-cell; float: right; margin: 8px;"></i></a></div>'   
+	  }
   	       
             
   });
