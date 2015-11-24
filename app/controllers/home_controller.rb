@@ -106,9 +106,9 @@ class HomeController < ApplicationController
   end
   
   def get_jqgrid_common(roletype,accession)
-    
-    puts "prashanth " + accession.to_s;
-  end
+   
+    puts "prashanth" + accession.to_s ;  
+  
 	#currently this is used to get data for jqgrid_page.
 	@employee = Employee.get_employee(session[:username])
   @roleType = roletype
