@@ -67,6 +67,9 @@ class HomeController < ApplicationController
   end
   
   def get_jqgridRad
+	accession_ids = params[:accession]
+    exam_status = params[:status]
+	
     get_jqgrid_common("rad");
     puts "its in get_jqgridRad"
   end
