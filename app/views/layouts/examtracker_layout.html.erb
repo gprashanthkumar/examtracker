@@ -469,7 +469,7 @@
   			},
   			success:function(data){
                          
-                            alert("success");
+                           
                             try {
                               mydata = JSON.stringify(data);
                              // alert(mydata);
@@ -500,7 +500,7 @@
                             $("#lblfirst_final").text(myobj.first_final);
                             $("#lbllast_final").text(myobj.last_final);
                             
-                            $("#lbleduration").text(eduration.getHours() + ":" + eduration.getMinutes() + ":" + eduration.getSeconds());
+                            $("#lbleduration").text(eduration.UTC().getHours() + ":" + eduration.UTC().getMinutes() + ":" + eduration.getSeconds());
                             
                             //indentifiers
                             $("#lblaccession").text(myobj.accession);
