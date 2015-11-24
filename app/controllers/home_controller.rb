@@ -124,13 +124,13 @@ class HomeController < ApplicationController
   when "rad"
     @exams = Rad_Exam.get_rad_exams(@employee.id,accession,currentstatus)
     when "tech"
-    @exams = Rad_Exam.get_tech_exams(@employee.id)
+    @exams = Rad_Exam.get_tech_exams(@employee.id,accession,currentstatus)
   when "schedreg"
-     @exams = Rad_Exam.get_sched_exams(@employee.id) 
+     @exams = Rad_Exam.get_sched_exams(@employee.id,accession,currentstatus)
   when "trans"
-     @exams = Rad_Exam.get_trans_exams(@employee.id)   
+     @exams = Rad_Exam.get_trans_exams(@employee.id,accession,currentstatus)
   when "others"
-     @exams = Rad_Exam.get_other_exams(@employee.id)
+     @exams = Rad_Exam.get_other_exams(@employee.id,accession,currentstatus)
   end
 	
     json_data = {

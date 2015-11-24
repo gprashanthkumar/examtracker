@@ -69,10 +69,7 @@ class Rad_Exam < ActiveRecord::Base
     
    
     csfilter = current_status.to_s unless current_status.blank?;
-    csfilter.gsub! "[","";
-    csfilter.gsub! "]","";
-    csfilter.gsub!  "\", \"", "', '";
-    csfilter.gsub!  "\"", "'";
+    csfilter = stringArray_to_string(csfilter);
     
     rad_exams = self.join_Main.Radiologist_Transcript.where("( (rr.rad1_id = ?) or (rr.rad2_id = ?) or  (rr.rad3_id = ?) or (rr.rad4_id = ?)) or (repp.performing_id = ?) ",employeeid,employeeid,employeeid,employeeid,employeeid) .order("id desc").all;              
     #rad_exams = rad_exams.where("accession in (?)",accessions.to_s.gsub!("[","").gsub!("]","")).order("id desc").all unless accessions.blank?; 
@@ -81,8 +78,14 @@ class Rad_Exam < ActiveRecord::Base
     
     return rad_exams;
   end
-  def self.get_tech_exams(employeeid)
+  def self.get_tech_exams(employeeid,accessions,current_status)
+    accfilter = "";
+    csfilter = "";
     
+    accfilter = accessions.to_s unless accessions.blank?;
+    accfilter = stringArray_to_string(accfilter);   
+    csfilter = current_status.to_s unless current_status.blank?;
+    csfilter = stringArray_to_string(csfilter);
     tech_exams = self.join_Main.Tech_sched_Other.where("( 
 (repp.performing_id = ?) OR
 (repp.scheduler_id  = ?) OR
@@ -93,19 +96,38 @@ class Rad_Exam < ActiveRecord::Base
 (repp.attending_id  = ?)  OR
 (repp.ordering_id  = ?)  OR
 (repp.authorizing_id  = ?) ) ",employeeid,employeeid,employeeid,employeeid,employeeid,employeeid,employeeid,employeeid,employeeid).order("id desc").all ;   
+    tech_exams = tech_exams.where("accession in ( " + accfilter +")" ).all unless accessions.blank?; 
+    tech_exams = tech_exams.where("uet.event_type in ( " + csfilter +")" ).all unless current_status.blank?; 
+    
     return tech_exams;
   end
   
-  def self.get_sched_exams(employeeid)
+  def self.get_sched_exams(employeeid,accessions,current_status)
+    accfilter = "";
+    csfilter = "";
+    
+    accfilter = accessions.to_s unless accessions.blank?;
+    accfilter = stringArray_to_string(accfilter);   
+    csfilter = current_status.to_s unless current_status.blank?;
+    csfilter = stringArray_to_string(csfilter);
     
     sched_exams = self.join_Main.Tech_sched_Other.where("( 
 (repp.scheduler_id  = ?) OR
 (repp.signin_id  = ?) OR
 (repp.checkin_id  = ?) ) ",employeeid,employeeid,employeeid).order("id desc").all ;   
+    sched_exams = sched_exams.where("accession in ( " + accfilter +")" ).all unless accessions.blank?; 
+    sched_exams = sched_exams.where("uet.event_type in ( " + csfilter +")" ).all unless current_status.blank?; 
     return sched_exams;
   end
   
-  def self.get_trans_exams(employeeid)
+  def self.get_trans_exams(employeeid,accessions,current_status)
+    accfilter = "";
+    csfilter = "";
+    
+    accfilter = accessions.to_s unless accessions.blank?;
+    accfilter = stringArray_to_string(accfilter);   
+    csfilter = current_status.to_s unless current_status.blank?;
+    csfilter = stringArray_to_string(csfilter);
     
     trans_exams = self.join_Main.Radiologist_Transcript.where("( 
 (repp.scheduler_id  = ?) OR
@@ -113,16 +135,27 @@ class Rad_Exam < ActiveRecord::Base
 (repp.checkin_id  = ?) OR 
 (rr..transcriptionist_id  = ?)
 ) ",employeeid,employeeid,employeeid,employeeid).order("id desc").all ;   
+    trans_exams = trans_exams.where("accession in ( " + accfilter +")" ).all unless accessions.blank?; 
+    trans_exams = trans_exams.where("uet.event_type in ( " + csfilter +")" ).all unless current_status.blank?; 
     return trans_exams;
   end
   
-  def self.get_other_exams(employeeid)
+  def self.get_other_exams(employeeid,accessions,current_status)
+    accfilter = "";
+    csfilter = "";
     
+    accfilter = accessions.to_s unless accessions.blank?;
+    accfilter = stringArray_to_string(accfilter);   
+    csfilter = current_status.to_s unless current_status.blank?;
+    csfilter = stringArray_to_string(csfilter);
     others_exams = self.join_Main.Tech_sched_Other.where("( 
 (repp.attending_id  = ?)  OR
 (repp.ordering_id  = ?)  OR
 (repp.authorizing_id  = ?)
- ) ",employeeid,employeeid,employeeid).order("id desc").all ;   
+ ) ",employeeid,employeeid,employeeid).order("id desc").all ;  
+    others_exams = others_exams.where("accession in ( " + accfilter +")" ).all unless accessions.blank?; 
+    others_exams = others_exams.where("uet.event_type in ( " + csfilter +")" ).all unless current_status.blank?; 
+    
     return others_exams;
   end
 
