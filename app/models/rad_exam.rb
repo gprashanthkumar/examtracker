@@ -63,13 +63,11 @@ class Rad_Exam < ActiveRecord::Base
   def self.get_rad_exams(employeeid,accessions,current_status)
     #self.where({patient_mrn_id: mrn}).order("created_at desc").first
     accfilter = "";
-    accfilter = accessions.to_s unless accessions.blank?;
-    accfilter.gsub! "[","";
-    accfilter.gsub! "]","";
-    accfilter.gsub!  "\", \"", "', '";
-    accfilter.gsub!  "\"", "'";
-    
     csfilter = "";
+    accfilter = accessions.to_s unless accessions.blank?;
+    accfilter = stringArray_to_string(accfilter);
+    
+   
     csfilter = current_status.to_s unless current_status.blank?;
     csfilter.gsub! "[","";
     csfilter.gsub! "]","";
@@ -137,5 +135,13 @@ class Rad_Exam < ActiveRecord::Base
   def self.get_accession_detail(accessionid)
     accession = self.join_Main.Rad_report_event.where(" rad_exams.accession = ? ",accessionid).first;
     return accession;
+  end
+  
+  def self.stringArray_to_string(arraystring)
+    arraystring.gsub! "[","";
+    arraystring.gsub! "]","";
+    arraystring.gsub!  "\", \"", "', '";
+    arraystring.gsub!  "\"", "'";
+    return arraystring;
   end
 end
