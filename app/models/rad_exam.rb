@@ -62,10 +62,8 @@ class Rad_Exam < ActiveRecord::Base
   #definitions
   def self.get_rad_exams(employeeid,accessions,current_status)
     #self.where({patient_mrn_id: mrn}).order("created_at desc").first
-    rad_exams = self.join_Main.Radiologist_Transcript
-              .where("( (rr.rad1_id = ?) or (rr.rad2_id = ?) or  (rr.rad3_id = ?) or (rr.rad4_id = ?)) or (repp.performing_id = ?) ",employeeid,employeeid,employeeid,employeeid,employeeid)
-              .where("accession in (?)",accessions.to_s)unless accessions.blank?               
-              .order("id desc").all ;   
+    rad_exams = self.join_Main.Radiologist_Transcript.where("( (rr.rad1_id = ?) or (rr.rad2_id = ?) or  (rr.rad3_id = ?) or (rr.rad4_id = ?)) or (repp.performing_id = ?) ",employeeid,employeeid,employeeid,employeeid,employeeid) .order("id desc").all
+              .where("accession in (?)",accessions.to_s)unless accessions.blank? ;
     
     
     return rad_exams;
