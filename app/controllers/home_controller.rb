@@ -70,27 +70,36 @@ class HomeController < ApplicationController
 	accession_ids = params[:accession]
   exam_status = params[:status]
 	
-    get_jqgrid_common("rad",accession_ids);
+    get_jqgrid_common("rad",accession_ids,exam_status);
     puts "its in get_jqgridRad"
   end
   
   def get_jqgridTech
-    get_jqgrid_common("tech","");
+    accession_ids = params[:accession]
+    exam_status = params[:status]
+  
+    get_jqgrid_common("tech",accession_ids,exam_status);
      puts "its in get_jqgridTech"
   end
   
   def get_jqgridScheReg
-    get_jqgrid_common("schedreg","");
+    accession_ids = params[:accession]
+  exam_status = params[:status]
+    get_jqgrid_common("schedreg",accession_ids,exam_status);
      puts "its in get_jqgridScheReg"
   end
   
   def get_jqgridTranscript
-    get_jqgrid_common("trans","");
+    accession_ids = params[:accession]
+  exam_status = params[:status]
+    get_jqgrid_common("trans",accession_ids,exam_status);
      puts "its in get_jqgridTranscript"
   end
     
   def get_jqgridOthers
-    get_jqgrid_common("others","");
+    accession_ids = params[:accession]
+  exam_status = params[:status]
+    get_jqgrid_common("others",accession_ids,exam_status);
      puts "its in get_jqgridOthers"
   end
   
@@ -101,28 +110,27 @@ class HomeController < ApplicationController
     @employee = Employee.get_employee(session[:username])   
     @exams = Rad_Exam.get_exams_all(@employee.id)  
 	  
-    get_jqgrid_common("rad","");
-    puts "its in get_jqgridRad"
+    get_jqgrid_common("rad","","");
+    puts "its in get_jqgridSearch_exam_data"
   end
   
-  def get_jqgrid_common(roletype,accession)
+  def get_jqgrid_common(roletype,accession,currentstatus)
    
-    puts "prashanth" + accession.to_s ;  
-  
+     
 	#currently this is used to get data for jqgrid_page.
 	@employee = Employee.get_employee(session[:username])
   @roleType = roletype
   case roletype
   when "rad"
-    @exams = Rad_Exam.get_rad_exams(@employee.id,accession,"")
+    @exams = Rad_Exam.get_rad_exams(@employee.id,accession,currentstatus)
     when "tech"
-    @exams = Rad_Exam.get_tech_exams(@employee.id)
+    @exams = Rad_Exam.get_tech_exams(@employee.id,accession,currentstatus)
   when "schedreg"
-     @exams = Rad_Exam.get_sched_exams(@employee.id) 
+     @exams = Rad_Exam.get_sched_exams(@employee.id,accession,currentstatus)
   when "trans"
-     @exams = Rad_Exam.get_trans_exams(@employee.id)   
+     @exams = Rad_Exam.get_trans_exams(@employee.id,accession,currentstatus)
   when "others"
-     @exams = Rad_Exam.get_other_exams(@employee.id)
+     @exams = Rad_Exam.get_other_exams(@employee.id,accession,currentstatus)
   end
 	
     json_data = {
