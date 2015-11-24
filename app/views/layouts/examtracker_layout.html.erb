@@ -494,8 +494,8 @@
                             $("#lblappt_time").text(myobj.appt_time);
                             $("#lblbegin_exam").text(myobj.begin_exam);
                             $("#lblend_exam").text(myobj.end_exam);
-                            var btime = new datetime(myobj.begin_exam);
-                            var etime = new datetime(myobj.end_exam);
+                            var btime = new Date(myobj.begin_exam);
+                            var etime = new Date(myobj.end_exam);
                             var eduration = etime - btime;
                             $("#lblfirst_final").text(myobj.first_final);
                             $("#lbllast_final").text(myobj.last_final);
