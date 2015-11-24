@@ -66,6 +66,7 @@ class Rad_Exam < ActiveRecord::Base
     x = accessions.to_s unless accessions.blank?;
     x.gsub! "[","";
     x.gsub! "]","";
+    x.gsub!  "\", \"", "', '";
     puts "filter" + x;
     rad_exams = self.join_Main.Radiologist_Transcript.where("( (rr.rad1_id = ?) or (rr.rad2_id = ?) or  (rr.rad3_id = ?) or (rr.rad4_id = ?)) or (repp.performing_id = ?) ",employeeid,employeeid,employeeid,employeeid,employeeid) .order("id desc").all;              
     #rad_exams = rad_exams.where("accession in (?)",accessions.to_s.gsub!("[","").gsub!("]","")).order("id desc").all unless accessions.blank?; 
