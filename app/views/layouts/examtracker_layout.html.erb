@@ -545,7 +545,7 @@
                             var btime = new Date(myobj.begin_exam);
                             var etime = new Date(myobj.end_exam);
                             //var eduration = new Date(etime - btime);
-                            var eduration = new Date(myobj.end_exam , myobj.begin_exam);
+                            var eduration = new DateDiff(etime , btime);
                             alert(eduration);
                             $("#lblfirst_final").text(myobj.first_final);
                             $("#lbllast_final").text(myobj.last_final);
