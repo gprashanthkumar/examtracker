@@ -314,7 +314,7 @@
             loadonce:true,
             loadComplete: function (data) {
             	//debugger;
-                var datacount = $("#example1").getGridParam("reccount");
+                var datacount = $("#tblSearchExam").getGridParam("reccount");
                 if (datacount == 0) {
                     $('.ui-jqgrid-bdiv').removeClass('JqgridAutoHeight'); 
                     $('#tblSearchExam').jqGrid('setGridHeight','250'); 
@@ -326,7 +326,7 @@
                 }
                               
             },
-        }).hideCol([ ]).navGrid('#example1pager', {
+        }).hideCol([ ]).navGrid('#searchExamGridPagerDiv', {
             edit: false, add: false, del: false, search: true, refresh: true, beforeRefresh: function () {
                 //$("#tblUsersGrid").setGridParam({ postData: { pageXL: '_pageXL' } });
                 //$('#searchExamGridPagerDiv table:eq(1) tr td.nRCls').remove();
