@@ -165,6 +165,14 @@ class Rad_Exam < ActiveRecord::Base
     self.join_Main.order("id desc").all;
   end
   
+  def self.get_exams_search(employeeid,params)
+    exams_search = self.join_Main;
+    exams_search = exams_search.where("accession in ( " +  params[:accession] +")" ).all unless params[:accession].blank?;
+    
+    return exams_search;
+  end
+  
+  #This is main query from ra_exams details of particular accession
   def self.get_accession_detail(accessionid)
     accession = self.join_Main.Rad_report_event.where(" rad_exams.accession = ? ",accessionid).first;
     return accession;

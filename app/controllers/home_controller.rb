@@ -108,10 +108,21 @@ class HomeController < ApplicationController
     puts "Visit#: "+search_criteriaJSON['visit']
 	
     @employee = Employee.get_employee(session[:username])   
-    @exams = Rad_Exam.get_exams_all(@employee.id)  
-	  
-    get_jqgrid_common("rad","","");
+    @exams = Rad_Exam.get_exams_search(@employee.id)  
     puts "its in get_jqgridSearch_exam_data"
+    
+     json_data = {
+		:page=>"1",
+		:total=>"3",
+		:records=>"6", 
+		:rows=> JSON.parse(@exams.to_json(:only => [ :accession,:mrn,:current_status,:code,:description,:modality,:resource_name,:graph_status,:current_status,:updated_at,:patient_name,:birthdate,:site_name,:patient_class,:patient_type,:patient_location_at_exam,:radiology_department,:ordering_provider,:scheduler,:technologist,:pacs_image_count,:appt_time,:sign_in,:check_in,:begin_exam,:end_exam]))    
+    
+    }
+    
+    respond_to do |format|
+     format.json { render :json => json_data }
+    end
+    
   end
   
   def get_jqgrid_common(roletype,accession,currentstatus)
