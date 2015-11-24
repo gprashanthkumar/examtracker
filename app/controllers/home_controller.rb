@@ -108,7 +108,7 @@ class HomeController < ApplicationController
     puts "Visit#: "+search_criteriaJSON['visit']
 	
     @employee = Employee.get_employee(session[:username])   
-    @exams = Rad_Exam.get_exams_search(@employee.id)  
+    @exams = Rad_Exam.get_exams_search(@employee.id,params)  
     puts "its in get_jqgridSearch_exam_data"
     
      json_data = {
