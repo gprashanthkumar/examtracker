@@ -257,6 +257,26 @@
   	//========Search functionality=================
   	$("#btnSearchExam").click(function(e){
   		e.preventDefault();
+		
+		var searchCriteriaJSON = {
+  			"visit":$("#txtVisitId").val(),
+  			"order_id":$("#txtOrderId").val(),
+  			"accession":$("#txtAccId").val(),
+  			"patient_type":$("#ddlPatientType").val(),
+  			"patient_name":$("#txtPatientName").val(),
+  			"mrn":$("#txtPatientMRN").val(),
+  			"rad_exam_dept":$("#txtRadExamDept").val(),
+  			"resource_name":$("#txtResource").val(),
+  			"modality":$("#txtModality").val(),
+  			"code":$("#txtProcedure").val(),
+  			"patient_location_at_exam":$("#txtCurrentPatientLocation").val(),
+  			"current_status":$("#txtCurrentExamStatus").val(),
+  			"site_name":$("#txtSite").val(),
+  			"my_order":$("#chkMyOrder").val(),
+  			"my_exams":$("#chkMyExams").val(),
+  			"my_reports":$("#chkMyReports").val()
+  		};
+		
   		$("#SearchCriteriaContainerDiv").slideUp('slow');
   		$("#RowForSearchCriteria").hide();
   		$("#RowForGridDiv").show();
@@ -264,7 +284,11 @@
         $("#tblSearchExam").jqGrid({
             datatype: "json",
             url: '/home/get_jqgridSearch_exam_data/',
-            mtype: 'GET',
+            mtype: 'POST',
+			postData: {
+                allSearchCriteriaInJson: searchCriteriaJSON,
+                authenticity_token: window._token
+            },
             colNames: ['A#','Appt Time','Begin Exam','End Exam','SignIn','CheckIn','Progress Status','Current Status','Status Last Changed','Patient Name','Patient MRN','Patient DOB','Site','Patient Class','Patient Type','Patient Location at exam','Radiology Department','Exam Resource','Modality','Proc Code','Proc Description','Ordering Provider','Scheduler','Technologist','PACS Image Count'],
             colModel: [
                 { name: 'accession', index: 'accession', align: 'center', width:40, fixed:true, formatter: makeIdAsLinkFormatter }

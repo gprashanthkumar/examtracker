@@ -95,9 +95,12 @@ class HomeController < ApplicationController
   end
   
   def get_jqgridSearch_exam_data 
-    @employee = Employee.get_employee(session[:username])   
-     @exams = Rad_Exam.get_exams_all(@employee.id)  
-	 
+    search_criteriaJSON = params[:allSearchCriteriaInJson]
+    puts "Visit#: "+search_criteriaJSON['visit']
+	
+	@employee = Employee.get_employee(session[:username])   
+    @exams = Rad_Exam.get_exams_all(@employee.id)  
+	  
     get_jqgrid_common("rad");
     puts "its in get_jqgridRad"
   end
