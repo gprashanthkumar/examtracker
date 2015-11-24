@@ -544,13 +544,13 @@
                             $("#lblend_exam").text(myobj.end_exam);
                             var btime = new Date(myobj.begin_exam);
                             var etime = new Date(myobj.end_exam);
-                            //var eduration = new Date(etime - btime);
-                            var eduration = new Date.Diff(etime , btime);
-                            alert(eduration);
+                            var eduration = new Date(etime - btime);
+                            
+                            
                             $("#lblfirst_final").text(myobj.first_final);
                             $("#lbllast_final").text(myobj.last_final);
                             
-                            $("#lbleduration").text(eduration.toISOString() );
+                            $("#lbleduration").text(eduration.toISOString().substr(11,8) );
                             
                             //indentifiers
                             $("#lblaccession").text(myobj.accession);
