@@ -361,7 +361,7 @@
 	
   	function makeIdAsLinkFormatter( cellvalue, option, rowobj ){
   		//debugger;
-  		if (cellvalue != undefinded && cellvalue != null) {
+  		if (cellvalue != undefined && cellvalue != null) {
   			return '<a class="" id="lnk$#'+ cellvalue +'" onclick="showExamDetail(this.id)">' + cellvalue + '</a>';
   		}
   		else{
