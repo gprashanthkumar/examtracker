@@ -1,5 +1,6 @@
 class Rad_Exam < ActiveRecord::Base
   self.table_name = "public.rad_exams"
+  #Scopes
   scope :join_Main, -> { 
     joins("LEFT JOIN patient_mrns pmrn ON pmrn.id = rad_exams.patient_mrn_id" )
     .joins("LEFT JOIN patients p ON p.id = pmrn.patient_id" )
@@ -58,9 +59,20 @@ class Rad_Exam < ActiveRecord::Base
     .joins("LEFT JOIN rad_reports rrlf ON rrlf.rad_exam_id = rad_exams.id" )
     .select("rrff.report_event as first_final, rrlf.report_event as last_final")
   }
-  def self.get_rad_exams(employeeid)
+  #definitions
+  def self.get_rad_exams(employeeid,accessions,current_status)
     #self.where({patient_mrn_id: mrn}).order("created_at desc").first
-    rad_exams = self.join_Main.Radiologist_Transcript.where("( (rr.rad1_id = ?) or (rr.rad2_id = ?) or  (rr.rad3_id = ?) or (rr.rad4_id = ?)) or (repp.performing_id = ?) ",employeeid,employeeid,employeeid,employeeid,employeeid).order("id desc").all ;   
+    x = "";
+    x = accessions.to_s unless accessions.blank?;
+    x.gsub! "[","";
+    x.gsub! "]","";
+    x.gsub!  "\", \"", "', '";
+     x.gsub!  "\"", "";
+    puts "filter" + x;
+    rad_exams = self.join_Main.Radiologist_Transcript.where("( (rr.rad1_id = ?) or (rr.rad2_id = ?) or  (rr.rad3_id = ?) or (rr.rad4_id = ?)) or (repp.performing_id = ?) ",employeeid,employeeid,employeeid,employeeid,employeeid) .order("id desc").all;              
+    #rad_exams = rad_exams.where("accession in (?)",accessions.to_s.gsub!("[","").gsub!("]","")).order("id desc").all unless accessions.blank?; 
+    rad_exams = rad_exams.where("accession in ( ? )",x).all unless accessions.blank?; 
+    
     return rad_exams;
   end
   def self.get_tech_exams(employeeid)
