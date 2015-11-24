@@ -3,7 +3,6 @@
 <% stylesheetHead 'bootstrap.min' %>
 <% stylesheetHead 'font-awesome.min' %>
 <% stylesheetHead 'ionicons.min' %>
-<% stylesheetHead 'datatables/dataTables.bootstrap' %>
 <% stylesheetHead 'radiologist' %>
 <% stylesheetHead 'jquery.multiselect' %>
 <% stylesheetHead 'jqgrid_style/ui.jqgrid' %>
@@ -16,25 +15,19 @@
 
 <% content_for :head_javascript_section do %>
 	<style>
-		table#example1 tbody tr td:first-child a{
+		table#tblRadExam tbody tr td:first-child a{
 			color:skyblue;
 		}
 		
-		#fbox_example1 table tbody tr td.columns select{
+		#fbox_tblRadExam table tbody tr td.columns select{
 			max-width:160px;
 		}
 		
 	</style>
   <script type='text/javascript'>
-  $(document).ready(function () {
-  	
-            //$("#example1 tr td:first-child a").click(function (e) {
-            //    e.preventDefault();
-            //    $("#ExamDetailPopupDiv").modal('show');
-            //});
-
-
-        });
+	$(document).ready(function () {
+		
+	});
   </script>
  <% end %>
 
@@ -80,10 +73,10 @@
               <h3 class="box-title">Data Table With Full Features</h3>
             </div>-->
                             <!-- /.box-header -->
-                            <div id="example1GridContainer" class="box-body table-responsive">
-                                <table id="example1" class="table table-bordered table-striped">
+                            <div id="radExamGridContainer" class="box-body table-responsive">
+                                <table id="tblRadExam" class="table table-bordered table-striped">
                                 </table>
-                                <div id="example1pager"></div>
+                                <div id="tblRadExamPager"></div>
                             </div>
                             <!-- /.box-body -->
                         </div>
@@ -178,8 +171,8 @@
 	  }
   	
   	function createOrUpdateRadExamGrid () {
-  	$('#example1GridContainer').html('').append('<table id="example1" class="scroll"></table> <div id="example1pager" class="scroll text-center"></div>');
-        $("#example1").jqGrid({
+  	$('#radExamGridContainer').html('').append('<table id="tblRadExam" class="scroll"></table> <div id="tblRadExamPager" class="scroll text-center"></div>');
+        $("#tblRadExam").jqGrid({
             datatype: "json",
             url: '/home/get_jqgridRad/',
             mtype: 'POST',
@@ -237,20 +230,20 @@
             sortorder: "asc",
             viewrecords: true,
             ignoreCase: true,
-            pager: '#example1pager',
+            pager: '#tblRadExamPager',
             caption: "Exam Details",
             rownumbers: true,
             loadonce:true,
             loadComplete: function (data) {
             	//debugger;
-                var datacount = $("#example1").getGridParam("reccount");
+                var datacount = $("#tblRadExam").getGridParam("reccount");
                 if (datacount == 0) {
                     $('.ui-jqgrid-bdiv').removeClass('JqgridAutoHeight'); 
-                    $('#example1').jqGrid('setGridHeight','250'); 
+                    $('#tblRadExam').jqGrid('setGridHeight','250'); 
                 }
                 if (datacount > 0) {   /*grid heigth */
                	debugger;
-					$('#example1').jqGrid('setGridHeight','auto');
+					$('#tblRadExam').jqGrid('setGridHeight','auto');
                     //$('.ui-jqgrid-bdiv').addClass('JqgridAutoHeight');
                 }
                 
@@ -275,7 +268,7 @@
                 ddlStatusSrch_Var.multiselect('refresh');
                 //****End Binding data to Status dropdown****//
             },
-        }).hideCol([ ]).navGrid('#example1pager', {
+        }).hideCol([ ]).navGrid('#tblRadExamPager', {
             edit: false, add: false, del: false, search: true, refresh: true, beforeRefresh: function () {
                 //$("#tblUsersGrid").setGridParam({ postData: { pageXL: '_pageXL' } });
                 //$('#pg_UsersGridPager table:eq(1) tr td.nRCls').remove();
