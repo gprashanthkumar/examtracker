@@ -111,7 +111,7 @@ class HomeController < ApplicationController
   @roleType = roletype
   case roletype
   when "rad"
-    @exams = Rad_Exam.get_rad_exams(@employee.id)
+    @exams = Rad_Exam.get_rad_exams(@employee.id,params['accessions'])
     when "tech"
     @exams = Rad_Exam.get_tech_exams(@employee.id)
   when "schedreg"
