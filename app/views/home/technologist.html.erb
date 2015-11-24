@@ -3,7 +3,6 @@
 <% stylesheetHead 'bootstrap.min' %>
 <% stylesheetHead 'font-awesome.min' %>
 <% stylesheetHead 'ionicons.min' %>
-<% stylesheetHead 'datatables/dataTables.bootstrap' %>
 <% stylesheetHead 'radiologist' %>
 <% stylesheetHead 'jquery.multiselect' %>
 <% stylesheetHead 'jqgrid_style/ui.jqgrid' %>
@@ -16,25 +15,19 @@
 
 <% content_for :head_javascript_section do %>
 	<style>
-		table#example1 tbody tr td:first-child a{
+		table#tblTechExam tbody tr td:first-child a{
 			color:skyblue;
 		}
 		
-		#fbox_example1 table tbody tr td.columns select{
+		#fbox_tblTechExam table tbody tr td.columns select{
 			max-width:160px;
 		}
 		
 	</style>
   <script type='text/javascript'>
-  $(document).ready(function () {
+	$(document).ready(function () {
   	
-            //$("#example1 tr td:first-child a").click(function (e) {
-            //    e.preventDefault();
-            //    $("#ExamDetailPopupDiv").modal('show');
-            //});
-
-
-        });
+    });
   </script>
  <% end %>
 
@@ -81,9 +74,9 @@
             </div>-->
                             <!-- /.box-header -->
                             <div class="box-body table-responsive">
-                                <table id="example1" class="table table-bordered table-striped">
+                                <table id="tblTechExam" class="table table-bordered table-striped">
                                 </table>
-                                <div id="example1pager"></div>
+                                <div id="tblTechExampager"></div>
                             </div>
                             <!-- /.box-body -->
                         </div>
@@ -185,8 +178,8 @@
 	  }
   	
   	
-  	//$('#reqgrid').html('').append('<table id="example1" class="scroll"></table> <div id="UsersGridPager" class="scroll text-center"></div>');
-        $("#example1").jqGrid({
+  	//$('#reqgrid').html('').append('<table id="tblTechExam" class="scroll"></table> <div id="UsersGridPager" class="scroll text-center"></div>');
+        $("#tblTechExam").jqGrid({
             datatype: "json",
             url: '/home/get_jqgridTech/',
             mtype: 'GET',
@@ -239,20 +232,20 @@
             sortorder: "asc",
             viewrecords: true,
             ignoreCase: true,
-            pager: '#example1pager',
+            pager: '#tblTechExampager',
             caption: "Exam Details",
             rownumbers: true,
             loadonce:true,
             loadComplete: function (data) {
             	//debugger;
-                var datacount = $("#example1").getGridParam("reccount");
+                var datacount = $("#tblTechExam").getGridParam("reccount");
                 if (datacount == 0) {
                     $('.ui-jqgrid-bdiv').removeClass('JqgridAutoHeight'); 
-                    $('#example1').jqGrid('setGridHeight','250'); 
+                    $('#tblTechExam').jqGrid('setGridHeight','250'); 
                 }
                 if (datacount > 0) {   /*grid heigth */
                	debugger;
-					$('#example1').jqGrid('setGridHeight','auto');
+					$('#tblTechExam').jqGrid('setGridHeight','auto');
                     //$('.ui-jqgrid-bdiv').addClass('JqgridAutoHeight');
                 }
                 
@@ -277,7 +270,7 @@
                 ddlStatusSrch_Var.multiselect('refresh');
                 //****End Binding data to Status dropdown****//
             },
-        }).hideCol([ ]).navGrid('#example1pager', {
+        }).hideCol([ ]).navGrid('#tblTechExampager', {
             edit: false, add: false, del: false, search: true, refresh: true, beforeRefresh: function () {
                 //$("#tblUsersGrid").setGridParam({ postData: { pageXL: '_pageXL' } });
                 //$('#pg_UsersGridPager table:eq(1) tr td.nRCls').remove();
