@@ -454,6 +454,54 @@
  <%= yield(:body_javascript) %>
  <%= yield :body_javascript_section %>
   <script type='text/javascript' >
+    
+    (function() {
+
+  function DateDiff(date1, date2) {
+    this.days = null;
+    this.hours = null;
+    this.minutes = null;
+    this.seconds = null;
+    this.date1 = date1;
+    this.date2 = date2;
+
+    this.init();
+  }
+
+  DateDiff.prototype.init = function() {
+    var data = new DateMeasure(this.date1 - this.date2);
+    this.days = data.days;
+    this.hours = data.hours;
+    this.minutes = data.minutes;
+    this.seconds = data.seconds;
+  };
+
+  function DateMeasure(ms) {
+    var d, h, m, s;
+    s = Math.floor(ms / 1000);
+    m = Math.floor(s / 60);
+    s = s % 60;
+    h = Math.floor(m / 60);
+    m = m % 60;
+    d = Math.floor(h / 24);
+    h = h % 24;
+    
+    this.days = d;
+    this.hours = h;
+    this.minutes = m;
+    this.seconds = s;
+  };
+
+  Date.diff = function(date1, date2) {
+    return new DateDiff(date1, date2);
+  };
+
+  Date.prototype.diff = function(date2) {
+    return new DateDiff(this, date2);
+  };
+
+})();
+
     function showExamDetail(id) {
 		debugger;
                   id = id.replace("lnk$#","");
@@ -496,7 +544,9 @@
                             $("#lblend_exam").text(myobj.end_exam);
                             var btime = new Date(myobj.begin_exam);
                             var etime = new Date(myobj.end_exam);
-                            var eduration = new Date(etime - btime);
+                            //var eduration = new Date(etime - btime);
+                            var eduration = new Date(myobj.end_exam , myobj.begin_exam);
+                            alert(eduration);
                             $("#lblfirst_final").text(myobj.first_final);
                             $("#lbllast_final").text(myobj.last_final);
                             
