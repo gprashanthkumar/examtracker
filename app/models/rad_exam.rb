@@ -62,16 +62,16 @@ class Rad_Exam < ActiveRecord::Base
   #definitions
   def self.get_rad_exams(employeeid,accessions,current_status)
     #self.where({patient_mrn_id: mrn}).order("created_at desc").first
-    x = "";
-    x = accessions.to_s unless accessions.blank?;
-    x.gsub! "[","";
-    x.gsub! "]","";
-    x.gsub!  "\", \"", "', '";
-     x.gsub!  "\"", "'";
-    puts "filter" + x;
+    accfilter = "";
+    accfilter = accessions.to_s unless accessions.blank?;
+    accfilter.gsub! "[","";
+    accfilter.gsub! "]","";
+    accfilter.gsub!  "\", \"", "', '";
+    accfilter.gsub!  "\"", "'";
+    
     rad_exams = self.join_Main.Radiologist_Transcript.where("( (rr.rad1_id = ?) or (rr.rad2_id = ?) or  (rr.rad3_id = ?) or (rr.rad4_id = ?)) or (repp.performing_id = ?) ",employeeid,employeeid,employeeid,employeeid,employeeid) .order("id desc").all;              
     #rad_exams = rad_exams.where("accession in (?)",accessions.to_s.gsub!("[","").gsub!("]","")).order("id desc").all unless accessions.blank?; 
-    rad_exams = rad_exams.where("accession in ( " + x +")" ).all unless accessions.blank?; 
+    rad_exams = rad_exams.where("accession in ( " + accfilter +")" ).all unless accessions.blank?; 
     
     return rad_exams;
   end
