@@ -68,7 +68,7 @@ class HomeController < ApplicationController
   
   def get_jqgridRad
 	accession_ids = params[:accession]
-    exam_status = params[:status]
+  exam_status = params[:status]
 	
     get_jqgrid_common("rad",accession_ids);
     puts "its in get_jqgridRad"
@@ -106,6 +106,9 @@ class HomeController < ApplicationController
   end
   
   def get_jqgrid_common(roletype,accession)
+    
+    puts "prashanth " + accession.to_s;
+  end
 	#currently this is used to get data for jqgrid_page.
 	@employee = Employee.get_employee(session[:username])
   @roleType = roletype
