@@ -80,7 +80,7 @@
               <h3 class="box-title">Data Table With Full Features</h3>
             </div>-->
                             <!-- /.box-header -->
-                            <div class="box-body table-responsive">
+                            <div id="example1GridContainer" class="box-body table-responsive">
                                 <table id="example1" class="table table-bordered table-striped">
                                 </table>
                                 <div id="example1pager"></div>
@@ -191,7 +191,7 @@
 	  }
   	
   	function createOrUpdateRadExamGrid () {
-  	//$('#reqgrid').html('').append('<table id="example1" class="scroll"></table> <div id="UsersGridPager" class="scroll text-center"></div>');
+  	$('#example1GridContainer').html('').append('<table id="example1" class="scroll"></table> <div id="example1pager" class="scroll text-center"></div>');
         $("#example1").jqGrid({
             datatype: "json",
             url: '/home/get_jqgridRad/',
