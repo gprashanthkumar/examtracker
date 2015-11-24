@@ -105,8 +105,9 @@
 <% javascriptBody 'jquery.multiselect' %>
 
 <% content_for :body_javascript_section do %>
-<%= javascript_include_tag 'jqgrid/grid.locale-en.js' %>
-<%= javascript_include_tag 'jqgrid/jquery.jqGrid.js' %>
+	<%= javascript_include_tag 'jqgrid/grid.locale-en.js' %>
+	<%= javascript_include_tag 'jqgrid/jquery.jqGrid.js' %>
+	<%= javascript_tag "window._token = '#{form_authenticity_token}'" %>
 
   <script type='text/javascript'>
   $(document).ready(function(){

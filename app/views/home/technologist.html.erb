@@ -73,7 +73,7 @@
               <h3 class="box-title">Data Table With Full Features</h3>
             </div>-->
                             <!-- /.box-header -->
-                            <div class="box-body table-responsive">
+                            <div id="techExamGridContainer" class="box-body table-responsive">
                                 <table id="tblTechExam" class="table table-bordered table-striped">
                                 </table>
                                 <div id="tblTechExampager"></div>
@@ -101,9 +101,10 @@
 <% javascriptBody 'jquery.multiselect' %>
 
 <% content_for :body_javascript_section do %>
-<%= javascript_include_tag 'jqgrid/grid.locale-en.js' %>
-<%= javascript_include_tag 'jqgrid/jquery.jqGrid.js' %>
-
+	<%= javascript_include_tag 'jqgrid/grid.locale-en.js' %>
+	<%= javascript_include_tag 'jqgrid/jquery.jqGrid.js' %>
+	<%= javascript_tag "window._token = '#{form_authenticity_token}'" %>
+	
   <script type='text/javascript'>
   $(document).ready(function(){
   	
@@ -114,45 +115,15 @@
         						noneSelectedText: "Select Status"
      						});
     
-            
+    //===Initializing Grid first time===
+    createOrUpdateRadExamGrid();
+    //===End of Initializing Grid first time===
+	
   	//========Search functionality=================
   	$("#BtnFilter").click(function(){
-  		var ddlAccessionIdSelectedValues_Var = $("#DdlAccessionIdSrch").val();
-  		var ddlStatusSelectedValues_Var = $("#DdlStatusSrch").val();
-  		
-  		debugger;
-		$.ajax({
-  			url:'/home/search_exams',
-  			type:'POST',
-  			dataType:'json',
-  			//contentType: "application/json; charset=utf-8",
-  			data:{
-  				accession_ids: ddlAccessionIdSelectedValues_Var,
-  				exam_status: ddlStatusSelectedValues_Var,
-  				authenticity_token: window._token
-  			},
-  			success:function(data){
-  				debugger;
-  			},
-  			error:function(data){
-  				debugger;
-  			}
-  		});
+  		createOrUpdateRadExamGrid ();
   	});
   	//=====End Search functionality==============
-  	
-  	$.ajax({
-  		url:"/home/get_data",
-  		//dataType: 'json',
-  		contentType: "application/json; charset=utf-8",
-  		success:function(data){
-  			debugger;
-  		},
-  		error:function(data){
-  			debugger;
-  		}
-  		
-  	});
   	
   	
   	function makeIdAsLinkFormatter( cellvalue, option, rowobj ){
@@ -177,12 +148,17 @@
 		//return '<div class="wizard"><a class="'+cellvalue.initialstage+'"><span class="badge"></span></a><a class="'+cellvalue.patclass+'"><span class="badge"></span></a><a class="'+cellvalue.appttime+'"><span class="badge badge-inverse"></span></a><a class="'+cellvalue.scheduledstop+'"><i class="fa fa-check" style="display: table-cell; float: right; margin: 8px;"></i></a></div>'   
 	  }
   	
-  	
-  	//$('#reqgrid').html('').append('<table id="tblTechExam" class="scroll"></table> <div id="UsersGridPager" class="scroll text-center"></div>');
+  	function createOrUpdateRadExamGrid () {
+		$('#techExamGridContainer').html('').append('<table id="tblTechExam" class="scroll"></table> <div id="tblTechExampager" class="scroll text-center"></div>');
         $("#tblTechExam").jqGrid({
             datatype: "json",
             url: '/home/get_jqgridTech/',
-            mtype: 'GET',
+            mtype: 'POST',
+			postData: {
+                accession: $("#DdlAccessionIdSrch").val(),
+                status: $("#DdlStatusSrch").val(),
+                authenticity_token: window._token
+            },
             colNames: ['A#','Appt Time','Begin Exam','End Exam','SignIn','CheckIn','Progress Status','Current Status','Status Last Changed','Patient Name','Patient MRN','Patient DOB','Site','Patient Class','Patient Type','Patient Location at exam','Radiology Department','Exam Resource','Modality','Proc Code','Proc Description','Ordering Provider','Scheduler','Technologist','PACS Image Count'],
             colModel: [
                 { name: 'accession', index: 'accession', align: 'center', width:40, fixed:true, formatter: makeIdAsLinkFormatter }
@@ -292,7 +268,7 @@
                //$('#pg_UsersGridPager table:eq(1) tr td.nRCls').remove();
            }, sopt: ['cn', 'nc']
        });
-            
+    }        
 
             
             

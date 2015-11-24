@@ -3,7 +3,6 @@
 <% stylesheetHead 'bootstrap.min' %>
 <% stylesheetHead 'font-awesome.min' %>
 <% stylesheetHead 'ionicons.min' %>
-<% stylesheetHead 'datatables/dataTables.bootstrap' %>
 <% stylesheetHead 'radiologist' %>
 <% stylesheetHead 'jquery.multiselect' %>
 <% stylesheetHead 'jqgrid_style/ui.jqgrid' %>
@@ -16,11 +15,11 @@
 
 <% content_for :head_javascript_section do %>
 	<style>
-		table#example1 tbody tr td:first-child a{
+		table#tblSchReg tbody tr td:first-child a{
 			color:skyblue;
 		}
 		
-		#fbox_example1 table tbody tr td.columns select{
+		#fbox_tblSchReg table tbody tr td.columns select{
 			max-width:160px;
 		}
 		
@@ -28,7 +27,7 @@
   <script type='text/javascript'>
   $(document).ready(function () {
   	
-            //$("#example1 tr td:first-child a").click(function (e) {
+            //$("#tblSchReg tr td:first-child a").click(function (e) {
             //    e.preventDefault();
             //    $("#ExamDetailPopupDiv").modal('show');
             //});
@@ -80,10 +79,10 @@
               <h3 class="box-title">Data Table With Full Features</h3>
             </div>-->
                             <!-- /.box-header -->
-                            <div class="box-body table-responsive">
-                                <table id="example1" class="table table-bordered table-striped">
+                            <div id="schRegGridContainer" class="box-body table-responsive">
+                                <table id="tblSchReg" class="table table-bordered table-striped">
                                 </table>
-                                <div id="example1pager"></div>
+                                <div id="tblSchRegpager"></div>
                             </div>
                             <!-- /.box-body -->
                         </div>
@@ -96,286 +95,22 @@
 
             </section>
             <!-- /.content -->
-            
-
-
-<div class="modal fade" id="ExamDetailPopupDiv" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-
-                    <button aria-hidden="true" data-dismiss="modal" class="close" type="button">X</button>
-                    <h4 id="AcrLabel" class="modal-title clrwhite">Exam Details</h4>
-                    <!-- color changed-->
-                </div>
-                <div class="modal-body">
-                    <div>
-                        <section class="content">
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <!-- general form elements disabled -->
-                                    <!--<h1>Exam Details</h1>-->
-                                    <h3><font color="green">Delivered</font></h3>
-                                    <div class="wizard">
-                                        <a class="current"><span class="badge"></span></a>
-                                        <a class="current"><span class="badge"></span></a>
-                                        <a class="current"><span class="badge badge-inverse"></span></a>
-                                        <a class="current green"><span class="badge"></span></a>
-                                    </div>
-                                    <!-- /.box -->
-                                    <h3><font color="purple">Delivered</font></h3>
-                                    <h4><font color="purple">Signed by: Mr Hello World</font></h4>
-                                    <div>
-
-                                        <table border="0" cellpadding="0" cellspacing="0" width="489" style='border-collapse: collapse; table-layout: fixed; width: 367pt'>
-                                            <col width="193" style='mso-width-source: userset; mso-width-alt: 7058; width: 145pt'>
-                                            <col width="196" style='mso-width-source: userset; mso-width-alt: 7168; width: 147pt'>
-                                            <col width="100" style='mso-width-source: userset; mso-width-alt: 3657; width: 75pt'>
-                                            <tr height="21" style='height: 15.75pt'>
-                                                <td height="21" class="xl65" width="193" style='height: 15.75pt; width: 145pt'>Highlighted
-  tracker on top</td>
-                                                <td class="xl66" width="196" style='border-left: none; width: 147pt'>&nbsp;</td>
-                                                <td class="xl67" width="100" style='border-left: none; width: 75pt'>Type</td>
-                                            </tr>
-                                            <tr height="21" style='height: 15.75pt'>
-                                                <td height="21" class="xl65" style='height: 15.75pt; border-top: none'>Exam
-  Information</td>
-                                                <td class="xl66" style='border-top: none; border-left: none'>&nbsp;</td>
-                                                <td class="xl66" style='border-top: none; border-left: none'>Sub group</td>
-                                            </tr>
-                                            <tr height="21" style='height: 15.75pt'>
-                                                <td height="21" class="xl65" style='height: 15.75pt; border-top: none'>&nbsp;</td>
-                                                <td class="xl66" style='border-top: none; border-left: none'>Procedure</td>
-                                                <td class="xl66" style='border-top: none; border-left: none'>label</td>
-                                            </tr>
-                                            <tr height="21" style='height: 15.75pt'>
-                                                <td height="21" class="xl65" style='height: 15.75pt; border-top: none'>&nbsp;</td>
-                                                <td class="xl66" style='border-top: none; border-left: none'>Patient type class</td>
-                                                <td class="xl66" style='border-top: none; border-left: none'>label</td>
-                                            </tr>
-                                            <tr height="21" style='height: 15.75pt'>
-                                                <td height="21" class="xl65" style='height: 15.75pt; border-top: none'>&nbsp;</td>
-                                                <td class="xl66" style='border-top: none; border-left: none'>Trauma Emg</td>
-                                                <td class="xl66" style='border-top: none; border-left: none'>label</td>
-                                            </tr>
-                                            <tr height="21" style='height: 15.75pt'>
-                                                <td height="21" class="xl65" style='height: 15.75pt; border-top: none'>&nbsp;</td>
-                                                <td class="xl66" style='border-top: none; border-left: none'>Resource</td>
-                                                <td class="xl66" style='border-top: none; border-left: none'>label</td>
-                                            </tr>
-                                            <tr height="21" style='height: 15.75pt'>
-                                                <td height="21" class="xl65" style='height: 15.75pt; border-top: none'>&nbsp;</td>
-                                                <td class="xl66" style='border-top: none; border-left: none'>Modality</td>
-                                                <td class="xl66" style='border-top: none; border-left: none'>label</td>
-                                            </tr>
-                                            <tr height="21" style='height: 15.75pt'>
-                                                <td height="21" class="xl65" style='height: 15.75pt; border-top: none'>Staff</td>
-                                                <td class="xl66" style='border-top: none; border-left: none'>&nbsp;</td>
-                                                <td class="xl66" style='border-top: none; border-left: none'>Sub group</td>
-                                            </tr>
-                                            <tr height="21" style='height: 15.75pt'>
-                                                <td height="21" class="xl65" style='height: 15.75pt; border-top: none'>&nbsp;</td>
-                                                <td class="xl66" style='border-top: none; border-left: none'>Techno</td>
-                                                <td class="xl66" style='border-top: none; border-left: none'>label</td>
-                                            </tr>
-                                            <tr height="21" style='height: 15.75pt'>
-                                                <td height="21" class="xl65" style='height: 15.75pt; border-top: none'>&nbsp;</td>
-                                                <td class="xl66" style='border-top: none; border-left: none'>Finalizing
-  Radiologist</td>
-                                                <td class="xl66" style='border-top: none; border-left: none'>label</td>
-                                            </tr>
-                                            <tr height="21" style='height: 15.75pt'>
-                                                <td height="21" class="xl65" style='height: 15.75pt; border-top: none'>&nbsp;</td>
-                                                <td class="xl66" style='border-top: none; border-left: none'>&nbsp;</td>
-                                                <td class="xl66" style='border-top: none; border-left: none'>&nbsp;</td>
-                                            </tr>
-                                            <tr height="21" style='height: 15.75pt'>
-                                                <td height="21" class="xl65" style='height: 15.75pt; border-top: none'>Time</td>
-                                                <td class="xl66" style='border-top: none; border-left: none'>&nbsp;</td>
-                                                <td class="xl66" style='border-top: none; border-left: none'>Sub group</td>
-                                            </tr>
-                                            <tr height="21" style='height: 15.75pt'>
-                                                <td height="21" class="xl65" style='height: 15.75pt; border-top: none'>&nbsp;</td>
-                                                <td class="xl66" style='border-top: none; border-left: none'>Order</td>
-                                                <td class="xl66" style='border-top: none; border-left: none'>label</td>
-                                            </tr>
-                                            <tr height="21" style='height: 15.75pt'>
-                                                <td height="21" class="xl65" style='height: 15.75pt; border-top: none'>&nbsp;</td>
-                                                <td class="xl66" style='border-top: none; border-left: none'>Sign In</td>
-                                                <td class="xl66" style='border-top: none; border-left: none'>label</td>
-                                            </tr>
-                                            <tr height="21" style='height: 15.75pt'>
-                                                <td height="21" class="xl65" style='height: 15.75pt; border-top: none'>&nbsp;</td>
-                                                <td class="xl66" style='border-top: none; border-left: none'>Appointment</td>
-                                                <td class="xl66" style='border-top: none; border-left: none'>label</td>
-                                            </tr>
-                                            <tr height="21" style='height: 15.75pt'>
-                                                <td height="21" class="xl65" style='height: 15.75pt; border-top: none'>&nbsp;</td>
-                                                <td class="xl66" style='border-top: none; border-left: none'>Begin Exam</td>
-                                                <td class="xl66" style='border-top: none; border-left: none'>label</td>
-                                            </tr>
-                                            <tr height="21" style='height: 15.75pt'>
-                                                <td height="21" class="xl65" style='height: 15.75pt; border-top: none'>&nbsp;</td>
-                                                <td class="xl66" style='border-top: none; border-left: none'>End Exam</td>
-                                                <td class="xl66" style='border-top: none; border-left: none'>label</td>
-                                            </tr>
-                                            <tr height="21" style='height: 15.75pt'>
-                                                <td height="21" class="xl65" style='height: 15.75pt; border-top: none'>&nbsp;</td>
-                                                <td class="xl66" style='border-top: none; border-left: none'>First Final</td>
-                                                <td class="xl66" style='border-top: none; border-left: none'>label</td>
-                                            </tr>
-                                            <tr height="21" style='height: 15.75pt'>
-                                                <td height="21" class="xl65" style='height: 15.75pt; border-top: none'>&nbsp;</td>
-                                                <td class="xl66" style='border-top: none; border-left: none'>Last Final</td>
-                                                <td class="xl66" style='border-top: none; border-left: none'>label</td>
-                                            </tr>
-                                            <tr height="21" style='height: 15.75pt'>
-                                                <td height="21" class="xl65" style='height: 15.75pt; border-top: none'>Metrics</td>
-                                                <td class="xl66" style='border-top: none; border-left: none'>&nbsp;</td>
-                                                <td class="xl66" style='border-top: none; border-left: none'>Sub group</td>
-                                            </tr>
-                                            <tr height="21" style='height: 15.75pt'>
-                                                <td height="21" class="xl65" style='height: 15.75pt; border-top: none'>&nbsp;</td>
-                                                <td class="xl66" style='border-top: none; border-left: none'>Sche Event to app
-  time</td>
-                                                <td class="xl66" style='border-top: none; border-left: none'>label</td>
-                                            </tr>
-                                            <tr height="21" style='height: 15.75pt'>
-                                                <td height="21" class="xl65" style='height: 15.75pt; border-top: none'>&nbsp;</td>
-                                                <td class="xl66" style='border-top: none; border-left: none'>Appt to Begin</td>
-                                                <td class="xl66" style='border-top: none; border-left: none'>label</td>
-                                            </tr>
-                                            <tr height="21" style='height: 15.75pt'>
-                                                <td height="21" class="xl65" style='height: 15.75pt; border-top: none'>&nbsp;</td>
-                                                <td class="xl66" style='border-top: none; border-left: none'>Total patient Wait</td>
-                                                <td class="xl66" style='border-top: none; border-left: none'>label</td>
-                                            </tr>
-                                            <tr height="21" style='height: 15.75pt'>
-                                                <td height="21" class="xl65" style='height: 15.75pt; border-top: none'>&nbsp;</td>
-                                                <td class="xl66" style='border-top: none; border-left: none'>Exam Duration</td>
-                                                <td class="xl66" style='border-top: none; border-left: none'>label</td>
-                                            </tr>
-                                            <tr height="21" style='height: 15.75pt'>
-                                                <td height="21" class="xl65" style='height: 15.75pt; border-top: none'>&nbsp;</td>
-                                                <td class="xl66" style='border-top: none; border-left: none'>Final Turnaround Time</td>
-                                                <td class="xl66" style='border-top: none; border-left: none'>label</td>
-                                            </tr>
-                                            <tr height="21" style='height: 15.75pt'>
-                                                <td height="21" class="xl65" style='height: 15.75pt; border-top: none'>Indentifiers</td>
-                                                <td class="xl66" style='border-top: none; border-left: none'>&nbsp;</td>
-                                                <td class="xl66" style='border-top: none; border-left: none'>Sub group</td>
-                                            </tr>
-                                            <tr height="21" style='height: 15.75pt'>
-                                                <td height="21" class="xl65" style='height: 15.75pt; border-top: none'>&nbsp;</td>
-                                                <td class="xl66" style='border-top: none; border-left: none'>Accession#</td>
-                                                <td class="xl66" style='border-top: none; border-left: none'>label</td>
-                                            </tr>
-                                            <tr height="20" style='height: 15.0pt'>
-                                                <td height="20" class="xl66" style='height: 15.0pt; border-top: none'>&nbsp;</td>
-                                                <td class="xl66" style='border-top: none; border-left: none'>MRN(AI:MWebWare
-  Hospital)</td>
-                                                <td class="xl66" style='border-top: none; border-left: none'>label</td>
-                                            </tr>
-                                            <![if supportMisalignedColumns]>
-	<tr height="0" style='display: none'>
-     <td width="193" style='width: 145pt'></td>
-     <td width="196" style='width: 147pt'></td>
-     <td width="100" style='width: 75pt'></td>
- </tr>
-                                            <![endif]>
-                                        </table>
-                                    </div>
-
-                                </div>
-
-                                <div class="col-md-6">
-                                    <!-- general form elements disabled -->
-                                    Column 2
-		  <!-- Div#1 -->
-                                    <div>
-                                        <h2>Report History</h2>
-                                        <b>status:</b>Final<br>
-                                        <b>Time:</b>2015-10-21 14:10:35<br>
-                                            <b>Radiologist:</b>Dr XML ABC<br>
-                                                <b>Radiologist:</b>Dr ABC ABC<br></br>
-                                            </br>
-                                        </br>
-                                        <p>
-                                            An Accountable Care Organization (ACO), according to the Centers for Medicare & Medicaid Services (CMS) "is an organization of health care providers that agrees to be accountable for the quality, cost, and overall care of Medicare beneficiaries who are enrolled in the traditional fee-for-service program who are assigned to it." Under the health care reform legislation passed in March 2010, the Medicare program is authorized to contract with ACOs.
-                                        </p>
-
-
-
-
-                                    </div>
-                                    <!-- Div#2 -->
-                                    <div>
-                                        <h2>Report History</h2>
-                                        <b>status:</b>Pref Final<br>
-                                        <b>Time:</b>2015-9-21 14:10:35<br>
-                                            <b>Radiologist:</b>Dr XML ABC<br>
-                                                <b>Radiologist:</b>Dr ABC ABC<br></br>
-                                            </br>
-                                        </br>
-                                        <p>
-                                            An Accountable Care Organization (ACO), according to the Centers for Medicare & Medicaid Services (CMS) "is an organization of health care providers that agrees to be accountable for the quality, cost, and overall care of Medicare beneficiaries who are enrolled in the traditional fee-for-service program who are assigned to it." Under the health care reform legislation passed in March 2010, the Medicare program is authorized to contract with ACOs.
-                                        </p>
-
-
-
-
-                                    </div>
-
-                                    <!-- Div#3 -->
-
-                                    <div>
-                                        <h2>Report History</h2>
-                                        <b>status:</b>Draft<br>
-                                        <b>Time:</b>2015-8-21 14:10:35<br>
-                                            <b>Radiologist:</b>Dr XML ABC<br>
-                                                <b>Radiologist:</b>Dr ABC ABC<br></br>
-                                            </br>
-                                        </br>
-                                        <p>
-                                            An Accountable Care Organization (ACO), according to the Centers for Medicare & Medicaid Services (CMS) "is an organization of health care providers that agrees to be accountable for the quality, cost, and overall care of Medicare beneficiaries who are enrolled in the traditional fee-for-service program who are assigned to it." Under the health care reform legislation passed in March 2010, the Medicare program is authorized to contract with ACOs.
-                                        </p>
-
-                                    </div>
-                                    <!-- /.box -->
-                                </div>
-
-                            </div>
-                            <!-- /.row -->
-                        </section>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="Btns BtnClose pull-right" id="" data-dismiss="modal">Close</button>
-                </div>
-            </div>
-        </div>
-</div>
-
-
-
 			
 
 <!--<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>-->
 
 <% javascriptBody 'jquery.min.js' %>
 <% javascriptBody 'bootstrap.min' %>
-
-<%-# javascriptBody 'plugins/datatables/jquery.dataTables' -%>
-<%-# javascriptBody 'plugins/datatables/dataTables.bootstrap' -%>
 <% javascriptBody 'AdminLTE/app' %>
 
 <% javascriptBody 'jquery-ui-1.10.3.min' %>
 <% javascriptBody 'jquery.multiselect' %>
 
 <% content_for :body_javascript_section do %>
-<%= javascript_include_tag 'jqgrid/grid.locale-en.js' %>
-<%= javascript_include_tag 'jqgrid/jquery.jqGrid.js' %>
-
+	<%= javascript_include_tag 'jqgrid/grid.locale-en.js' %>
+	<%= javascript_include_tag 'jqgrid/jquery.jqGrid.js' %>
+	<%= javascript_tag "window._token = '#{form_authenticity_token}'" %>
+	
   <script type='text/javascript'>
   $(document).ready(function(){
   	
@@ -386,54 +121,22 @@
         						noneSelectedText: "Select Status"
      						});
     
-            
+    //===Initializing Grid first time===
+    createOrUpdateRadExamGrid();
+    //===End of Initializing Grid first time===
+	
   	//========Search functionality=================
   	$("#BtnFilter").click(function(){
-  		var ddlAccessionIdSelectedValues_Var = $("#DdlAccessionIdSrch").val();
-  		var ddlStatusSelectedValues_Var = $("#DdlStatusSrch").val();
-  		
-  		debugger;
-		$.ajax({
-  			url:'/home/search_exams',
-  			type:'POST',
-  			dataType:'json',
-  			//contentType: "application/json; charset=utf-8",
-  			data:{
-  				accession_ids: ddlAccessionIdSelectedValues_Var,
-  				exam_status: ddlStatusSelectedValues_Var,
-  				authenticity_token: window._token
-  			},
-  			success:function(data){
-  				debugger;
-  			},
-  			error:function(data){
-  				debugger;
-  			}
-  		});
+  		createOrUpdateRadExamGrid ();
   	});
   	//=====End Search functionality==============
   	
-  	$.ajax({
-  		url:"/home/get_data",
-  		//dataType: 'json',
-  		contentType: "application/json; charset=utf-8",
-  		success:function(data){
-  			debugger;
-  		},
-  		error:function(data){
-  			debugger;
-  		}
-  		
-  	});
-  	
   	
   	function makeIdAsLinkFormatter( cellvalue, option, rowobj ){
-  		//debugger;
   		return '<a class="" id="lnk$#'+ cellvalue +'" onclick="showExamDetail(this.id)">' + cellvalue + '</a>';
   	}
   	
   	function parseStatusOfExamFormatter (cellvalue, option, rowobj ) {
-		//debugger;
 		if(cellvalue=="complete"){
 			return '<div class="wizard"><a class="current"><span class="badge"></span></a><a class="current"><span class="badge"></span></a><a class="current"><span class="badge badge-inverse"></span></a><a class="green"><i class="fa fa-check" style="display: table-cell; float: right; margin: 8px;"></i></a></div>';
 		}
@@ -446,15 +149,19 @@
 		else{
 			return 'Can not parse "' + cellvalue + '" status';
 		}
-		//return '<div class="wizard"><a class="'+cellvalue.initialstage+'"><span class="badge"></span></a><a class="'+cellvalue.patclass+'"><span class="badge"></span></a><a class="'+cellvalue.appttime+'"><span class="badge badge-inverse"></span></a><a class="'+cellvalue.scheduledstop+'"><i class="fa fa-check" style="display: table-cell; float: right; margin: 8px;"></i></a></div>'   
 	  }
   	
-  	
-  	//$('#reqgrid').html('').append('<table id="example1" class="scroll"></table> <div id="UsersGridPager" class="scroll text-center"></div>');
-        $("#example1").jqGrid({
+  	function createOrUpdateRadExamGrid () {
+		$('#schRegGridContainer').html('').append('<table id="tblSchReg" class="scroll"></table> <div id="tblSchRegpager" class="scroll text-center"></div>');
+        $("#tblSchReg").jqGrid({
             datatype: "json",
             url: '/home/get_jqgridScheReg/',
-            mtype: 'GET',
+            mtype: 'POST',
+			postData: {
+                accession: $("#DdlAccessionIdSrch").val(),
+                status: $("#DdlStatusSrch").val(),
+                authenticity_token: window._token
+            },
             colNames: ['A#','Appt Time','Begin Exam','End Exam','SignIn','CheckIn','Progress Status','Current Status','Status Last Changed','Patient Name','Patient MRN','Patient DOB','Site','Patient Class','Patient Type','Patient Location at exam','Radiology Department','Exam Resource','Modality','Proc Code','Proc Description','Ordering Provider','Scheduler','Technologist','PACS Image Count'],
             colModel: [
                 { name: 'accession', index: 'accession', align: 'center', width:40, fixed:true, formatter: makeIdAsLinkFormatter }
@@ -485,10 +192,6 @@
                     
                 
             ],
-            //jsonReader: { repeatitems:false, root:"rows" },
-            //jsonReader: { repeatitems: false, id: "id", root: "rows", page: "page", total: "total",
-    //records: "records"
-			//},
             jsonReader: { repeatitems: false, id: "id", root: function (obj) { return obj.rows; }, page: function (obj) { return obj.page; }, total: function (obj) { return obj.total; },
     records: function (obj) { return (obj.rows.length ); }
 			},
@@ -504,20 +207,20 @@
             sortorder: "asc",
             viewrecords: true,
             ignoreCase: true,
-            pager: '#example1pager',
+            pager: '#tblSchRegpager',
             caption: "Exam Details",
             rownumbers: true,
             loadonce:true,
             loadComplete: function (data) {
             	//debugger;
-                var datacount = $("#example1").getGridParam("reccount");
+                var datacount = $("#tblSchReg").getGridParam("reccount");
                 if (datacount == 0) {
                     $('.ui-jqgrid-bdiv').removeClass('JqgridAutoHeight'); 
-                    $('#example1').jqGrid('setGridHeight','250'); 
+                    $('#tblSchReg').jqGrid('setGridHeight','250'); 
                 }
                 if (datacount > 0) {   /*grid heigth */
                	debugger;
-					$('#example1').jqGrid('setGridHeight','auto');
+					$('#tblSchReg').jqGrid('setGridHeight','auto');
                     //$('.ui-jqgrid-bdiv').addClass('JqgridAutoHeight');
                 }
                 
@@ -542,7 +245,7 @@
                 ddlStatusSrch_Var.multiselect('refresh');
                 //****End Binding data to Status dropdown****//
             },
-        }).hideCol([ ]).navGrid('#example1pager', {
+        }).hideCol([ ]).navGrid('#tblSchRegpager', {
             edit: false, add: false, del: false, search: true, refresh: true, beforeRefresh: function () {
                 //$("#tblUsersGrid").setGridParam({ postData: { pageXL: '_pageXL' } });
                 //$('#pg_UsersGridPager table:eq(1) tr td.nRCls').remove();
@@ -564,16 +267,11 @@
                //$('#pg_UsersGridPager table:eq(1) tr td.nRCls').remove();
            }, sopt: ['cn', 'nc']
        });
-            
+	}       
 
             
             
   });
-  
-  function showExamDetail(id) {
-		debugger;
-		$("#ExamDetailPopupDiv").modal('show');
-	  }
 
   </script>
 <% end %>  
