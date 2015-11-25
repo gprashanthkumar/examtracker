@@ -191,7 +191,7 @@ class Rad_Exam < ActiveRecord::Base
   end
   
   def self.get_accession_reports(accessionid)
-     reports = self.join_Main.Radiologist_Reports.where(" rad_exams.accession = ? ",accessionid).first;
+     reports = self.join_Main.Radiologist_Reports.where(" rad_exams.accession = ? ",accessionid).order("id desc").all;
     return reports;
   end
   
