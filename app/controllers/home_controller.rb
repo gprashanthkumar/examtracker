@@ -106,10 +106,12 @@ class HomeController < ApplicationController
   def get_jqgridSearch_exam_data 
     @employee = Employee.get_employee(session[:username])  
     @opts = params
+    puts @opts
     symbolize_keys_deep! @opts
     
     @exams = Rad_Exam.get_exams_search(@employee.id,@opts)  
-    puts "its in get_jqgridSearch_exam_data" + @opts[:accession]
+    puts "its in get_jqgridSearch_exam_data" 
+    puts @opts[:accession]
     
      json_data = {
 		:page=>"1",
