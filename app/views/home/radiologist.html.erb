@@ -293,6 +293,9 @@
        });
 	}     
 
+	$('.ui-icon-refresh').click(function () {
+		$("#tblRadExam").setGridParam({ datatype: 'json', page: 1 }).trigger('reloadGrid');
+    });
             
             
   }); 
