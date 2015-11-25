@@ -178,6 +178,7 @@ class Rad_Exam < ActiveRecord::Base
   end
   
   def self.get_exams_search(employeeid,accession)    
+    puts "kumnar " + accession;
     exams_search = self.join_Main;
     exams_search = exams_search.where("accession in ( " +  accession +")" ).all unless accession.blank?;
     
