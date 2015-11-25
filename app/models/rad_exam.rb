@@ -59,6 +59,17 @@ class Rad_Exam < ActiveRecord::Base
     .joins("LEFT JOIN rad_reports rrlf ON rrlf.rad_exam_id = rad_exams.id" )
     .select("rrff.report_event as first_final, rrlf.report_event as last_final")
   }
+   scope :Radiologist_Reports, -> { 
+    joins("inner JOIN rad_reports rr ON rr.rad_exam_id = rad_exams.id" )
+    .joins("LEFT join external_system_statuses ess on ess.id = rr.report_status_id") 
+    .joins("LEFT join universal_event_types uet on uet.id = ess.universal_event_type_id")
+    .joins("LEFT join employees rademp1 on rademp1.id = rr.rad1_id")
+    .joins("left join employees rademp2 on rademp2.id = rr.rad2_id")
+    .select("rr.report_event as report_time,rr.report_impression,rr.report_body
+,uet.event_type as status,rademp1.name as rad1_name,rademp1.name as rad2_name")
+    
+  }
+  
   #definitions
   def self.get_rad_exams(employeeid,accessions,current_status)
     #self.where({patient_mrn_id: mrn}).order("created_at desc").first
@@ -176,6 +187,11 @@ class Rad_Exam < ActiveRecord::Base
   def self.get_accession_detail(accessionid)
     accession = self.join_Main.Rad_report_event.where(" rad_exams.accession = ? ",accessionid).first;
     return accession;
+  end
+  
+  def self.get_accession_reports(accessionid)
+     reports = self.join_Main.Radiologist_Reports.where(" rad_exams.accession = ? ",accessionid).first;
+    return reports;
   end
   
   def self.stringArray_to_string(arraystring)
