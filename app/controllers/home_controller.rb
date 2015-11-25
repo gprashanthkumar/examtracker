@@ -104,12 +104,12 @@ class HomeController < ApplicationController
   end
   
   def get_jqgridSearch_exam_data 
-    search_criteriaJSON = params[:allSearchCriteriaInJson]
-    puts "Visit#: "+search_criteriaJSON['visit']
-	
-    @employee = Employee.get_employee(session[:username])   
-    @exams = Rad_Exam.get_exams_search(@employee.id,params)  
-    puts "its in get_jqgridSearch_exam_data"
+    @employee = Employee.get_employee(session[:username])  
+    @opts = params
+    symbolize_keys_deep! @opts
+    
+    @exams = Rad_Exam.get_exams_search(@employee.id,@opts)  
+    puts "its in get_jqgridSearch_exam_data" + @opts[:accession]
     
      json_data = {
 		:page=>"1",
@@ -215,5 +215,12 @@ class HomeController < ApplicationController
   end
   
   
-
+ #convert hash to symbols
+  def symbolize_keys_deep!(h)
+    h.keys.each do |k|
+        ks  = k.respond_to?(:to_sym) ? k.to_sym : k
+        h[ks] = h.delete k # Preserve order even when k == ks
+        symbolize_keys_deep! h[ks] if h[ks].kind_of? Hash
+    end
+  end  
 end
