@@ -498,7 +498,7 @@
 									$(resultReportHistories).each(function(index, resultReportHistory){
 										$("#reportHistoryContainerDiv").append('<div> <h3>'+ resultReportHistory.report_impression +'</h3> <b>status:</b>'+ resultReportHistory.status +'<br> <b>Time:</b>'+ resultReportHistory.report_time +'<br> <b>Radiologist:</b>'+ resultReportHistory.rad1_name +'<br> <b>Radiologist:</b>'+ resultReportHistory.rad2_name +'<br> </br></br></br> <p>'+ resultReportHistory.report_body +'</p> </div>');
 									});
-									$("#currentStatusH3").html(myobj.current_status);
+									$("#currentStatusH3").text(myobj.current_status);
 								},
 								error:function(resultReportHistories){
 									debugger;
