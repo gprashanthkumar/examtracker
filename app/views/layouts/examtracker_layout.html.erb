@@ -190,6 +190,7 @@
                         
         </aside>
        </div>
+	   
 <!-- popp modal start -->
         <div class="modal fade" id="ExamDetailPopupDiv" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog">
@@ -382,7 +383,7 @@
 
                                 </div>
 
-                                <div class="col-md-6">
+                                <div id="reportHistoryContainerDiv" class="col-md-6">
                                     <!-- general form elements disabled -->
                                     Column 2
                                    <!-- Div#1 -->
@@ -410,10 +411,6 @@
                                         <p>
                                             An Accountable Care Organization (ACO), according to the Centers for Medicare & Medicaid Services (CMS) "is an organization of health care providers that agrees to be accountable for the quality, cost, and overall care of Medicare beneficiaries who are enrolled in the traditional fee-for-service program who are assigned to it." Under the health care reform legislation passed in March 2010, the Medicare program is authorized to contract with ACOs.
                                         </p>
-
-
-
-
                                     </div>
 
                                     <!-- Div#3 -->
@@ -457,53 +454,53 @@
     
     (function() {
 
-  function DateDiff(date1, date2) {
-    this.days = null;
-    this.hours = null;
-    this.minutes = null;
-    this.seconds = null;
-    this.date1 = date1;
-    this.date2 = date2;
+	  function DateDiff(date1, date2) {
+		this.days = null;
+		this.hours = null;
+		this.minutes = null;
+		this.seconds = null;
+		this.date1 = date1;
+		this.date2 = date2;
 
-    this.init();
-  }
+		this.init();
+	  }
 
-  DateDiff.prototype.init = function() {
-    var data = new DateMeasure(this.date1 - this.date2);
-    this.days = data.days;
-    this.hours = data.hours;
-    this.minutes = data.minutes;
-    this.seconds = data.seconds;
-  };
+	  DateDiff.prototype.init = function() {
+		var data = new DateMeasure(this.date1 - this.date2);
+		this.days = data.days;
+		this.hours = data.hours;
+		this.minutes = data.minutes;
+		this.seconds = data.seconds;
+	  };
 
-  function DateMeasure(ms) {
-    var d, h, m, s;
-    s = Math.floor(ms / 1000);
-    m = Math.floor(s / 60);
-    s = s % 60;
-    h = Math.floor(m / 60);
-    m = m % 60;
-    d = Math.floor(h / 24);
-    h = h % 24;
-    
-    this.days = d;
-    this.hours = h;
-    this.minutes = m;
-    this.seconds = s;
-  };
+	  function DateMeasure(ms) {
+		var d, h, m, s;
+		s = Math.floor(ms / 1000);
+		m = Math.floor(s / 60);
+		s = s % 60;
+		h = Math.floor(m / 60);
+		m = m % 60;
+		d = Math.floor(h / 24);
+		h = h % 24;
+		
+		this.days = d;
+		this.hours = h;
+		this.minutes = m;
+		this.seconds = s;
+	  };
 
-  Date.diff = function(date1, date2) {
-    return new DateDiff(date1, date2);
-  };
+	  Date.diff = function(date1, date2) {
+		return new DateDiff(date1, date2);
+	  };
 
-  Date.prototype.diff = function(date2) {
-    return new DateDiff(this, date2);
-  };
+	  Date.prototype.diff = function(date2) {
+		return new DateDiff(this, date2);
+	  };
 
-})();
+	})();
 
     function showExamDetail(id) {
-		debugger;
+		//debugger;
                   id = id.replace("lnk$#","");
                    var myobj;
                   $.ajax({
@@ -515,11 +512,31 @@
   				accession_id: id,  				
   				authenticity_token: window._token
   			},
-  			success:function(data){
+  			success:function(resultExamDetail){
                          
-                           
+                             $.ajax({
+								url:'/home/search_exams',
+								type:'POST',
+								dataType:'json',
+								//contentType: "application/json; charset=utf-8",
+								data:{
+									accession_id: id,
+									authenticity_token: window._token
+								},
+								success:function(resultReportHistories){
+									debugger;
+									$(resultReportHistories).each(function(index, reportHistoryObj){
+										$("#reportHistoryContainerDiv").append('<div> <h2>Report History</h2> <b>status:</b>Final<br> <b>Time:</b>2015-10-21 14:10:35<br> <b>Radiologist:</b>Dr XML ABC<br> <b>Radiologist:</b>Dr ABC ABC<br> </br></br></br> <p>An Accountable Care Organization (ACO), according to the Centers for</p> </div>');
+									});
+								},
+								error:function(resultReportHistories){
+									debugger;
+									
+								}
+							});
+						   
                             try {
-                              mydata = JSON.stringify(data);
+                              mydata = JSON.stringify(resultExamDetail);
                              // alert(mydata);
                             myobj  = JSON.parse(mydata);
                             
@@ -575,7 +592,7 @@
 		
 	  }
           
-          function parseExamStatusGraph (cellvalue) {
+    function parseExamStatusGraph (cellvalue) {
 		if(cellvalue=="complete"){
 			return '<div class="wizard"><a class="current"><span class="badge"></span></a><a class="current"><span class="badge"></span></a><a class="current"><span class="badge badge-inverse"></span></a><a class="green"><i class="fa fa-check" style="display: table-cell; float: right; margin: 8px;"></i></a></div>';
 		}
@@ -588,7 +605,7 @@
 		else{
 			return 'Can not parse "' + cellvalue + '" status';
 		}
-}
+	}
   </script>
 </body>
 </html>
