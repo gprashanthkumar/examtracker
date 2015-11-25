@@ -43,6 +43,7 @@ class Rad_Exam < ActiveRecord::Base
      ,CASE WHEN ret.check_in is null then ret.check_in else ret.check_in END check_in
      ,CASE WHEN ret.begin_exam is null then ret.begin_exam else ret.begin_exam END begin_exam
      ,CASE WHEN ret.end_exam is null then ret.end_exam else ret.end_exam END end_exam
+     ,CASE WHEN ret.order_arrival is null then ret.order_arrival else ret.order_arrival END order_arrival
      ,rad_exams.*")      
   }   
   
