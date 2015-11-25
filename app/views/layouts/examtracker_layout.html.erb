@@ -486,6 +486,7 @@
 								},
 								success:function(resultReportHistory){
 									debugger;
+									$("#reportHistoryContainerDiv").empty();
 									//$(resultReportHistories).each(function(index, reportHistoryObj){
 										$("#reportHistoryContainerDiv").append('<div> <h2>'+ resultReportHistory.report_impression +'</h2> <b>status:</b>'+ resultReportHistory.status +'<br> <b>Time:</b>'+ resultReportHistory.report_time +'<br> <b>Radiologist:</b>'+ resultReportHistory.rad1_name +'<br> <b>Radiologist:</b>'+ resultReportHistory.rad2_name +'<br> </br></br></br> <p>'+ resultReportHistory.report_body +'</p> </div>');
 									//});
