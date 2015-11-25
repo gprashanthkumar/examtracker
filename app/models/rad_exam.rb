@@ -177,10 +177,10 @@ class Rad_Exam < ActiveRecord::Base
     self.join_Main.order("id desc").all;
   end
   
-  def self.get_exams_search(employeeid,params)
-    puts "prashanth" + params[:accession]
+  def self.get_exams_search(employeeid,accession)
+    
     exams_search = self.join_Main;
-    exams_search = exams_search.where("accession in ( " +  params[:accession] +")" ).all unless params[:accession].blank?;
+    exams_search = exams_search.where("accession in ( " +  accession +")" ).all unless accession.blank?;
     
     return exams_search;
   end
