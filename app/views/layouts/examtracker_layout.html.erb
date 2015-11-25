@@ -527,10 +527,12 @@
                             $("#lblfirst_final").text(myobj.first_final);
                             $("#lbllast_final").text(myobj.last_final);
                             var aptime = new Date(myobj.appt_time);
+							alert(aptime);
                             var btime = new Date(myobj.begin_exam);
                             var etime = new Date(myobj.end_exam);
                             var eduration = new Date(etime - btime);
                             var waitduarion= new Date(btime - aptime);
+							alert(waitduarion);
                             $("#lbleduration").text(eduration.toISOString().substr(11,8) );
                             $("#lblwaitduration").text(waitduarion.toISOString().substr(11,8) );
                             
