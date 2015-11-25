@@ -385,7 +385,7 @@
 
                                 <div id="reportHistoryContainerDiv" class="col-md-6">
                                     <!-- general form elements disabled -->
-                                    Column 2
+                                    <h2>Report History</h2>
                                    <!-- Div#1 -->
                                     
                                     
@@ -484,11 +484,12 @@
 									accession_id: id,
 									authenticity_token: window._token
 								},
-								success:function(resultReportHistories){
+								success:function(resultReportHistory){
 									debugger;
-									$(resultReportHistories).each(function(index, reportHistoryObj){
-										$("#reportHistoryContainerDiv").append('<div> <h2>Report History</h2> <b>status:</b>Final<br> <b>Time:</b>2015-10-21 14:10:35<br> <b>Radiologist:</b>Dr XML ABC<br> <b>Radiologist:</b>Dr ABC ABC<br> </br></br></br> <p>An Accountable Care Organization (ACO), according to the Centers for</p> </div>');
-									});
+									$("#reportHistoryContainerDiv").empty();
+									//$(resultReportHistories).each(function(index, reportHistoryObj){
+										$("#reportHistoryContainerDiv").append('<div> <h2>'+ resultReportHistory.report_impression +'</h2> <b>status:</b>'+ resultReportHistory.status +'<br> <b>Time:</b>'+ resultReportHistory.report_time +'<br> <b>Radiologist:</b>'+ resultReportHistory.rad1_name +'<br> <b>Radiologist:</b>'+ resultReportHistory.rad2_name +'<br> </br></br></br> <p>'+ resultReportHistory.report_body +'</p> </div>');
+									//});
 								},
 								error:function(resultReportHistories){
 									debugger;
