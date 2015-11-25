@@ -178,9 +178,9 @@ class Rad_Exam < ActiveRecord::Base
   end
   
   def self.get_exams_search(employeeid,mrn)    
-    puts "kumnar " + mrn;
+    
     exams_search = self.join_Main;
-    exams_search = exams_search.where("mrn in ( " +  mrn +")" ).all unless mrn.blank?;
+    #exams_search = exams_search.where("mrn in ( " +  mrn +")" ).all unless mrn.blank?;
     
     return exams_search;
   end
