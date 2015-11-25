@@ -208,7 +208,7 @@
                                 <div class="col-md-6">
                                     <!-- general form elements disabled -->
                                     <!--<h1>Exam Details</h1>-->
-                                    <h3><font color="green">Delivered</font></h3>
+                                    <h3 id="currentStatusH3"><font color="green">Delivered</font></h3>
                                     <div id="divstatus">
                                         <div class="wizard">
                                            <a class="current"><span class="badge"></span></a>
@@ -475,7 +475,15 @@
   			},
   			success:function(resultExamDetail){
                          
-                             $.ajax({
+                             
+						   
+                            try {
+                              mydata = JSON.stringify(resultExamDetail);
+                             // alert(mydata);
+                            myobj  = JSON.parse(mydata);
+                            
+                            // start processing data from here into a function if possible
+							 $.ajax({
 								url:'/home/get_accession_report',
 								type:'POST',
 								dataType:'json',
@@ -490,20 +498,15 @@
 									$(resultReportHistories).each(function(index, resultReportHistory){
 										$("#reportHistoryContainerDiv").append('<div> <h3>'+ resultReportHistory.report_impression +'</h3> <b>status:</b>'+ resultReportHistory.status +'<br> <b>Time:</b>'+ resultReportHistory.report_time +'<br> <b>Radiologist:</b>'+ resultReportHistory.rad1_name +'<br> <b>Radiologist:</b>'+ resultReportHistory.rad2_name +'<br> </br></br></br> <p>'+ resultReportHistory.report_body +'</p> </div>');
 									});
+									$("#currentStatusH3").html(myobj.current_status);
 								},
 								error:function(resultReportHistories){
 									debugger;
-									
 								}
 							});
-						   
-                            try {
-                              mydata = JSON.stringify(resultExamDetail);
-                             // alert(mydata);
-                            myobj  = JSON.parse(mydata);
-                            
-                            // start processing data from here into a function if possible
-                          
+						  
+						  
+						  
                             //exam information
                             
                             $("#lblProcedure").text(myobj.description + "(" +  myobj.code + ")");
@@ -537,7 +540,6 @@
                             
                               var statusdiv = parseExamStatusGraph(myobj.graph_status);
                               $("#divstatus").html(statusdiv);
-
 
                             $("#ExamDetailPopupDiv").modal('show');
                             
