@@ -212,14 +212,14 @@
             rownumbers: true,
             loadonce:true,
             loadComplete: function (data) {
-            	//debugger;
+
                 var datacount = $("#tblSchReg").getGridParam("reccount");
                 if (datacount == 0) {
                     $('.ui-jqgrid-bdiv').removeClass('JqgridAutoHeight'); 
                     $('#tblSchReg').jqGrid('setGridHeight','250'); 
                 }
                 if (datacount > 0) {   /*grid heigth */
-               	debugger;
+               	
 					$('#tblSchReg').jqGrid('setGridHeight','auto');
                     //$('.ui-jqgrid-bdiv').addClass('JqgridAutoHeight');
                 }
@@ -227,7 +227,7 @@
                 //****Binding data to AccessionId dropdown****//
                 $("#DdlAccessionIdSrch").empty();
                 $.each(data.rows,function(index, value){
-                	debugger;
+                	
                 	$("#DdlAccessionIdSrch").append($('<option>', { value: value.accession, text: value.accession }));
                 });
                 ddlAccessionSrch_Var.multiselect('refresh');
@@ -239,7 +239,7 @@
     				return value.current_status;
     			}));
                 $.each(uniqueStatus,function(index, value){
-                	debugger;
+                	
                 	$("#DdlStatusSrch").append($('<option>', { value: value, text: value }));
                 });
                 ddlStatusSrch_Var.multiselect('refresh');

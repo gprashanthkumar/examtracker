@@ -24,7 +24,7 @@
   $(document).ready(function () {
   	
             $("#example1 tr td:first-child a").click(function (e) {
-            	debugger;
+            	
                 e.preventDefault();
                 $("#ExamDetailPopupDiv").modal('show');
             });
@@ -337,14 +337,14 @@
             rownumbers: true,
             loadonce:true,
             loadComplete: function (data) {
-            	//debugger;
+            	
                 var datacount = $("#tblSearchExam").getGridParam("reccount");
                 if (datacount == 0) {
                     $('.ui-jqgrid-bdiv').removeClass('JqgridAutoHeight'); 
                     $('#tblSearchExam').jqGrid('setGridHeight','250'); 
                 }
                 if (datacount > 0) {   /*grid heigth */
-               	debugger;
+               	
 					$('#tblSearchExam').jqGrid('setGridHeight','auto');
                     //$('.ui-jqgrid-bdiv').addClass('JqgridAutoHeight');
                 }
@@ -384,7 +384,7 @@
   	
 	
   	function makeIdAsLinkFormatter( cellvalue, option, rowobj ){
-  		//debugger;
+  		
   		if (cellvalue != undefined && cellvalue != null) {
   			return '<a class="" id="lnk$#'+ cellvalue +'" onclick="showExamDetail(this.id)">' + cellvalue + '</a>';
   		}
@@ -394,7 +394,7 @@
   	}
   	
 	function parseStatusOfExamFormatter (cellvalue, option, rowobj ) {
-		//debugger;
+		
 		if(cellvalue=="complete"){
 			return '<div class="wizard"><a class="current"><span class="badge"></span></a><a class="current"><span class="badge"></span></a><a class="current"><span class="badge badge-inverse"></span></a><a class="green"><i class="fa fa-check" style="display: table-cell; float: right; margin: 8px;"></i></a></div>';
 		}
@@ -414,10 +414,9 @@
   });
   // =======End of documnet.ready()
   
-  function showExamDetail(id) {
-		debugger;
-		$("#ExamDetailPopupDiv").modal('show');
-	  }
+  //function showExamDetail(id) {
+	//	$("#ExamDetailPopupDiv").modal('show');
+	//  }
 
   </script>
 <% end %>  

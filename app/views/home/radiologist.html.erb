@@ -127,7 +127,7 @@
 		createOrUpdateRadExamGrid ();
   		//var ddlAccessionIdSelectedValues_Var = $("#DdlAccessionIdSrch").val();
   		//var ddlStatusSelectedValues_Var = $("#DdlStatusSrch").val();
-  		//debugger;
+  		
 		//$.ajax({
   		//	url:'/home/search_exams',
   		//	type:'POST',
@@ -150,12 +150,10 @@
 
   	
   	function makeIdAsLinkFormatter( cellvalue, option, rowobj ){
-  		//debugger;
   		return '<a class="" id="lnk$#'+ cellvalue +'" onclick="showExamDetail(this.id)">' + cellvalue + '</a>';
   	}
   	
   	function parseStatusOfExamFormatter (cellvalue, option, rowobj ) {
-		//debugger;
 		if(cellvalue=="complete"){
 			return '<div class="wizard"><a class="current"><span class="badge"></span></a><a class="current"><span class="badge"></span></a><a class="current"><span class="badge badge-inverse"></span></a><a class="green"><i class="fa fa-check" style="display: table-cell; float: right; margin: 8px;"></i></a></div>';
 		}
@@ -236,14 +234,12 @@
             rownumbers: true,
             loadonce:true,
             loadComplete: function (data) {
-            	//debugger;
                 var datacount = $("#tblRadExam").getGridParam("reccount");
                 if (datacount == 0) {
                     $('.ui-jqgrid-bdiv').removeClass('JqgridAutoHeight'); 
                     $('#tblRadExam').jqGrid('setGridHeight','250'); 
                 }
                 if (datacount > 0) {   /*grid heigth */
-               	debugger;
 					$('#tblRadExam').jqGrid('setGridHeight','auto');
                     //$('.ui-jqgrid-bdiv').addClass('JqgridAutoHeight');
                 }
@@ -251,7 +247,6 @@
                 //****Binding data to AccessionId dropdown****//
                 $("#DdlAccessionIdSrch").empty();
                 $.each(data.rows,function(index, value){
-                	debugger;
                 	$("#DdlAccessionIdSrch").append($('<option>', { value: value.accession, text: value.accession }));
                 });
                 ddlAccessionSrch_Var.multiselect('refresh');
@@ -263,7 +258,6 @@
     				return value.current_status;
     			}));
                 $.each(uniqueStatus,function(index, value){
-                	debugger;
                 	$("#DdlStatusSrch").append($('<option>', { value: value, text: value }));
                 });
                 ddlStatusSrch_Var.multiselect('refresh');
