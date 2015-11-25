@@ -334,7 +334,7 @@
                                                 <td height="21" class="xl65" style='height: 15.75pt; border-top: none'>&nbsp;</td>
                                                 <td class="xl66" style='border-top: none; border-left: none'>Sche Event to app
   time</td>
-                                                <td  id="lblscheEventToappt" class="xl66" style='border-top: none; border-left: none'>label</td>
+                                                <td class="xl66" style='border-top: none; border-left: none'>label</td>
                                             </tr>
                                             <tr height="21" style='height: 15.75pt'>
                                                 <td height="21" class="xl65" style='height: 15.75pt; border-top: none'>&nbsp;</td>
@@ -354,7 +354,7 @@
                                             <tr height="21" style='height: 15.75pt'>
                                                 <td height="21" class="xl65" style='height: 15.75pt; border-top: none'>&nbsp;</td>
                                                 <td class="xl66" style='border-top: none; border-left: none'>Final Turnaround Time</td>
-                                                <td id="lblfinalTurnaroundTime" class="xl66" style='border-top: none; border-left: none'>label</td>
+                                                <td class="xl66" style='border-top: none; border-left: none'>label</td>
                                             </tr>
                                             <tr height="21" style='height: 15.75pt'>
                                                 <td height="21" class="xl65" style='height: 15.75pt; border-top: none'>Indentifiers</td>
@@ -412,8 +412,55 @@
  <%= yield(:body_javascript) %>
  <%= yield :body_javascript_section %>
   <script type='text/javascript' >
+    
+    (function() {
 
-  function showExamDetail(id) {
+	  function DateDiff(date1, date2) {
+		this.days = null;
+		this.hours = null;
+		this.minutes = null;
+		this.seconds = null;
+		this.date1 = date1;
+		this.date2 = date2;
+
+		this.init();
+	  }
+
+	  DateDiff.prototype.init = function() {
+		var data = new DateMeasure(this.date1 - this.date2);
+		this.days = data.days;
+		this.hours = data.hours;
+		this.minutes = data.minutes;
+		this.seconds = data.seconds;
+	  };
+
+	  function DateMeasure(ms) {
+		var d, h, m, s;
+		s = Math.floor(ms / 1000);
+		m = Math.floor(s / 60);
+		s = s % 60;
+		h = Math.floor(m / 60);
+		m = m % 60;
+		d = Math.floor(h / 24);
+		h = h % 24;
+		
+		this.days = d;
+		this.hours = h;
+		this.minutes = m;
+		this.seconds = s;
+	  };
+
+	  Date.diff = function(date1, date2) {
+		return new DateDiff(date1, date2);
+	  };
+
+	  Date.prototype.diff = function(date2) {
+		return new DateDiff(this, date2);
+	  };
+
+	})();
+
+    function showExamDetail(id) {
 		//debugger;
                   id = id.replace("lnk$#","");
                    var myobj;
@@ -479,20 +526,15 @@
                             $("#lblend_exam").text(myobj.end_exam);
                             $("#lblfirst_final").text(myobj.first_final);
                             $("#lbllast_final").text(myobj.last_final);
-                            var scheventime = new Date(myobj.order_arrival);
                             var aptime = new Date(myobj.appt_time);
-							
+							alert(aptime);
                             var btime = new Date(myobj.begin_exam);
                             var etime = new Date(myobj.end_exam);
                             var eduration = new Date(etime - btime);
                             var waitduarion= new Date(btime - aptime);
-                            var sched_to_aptime = new Date(aptime - scheventime);
-                            var finalTurnaroundTime = new Date(etime - scheventime);
-							
+							alert(waitduarion);
                             $("#lbleduration").text(eduration.toISOString().substr(11,8) );
                             $("#lblwaitduration").text(waitduarion.toISOString().substr(11,8) );
-                            $("#lblscheEventToappt").text(sched_to_aptime.toISOString()) );
-                            $("#lblfinalTurnaroundTime").text(finalTurnaroundTime.toISOString()) );
                             
                             //indentifiers
                             $("#lblaccession").text(myobj.accession);
