@@ -62,12 +62,12 @@ class Rad_Exam < ActiveRecord::Base
   }
    scope :Radiologist_Reports, -> { 
     joins("inner JOIN rad_reports rr ON rr.rad_exam_id = rad_exams.id" )
-    .joins("LEFT join external_system_statuses ess on ess.id = rr.report_status_id") 
-    .joins("LEFT join universal_event_types uet on uet.id = ess.universal_event_type_id")
+    .joins("LEFT join external_system_statuses ess1 on ess1.id = rr.report_status_id") 
+    .joins("LEFT join universal_event_types uet1 on uet1.id = ess1.universal_event_type_id")
     .joins("LEFT join employees rademp1 on rademp1.id = rr.rad1_id")
     .joins("left join employees rademp2 on rademp2.id = rr.rad2_id")
     .select("rr.report_event as report_time,rr.report_impression,rr.report_body
-,uet.event_type as status,rademp1.name as rad1_name,rademp1.name as rad2_name")
+,uet1.event_type as status,rademp1.name as rad1_name,rademp1.name as rad2_name")
     
   }
   
