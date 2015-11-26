@@ -183,7 +183,7 @@ class Rad_Exam < ActiveRecord::Base
      puts "<----- " + params.to_json  +  "------>";
      if ((params[:mrn] != "") && !(params[:mrn].nil?) && !(params[:mrn].blank?))    
       
-        #exams_search = exams_search.where("mrn in ( " +  params[:mrn] +")" ).all ;
+        exams_search = exams_search.where("pmrn.mrn in ( " +  params[:mrn] +")" ).all ;
       end
     #exams_search = exams_search.where("mrn in ( " +  mrn +")" ).all unless mrn.blank?;
     
