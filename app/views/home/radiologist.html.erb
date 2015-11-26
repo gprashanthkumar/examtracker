@@ -168,20 +168,21 @@
 		fourthStageTitle = cellvalue_array[3].split('->')[1];
 		fifthStageTitle = cellvalue_array[4].split('->')[1];
 		sixthStageTitle = cellvalue_array[5].split('->')[1];
-		 
-		if(cellvalue_array[cellvalue_array.length-1] == "final"){
-
-			return '<div class="wizard"><a class="current" title='+ firstStageTitle +'><span class="badge"></span></a><a class="current" title='+ secondStageTitle +'><span class="badge"></span></a><a class="current" title='+ thirdStageTitle +'><span class="badge"></span></a><a class="current" title='+ fourthStageTitle +'><span class="badge"></span></a><a class="green" title='+ fifthStageTitle +'><span class="badge badge-inverse"></span></a><a title='+ sixthStageTitle +'><span class="badge"></span></a></div>';
-			//return '<div class="wizard"><a class="current"><span class="badge"></span></a><a class="current"><span class="badge"></span></a><a class="green"><span class="badge badge-inverse"></span></a><a><span class="badge"></span></a></div>';
-		}
-		else if(cellvalue_array[cellvalue_array.length -1]=="scheduled"){
+		
+		
+		if(cellvalue_array[cellvalue_array.length -1]=="scheduled"){
 			return '<div class="wizard"><a class="green"><span class="badge"></span></a><a class="current"><span class="badge"></span></a><a class="current"><span class="badge"></span></a><a class="current"><span class="badge"></span></a><a class="current"><span class="badge badge-inverse"></span></a><a><span class="badge"></span></a></div>';
 			//return '<div class="wizard"><a class="green"><span class="badge"></span></a><a class="current"><span class="badge"></span></a><a class="current"><span class="badge badge-inverse"></span></a><a><span class="badge"></span></a></div>';
 		}
 		else if(cellvalue_array[cellvalue_array.length -1] == "prelim"){
 			return cellvalue;
 		}
-		else if(cellvalue_array[cellvalue_array.length-1]=="complete"){
+		else if(cellvalue_array[cellvalue_array.length-1] == "complete"){
+
+			return '<div class="wizard"><a class="current" title='+ firstStageTitle +'><span class="badge"></span></a><a class="current" title='+ secondStageTitle +'><span class="badge"></span></a><a class="current" title='+ thirdStageTitle +'><span class="badge"></span></a><a class="current" title='+ fourthStageTitle +'><span class="badge"></span></a><a class="green" title='+ fifthStageTitle +'><span class="badge badge-inverse"></span></a><a title='+ sixthStageTitle +'><span class="badge"></span></a></div>';
+			//return '<div class="wizard"><a class="current"><span class="badge"></span></a><a class="current"><span class="badge"></span></a><a class="green"><span class="badge badge-inverse"></span></a><a><span class="badge"></span></a></div>';
+		}
+		else if(cellvalue_array[cellvalue_array.length-1]=="final"){
 			return '<div class="wizard"><a class="current"><span class="badge"></span></a><a class="current"><span class="badge"></span></a><a class="current"><span class="badge"></span></a><a class="current"><span class="badge"></span></a><a class="current"><span class="badge badge-inverse"></span></a><a class="green"><i class="fa fa-check" style="display: table-cell; float: right; margin: 8px;"></i></a></div>';
 			//return '<div class="wizard"><a class="current"><span class="badge"></span></a><a class="current"><span class="badge"></span></a><a class="current"><span class="badge badge-inverse"></span></a><a class="green"><i class="fa fa-check" style="display: table-cell; float: right; margin: 8px;"></i></a></div>';
 		}
@@ -210,7 +211,7 @@
 				,{ name: 'end_exam', index: 'end_exam', align: 'center', width:150, fixed:true }
 				,{ name: 'sign_in', index: 'sign_in', align: 'center', width:150, fixed:true }
                 ,{ name: 'check_in', index: 'check_in', align: 'center', width:140, fixed:true }
-				,{ name: 'graph_status', index: 'graph_status', align: 'center', width:210, fixed:true, formatter: parseStatusOfExamFormatter }
+				,{ name: 'graph_status', index: 'graph_status', align: 'center', width:350, fixed:true, formatter: parseStatusOfExamFormatter }
 				,{ name: 'current_status', index: 'current_status', align: 'center', width:100, fixed:true }
 				,{ name: 'updated_at', index: 'updated_at', align: 'center', width:150, fixed:true }
 				,{ name: 'patient_name', index: 'patient_name', align: 'center', width:140, fixed:true }
