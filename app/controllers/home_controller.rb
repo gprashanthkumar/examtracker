@@ -157,11 +157,16 @@ class HomeController < ApplicationController
        gstatus = exam.graph_status;
        exam.graph_status  = "order_time-> "  + ","  
        exam.graph_status = exam.graph_status + "sched_time->"  + "," 
-       exam.graph_status = exam.graph_status + "appt_time->" + exam.appt_time + "," 
-       exam.graph_status = exam.graph_status + "sign_in->" + exam.sign_in + ","
-       exam.graph_status = exam.graph_status + "check_in->" + exam.check_in + ","
-       exam.graph_status = exam.graph_status + "begin_exam->" + exam.begin_exam + ","
-       exam.graph_status = exam.graph_status + "end_exam->" + exam.end_exam + ","
+      if not( (exam.appt_time.nil?) || (exam.appt_time.blank?))
+        exam.graph_status = exam.graph_status + "appt_time->" + exam.appt_time.to_s + "," 
+      end
+      if not( (exam.sign_in.nil?) || (exam.sign_in.blank?))
+        exam.graph_status = exam.graph_status + "sign_in->" + exam.sign_in + ","
+      end      
+      
+#       exam.graph_status = exam.graph_status + "check_in->" + exam.check_in + ","
+#       exam.graph_status = exam.graph_status + "begin_exam->" + exam.begin_exam + ","
+#       exam.graph_status = exam.graph_status + "end_exam->" + exam.end_exam + ","
      end 
     json_data = {
 		:page=>"1",
