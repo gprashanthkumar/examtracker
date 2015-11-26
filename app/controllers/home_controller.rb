@@ -110,7 +110,7 @@ class HomeController < ApplicationController
     @employee = Employee.get_employee(session[:username])  
     
     @opts = params;
-    puts "prashanth" + params.to_json;
+    puts "prashanth" + @opts.to_json;
     if (@opts.nil? || @opts.empty?)
       puts "@opts is empty"
     end
