@@ -395,19 +395,37 @@
   	
 	function parseStatusOfExamFormatter (cellvalue, option, rowobj ) {
 		
-		if(cellvalue=="complete"){
-			return '<div class="wizard"><a class="current"><span class="badge"></span></a><a class="current"><span class="badge"></span></a><a class="current"><span class="badge badge-inverse"></span></a><a class="green"><i class="fa fa-check" style="display: table-cell; float: right; margin: 8px;"></i></a></div>';
+		var cellvalue_array = cellvalue.split(',');
+		//(cellvalue_array[0].split('->')[1] != "") ? cellvalue_array[0].split('->')[1] : cellvalue_array[1].split('->')[1];
+		firstStageTitle = cellvalue_array[0].split('->')[1];
+		secondStageTitle = cellvalue_array[1].split('->')[1];
+		thirdStageTitle = cellvalue_array[2].split('->')[1];
+		fourthStageTitle = cellvalue_array[3].split('->')[1];
+		fifthStageTitle = cellvalue_array[4].split('->')[1];
+		sixthStageTitle = cellvalue_array[5].split('->')[1];
+
+		if(cellvalue_array[cellvalue_array.length -1] == "order"){
+			return '<div class="wizard"><a class="green" title='+ firstStageTitle +'><span class="badge"></span></a><a class="" title='+ secondStageTitle +'><span class="badge"></span></a><a class="" title='+ thirdStageTitle +'><span class="badge"></span></a><a class="" title='+ fourthStageTitle +'><span class="badge"></span></a><a class="" title='+ fifthStageTitle +'><span class="badge badge-inverse"></span></a><a title='+ sixthStageTitle +'><span class="badge"></span></a></div>';
 		}
-		else if(cellvalue=="final"){
-			return '<div class="wizard"><a class="current"><span class="badge"></span></a><a class="current"><span class="badge"></span></a><a class="green"><span class="badge badge-inverse"></span></a><a><span class="badge"></span></a></div>';
+		else if(cellvalue_array[cellvalue_array.length -1]=="scheduled"){
+			return '<div class="wizard"><a class="current" title='+ firstStageTitle +'><span class="badge"></span></a><a class="green" title='+ secondStageTitle +'><span class="badge"></span></a><a class="" title='+ thirdStageTitle +'><span class="badge"></span></a><a class="" title='+ fourthStageTitle +'><span class="badge"></span></a><a class="" title='+ fifthStageTitle +'><span class="badge badge-inverse"></span></a><a title='+ sixthStageTitle +'><span class="badge"></span></a></div>';
 		}
-		else if(cellvalue=="scheduled"){
-			return '<div class="wizard"><a class="green"><span class="badge"></span></a><a class="current"><span class="badge"></span></a><a class="current"><span class="badge badge-inverse"></span></a><a><span class="badge"></span></a></div>';
+		else if(cellvalue_array[cellvalue_array.length -1] == "arrived"){
+			return '<div class="wizard"><a class="current" title='+ firstStageTitle +'><span class="badge"></span></a><a class="current" title='+ secondStageTitle +'><span class="badge"></span></a><a class="green" title='+ thirdStageTitle +'><span class="badge"></span></a><a class="" title='+ fourthStageTitle +'><span class="badge"></span></a><a class="" title='+ fifthStageTitle +'><span class="badge badge-inverse"></span></a><a title='+ sixthStageTitle +'><span class="badge"></span></a></div>';
+		}
+		else if(cellvalue_array[cellvalue_array.length -1] == "begin"){
+			return '<div class="wizard"><a class="current" title='+ firstStageTitle +'><span class="badge"></span></a><a class="current" title='+ secondStageTitle +'><span class="badge"></span></a><a class="current" title='+ thirdStageTitle +'><span class="badge"></span></a><a class="green" title='+ fourthStageTitle +'><span class="badge"></span></a><a class="" title='+ fifthStageTitle +'><span class="badge badge-inverse"></span></a><a title='+ sixthStageTitle +'><span class="badge"></span></a></div>';
+		}
+		else if(cellvalue_array[cellvalue_array.length-1] == "complete" || cellvalue_array[cellvalue_array.length-1] == "prelim"){
+
+			return '<div class="wizard"><a class="current" title='+ firstStageTitle +'><span class="badge"></span></a><a class="current" title='+ secondStageTitle +'><span class="badge"></span></a><a class="current" title='+ thirdStageTitle +'><span class="badge"></span></a><a class="current" title='+ fourthStageTitle +'><span class="badge"></span></a><a class="green" title='+ fifthStageTitle +'><span class="badge badge-inverse"></span></a><a title='+ sixthStageTitle +'><span class="badge"></span></a></div>';
+		}
+		else if(cellvalue_array[cellvalue_array.length-1]=="final"){
+			return '<div class="wizard"><a class="current" title='+ firstStageTitle +'><span class="badge"></span></a><a class="current" title='+ secondStageTitle +'><span class="badge"></span></a><a class="current" title='+ thirdStageTitle +'><span class="badge"></span></a><a class="current" title='+ fourthStageTitle +'><span class="badge"></span></a><a class="current" title='+ fifthStageTitle +'><span class="badge badge-inverse"></span></a><a class="green" title='+ sixthStageTitle +'><i class="fa fa-check" style="display: table-cell; float: right; margin: 8px;"></i></a></div>';
 		}
 		else{
 			return 'Can not parse "' + cellvalue + '" status';
 		}
-		//return '<div class="wizard"><a class="'+cellvalue.initialstage+'"><span class="badge"></span></a><a class="'+cellvalue.patclass+'"><span class="badge"></span></a><a class="'+cellvalue.appttime+'"><span class="badge badge-inverse"></span></a><a class="'+cellvalue.scheduledstop+'"><i class="fa fa-check" style="display: table-cell; float: right; margin: 8px;"></i></a></div>'   
 	  }
   	       
             
