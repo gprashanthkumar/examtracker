@@ -161,7 +161,7 @@ class HomeController < ApplicationController
         exam.graph_status = exam.graph_status + "appt_time->" + exam.appt_time.to_s + "," 
       end
       if not( (exam.sign_in.nil?) || (exam.sign_in.blank?))
-        exam.graph_status = exam.graph_status + "sign_in->" + exam.sign_in + ","
+        exam.graph_status = exam.graph_status + "sign_in->" + exam.sign_in.to_s + ","
       end      
       
 #       exam.graph_status = exam.graph_status + "check_in->" + exam.check_in + ","
