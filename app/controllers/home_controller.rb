@@ -182,6 +182,7 @@ class HomeController < ApplicationController
        else
          exam.graph_status = exam.graph_status + "end_exam->" +  ","
        end 
+       exam.graph_status = exam.graph_status + "final_time->" +  ","
        exam.graph_status = exam.graph_status + gstatus
      end  #end each
      
