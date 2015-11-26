@@ -109,12 +109,6 @@ class HomeController < ApplicationController
   def get_jqgridSearch_exam_data 
     @employee = Employee.get_employee(session[:username])  
     
-    @opts = params;
-    puts "prashanth" + @opts.to_json;
-    if (@opts.nil? || @opts.empty?)
-      puts "@opts is empty"
-    end
-    
     #symbolize_keys_deep! @opts
     
     @exams = Rad_Exam.get_exams_search(@employee.id,params)  
