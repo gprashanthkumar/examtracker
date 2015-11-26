@@ -153,12 +153,12 @@ class HomeController < ApplicationController
   end
 	
      @exams.each do |exam| 
-       @gstatus = ""
-       @gstatus = exam.graph_status;
+       gstatus = ""
+       gstatus = exam.graph_status;
        exam.graph_status  = "order_time-> "  + ","  
-      exam.graphstatus = exam.graph_status + "sched_time->"  + "," 
-      exam.graphstatus = exam.graph_status + "appt_time->" + exam.appt_time + "," 
-      exam.graphstatus = exam.graph_status + "sign_in->" + exam.sign_in + ","
+       exam.graph_status = exam.graph_status + "sched_time->"  + "," 
+       exam.graph_status = exam.graph_status + "appt_time->" + exam.appt_time + "," 
+       exam.graph_status = exam.graph_status + "sign_in->" + exam.sign_in + ","
        exam.graph_status = exam.graph_status + "check_in->" + exam.check_in + ","
        exam.graph_status = exam.graph_status + "begin_exam->" + exam.begin_exam + ","
        exam.graph_status = exam.graph_status + "end_exam->" + exam.end_exam + ","
