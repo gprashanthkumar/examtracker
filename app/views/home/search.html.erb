@@ -397,12 +397,12 @@
 		
 		var cellvalue_array = cellvalue.split(',');
 		//(cellvalue_array[0].split('->')[1] != "") ? cellvalue_array[0].split('->')[1] : cellvalue_array[1].split('->')[1];
-		firstStageTitle = cellvalue_array[0].split('->')[1];
-		secondStageTitle = cellvalue_array[1].split('->')[1];
-		thirdStageTitle = cellvalue_array[2].split('->')[1];
-		fourthStageTitle = cellvalue_array[3].split('->')[1];
-		fifthStageTitle = cellvalue_array[4].split('->')[1];
-		sixthStageTitle = cellvalue_array[5].split('->')[1];
+		firstStageTitle = cellvalue_array[0].split('->')[1]; //Order Stage
+		secondStageTitle = cellvalue_array[1].split('->')[1]; //Scheduled stage
+		thirdStageTitle = (cellvalue_array[3].split('->')[1] != "") ? cellvalue_array[3].split('->')[1] : cellvalue_array[4].split('->')[1]; //arrived stage
+		fourthStageTitle = cellvalue_array[5].split('->')[1]; //begin stage
+		fifthStageTitle = cellvalue_array[6].split('->')[1]; //complete or prelim stage
+		sixthStageTitle = cellvalue_array[7].split('->')[1]; //final stage
 
 		if(cellvalue_array[cellvalue_array.length -1] == "order"){
 			return '<div class="wizard"><a class="green" title='+ firstStageTitle +'><span class="badge"></span></a><a class="" title='+ secondStageTitle +'><span class="badge"></span></a><a class="" title='+ thirdStageTitle +'><span class="badge"></span></a><a class="" title='+ fourthStageTitle +'><span class="badge"></span></a><a class="" title='+ fifthStageTitle +'><span class="badge badge-inverse"></span></a><a title='+ sixthStageTitle +'><span class="badge"></span></a></div>';
