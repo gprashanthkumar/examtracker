@@ -180,7 +180,7 @@ class Rad_Exam < ActiveRecord::Base
   def self.get_exams_search(employeeid,params)    
      
     exams_search = self.join_Main;
-     puts "<----- " + params[:mrn]  +  "------>";
+     puts "<----- " + params["mrn"]  +  "------>";
      if ((params[:mrn] != "") && !(params[:mrn].nil?) && !(params[:mrn].blank?))    
       
         #exams_search = exams_search.where("mrn in ( " +  params[:mrn] +")" ).all ;
