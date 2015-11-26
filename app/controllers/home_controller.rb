@@ -108,8 +108,9 @@ class HomeController < ApplicationController
   
   def get_jqgridSearch_exam_data 
     @employee = Employee.get_employee(session[:username])  
-    puts "prashanth" + params.to_json;
+    
     @opts = params;
+    puts "prashanth" + params.to_json;
     if (@opts.nil? || @opts.empty?)
       puts "@opts is empty"
     end
