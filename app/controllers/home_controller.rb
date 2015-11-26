@@ -271,34 +271,8 @@ class HomeController < ApplicationController
      @accession_id = params[:accession_id];
      authenticity_token = params[:authenticity_token];      
      @exams = Rad_Exam.get_accession_detail(@accession_id.to_s)
-     @exams = update_graph_status(@exams);
-    respond_to do |format|
-      format.json { render :json => @exams.to_json(:only => [ :accession,:mrn,:current_status,:code,:description,:modality,:resource_name,:graph_status,:current_status,:updated_at,:patient_name,:birthdate,:site_name,:patient_class,:trauma,:patient_type,:patient_location_at_exam,:radiology_department,:ordering_provider,:scheduler,:technologist,:pacs_image_count,:appt_time,:sign_in,:check_in,:begin_exam,:end_exam,:first_final,:last_final,:order_arrival]) }
-    end    
-  end
-  
-   def get_accession_report
-     @accession_id = params[:accession_id];
-     authenticity_token = params[:authenticity_token];      
-     @reports = Rad_Exam.get_accession_reports(@accession_id.to_s)
-     #puts @exams.to_json;
-    respond_to do |format|
-      format.json { render :json => @reports.to_json(:only => [ :status, :report_time,:report_impression, :report_body, :rad1_name,:rad2_name]) }
-    end    
-  end
-  
-  
- #convert hash to symbols
-  def symbolize_keys_deep!(h)
-    h.keys.each do |k|
-        ks  = k.respond_to?(:to_sym) ? k.to_sym : k
-        h[ks] = h.delete k # Preserve order even when k == ks
-        symbolize_keys_deep! h[ks] if h[ks].kind_of? Hash
-    end
-  end  
-  
-  def update_graph_status(exams) 
-    exams.each do |exam| 
+    
+     @exams.each do |exam| 
         gstatus = ""
         gstatus = exam.graph_status;
         exam.graph_status  = "order_time->"  + ","  
@@ -331,6 +305,34 @@ class HomeController < ApplicationController
        exam.graph_status = exam.graph_status + "final_time->" +  ","
        exam.graph_status = exam.graph_status + gstatus
      end  #end each
+    
+    respond_to do |format|
+      format.json { render :json => @exams.to_json(:only => [ :accession,:mrn,:current_status,:code,:description,:modality,:resource_name,:graph_status,:current_status,:updated_at,:patient_name,:birthdate,:site_name,:patient_class,:trauma,:patient_type,:patient_location_at_exam,:radiology_department,:ordering_provider,:scheduler,:technologist,:pacs_image_count,:appt_time,:sign_in,:check_in,:begin_exam,:end_exam,:first_final,:last_final,:order_arrival]) }
+    end    
+  end
+  
+   def get_accession_report
+     @accession_id = params[:accession_id];
+     authenticity_token = params[:authenticity_token];      
+     @reports = Rad_Exam.get_accession_reports(@accession_id.to_s)
+     #puts @exams.to_json;
+    respond_to do |format|
+      format.json { render :json => @reports.to_json(:only => [ :status, :report_time,:report_impression, :report_body, :rad1_name,:rad2_name]) }
+    end    
+  end
+  
+  
+ #convert hash to symbols
+  def symbolize_keys_deep!(h)
+    h.keys.each do |k|
+        ks  = k.respond_to?(:to_sym) ? k.to_sym : k
+        h[ks] = h.delete k # Preserve order even when k == ks
+        symbolize_keys_deep! h[ks] if h[ks].kind_of? Hash
+    end
+  end  
+  
+  def update_graph_status(exams) 
+    
      
     return exams;
     
