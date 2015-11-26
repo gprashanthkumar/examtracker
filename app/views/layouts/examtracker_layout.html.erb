@@ -198,10 +198,27 @@
                 <div class="modal-header">
 
                     <button aria-hidden="true" data-dismiss="modal" class="close" type="button">X</button>
-                    <h4 id="AcrLabel" class="modal-title clrwhite">Exam Details</h4>
+                    <h4 id="lblPopupTitle" class="modal-title clrwhite">Exam Details</h4>
                     <!-- color changed-->
                 </div>
                 <div class="modal-body">
+					<div class="loadingModal" id="resultLoadingview" role="dialog" data-backdrop="static" data-keyboard="false">
+                		<div class='centered' style='width: 250px; height: 65px; text-align: center;'>
+                			<div class='circularDivContainer centered'>
+                				<div class='circularDiv circularDiv_1'></div>
+                                <div class='circularDiv circularDiv_2'></div>
+                                <div class='circularDiv circularDiv_3'></div>
+                                <div class='circularDiv circularDiv_4'></div>
+                                <div class='circularDiv circularDiv_5'></div>
+                                <div class='circularDiv circularDiv_6'></div>
+                                <div class='circularDiv circularDiv_7'></div>
+                                <div class='circularDiv circularDiv_8'></div>
+                            </div>
+                            <br />
+                            <p style='color: black; width: 250px;'><b>Please wait while we process your request...</b></p>
+                        </div>
+                    </div>
+					
                     <div>
                         <section class="content">
                             <div class="row">
@@ -460,10 +477,11 @@
 	})();
 
     function showExamDetail(id) {
+		$("#ExamDetailPopupDiv").modal('show');
 		//debugger;
-                  id = id.replace("lnk$#","");
-                   var myobj;
-                  $.ajax({
+        id = id.replace("lnk$#","");
+        var myobj;
+        $.ajax({
   			url:'/home/get_accession',
   			type:'POST',
   			dataType:'json',
@@ -550,7 +568,7 @@
                               var statusdiv = parseExamStatusGraph(myobj.graph_status);
                               $("#divstatus").html(statusdiv);
 
-                            $("#ExamDetailPopupDiv").modal('show');
+                            //$("#ExamDetailPopupDiv").modal('show');
                             
                             }
                             catch(err) {
