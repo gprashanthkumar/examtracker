@@ -108,7 +108,7 @@ class HomeController < ApplicationController
   
   def get_jqgridSearch_exam_data 
     @employee = Employee.get_employee(session[:username])  
-    @myvalues = param[:allSearchCriteriaInJson];
+    @myvalues = params[:allSearchCriteriaInJson];
     
     symbolize_keys_deep! @myvalues
     
