@@ -3404,7 +3404,7 @@ fieldset[disabled] .btn-vk.active {
 }
 
 
-.wizard{ background:#fff;height:28px; width:184px; margin:0 auto; border-radius:10px}
+.wizard{ background:#fff;height:28px; width:270px; margin:0 auto; border-radius:10px}
 .wizard a {padding: 0; width:40px;
 height:28px; margin-right:5px; background:#666; position:relative; display:inline-block; }
 .wizard a:last-child{ margin-right:0;}
