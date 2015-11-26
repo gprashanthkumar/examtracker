@@ -117,7 +117,7 @@ class HomeController < ApplicationController
     
     #symbolize_keys_deep! @opts
     
-    @exams = Rad_Exam.get_exams_search(@employee.id,params[:mrn])  
+    @exams = Rad_Exam.get_exams_search(@employee.id,params)  
     puts "its in get_jqgridSearch_exam_data" 
    
     

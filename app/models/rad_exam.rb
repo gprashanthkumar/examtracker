@@ -177,8 +177,8 @@ class Rad_Exam < ActiveRecord::Base
     self.join_Main.order("id desc").all;
   end
   
-  def self.get_exams_search(employeeid,mrn)    
-    
+  def self.get_exams_search(employeeid,params)    
+     puts "prashanth get_exams_search " + params.to_json;
     exams_search = self.join_Main;
     #exams_search = exams_search.where("mrn in ( " +  mrn +")" ).all unless mrn.blank?;
     
