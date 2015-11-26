@@ -168,17 +168,17 @@ class HomeController < ApplicationController
          exam.graph_status = exam.graph_status + "sign_in->" +  ","
        end  
         if not( (exam.check_in.nil?) || (exam.check_in.blank?))
-              exam.graph_status = exam.graph_status + "check_in->" + exam.check_in + ","
+              exam.graph_status = exam.graph_status + "check_in->" + exam.check_in.to_s + ","
         else
             exam.graph_status = exam.graph_status + "check_in->"  + ","
        end  
        if not( (exam.begin_exam.nil?) || (exam.begin_exam.blank?))
-             exam.graph_status = exam.graph_status + "begin_exam->" + exam.begin_exam + ","
+             exam.graph_status = exam.graph_status + "begin_exam->" + exam.begin_exam.to_s + ","
        else
          exam.graph_status = exam.graph_status + "begin_exam->" + ","
        end  
        if not( (exam.end_exam.nil?) || (exam.end_exam.blank?))
-             exam.graph_status = exam.graph_status + "end_exam->" + exam.end_exam + ","
+             exam.graph_status = exam.graph_status + "end_exam->" + exam.end_exam.to_s + ","
        else
          exam.graph_status = exam.graph_status + "end_exam->" +  ","
        end 
