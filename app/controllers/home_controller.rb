@@ -53,6 +53,9 @@ class HomeController < ApplicationController
 	#currently this is used to get data for jqgrid_page.
 	@employee = Employee.get_employee(session[:username])   
 	@exams = Rad_Exam.get_rad_exams(@employee)
+  
+    
+     
     json_data = {
 		:page=>"1",
 		:total=>"3",
@@ -112,7 +115,7 @@ class HomeController < ApplicationController
     
     #symbolize_keys_deep! @opts
     
-    @exams = Rad_Exam.get_exams_search(@employee.id,params[:accession])  
+    @exams = Rad_Exam.get_exams_search(@employee.id,params[:mrn])  
     puts "its in get_jqgridSearch_exam_data" 
    
     
@@ -149,6 +152,17 @@ class HomeController < ApplicationController
      @exams = Rad_Exam.get_other_exams(@employee.id,accession,currentstatus)
   end
 	
+     @exams.each do |exam| 
+       gstatus = ""
+       gstatus = exam.graph_status;
+       exam.graph_status  = "order_time-> "  + ","  
+      exam.graphstatus = exam.graph_status + "sched_time->"  + "," 
+      exam.graphstatus = exam.graph_status + "appt_time->" + exam.appt_time + "," 
+      exam.graphstatus = exam.graph_status + "sign_in->" + exam.sign_in + ","
+       exam.graph_status = exam.graph_status + "check_in->" + exam.check_in + ","
+       exam.graph_status = exam.graph_status + "begin_exam->" + exam.begin_exam + ","
+       exam.graph_status = exam.graph_status + "end_exam->" + exam.end_exam + ","
+     end 
     json_data = {
 		:page=>"1",
 		:total=>"3",
