@@ -228,10 +228,12 @@
                                     <h3 id="currentStatusH3" style="color:green;text-transform:uppercase;"></h3>
                                     <div id="divstatus">
                                         <div class="wizard">
-                                           <a class="current"><span class="badge"></span></a>
-                                           <a class="current"><span class="badge"></span></a>
-                                           <a class="current"><span class="badge badge-inverse"></span></a>
-                                           <a class="current green"><span class="badge"></span></a>
+                                           <a class="grey"><span class="badge"></span></a>
+                                           <a class="grey"><span class="badge"></span></a>
+										   <a class="grey"><span class="badge"></span></a>
+										   <a class="grey"><span class="badge"></span></a>
+                                           <a class="grey"><span class="badge badge-inverse"></span></a>
+                                           <a class="grey"><span class="badge"></span></a>
                                        </div> 
                                     </div>
                                     
@@ -478,6 +480,7 @@
 
     function showExamDetail(id) {
 		$("#ExamDetailPopupDiv").modal('show');
+		$("#resultLoadingview").modal('show');
 		//debugger;
         id = id.replace("lnk$#","");
         var myobj;
@@ -491,6 +494,7 @@
   				authenticity_token: window._token
   			},
   			success:function(resultExamDetail){
+				$("#resultLoadingview").modal('hide');
                          
                              
 						   
