@@ -36,7 +36,7 @@ class SessionsController < ApplicationController
   def get_sessions
     session.delete 'init' 
     @employee = 0;  
-    @employee = Employee.get_employee(session[:username],"","")   
+    @employee = Employee.get_employee(session[:username])   
       #@exams = Rad_Exam.get_rad_exams(@employee.id)
       @exams = Rad_Exam.get_tech_exams(@employee.id,"","")
       
