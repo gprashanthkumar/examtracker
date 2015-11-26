@@ -38,7 +38,7 @@ class SessionsController < ApplicationController
     @employee = 0;  
     @employee = Employee.get_employee(session[:username])   
       #@exams = Rad_Exam.get_rad_exams(@employee.id)
-      @exams = Rad_Exam.get_tech_exams(@employee.id)
+      @exams = Rad_Exam.get_tech_exams(@employee.id,"","")
       
      # puts @exams.count
      puts 'Session_username->:' + session[:username].to_s
