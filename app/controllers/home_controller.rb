@@ -271,7 +271,7 @@ class HomeController < ApplicationController
      @accession_id = params[:accession_id];
      authenticity_token = params[:authenticity_token];      
      @exams = Rad_Exam.get_accession_detail(@accession_id.to_s)
-     #puts @exams.to_json;
+     @exams = update_graph_status(@exams);
     respond_to do |format|
       format.json { render :json => @exams.to_json(:only => [ :accession,:mrn,:current_status,:code,:description,:modality,:resource_name,:graph_status,:current_status,:updated_at,:patient_name,:birthdate,:site_name,:patient_class,:trauma,:patient_type,:patient_location_at_exam,:radiology_department,:ordering_provider,:scheduler,:technologist,:pacs_image_count,:appt_time,:sign_in,:check_in,:begin_exam,:end_exam,:first_final,:last_final,:order_arrival]) }
     end    
@@ -296,4 +296,43 @@ class HomeController < ApplicationController
         symbolize_keys_deep! h[ks] if h[ks].kind_of? Hash
     end
   end  
+  
+  def update_graph_status(exams) 
+    exams.each do |exam| 
+        gstatus = ""
+        gstatus = exam.graph_status;
+        exam.graph_status  = "order_time->"  + ","  
+        exam.graph_status = exam.graph_status + "sched_time->"  + "," 
+       if not( (exam.appt_time.nil?) || (exam.appt_time.blank?))
+         exam.graph_status = exam.graph_status + "appt_time->" + exam.appt_time.to_s + "," 
+       else
+         exam.graph_status = exam.graph_status + "appt_time->" +  "," 
+       end
+       if not( (exam.sign_in.nil?) || (exam.sign_in.blank?))
+         exam.graph_status = exam.graph_status + "sign_in->" + exam.sign_in.to_s + ","
+       else
+         exam.graph_status = exam.graph_status + "sign_in->" +  ","
+       end  
+        if not( (exam.check_in.nil?) || (exam.check_in.blank?))
+              exam.graph_status = exam.graph_status + "check_in->" + exam.check_in.to_s + ","
+        else
+            exam.graph_status = exam.graph_status + "check_in->"  + ","
+       end  
+       if not( (exam.begin_exam.nil?) || (exam.begin_exam.blank?))
+             exam.graph_status = exam.graph_status + "begin_exam->" + exam.begin_exam.to_s + ","
+       else
+         exam.graph_status = exam.graph_status + "begin_exam->" + ","
+       end  
+       if not( (exam.end_exam.nil?) || (exam.end_exam.blank?))
+             exam.graph_status = exam.graph_status + "end_exam->" + exam.end_exam.to_s + ","
+       else
+         exam.graph_status = exam.graph_status + "end_exam->" +  ","
+       end 
+       exam.graph_status = exam.graph_status + "final_time->" +  ","
+       exam.graph_status = exam.graph_status + gstatus
+     end  #end each
+     
+    return exams;
+    
+  end
 end
