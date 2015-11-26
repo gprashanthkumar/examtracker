@@ -145,7 +145,7 @@ class Rad_Exam < ActiveRecord::Base
 (repp.scheduler_id  = ?) OR
 (repp.signin_id  = ?) OR
 (repp.checkin_id  = ?) OR 
-(rr..transcriptionist_id  = ?)
+(rr.transcriptionist_id  = ?)
 ) ",employeeid,employeeid,employeeid,employeeid).order("id desc").all ;   
     trans_exams = trans_exams.where("accession in ( " + accfilter +")" ).all unless accessions.blank?; 
     trans_exams = trans_exams.where("uet.event_type in ( " + csfilter +")" ).all unless current_status.blank?; 

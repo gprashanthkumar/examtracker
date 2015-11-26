@@ -53,6 +53,9 @@ class HomeController < ApplicationController
 	#currently this is used to get data for jqgrid_page.
 	@employee = Employee.get_employee(session[:username])   
 	@exams = Rad_Exam.get_rad_exams(@employee)
+  
+    
+     
     json_data = {
 		:page=>"1",
 		:total=>"3",
@@ -112,7 +115,7 @@ class HomeController < ApplicationController
     
     #symbolize_keys_deep! @opts
     
-    @exams = Rad_Exam.get_exams_search(@employee.id,params[:accession])  
+    @exams = Rad_Exam.get_exams_search(@employee.id,params[:mrn])  
     puts "its in get_jqgridSearch_exam_data" 
    
     
@@ -149,6 +152,40 @@ class HomeController < ApplicationController
      @exams = Rad_Exam.get_other_exams(@employee.id,accession,currentstatus)
   end
 	
+     @exams.each do |exam| 
+        gstatus = ""
+        gstatus = exam.graph_status;
+        exam.graph_status  = "order_time->"  + ","  
+        exam.graph_status = exam.graph_status + "sched_time->"  + "," 
+       if not( (exam.appt_time.nil?) || (exam.appt_time.blank?))
+         exam.graph_status = exam.graph_status + "appt_time->" + exam.appt_time.to_s + "," 
+       else
+         exam.graph_status = exam.graph_status + "appt_time->" +  "," 
+       end
+       if not( (exam.sign_in.nil?) || (exam.sign_in.blank?))
+         exam.graph_status = exam.graph_status + "sign_in->" + exam.sign_in.to_s + ","
+       else
+         exam.graph_status = exam.graph_status + "sign_in->" +  ","
+       end  
+        if not( (exam.check_in.nil?) || (exam.check_in.blank?))
+              exam.graph_status = exam.graph_status + "check_in->" + exam.check_in.to_s + ","
+        else
+            exam.graph_status = exam.graph_status + "check_in->"  + ","
+       end  
+       if not( (exam.begin_exam.nil?) || (exam.begin_exam.blank?))
+             exam.graph_status = exam.graph_status + "begin_exam->" + exam.begin_exam.to_s + ","
+       else
+         exam.graph_status = exam.graph_status + "begin_exam->" + ","
+       end  
+       if not( (exam.end_exam.nil?) || (exam.end_exam.blank?))
+             exam.graph_status = exam.graph_status + "end_exam->" + exam.end_exam.to_s + ","
+       else
+         exam.graph_status = exam.graph_status + "end_exam->" +  ","
+       end 
+       exam.graph_status = exam.graph_status + "final_time->" +  ","
+       exam.graph_status = exam.graph_status + gstatus
+     end  #end each
+     
     json_data = {
 		:page=>"1",
 		:total=>"3",
