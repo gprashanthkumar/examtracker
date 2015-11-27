@@ -29,45 +29,8 @@ class HomeController < ApplicationController
     @employee = Employee.get_employee(session[:username])
   end
   
-  def experiment
-    @employee = Employee.get_employee(session[:username])
-    #json_text = [{"aaData"=>{:Id =>"Ashish Kumar", :MRN => "7842141835", :ProcDescription=>"aasfsdfsdf"}}].to_json
-    #arary_text = [{"aaData"=>{:Id =>"Ashish Kumar", :MRN => "7842141835", :ProcDescription=>"aasfsdfsdf"}}].to_a
-    #puts array_text
-  end
   
-  def jqgrid_page  
-    @employee = Employee.get_employee(session[:username])
-  end
   
-  def search_exams
-    accession_ids = params[:accession_ids]
-    exam_status = params[:exam_status]
-    json_data = {:aaData=> [["1","10516","CT Scan"],["sdf","adsdf","sadfsd"],["sdf","adsdf","sadfsd"]]}.to_json
-    respond_to do |format|
-      format.json { render :json => json_data }
-    end
-  end
-  
-  def get_jqgrid
-    #currently this is used to get data for jqgrid_page.
-    @employee = Employee.get_employee(session[:username])   
-    @exams = Rad_Exam.get_rad_exams(@employee)
-  
-    
-     
-    json_data = {
-      :page=>"1",
-      :total=>"3",
-      :records=>"6", 
-      :rows=> JSON.parse(@exams.to_json(:only => [ :accession,:mrn,:current_status,:code,:description,:modality,:resource_name,:graph_status,:current_status,:updated_at,:patient_name,:birthdate,:site_name,:patient_class,:patient_type,:patient_location_at_exam,:radiology_department,:ordering_provider,:scheduler,:technologist,:pacs_image_count,:appt_time,:sign_in,:check_in,:begin_exam,:end_exam]))    
-    
-    }
-    
-    respond_to do |format|
-      format.json { render :json => json_data }
-    end
-  end
   
   def get_jqgridRad
     accession_ids = params[:accession]
@@ -262,13 +225,13 @@ class HomeController < ApplicationController
     if not( (exam.order_arrival.nil?) || (exam.order_arrival.blank?))         
         exam.graph_status += "order_time->" + exam.order_arrival.to_s + "," 
       else
-        exam.graph_status  += "order_time->"  + ","  
+        exam.graph_status += "order_time->"  + ","  
       end
       
        if not( (exam.sched_time.nil?) || (exam.sched_time.blank?))         
         exam.graph_status += "sched_time->" + exam.sched_time.to_s + "," 
       else
-        exam.graph_status  += "sched_time->"  + ","  
+        exam.graph_status += "sched_time->"  + ","  
       end
       
       if not( (exam.appt_time.nil?) || (exam.appt_time.blank?))

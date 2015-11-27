@@ -60,7 +60,10 @@ class Rad_Exam < ActiveRecord::Base
   scope :Rad_report_event, -> {
     joins("LEFT JOIN rad_reports rrff ON rrff.rad_exam_id = rad_exams.id" )
     .joins("LEFT JOIN rad_reports rrlf ON rrlf.rad_exam_id = rad_exams.id" )
-    .select("rrff.report_event as first_final, rrlf.report_event as last_final")
+    .joins("LEFT join employees rademp1 on rademp1.id = rrlf.rad1_id")
+    .joins("left join employees rademp2 on rademp2.id = rrlf.rad2_id")
+    .where("rrff.id = rad_exams.first_final_report_id and rrlf.id = rad_exams.last_final_report_id ")
+    .select("rrff.report_event as first_final, rrlf.report_event as last_final,rademp1.name as rad1_name,rademp1.name as rad2_name")
   }
    scope :Radiologist_Reports, -> { 
     joins("LEFT join external_system_statuses ess1 on ess1.id = rr.report_status_id") 
