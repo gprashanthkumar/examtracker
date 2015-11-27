@@ -76,11 +76,12 @@ class HomeController < ApplicationController
     symbolize_keys_deep! @myvalues
     
     @exams = Rad_Exam.get_exams_search(@employee.id,@myvalues)  
-     if ['1037','1027','1017'].include? exam.accession
-        exam.graph_status = "cancelled"
-        exam.current_status = "cancelled"       
+       
       end
     @exams.each do |exam| 
+       if ['1037','1027','1017'].include? exam.accession
+        exam.graph_status = "cancelled"
+        exam.current_status = "cancelled"    
        exam = get_graph_status(exam);
     end  #end each
     puts "its in get_jqgridSearch_exam_data" 
