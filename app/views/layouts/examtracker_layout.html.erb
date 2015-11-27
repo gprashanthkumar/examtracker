@@ -535,22 +535,21 @@
                       //exam information
 
                       $("#lblProcedure").text(myobj.description + "(" + myobj.code + ")");
-                      $("#lblpatient_class").text(myobj.patient_type + "-" + myobj.patient_class);
-                      $("#lbltrauma").text(myobj.trauma);
-                      $("#lblmodality").text(myobj.modality);
-                      $("#lblresource").text(myobj.resource_name);
+                      $("#lblpatient_class").text(NullEmpty(myobj.patient_type) + "-" + NullEmpty(myobj.patient_class));
+                      $("#lbltrauma").text(NullEmpty(myobj.trauma));
+                      $("#lblmodality").text(NullEmpty(myobj.modality));
+                      $("#lblresource").text(NullEmpty(myobj.resource_name));
 
                       //staff parts
-                      $("#lbltechnologist").text(myobj.technologist);
+                      $("#lbltechnologist").text(NullEmpty(myobj.technologist));
 
-                      if (myobj.rad1_name != '') {
+                      if ( (myobj.rad1_name !=  null) && (myobj.rad1_name != '')) {
                           $("#lblRadiologist").text("Signed by: " + myobj.rad1_name);
                           $("#lblfinalRadiologist").text(myobj.rad1_name);
                       }
 
-                      if (myobj.rad2_name != '') {
-                          $("#lblfinalRadiologist").text(myobj.rad2_name);
-                      }
+                      $("#lblfinalRadiologist").text(NullEmpty(myobj.rad2_name));
+                      
                       //time parts
                       $("#lblorder").text(format_date_time(myobj.order_arrival));
                       $("#lblappt_time").text(format_date_time(myobj.appt_time));
@@ -579,7 +578,7 @@
 
                       //indentifiers
                       $("#lblaccession").text(myobj.accession);
-                      $("#lblmrn").text(myobj.mrn);
+                      $("#lblmrn").text(NullEmpty(myobj.mrn));
 
                       var statusdiv = parseExamStatusGraph(myobj.graph_status);
                       $("#divstatus").html(statusdiv);
@@ -715,6 +714,16 @@
           }
           
           return datetext;
+      }
+      
+      function NullEmpty(data)
+      {
+        if (data != null) {
+          return data
+        } else {
+          return '';
+        }
+        
       }
     </script>
 </body>
