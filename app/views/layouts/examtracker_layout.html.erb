@@ -546,8 +546,8 @@
                       }
                       //time parts
                       $("#lblorder").text(myobj.order_arrival);
-                      $("#lblsign_in").text(myobj.sign_in);
-                      $("#lblappt_time").text(TimeFromDateTime(myobj.appt_time));
+                      $("#lblappt_time").text(myobj.appt_time);
+                      $("#lblsign_in").text(TimeFromDateTime(myobj.sign_in));
                       $("#lblbegin_exam").text(TimeFromDateTime(myobj.begin_exam));
                       $("#lblend_exam").text(TimeFromDateTime(myobj.end_exam));
                       $("#lblfirst_final").text(TimeFromDateTime(myobj.first_final));
