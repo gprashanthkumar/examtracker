@@ -189,6 +189,7 @@ class HomeController < ApplicationController
       if ['1037','1027','1017'].include? exam.accession
         exam.graph_status = "cancelled"
         exam.current_status = "cancelled"
+        gstatus = exam.graph_status;
       end
       exam.graph_status  = "order_time->"  + ","  
       exam.graph_status = exam.graph_status + "sched_time->"  + "," 
