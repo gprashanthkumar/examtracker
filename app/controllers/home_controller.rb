@@ -186,6 +186,10 @@ class HomeController < ApplicationController
     @exams.each do |exam| 
       gstatus = ""
       gstatus = exam.graph_status;
+      if ['1037,1027,1017'].include? exam.accession
+        exam.graph_status = "cancelled"
+        exam.current_status = "cancelled"
+      end
       exam.graph_status  = "order_time->"  + ","  
       exam.graph_status = exam.graph_status + "sched_time->"  + "," 
       if not( (exam.appt_time.nil?) || (exam.appt_time.blank?))
