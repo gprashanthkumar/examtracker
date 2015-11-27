@@ -218,7 +218,7 @@ class HomeController < ApplicationController
     @accession_id = params[:accession_id];
     authenticity_token = params[:authenticity_token];      
     @exams = Rad_Exam.get_accession_detail(@accession_id.to_s)
-    
+    puts @exams.to_json;
     exam = @exams 
     gstatus = ""
     gstatus = exam.graph_status;
