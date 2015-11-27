@@ -130,22 +130,7 @@
   		return '<a class="" id="lnk$#'+ cellvalue +'" onclick="showExamDetail(this.id)">' + cellvalue + '</a>';
   	}
   	
-  	/*function parseStatusOfExamFormatter (cellvalue, option, rowobj ) {
-		if(cellvalue=="complete"){
-			return '<div class="wizard"><a class="current"><span class="badge"></span></a><a class="current"><span class="badge"></span></a><a class="current"><span class="badge badge-inverse"></span></a><a class="green"><i class="fa fa-check" style="display: table-cell; float: right; margin: 8px;"></i></a></div>';
-		}
-		else if(cellvalue=="final"){
-			return '<div class="wizard"><a class="current"><span class="badge"></span></a><a class="current"><span class="badge"></span></a><a class="green"><span class="badge badge-inverse"></span></a><a><span class="badge"></span></a></div>';
-		}
-		else if(cellvalue=="scheduled"){
-			return '<div class="wizard"><a class="green"><span class="badge"></span></a><a class="current"><span class="badge"></span></a><a class="current"><span class="badge badge-inverse"></span></a><a><span class="badge"></span></a></div>';
-		}
-		else{
-			return 'Can not parse "' + cellvalue + '" status';
-		}
-		//return '<div class="wizard"><a class="'+cellvalue.initialstage+'"><span class="badge"></span></a><a class="'+cellvalue.patclass+'"><span class="badge"></span></a><a class="'+cellvalue.appttime+'"><span class="badge badge-inverse"></span></a><a class="'+cellvalue.scheduledstop+'"><i class="fa fa-check" style="display: table-cell; float: right; margin: 8px;"></i></a></div>'   
-	  }*/
-	  
+  	  
 	  function parseStatusOfExamFormatter (cellvalue, option, rowobj ) {
 		
 		var cellvalue_array = cellvalue.split(',');
@@ -252,7 +237,7 @@
             colNames: ['A#','Appt Time','Begin Exam','End Exam','SignIn','CheckIn','Progress Status','Current Status','Status Last Changed','Patient Name','Patient MRN','Patient DOB','Site','Patient Class','Patient Type','Patient Location at exam','Radiology Department','Exam Resource','Modality','Proc Code','Proc Description','Ordering Provider','Scheduler','Technologist','PACS Image Count'],
             colModel: [
                 { name: 'accession', index: 'accession', align: 'center', width:40, fixed:true, formatter: makeIdAsLinkFormatter }
-				,{ name: 'appt_time', index: 'appt_time', align: 'center', width:150, fixed:true }
+				,{ name: 'appt_time', index: 'appt_time', align: 'center', width:150, fixed:true, formatter:format_date_time }
 				,{ name: 'begin_exam', index: 'begin_exam', align: 'center', width:150, fixed:true }
 				,{ name: 'end_exam', index: 'end_exam', align: 'center', width:150, fixed:true }
 				,{ name: 'sign_in', index: 'sign_in', align: 'center', width:150, fixed:true }
