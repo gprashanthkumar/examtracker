@@ -234,7 +234,7 @@
                 status: $("#DdlStatusSrch").val(),
                 authenticity_token: window._token
             },
-            colNames: ['A#','Appt Time','Begin Exam','End Exam','SignIn','CheckIn','Progress Status','Current Status','Status Last Changed','Patient Name','Patient MRN','Patient DOB','Site','Patient Class','Patient Type','Patient Location at exam','Radiology Department','Exam Resource','Modality','Proc Code','Proc Description','Ordering Provider','Scheduler','Technologist','PACS Image Count'],
+            colNames: ['A#','Progress Status','Current Status','Status Last Changed','Patient Name','Patient MRN','Patient DOB','Appt Time','Begin Exam','End Exam','SignIn','CheckIn','Site','Patient Class','Patient Type','Patient Location at exam','Radiology Department','Exam Resource','Modality','Proc Code','Proc Description','Ordering Provider','Scheduler','Technologist','PACS Image Count'],
             colModel: [
                 { name: 'accession', index: 'accession', align: 'center', width:40, fixed:true, formatter: makeIdAsLinkFormatter }
 				,{ name: 'graph_status', index: 'graph_status', align: 'center', width:325, fixed:true, formatter: parseStatusOfExamFormatter }
@@ -243,7 +243,7 @@
 				,{ name: 'patient_name', index: 'patient_name', align: 'center', width:140, fixed:true }
                 ,{ name: 'mrn', index: 'mrn', align: 'center', width:120, fixed:true }
 				,{ name: 'birthdate', index: 'birthdate', align: 'center', width:140, fixed:true }
-                                ,{ name: 'appt_time', index: 'appt_time', align: 'center', width:150, fixed:true, formatter:format_date_time }
+                ,{ name: 'appt_time', index: 'appt_time', align: 'center', width:150, fixed:true, formatter:format_date_time }
 				,{ name: 'begin_exam', index: 'begin_exam', align: 'center', width:150, fixed:true, formatter: TimeFromDateTime }
 				,{ name: 'end_exam', index: 'end_exam', align: 'center', width:150, fixed:true , formatter: TimeFromDateTime}
 				,{ name: 'sign_in', index: 'sign_in', align: 'center', width:150, fixed:true , formatter: TimeFromDateTime}
