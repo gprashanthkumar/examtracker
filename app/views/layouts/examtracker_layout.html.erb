@@ -626,6 +626,50 @@
           else if (cellvalue_array[cellvalue_array.length - 1] == "final") {
               return '<div class="wizard"><a class="current" title=' + firstStageTitle + '><span class="badge"></span></a><a class="current" title=' + secondStageTitle + '><span class="badge"></span></a><a class="current" title=' + thirdStageTitle + '><span class="badge"></span></a><a class="current" title=' + fourthStageTitle + '><span class="badge"></span></a><a class="current" title=' + fifthStageTitle + '><span class="badge badge-inverse"></span></a><a class="green" title=' + sixthStageTitle + '><i class="fa fa-check" style="display: table-cell; float: right; margin: 8px;"></i></a></div>';
           }
+		  else if(cellvalue_array[cellvalue_array.length-1]=="cancelled"){
+			var cancelledAtStageClass;
+			if(sixthStageTitle == ""){
+				if(fifthStageTitle == ""){
+					if(fourthStageTitle == ""){
+						if(thirdStageTitle == ""){
+							if(secondStageTitle == ""){
+								cancelledAtStageClass = "firstStageClass";
+							}
+							else{
+								cancelledAtStageClass = "secondStageClass";
+							}
+						}
+						else{
+							cancelledAtStageClass = "thirdStageClass";
+						}
+					}
+					else{
+						cancelledAtStageClass = "fourthStageClass";
+					}
+				}
+				else{
+					cancelledAtStageClass = "fifthStageClass";
+				}
+			}
+			else{
+				cancelledAtStageClass = "sixthStageClass";
+			}
+			
+			var graphStatusUI;//GraphUI to be displayed when cancelled status comes.
+			if(cancelledAtStageClass == "sixthStageClass"){
+				graphStatusUI = $('<div class="wizard"><a class="firstStageClass" title='+ firstStageTitle +'><span class="badge"></span></a><a class="secondStageClass" title='+ secondStageTitle +'><span class="badge"></span></a><a class="thirdStageClass" title='+ thirdStageTitle +'><span class="badge"></span></a><a class="fourthStageClass" title='+ fourthStageTitle +'><span class="badge"></span></a><a class="fifthStageClass" title='+ fifthStageTitle +'><span class="badge badge-inverse"></span></a><a class="sixthStageClass" title='+ sixthStageTitle +'><i class="fa fa-check" style="display: table-cell; float: right; margin: 8px;"></i></a></div>');
+			}
+			else{
+				graphStatusUI = $('<div class="wizard"><a class="firstStageClass" title='+ firstStageTitle +'><span class="badge"></span></a><a class="secondStageClass" title='+ secondStageTitle +'><span class="badge"></span></a><a class="thirdStageClass" title='+ thirdStageTitle +'><span class="badge"></span></a><a class="fourthStageClass" title='+ fourthStageTitle +'><span class="badge"></span></a><a class="fifthStageClass" title='+ fifthStageTitle +'><span class="badge badge-inverse"></span></a><a class="sixthStageClass" title='+ sixthStageTitle +'></a></div>');
+			}
+
+			cancelledStageIndex = $(graphStatusUI).find('a.'+ cancelledAtStageClass +'').index();
+			$(graphStatusUI).find('a:lt('+cancelledStageIndex+')').addClass("current");
+			$(graphStatusUI).find('a:eq('+cancelledStageIndex+')').addClass("red");
+			$(graphStatusUI).find('a:gt('+cancelledStageIndex+')').addClass("grey");
+			
+			 return $(graphStatusUI).prop('outerHTML');
+		  }
           else {
               return 'Can not parse "' + cellvalue + '" status';
           }
