@@ -279,10 +279,6 @@
                     
                 
             ],
-            //jsonReader: { repeatitems:false, root:"rows" },
-            //jsonReader: { repeatitems: false, id: "id", root: "rows", page: "page", total: "total",
-    //records: "records"
-			//},
             jsonReader: { repeatitems: false, id: "id", root: function (obj) { return obj.rows; }, page: function (obj) { return obj.page; }, total: function (obj) { return obj.total; },
     records: function (obj) { return (obj.rows.length ); }
 			},
@@ -357,7 +353,7 @@
        });
     }        
 
-    $('#tblTechExampager .ui-icon-refresh').click(function (e) {
+    $('#tblTechExampager .ui-icon-refresh').on("click","#tblTechExampager",function (e) {
 		e.preventDefault();
 		debugger;
 		$("#tblTechExam").setGridParam({ datatype: 'json', page: 1,postData:{accession:"",status:"",authenticity_token: window._token} }).trigger('reloadGrid');
