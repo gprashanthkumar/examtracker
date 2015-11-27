@@ -186,7 +186,7 @@ class HomeController < ApplicationController
     @exams.each do |exam| 
       gstatus = ""
       gstatus = exam.graph_status;
-      if ['1037,1027,1017'].include? exam.accession
+      if ['1037','1027','1017'].include? exam.accession
         exam.graph_status = "cancelled"
         exam.current_status = "cancelled"
       end
