@@ -351,15 +351,17 @@
                //$('#pg_UsersGridPager table:eq(1) tr td.nRCls').remove();
            }, sopt: ['cn', 'nc']
        });
+	   
+	   $('.ui-icon-refresh').click(function () {
+			debugger;
+			//postData:{accession:"",status:"",authenticity_token: window._token} 
+			$("#tblTechExam").setGridParam({ datatype: 'json', page: 1,postData:{accession:"",status:"",authenticity_token: window._token}}).trigger('reloadGrid');
+		}); 
     }        
 
-    $('#tblTechExampager .ui-icon-refresh').on("click","div#techExamGridContainer",function (e) {
-		e.preventDefault();
-		debugger;
-		$("#tblTechExam").setGridParam({ datatype: 'json', page: 1,postData:{accession:"",status:"",authenticity_token: window._token} }).trigger('reloadGrid');
-    });       
+          
             
   }); 
-
+  //document.ready() end
   </script>
 <% end %>  
