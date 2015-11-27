@@ -3427,6 +3427,8 @@ height:28px; margin-right:5px; background:#666; position:relative; display:inlin
 .wizard .green:after {border-left-color:green;}
 .wizard .grey {background:#666; color:#fff;}
 .wizard .grey:after {border-left-color:#666;}
+.wizard .red {background:red; color:#fff;}
+.wizard .red:after {border-left-color:red;}
 
 #example1{ width:100% !important;}
 
