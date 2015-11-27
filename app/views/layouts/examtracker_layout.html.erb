@@ -547,10 +547,10 @@
                       $("#lblorder").text(myobj.order_arrival);
                       $("#lblsign_in").text(myobj.sign_in);
                       $("#lblappt_time").text(myobj.appt_time);
-                      $("#lblbegin_exam").text(myobj.begin_exam);
-                      $("#lblend_exam").text(myobj.end_exam);
-                      $("#lblfirst_final").text(myobj.first_final);
-                      $("#lbllast_final").text(myobj.last_final);
+                      $("#lblbegin_exam").text(TimeFromDateTime(myobj.begin_exam));
+                      $("#lblend_exam").text(TimeFromDateTime(myobj.end_exam));
+                      $("#lblfirst_final").text(TimeFromDateTime(myobj.first_final));
+                      $("#lbllast_final").text(TimeFromDateTime(myobj.last_final));
                       var scheventime = new Date(myobj.order_arrival);
                       var aptime = new Date(myobj.appt_time);
 
@@ -564,9 +564,9 @@
 
                       $("#lbleduration").text(eduration.toISOString().substr(11, 8));
                       $("#lblwaitduration").text(waitduarion.toISOString().substr(11, 8));
-                      $("#lblscheEventToappt").text(sched_to_aptime.toISOString());
-                      $("#lblfinalTurnaroundTime").text(finalTurnaroundTime.toISOString());
-                      $("#lbltotalpatientwait").text(totalpatientwait.toISOString());
+                      $("#lblscheEventToappt").text(DaysTimeWait(sched_to_aptime.toISOString()));
+                      $("#lblfinalTurnaroundTime").text(DaysTimeWait(finalTurnaroundTime.toISOString()));
+                      $("#lbltotalpatientwait").text(DaysTimeWait(totalpatientwait.toISOString()));
 
 
                       //indentifiers
@@ -624,6 +624,31 @@
               return 'Can not parse "' + cellvalue + '" status';
           }
       }
+      
+      function TimeFromDateTime(mydate)
+      {
+        d = new Date(mydate);
+        var datetext = '';
+        if(d !=  null) {
+          datetext = d.toTimeString();
+          datetext = datetext.split(' ')[0];
+        }        
+        return datetext;
+      }
+      function DaysTimeWait(mydate) {
+        d = new Date(mydate);
+        var datetext = '';
+        if(d !=  null) {
+         datetext = format_two_digits(d.getDate()) +"d " 
+         datetext += format_two_digits(d.getHours()) + ":"
+         datetext += format_two_digits(d.getMinutes())+":"
+         datetext += format_two_digits(d.getSeconds());
+        }        
+        return datetext;
+      }
+      function format_two_digits(n) {
+    return n < 10 ? '0' + n : n;
+}
   </script>
 </body>
 </html>
