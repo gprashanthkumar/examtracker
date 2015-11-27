@@ -311,15 +311,16 @@
                                                 <td class="xl66" style='border-top: none; border-left: none'>Order</td>
                                                 <td id="lblorder" class="xl66" style='border-top: none; border-left: none'>label</td>
                                             </tr>
-                                            <tr height="21" style='height: 15.75pt'>
-                                                <td height="21" class="xl65" style='height: 15.75pt; border-top: none'>&nbsp;</td>
-                                                <td class="xl66" style='border-top: none; border-left: none'>Sign In</td>
-                                                <td id="lblsign_in" class="xl66" style='border-top: none; border-left: none'>label</td>
-                                            </tr>
+                                            
                                             <tr height="21" style='height: 15.75pt'>
                                                 <td height="21" class="xl65" style='height: 15.75pt; border-top: none'>&nbsp;</td>
                                                 <td class="xl66" style='border-top: none; border-left: none'>Appointment</td>
                                                 <td id="lblappt_time" class="xl66" style='border-top: none; border-left: none'>label</td>
+                                            </tr>
+                                            <tr height="21" style='height: 15.75pt'>
+                                                <td height="21" class="xl65" style='height: 15.75pt; border-top: none'>&nbsp;</td>
+                                                <td class="xl66" style='border-top: none; border-left: none'>Sign In</td>
+                                                <td id="lblsign_in" class="xl66" style='border-top: none; border-left: none'>label</td>
                                             </tr>
                                             <tr height="21" style='height: 15.75pt'>
                                                 <td height="21" class="xl65" style='height: 15.75pt; border-top: none'>&nbsp;</td>
@@ -545,8 +546,8 @@
                       }
                       //time parts
                       $("#lblorder").text(myobj.order_arrival);
-                      $("#lblsign_in").text(myobj.sign_in);
                       $("#lblappt_time").text(myobj.appt_time);
+                      $("#lblsign_in").text(TimeFromDateTime(myobj.sign_in));
                       $("#lblbegin_exam").text(TimeFromDateTime(myobj.begin_exam));
                       $("#lblend_exam").text(TimeFromDateTime(myobj.end_exam));
                       $("#lblfirst_final").text(TimeFromDateTime(myobj.first_final));
