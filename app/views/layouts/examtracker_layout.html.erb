@@ -714,6 +714,7 @@
           if (mydate == null) {
               return datetext;
           }
+            d = new Date(mydate);
           if (d != null) {
               datetext = d.getFullYear() + "-"
               datetext += pad2(d.getMonth() + 1) + "-"
