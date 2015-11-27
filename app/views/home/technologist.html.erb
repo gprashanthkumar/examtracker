@@ -223,9 +223,9 @@
 			graphStatusUI = '<div class="wizard"><a class="firstStageClass" title='+ firstStageTitle +'><span class="badge"></span></a><a class="secondStageClass" title='+ secondStageTitle +'><span class="badge"></span></a><a class="thirdStageClass" title='+ thirdStageTitle +'><span class="badge"></span></a><a class="fourthStageClass" title='+ fourthStageTitle +'><span class="badge"></span></a><a class="fifthStageClass" title='+ fifthStageTitle +'><span class="badge badge-inverse"></span></a><a class="sixthStageClass" title='+ sixthStageTitle +'><i class="fa fa-check" style="display: table-cell; float: right; margin: 8px;"></i></a></div>';
 			//finding a whose class is currentStage and add it's class to red
 			cancelledStageIndex = $(graphStatusUI).find('a.'+ cancelledAtStageClass +'').index();
-			$(graphStatusUI).find('a:lt('+cancelledStageIndex+')').addClass("current");
-			$(graphStatusUI).find('a:eq('+cancelledStageIndex+')').addClass("red");
-			$(graphStatusUI).find('a:gt('+cancelledStageIndex+')').addClass("grey");
+			graphStatusUI = $(graphStatusUI).find('a:lt('+cancelledStageIndex+')').addClass("current");
+			graphStatusUI = $(graphStatusUI).find('a:eq('+cancelledStageIndex+')').addClass("red");
+			graphStatusUI = $(graphStatusUI).find('a:gt('+cancelledStageIndex+')').addClass("grey");
 			return graphStatusUI;
 		}
 		else{
