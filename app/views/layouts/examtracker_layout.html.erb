@@ -565,8 +565,8 @@
                       $("#lbleduration").text(eduration.toISOString().substr(11, 8));
                       $("#lblwaitduration").text(waitduarion.toISOString().substr(11, 8));
                       $("#lblscheEventToappt").text(DaysTimeWait(sched_to_aptime.toISOString()));
-                      $("#lblfinalTurnaroundTime").text(finalTurnaroundTime.toISOString());
-                      $("#lbltotalpatientwait").text(totalpatientwait.toISOString());
+                      $("#lblfinalTurnaroundTime").text(DaysTimeWait(finalTurnaroundTime.toISOString()));
+                      $("#lbltotalpatientwait").text(DaysTimeWait(totalpatientwait.toISOString()));
 
 
                       //indentifiers
@@ -639,10 +639,16 @@
         d = new Date(mydate);
         var datetext = '';
         if(d !=  null) {
-         datetext = d.getDate() +"days " + d.getHours()+":"+d.getMinutes()+":"+d.getSeconds();
+         datetext = format_two_digits(d.getDate()) +"d " 
+         datetext += format_two_digits(d.getHours()) + ":"
+         datetext += format_two_digits(d.getMinutes())+":"
+         datetext += format_two_digits(d.getSeconds());
         }        
         return datetext;
       }
+      function format_two_digits(n) {
+    return n < 10 ? '0' + n : n;
+}
   </script>
 </body>
 </html>
