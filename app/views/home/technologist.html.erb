@@ -234,8 +234,8 @@
             autowidth: true,
             //width:'90%',
             scrollOffset: 0,
-            rowNum: 5,
-            rowList: [5, 10, 15, 20],
+            rowNum: 20,
+            rowList: [20, 30, 40, 50],
             height: '250',
             sortname: 'Id',
             sortorder: "asc",
@@ -300,7 +300,9 @@
        });
     }        
 
-            
+    $('#tblTechExampager .ui-icon-refresh').click(function () {
+		$("#tblTechExam").setGridParam({ datatype: 'json', page: 1,postData:{} }).trigger('reloadGrid');
+    });       
             
   }); 
 
