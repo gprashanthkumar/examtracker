@@ -195,6 +195,7 @@ class Rad_Exam < ActiveRecord::Base
   
   #This is main query from ra_exams details of particular accession
   def self.get_accession_detail(accessionid)
+    puts "kumar --->"
     accession = self.join_Main.Rad_report_event.where(" rad_exams.accession = ? ",accessionid).first;
      puts accession.to_json;
     return accession;
