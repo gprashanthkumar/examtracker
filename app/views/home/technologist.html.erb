@@ -358,7 +358,9 @@
     }        
 
     $('#tblTechExampager .ui-icon-refresh').click(function () {
-		$("#tblTechExam").setGridParam({ datatype: 'json', page: 1,postData:{} }).trigger('reloadGrid');
+		e.preventDefault();
+		debugger;
+		$("#tblTechExam").setGridParam({ datatype: 'json', page: 1,postData:{accession:"",status:"",authenticity_token: window._token} }).trigger('reloadGrid');
     });       
             
   }); 
