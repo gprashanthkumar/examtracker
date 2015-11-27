@@ -353,7 +353,7 @@
        });
     }        
 
-    $('#tblTechExampager .ui-icon-refresh').on("click","#tblTechExampager",function (e) {
+    $('#tblTechExampager .ui-icon-refresh').on("click","div#techExamGridContainer",function (e) {
 		e.preventDefault();
 		debugger;
 		$("#tblTechExam").setGridParam({ datatype: 'json', page: 1,postData:{accession:"",status:"",authenticity_token: window._token} }).trigger('reloadGrid');
