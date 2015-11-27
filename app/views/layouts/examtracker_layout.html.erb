@@ -517,7 +517,7 @@
                               debugger;
                               $("#reportHistoryContainerDiv").empty();
                               $(resultReportHistories).each(function (index, resultReportHistory) {
-                                  $("#reportHistoryContainerDiv").append('<div> <h3>' + resultReportHistory.report_impression + '</h3> <b>status:</b>' + resultReportHistory.status + '<br> <b>Time:</b>' + resultReportHistory.report_time + '<br> <b>Radiologist:</b>' + resultReportHistory.rad1_name + '<br> <b>Radiologist:</b>' + resultReportHistory.rad2_name + '<br> </br></br></br> <p>' + resultReportHistory.report_body + '</p> </div>');
+                                  $("#reportHistoryContainerDiv").append('<div> <h3>' + resultReportHistory.report_impression + '</h3> <b>status:</b>' + resultReportHistory.status + '<br> <b>Time:</b>' + format_date_time(resultReportHistory.report_time) + '<br> <b>Radiologist:</b>' + resultReportHistory.rad1_name + '<br> <b>Radiologist:</b>' + resultReportHistory.rad2_name + '<br> </br></br></br> <p>' + resultReportHistory.report_body + '</p> </div>');
                               });
                               $("#currentStatusH3").text(myobj.current_status);
                           },
@@ -656,11 +656,11 @@
          d = new Date(mydate);
           var datetext = '';
           if (d != null) {
-        datetext = d.getFullYear() + " "
-        datetext += pad2(d.getMonth() + 1) +  " "
+        datetext = d.getFullYear() + "-"
+        datetext += pad2(d.getMonth() + 1) +  "-"
         datetext += pad2(d.getDate()) + " "
-        datetext += pad2(d.getHours()) + " "
-        datetext += pad2(d.getMinutes()) + " "
+        datetext += pad2(d.getHours()) + ":"
+        datetext += pad2(d.getMinutes()) + ": "
         datetext += pad2(d.getSeconds());
           }
           
