@@ -173,56 +173,15 @@ class HomeController < ApplicationController
   def get_accession
     @accession_id = params[:accession_id];
     authenticity_token = params[:authenticity_token];      
-    @exams = Rad_Exam.get_accession_detail(@accession_id.to_s)
-   
+    @exams = Rad_Exam.get_accession_detail(@accession_id.to_s)   
     exam = @exams 
-    gstatus = ""
-    gstatus = exam.graph_status;
-    if not( (exam.order_arrival.nil?) || (exam.order_arrival.blank?))         
-        exam.graph_status += "order_time->" + exam.order_arrival.to_s + "," 
-      else
-        exam.graph_status += "order_time->"  + ","  
+     if ['1037','1027','1017'].include? exam.accession
+        exam.graph_status = "cancelled"
+        exam.current_status = "cancelled"       
       end
-      
-       if not( (exam.sched_time.nil?) || (exam.sched_time.blank?))         
-        exam.graph_status += "sched_time->" + exam.sched_time.to_s + "," 
-      else
-        exam.graph_status += "sched_time->"  + ","  
-      end
-      
-      if not( (exam.appt_time.nil?) || (exam.appt_time.blank?))
-        exam.graph_status += "appt_time->" + exam.appt_time.to_s + "," 
-      else
-        exam.graph_status += "appt_time->" +  "," 
-      end
-      if not( (exam.sign_in.nil?) || (exam.sign_in.blank?))
-        exam.graph_status += "sign_in->" + exam.sign_in.to_s + ","
-      else
-        exam.graph_status += "sign_in->" +  ","
-      end  
-      if not( (exam.check_in.nil?) || (exam.check_in.blank?))
-        exam.graph_status += "check_in->" + exam.check_in.to_s + ","
-      else
-        exam.graph_status += "check_in->"  + ","
-      end  
-      if not( (exam.begin_exam.nil?) || (exam.begin_exam.blank?))
-        exam.graph_status += "begin_exam->" + exam.begin_exam.to_s + ","
-      else
-        exam.graph_status += "begin_exam->" + ","
-      end  
-      if not( (exam.end_exam.nil?) || (exam.end_exam.blank?))
-        exam.graph_status += "end_exam->" + exam.end_exam.to_s + ","
-      else
-        exam.graph_status += "end_exam->" +  ","
-      end 
-       if not( (exam.report_time.nil?) || (exam.report_time.blank?))
-        exam.graph_status += "final_time->" + exam.report_time.to_s + ","
-      else
-        exam.graph_status += "final_time->" +  ","
-      end      
-      exam.graph_status += gstatus
+    exam = get_graph_status(exam);    
     @exams.graph_status = exam.graph_status;
-    
+    @exams.graph_status = exam.graph_status;
     respond_to do |format|
       format.json { render :json => @exams.to_json(:only => [ :accession,:mrn,:current_status,:code,:description,:modality,:resource_name,:graph_status,:current_status,:updated_at,:patient_name,:birthdate,:site_name,:patient_class,:trauma,:patient_type,:patient_location_at_exam,:radiology_department,:ordering_provider,:scheduler,:technologist,:pacs_image_count,:appt_time,:sign_in,:check_in,:begin_exam,:end_exam,:first_final,:last_final,:order_arrival,:rad1_name,:rad2_name]) }
     end    
