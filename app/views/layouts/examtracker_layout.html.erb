@@ -50,7 +50,7 @@
               <li><%= global_navigation_link "About", :controller => :main,  :action => :about %></li>
               <li><%= global_navigation_link "Help", :controller => :main,  :action => :help %></li>
         <% any_authorized(["ai-staff", "it-staff"]) do %>
-                  <li><%= global_navigation_link "Admin", :controller => :admin, :action => :index %></li>
+                    <li><%= global_navigation_link "Admin", :controller => :admin, :action => :index %></li>
         <% end %>
               <li><a href="<%= root_url %>/home/logout">Logout</a></li>
             </ul>
@@ -465,7 +465,7 @@
               this.minutes = m;
               this.seconds = s;
           }
-        ;
+          ;
 
           Date.diff = function (date1, date2) {
               return new DateDiff(date1, date2);
@@ -514,17 +514,17 @@
                               authenticity_token: window._token
                           },
                           success: function (resultReportHistories) {
-                              
+
                               $("#reportHistoryContainerDiv").empty();
                               $(resultReportHistories).each(function (index, resultReportHistory) {
-                                 if ((resultReportHistory.status != null) && (resultReportHistory.status != '')){
-                                   $("#reportHistoryContainerDiv").append('<div> <h3>' + resultReportHistory.report_impression + '</h3> <b>status:</b>' + resultReportHistory.status + '<br> <b>Time:</b>' + format_date_time(resultReportHistory.report_time) + '<br> <b>Radiologist:</b>' + resultReportHistory.rad1_name + '<br> <b>Radiologist:</b>' + resultReportHistory.rad2_name + '<br> </br></br></br> <p>' + resultReportHistory.report_body + '</p> </div>');
-                                 }                                  
+                                  if ((resultReportHistory.status != null) && (resultReportHistory.status != '')) {
+                                      $("#reportHistoryContainerDiv").append('<div> <h3>' + resultReportHistory.report_impression + '</h3> <b>status:</b>' + resultReportHistory.status + '<br> <b>Time:</b>' + format_date_time(resultReportHistory.report_time) + '<br> <b>Radiologist:</b>' + resultReportHistory.rad1_name + '<br> <b>Radiologist:</b>' + resultReportHistory.rad2_name + '<br> </br></br></br> <p>' + resultReportHistory.report_body + '</p> </div>');
+                                  }
                               });
-                              if($("#reportHistoryContainerDiv").text() == "") {
-                                $("#reportHistoryContainerDiv").append('<div> <h4 style="color:red" >No Report found.</h4></div>');
+                              if ($("#reportHistoryContainerDiv").text() == "") {
+                                  $("#reportHistoryContainerDiv").append('<div> <h4 style="color:red" >No Report found.</h4></div>');
                               }
-                              
+
                               $("#currentStatusH3").text(myobj.current_status);
                           },
                           error: function (resultReportHistories) {
@@ -543,13 +543,13 @@
                       //staff parts
                       $("#lbltechnologist").text(NullEmpty(myobj.technologist));
 
-                      if ( (myobj.rad1_name !=  null) && (myobj.rad1_name != '')) {
+                      if ((myobj.rad1_name != null) && (myobj.rad1_name != '')) {
                           $("#lblRadiologist").text("Signed by: " + myobj.rad1_name);
                           $("#lblfinalRadiologist").text(myobj.rad1_name);
                       }
 
                       $("#lblfinalRadiologist").text(NullEmpty(myobj.rad2_name));
-                      
+
                       //time parts
                       $("#lblorder").text(format_date_time(myobj.order_arrival));
                       $("#lblappt_time").text(format_date_time(myobj.appt_time));
@@ -572,8 +572,10 @@
                       $("#lbleduration").text(eduration.toISOString().substr(11, 8));
                       $("#lblwaitduration").text(waitduarion.toISOString().substr(11, 8));
                       $("#lblscheEventToappt").text(DaysTimeWait(sched_to_aptime.toISOString()));
-                      $("#lblfinalTurnaroundTime").text(DaysTimeWait(finalTurnaroundTime.toISOString()));
                       $("#lbltotalpatientwait").text(DaysTimeWait(totalpatientwait.toISOString()));
+                      $("#lblfinalTurnaroundTime").text(DaysTimeWait(finalTurnaroundTime.toISOString()));
+
+
 
 
                       //indentifiers
@@ -627,50 +629,50 @@
           else if (cellvalue_array[cellvalue_array.length - 1] == "final") {
               return '<div class="wizard"><a class="current" title=' + firstStageTitle + '><span class="badge"></span></a><a class="current" title=' + secondStageTitle + '><span class="badge"></span></a><a class="current" title=' + thirdStageTitle + '><span class="badge"></span></a><a class="current" title=' + fourthStageTitle + '><span class="badge"></span></a><a class="current" title=' + fifthStageTitle + '><span class="badge badge-inverse"></span></a><a class="green" title=' + sixthStageTitle + '><i class="fa fa-check" style="display: table-cell; float: right; margin: 8px;"></i></a></div>';
           }
-		  else if(cellvalue_array[cellvalue_array.length-1]=="cancelled"){
-			var cancelledAtStageClass;
-			if(sixthStageTitle == ""){
-				if(fifthStageTitle == ""){
-					if(fourthStageTitle == ""){
-						if(thirdStageTitle == ""){
-							if(secondStageTitle == ""){
-								cancelledAtStageClass = "firstStageClass";
-							}
-							else{
-								cancelledAtStageClass = "secondStageClass";
-							}
-						}
-						else{
-							cancelledAtStageClass = "thirdStageClass";
-						}
-					}
-					else{
-						cancelledAtStageClass = "fourthStageClass";
-					}
-				}
-				else{
-					cancelledAtStageClass = "fifthStageClass";
-				}
-			}
-			else{
-				cancelledAtStageClass = "sixthStageClass";
-			}
-			
-			var graphStatusUI;//GraphUI to be displayed when cancelled status comes.
-			if(cancelledAtStageClass == "sixthStageClass"){
-				graphStatusUI = $('<div class="wizard"><a class="firstStageClass" title='+ firstStageTitle +'><span class="badge"></span></a><a class="secondStageClass" title='+ secondStageTitle +'><span class="badge"></span></a><a class="thirdStageClass" title='+ thirdStageTitle +'><span class="badge"></span></a><a class="fourthStageClass" title='+ fourthStageTitle +'><span class="badge"></span></a><a class="fifthStageClass" title='+ fifthStageTitle +'><span class="badge badge-inverse"></span></a><a class="sixthStageClass" title='+ sixthStageTitle +'><i class="fa fa-check" style="display: table-cell; float: right; margin: 8px;"></i></a></div>');
-			}
-			else{
-				graphStatusUI = $('<div class="wizard"><a class="firstStageClass" title='+ firstStageTitle +'><span class="badge"></span></a><a class="secondStageClass" title='+ secondStageTitle +'><span class="badge"></span></a><a class="thirdStageClass" title='+ thirdStageTitle +'><span class="badge"></span></a><a class="fourthStageClass" title='+ fourthStageTitle +'><span class="badge"></span></a><a class="fifthStageClass" title='+ fifthStageTitle +'><span class="badge badge-inverse"></span></a><a class="sixthStageClass" title='+ sixthStageTitle +'></a></div>');
-			}
+          else if (cellvalue_array[cellvalue_array.length - 1] == "cancelled") {
+              var cancelledAtStageClass;
+              if (sixthStageTitle == "") {
+                  if (fifthStageTitle == "") {
+                      if (fourthStageTitle == "") {
+                          if (thirdStageTitle == "") {
+                              if (secondStageTitle == "") {
+                                  cancelledAtStageClass = "firstStageClass";
+                              }
+                              else {
+                                  cancelledAtStageClass = "secondStageClass";
+                              }
+                          }
+                          else {
+                              cancelledAtStageClass = "thirdStageClass";
+                          }
+                      }
+                      else {
+                          cancelledAtStageClass = "fourthStageClass";
+                      }
+                  }
+                  else {
+                      cancelledAtStageClass = "fifthStageClass";
+                  }
+              }
+              else {
+                  cancelledAtStageClass = "sixthStageClass";
+              }
 
-			cancelledStageIndex = $(graphStatusUI).find('a.'+ cancelledAtStageClass +'').index();
-			$(graphStatusUI).find('a:lt('+cancelledStageIndex+')').addClass("current");
-			$(graphStatusUI).find('a:eq('+cancelledStageIndex+')').addClass("red");
-			$(graphStatusUI).find('a:gt('+cancelledStageIndex+')').addClass("grey");
-			
-			 return $(graphStatusUI).prop('outerHTML');
-		  }
+              var graphStatusUI;//GraphUI to be displayed when cancelled status comes.
+              if (cancelledAtStageClass == "sixthStageClass") {
+                  graphStatusUI = $('<div class="wizard"><a class="firstStageClass" title=' + firstStageTitle + '><span class="badge"></span></a><a class="secondStageClass" title=' + secondStageTitle + '><span class="badge"></span></a><a class="thirdStageClass" title=' + thirdStageTitle + '><span class="badge"></span></a><a class="fourthStageClass" title=' + fourthStageTitle + '><span class="badge"></span></a><a class="fifthStageClass" title=' + fifthStageTitle + '><span class="badge badge-inverse"></span></a><a class="sixthStageClass" title=' + sixthStageTitle + '><i class="fa fa-check" style="display: table-cell; float: right; margin: 8px;"></i></a></div>');
+              }
+              else {
+                  graphStatusUI = $('<div class="wizard"><a class="firstStageClass" title=' + firstStageTitle + '><span class="badge"></span></a><a class="secondStageClass" title=' + secondStageTitle + '><span class="badge"></span></a><a class="thirdStageClass" title=' + thirdStageTitle + '><span class="badge"></span></a><a class="fourthStageClass" title=' + fourthStageTitle + '><span class="badge"></span></a><a class="fifthStageClass" title=' + fifthStageTitle + '><span class="badge badge-inverse"></span></a><a class="sixthStageClass" title=' + sixthStageTitle + '></a></div>');
+              }
+
+              cancelledStageIndex = $(graphStatusUI).find('a.' + cancelledAtStageClass + '').index();
+              $(graphStatusUI).find('a:lt(' + cancelledStageIndex + ')').addClass("current");
+              $(graphStatusUI).find('a:eq(' + cancelledStageIndex + ')').addClass("red");
+              $(graphStatusUI).find('a:gt(' + cancelledStageIndex + ')').addClass("grey");
+
+              return $(graphStatusUI).prop('outerHTML');
+          }
           else {
               return 'Can not parse "' + cellvalue + '" status';
           }
@@ -678,8 +680,11 @@
 
       function TimeFromDateTime(mydate)
       {
-          d = new Date(mydate);
           var datetext = '';
+          if (mydate == null) {
+              return datetext;
+          }
+          d = new Date(mydate);
           if (d != null) {
               datetext = d.toTimeString();
               datetext = datetext.split(' ')[0];
@@ -687,8 +692,11 @@
           return datetext;
       }
       function DaysTimeWait(mydate) {
-          d = new Date(mydate);
           var datetext = '';
+          if (mydate == null) {
+              return datetext;
+          }
+          d = new Date(mydate);
           if (d != null) {
               datetext = pad2(d.getDate()) + "d "
               datetext += pad2(d.getHours()) + ":"
@@ -700,30 +708,32 @@
       function pad2(n) {
           return n < 10 ? '0' + n : n;
       }
-      
-      function format_date_time(mydate){
-         d = new Date(mydate);
+
+      function format_date_time(mydate) {
           var datetext = '';
-          if (d != null) {
-        datetext = d.getFullYear() + "-"
-        datetext += pad2(d.getMonth() + 1) +  "-"
-        datetext += pad2(d.getDate()) + " "
-        datetext += pad2(d.getHours()) + ":"
-        datetext += pad2(d.getMinutes()) + ":"
-        datetext += pad2(d.getSeconds());
+          if (mydate == null) {
+              return datetext;
           }
-          
+          if (d != null) {
+              datetext = d.getFullYear() + "-"
+              datetext += pad2(d.getMonth() + 1) + "-"
+              datetext += pad2(d.getDate()) + " "
+              datetext += pad2(d.getHours()) + ":"
+              datetext += pad2(d.getMinutes()) + ":"
+              datetext += pad2(d.getSeconds());
+          }
+
           return datetext;
       }
-      
+
       function NullEmpty(data)
       {
-        if (data != null) {
-          return data
-        } else {
-          return '';
-        }
-        
+          if (data != null) {
+              return data
+          } else {
+              return '';
+          }
+
       }
     </script>
 </body>
