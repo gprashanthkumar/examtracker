@@ -226,8 +226,21 @@
 			var firstgraphStatusUI = $(graphStatusUI).find('a:lt('+cancelledStageIndex+')').addClass("current");
 			var secondgraphStatusUI = $(graphStatusUI).find('a:eq('+cancelledStageIndex+')').addClass("red");
 			var thirdgraphStatusUI = $(graphStatusUI).find('a:gt('+cancelledStageIndex+')').addClass("grey");
+			var x = '<div class="wizard">';
+			 $(firstgraphStatusUI).each(function (index,val) {
+				 x+= val;
+			 });
+			  $(secondgraphStatusUI).each(function (index,val) {
+				 x+= val;
+			 });
+			  $(thirdgraphStatusUI).each(function (index,val) {
+				 x+= val;
+			 });
+			 x += '</div>';
+			 return x;
+			 
+			//return '<div class="wizard">'+ firstgraphStatusUI + secondgraphStatusUI + thirdgraphStatusUI + '</div>';
 			
-			return '<div class="wizard">'+ firstgraphStatusUI + secondgraphStatusUI + thirdgraphStatusUI + '</div>';
 		}
 		else{
 			return 'Can not parse "' + cellvalue + '" status';
