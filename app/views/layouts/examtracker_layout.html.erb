@@ -564,7 +564,7 @@
 
                       $("#lbleduration").text(eduration.toISOString().substr(11, 8));
                       $("#lblwaitduration").text(waitduarion.toISOString().substr(11, 8));
-                      $("#lblscheEventToappt").text(sched_to_aptime.toISOString());
+                      $("#lblscheEventToappt").text(DaysTimeWait(sched_to_aptime.toISOString()));
                       $("#lblfinalTurnaroundTime").text(finalTurnaroundTime.toISOString());
                       $("#lbltotalpatientwait").text(totalpatientwait.toISOString());
 
@@ -632,8 +632,15 @@
         if(d !=  null) {
           datetext = d.toTimeString();
           datetext = datetext.split(' ')[0];
-        }
-        
+        }        
+        return datetext;
+      }
+      function DaysTimeWait(mydate) {
+        d = new Date(mydate);
+        var datetext = '';
+        if(d !=  null) {
+         datetext = d.getDate() +"days " + d.getHours()+":"+d.getMinutes()+":"+d.getSeconds();
+        }        
         return datetext;
       }
   </script>
