@@ -514,11 +514,15 @@
                               authenticity_token: window._token
                           },
                           success: function (resultReportHistories) {
-                              debugger;
+                              
                               $("#reportHistoryContainerDiv").empty();
                               $(resultReportHistories).each(function (index, resultReportHistory) {
                                   $("#reportHistoryContainerDiv").append('<div> <h3>' + resultReportHistory.report_impression + '</h3> <b>status:</b>' + resultReportHistory.status + '<br> <b>Time:</b>' + format_date_time(resultReportHistory.report_time) + '<br> <b>Radiologist:</b>' + resultReportHistory.rad1_name + '<br> <b>Radiologist:</b>' + resultReportHistory.rad2_name + '<br> </br></br></br> <p>' + resultReportHistory.report_body + '</p> </div>');
                               });
+                              if($("#reportHistoryContainerDiv").text() == "") {
+                                $("#reportHistoryContainerDiv").append('<div> <h4 style="color:red" >No Report found.</h4></div>');
+                              }
+                              
                               $("#currentStatusH3").text(myobj.current_status);
                           },
                           error: function (resultReportHistories) {
