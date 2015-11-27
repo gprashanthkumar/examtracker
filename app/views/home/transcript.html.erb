@@ -204,7 +204,7 @@
 			$(graphStatusUI).find('a:eq('+cancelledStageIndex+')').addClass("red");
 			$(graphStatusUI).find('a:gt('+cancelledStageIndex+')').addClass("grey");
 			
-			 return $(graphStatusUI).prop('outerHTML');
+			return $(graphStatusUI).prop('outerHTML');
 		}
 		else{
 			return 'Can not parse "' + cellvalue + '" status';
