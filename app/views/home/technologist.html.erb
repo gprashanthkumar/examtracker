@@ -220,27 +220,28 @@
 				
 			//fifthStageAnchUI = 
 			 
-			graphStatusUI = '<div class="wizard"><a class="firstStageClass" title='+ firstStageTitle +'><span class="badge"></span></a><a class="secondStageClass" title='+ secondStageTitle +'><span class="badge"></span></a><a class="thirdStageClass" title='+ thirdStageTitle +'><span class="badge"></span></a><a class="fourthStageClass" title='+ fourthStageTitle +'><span class="badge"></span></a><a class="fifthStageClass" title='+ fifthStageTitle +'><span class="badge badge-inverse"></span></a><a class="sixthStageClass" title='+ sixthStageTitle +'><i class="fa fa-check" style="display: table-cell; float: right; margin: 8px;"></i></a></div>';
+			graphStatusUI = $('<div class="wizard"><a class="firstStageClass" title='+ firstStageTitle +'><span class="badge"></span></a><a class="secondStageClass" title='+ secondStageTitle +'><span class="badge"></span></a><a class="thirdStageClass" title='+ thirdStageTitle +'><span class="badge"></span></a><a class="fourthStageClass" title='+ fourthStageTitle +'><span class="badge"></span></a><a class="fifthStageClass" title='+ fifthStageTitle +'><span class="badge badge-inverse"></span></a><a class="sixthStageClass" title='+ sixthStageTitle +'><i class="fa fa-check" style="display: table-cell; float: right; margin: 8px;"></i></a></div>');
 			//finding a whose class is currentStage and add it's class to red
 			cancelledStageIndex = $(graphStatusUI).find('a.'+ cancelledAtStageClass +'').index();
 			var firstgraphStatusUI = $(graphStatusUI).find('a:lt('+cancelledStageIndex+')').addClass("current");
 			var secondgraphStatusUI = $(graphStatusUI).find('a:eq('+cancelledStageIndex+')').addClass("red");
 			var thirdgraphStatusUI = $(graphStatusUI).find('a:gt('+cancelledStageIndex+')').addClass("grey");
-			var x = '<div class="wizard">';
-			 $(firstgraphStatusUI).each(function (index,val) {
-				 x+= val;
-			 });
-			  $(secondgraphStatusUI).each(function (index,val) {
-				 x+= val;
-			 });
-			  $(thirdgraphStatusUI).each(function (index,val) {
-				 x+= val;
-			 });
-			 x += '</div>';
-			 return x;
+			//var finalGraphUI = '<div class="wizard">';
+			 //$(firstgraphStatusUI).each(function (index,val) {
+				// $(finalGraphUI)[0].append
+			 //});
+			 // $(secondgraphStatusUI).each(function (index,val) {
+			//	 x+= val;
+			// });
+			//  $(thirdgraphStatusUI).each(function (index,val) {
+			//	 x+= val;
+			 //});
+			 
+			 //x += '</div>';
+			 return $(graphStatusUI).prop('outerHTML');
 			 
 			//return '<div class="wizard">'+ firstgraphStatusUI + secondgraphStatusUI + thirdgraphStatusUI + '</div>';
-			
+			//return ""
 		}
 		else{
 			return 'Can not parse "' + cellvalue + '" status';
