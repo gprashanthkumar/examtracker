@@ -547,7 +547,7 @@
                       $("#lblorder").text(myobj.order_arrival);
                       $("#lblsign_in").text(myobj.sign_in);
                       $("#lblappt_time").text(myobj.appt_time);
-                      $("#lblbegin_exam").text(myobj.begin_exam);
+                      $("#lblbegin_exam").text(TimeFromDateTime(myobj.begin_exam));
                       $("#lblend_exam").text(myobj.end_exam);
                       $("#lblfirst_final").text(myobj.first_final);
                       $("#lbllast_final").text(myobj.last_final);
@@ -623,6 +623,18 @@
           else {
               return 'Can not parse "' + cellvalue + '" status';
           }
+      }
+      
+      function TimeFromDateTime(mydate)
+      {
+        d = new Date(mydate);
+        var datetext = '';
+        if(d !=  null) {
+          datetext = d.toTimeString();
+          datetext = datetext.split(' ')[0];
+        }
+        
+        return datetext;
       }
   </script>
 </body>
