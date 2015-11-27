@@ -165,8 +165,6 @@ class HomeController < ApplicationController
   end
   
   def get_jqgrid_common(roletype,accession,currentstatus)
-   
-     
     #currently this is used to get data for jqgrid_page.
     @employee = Employee.get_employee(session[:username])
     @roleType = roletype
@@ -190,9 +188,20 @@ class HomeController < ApplicationController
         exam.graph_status = "cancelled"
         exam.current_status = "cancelled"
         gstatus = exam.graph_status;
+        exam.graph_status = "";
       end
-      exam.graph_status  = "order_time->"  + ","  
-      exam.graph_status = exam.graph_status + "sched_time->"  + "," 
+       if not( (exam.order_arrival.nil?) || (exam.order_arrival.blank?))         
+        exam.graph_status = exam.graph_status + "order_time->" + exam.order_arrival.to_s + "," 
+      else
+        exam.graph_status  = exam.graph_status + "order_time->"  + ","  
+      end
+      
+       if not( (exam.sched_time.nil?) || (exam.sched_time.blank?))         
+        exam.graph_status = exam.graph_status + "sched_time->" + exam.sched_time.to_s + "," 
+      else
+        exam.graph_status  = exam.graph_status + "sched_time->"  + ","  
+      end
+      
       if not( (exam.appt_time.nil?) || (exam.appt_time.blank?))
         exam.graph_status = exam.graph_status + "appt_time->" + exam.appt_time.to_s + "," 
       else
@@ -218,7 +227,11 @@ class HomeController < ApplicationController
       else
         exam.graph_status = exam.graph_status + "end_exam->" +  ","
       end 
-      exam.graph_status = exam.graph_status + "final_time->" +  ","
+       if not( (exam.report_time.nil?) || (exam.report_time.blank?))
+        exam.graph_status = exam.graph_status + "final_time->" + exam.report_time.to_s + ","
+      else
+        exam.graph_status = exam.graph_status + "final_time->" +  ","
+      end      
       exam.graph_status = exam.graph_status + gstatus
     end  #end each
      
