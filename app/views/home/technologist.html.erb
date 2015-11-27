@@ -355,7 +355,7 @@
 	   $('.ui-icon-refresh').click(function () {
 			debugger;
 			//postData:{accession:"",status:"",authenticity_token: window._token} 
-			$("#tblTechExam").setGridParam({ datatype: 'json', page: 1}).trigger('reloadGrid');
+			$("#tblTechExam").setGridParam({ datatype: 'json', page: 1,postData:{accession:"",status:"",authenticity_token: window._token}}).trigger('reloadGrid');
 		}); 
     }        
 
