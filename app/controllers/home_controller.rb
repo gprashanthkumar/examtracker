@@ -190,49 +190,49 @@ class HomeController < ApplicationController
         gstatus = exam.graph_status;
         exam.graph_status = "";
       end
-       if not( (exam.order_arrival.nil?) || (exam.order_arrival.blank?))         
-        exam.graph_status = exam.graph_status + "order_time->" + exam.order_arrival.to_s + "," 
+      if not( (exam.order_arrival.nil?) || (exam.order_arrival.blank?))         
+        exam.graph_status += "order_time->" + exam.order_arrival.to_s + "," 
       else
-        exam.graph_status  = exam.graph_status + "order_time->"  + ","  
+        exam.graph_status  += "order_time->"  + ","  
       end
       
        if not( (exam.sched_time.nil?) || (exam.sched_time.blank?))         
-        exam.graph_status = exam.graph_status + "sched_time->" + exam.sched_time.to_s + "," 
+        exam.graph_status += "sched_time->" + exam.sched_time.to_s + "," 
       else
-        exam.graph_status  = exam.graph_status + "sched_time->"  + ","  
+        exam.graph_status  += "sched_time->"  + ","  
       end
       
       if not( (exam.appt_time.nil?) || (exam.appt_time.blank?))
-        exam.graph_status = exam.graph_status + "appt_time->" + exam.appt_time.to_s + "," 
+        exam.graph_status += "appt_time->" + exam.appt_time.to_s + "," 
       else
-        exam.graph_status = exam.graph_status + "appt_time->" +  "," 
+        exam.graph_status += "appt_time->" +  "," 
       end
       if not( (exam.sign_in.nil?) || (exam.sign_in.blank?))
-        exam.graph_status = exam.graph_status + "sign_in->" + exam.sign_in.to_s + ","
+        exam.graph_status += "sign_in->" + exam.sign_in.to_s + ","
       else
-        exam.graph_status = exam.graph_status + "sign_in->" +  ","
+        exam.graph_status += "sign_in->" +  ","
       end  
       if not( (exam.check_in.nil?) || (exam.check_in.blank?))
-        exam.graph_status = exam.graph_status + "check_in->" + exam.check_in.to_s + ","
+        exam.graph_status += "check_in->" + exam.check_in.to_s + ","
       else
-        exam.graph_status = exam.graph_status + "check_in->"  + ","
+        exam.graph_status += "check_in->"  + ","
       end  
       if not( (exam.begin_exam.nil?) || (exam.begin_exam.blank?))
-        exam.graph_status = exam.graph_status + "begin_exam->" + exam.begin_exam.to_s + ","
+        exam.graph_status += "begin_exam->" + exam.begin_exam.to_s + ","
       else
-        exam.graph_status = exam.graph_status + "begin_exam->" + ","
+        exam.graph_status += "begin_exam->" + ","
       end  
       if not( (exam.end_exam.nil?) || (exam.end_exam.blank?))
-        exam.graph_status = exam.graph_status + "end_exam->" + exam.end_exam.to_s + ","
+        exam.graph_status += "end_exam->" + exam.end_exam.to_s + ","
       else
-        exam.graph_status = exam.graph_status + "end_exam->" +  ","
+        exam.graph_status += "end_exam->" +  ","
       end 
        if not( (exam.report_time.nil?) || (exam.report_time.blank?))
-        exam.graph_status = exam.graph_status + "final_time->" + exam.report_time.to_s + ","
+        exam.graph_status += "final_time->" + exam.report_time.to_s + ","
       else
-        exam.graph_status = exam.graph_status + "final_time->" +  ","
+        exam.graph_status += "final_time->" +  ","
       end      
-      exam.graph_status = exam.graph_status + gstatus
+      exam.graph_status += gstatus
     end  #end each
      
     json_data = {
@@ -259,35 +259,49 @@ class HomeController < ApplicationController
     exam = @exams 
     gstatus = ""
     gstatus = exam.graph_status;
-    exam.graph_status  = "order_time->"  + ","  
-    exam.graph_status = exam.graph_status + "sched_time->"  + "," 
-    if not( (exam.appt_time.nil?) || (exam.appt_time.blank?))
-      exam.graph_status = exam.graph_status + "appt_time->" + exam.appt_time.to_s + "," 
-    else
-      exam.graph_status = exam.graph_status + "appt_time->" +  "," 
-    end
-    if not( (exam.sign_in.nil?) || (exam.sign_in.blank?))
-      exam.graph_status = exam.graph_status + "sign_in->" + exam.sign_in.to_s + ","
-    else
-      exam.graph_status = exam.graph_status + "sign_in->" +  ","
-    end  
-    if not( (exam.check_in.nil?) || (exam.check_in.blank?))
-      exam.graph_status = exam.graph_status + "check_in->" + exam.check_in.to_s + ","
-    else
-      exam.graph_status = exam.graph_status + "check_in->"  + ","
-    end  
-    if not( (exam.begin_exam.nil?) || (exam.begin_exam.blank?))
-      exam.graph_status = exam.graph_status + "begin_exam->" + exam.begin_exam.to_s + ","
-    else
-      exam.graph_status = exam.graph_status + "begin_exam->" + ","
-    end  
-    if not( (exam.end_exam.nil?) || (exam.end_exam.blank?))
-      exam.graph_status = exam.graph_status + "end_exam->" + exam.end_exam.to_s + ","
-    else
-      exam.graph_status = exam.graph_status + "end_exam->" +  ","
-    end 
-    exam.graph_status = exam.graph_status + "final_time->" +  ","
-    exam.graph_status = exam.graph_status + gstatus
+    if not( (exam.order_arrival.nil?) || (exam.order_arrival.blank?))         
+        exam.graph_status += "order_time->" + exam.order_arrival.to_s + "," 
+      else
+        exam.graph_status  += "order_time->"  + ","  
+      end
+      
+       if not( (exam.sched_time.nil?) || (exam.sched_time.blank?))         
+        exam.graph_status += "sched_time->" + exam.sched_time.to_s + "," 
+      else
+        exam.graph_status  += "sched_time->"  + ","  
+      end
+      
+      if not( (exam.appt_time.nil?) || (exam.appt_time.blank?))
+        exam.graph_status += "appt_time->" + exam.appt_time.to_s + "," 
+      else
+        exam.graph_status += "appt_time->" +  "," 
+      end
+      if not( (exam.sign_in.nil?) || (exam.sign_in.blank?))
+        exam.graph_status += "sign_in->" + exam.sign_in.to_s + ","
+      else
+        exam.graph_status += "sign_in->" +  ","
+      end  
+      if not( (exam.check_in.nil?) || (exam.check_in.blank?))
+        exam.graph_status += "check_in->" + exam.check_in.to_s + ","
+      else
+        exam.graph_status += "check_in->"  + ","
+      end  
+      if not( (exam.begin_exam.nil?) || (exam.begin_exam.blank?))
+        exam.graph_status += "begin_exam->" + exam.begin_exam.to_s + ","
+      else
+        exam.graph_status += "begin_exam->" + ","
+      end  
+      if not( (exam.end_exam.nil?) || (exam.end_exam.blank?))
+        exam.graph_status += "end_exam->" + exam.end_exam.to_s + ","
+      else
+        exam.graph_status += "end_exam->" +  ","
+      end 
+       if not( (exam.report_time.nil?) || (exam.report_time.blank?))
+        exam.graph_status += "final_time->" + exam.report_time.to_s + ","
+      else
+        exam.graph_status += "final_time->" +  ","
+      end      
+      exam.graph_status += gstatus
     @exams.graph_status = exam.graph_status;
     
     respond_to do |format|
