@@ -11,232 +11,234 @@
 
 
 <% content_for :head_javascript_section do %>
-	<style>
-		table#example1 tbody tr td:first-child a{
-			color:skyblue;
-		}
-		
-		#fbox_example1 table tbody tr td.columns select{
-			max-width:160px;
-		}
-		
-	</style>
-  <script type='text/javascript'>
-  $(document).ready(function () {
-  	
-            $("#example1 tr td:first-child a").click(function (e) {
-            	
-                e.preventDefault();
-                $("#ExamDetailPopupDiv").modal('show');
-            });
+  <style>
+      table#example1 tbody tr td:first-child a{
+          color:skyblue;
+      }
 
+      #fbox_example1 table tbody tr td.columns select{
+          max-width:160px;
+      }
+
+  </style>
+  <script type='text/javascript'>
+    $(document).ready(function () {
+
+        $("#example1 tr td:first-child a").click(function (e) {
+
+            e.preventDefault();
+            $("#ExamDetailPopupDiv").modal('show');
         });
+
+    });
   </script>
- <% end %>
-            
- <!-- Right side column. Contains the navbar and content of the page -->
-  <aside class="right-side"> 
+<% end %>
+
+<!-- Right side column. Contains the navbar and content of the page -->
+<aside class="right-side"> 
     <!-- Content Header (Page header) -->
     <section class="content-header">
-      <h1> Search<small>Preview</small> </h1>
-      <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-home"></i> Home</a></li>
-        <li class="active">Search</li>
-      </ol>
+        <h1> Search<small>Preview</small> </h1>
+        <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-home"></i> Home</a></li>
+            <li class="active">Search</li>
+        </ol>
     </section>
-    
+
     <!-- Main content -->
     <section class="content">
-      <div id="RowForSearchCriteria" class="row"> 
-        <!-- left column --> 
-        
-        <!-- right column -->
-        <div class="col-md-6"> 
-          <!-- general form elements disabled -->
-          <div class="box box-warning"> 
-            <!-- <div class="box-header">
-                                    <h3 class="box-title">General Elements</h3>
-                                </div> --><!-- /.box-header -->
-            <div class="box-body">
-            	<div id="SearchCriteriaContainerDiv">
-              		<form role="form">
-                <!-- text input -->
-                <div class="form-group">
-                  <div>
-                    <label>Visit #</label>
-                  </div>
-                  <div>
-                    <input id="txtVisitId" type="text" class="form-control" placeholder="Enter ..."/>
-                  </div>
-                </div>
-                <div class="form-group">
-                  <div>
-                    <label>Order #</label>
-                  </div>
-                  <div>
-                    <input id="txtOrderId" type="text" class="form-control" placeholder="Enter ..."/>
-                  </div>
-                </div>
-                <div class="form-group">
-                  <div>
-                    <label>ACC #</label>
-                  </div>
-                  <div>
-                    <input id="txtAccId" type="text" class="form-control" placeholder="Enter ..."/>
-                  </div>
-                </div>
-                <div class="form-group">
-                  <div>
-                    <label>Patient Type</label>
-                  </div>
-                  <div>
-                    <select id="ddlPatientType" class="form-control">
-                      <option>Site class</option>
-                      <option>Patient type</option>
-                    </select>
-                  </div>
-                </div>
-                <div class="form-group">
-                  <div>
-                    <label>Patient Name</label>
-                  </div>
-                  <div>
-                    <input id="txtPatientName" type="text" class="form-control" placeholder="Enter ..."/>
-                  </div>
-                </div>
-                <div class="form-group">
-                  <div>
-                    <label>Patient MRN</label>
-                  </div>
-                  <div>
-                    <input id="txtPatientMRN" type="text" class="form-control" placeholder="Enter ..."/>
-                  </div>
-                </div>
-                <div class="form-group">
-                  <div>
-                    <label>Rad Exam Dept</label>
-                  </div>
-                  <div>
-                    <input id="txtRadExamDept" type="text" class="form-control" placeholder="Enter ..."/>
-                  </div>
-                </div>
-                <div class="form-group">
-                  <div>
-                    <label>Resource</label>
-                  </div>
-                  <div>
-                    <input id="txtResource" type="text" class="form-control" placeholder="Enter ..."/>
-                  </div>
-                </div>
-                <div class="form-group">
-                  <div>
-                    <label>Modality</label>
-                  </div>
-                  <div>
-                    <input id="txtModality" type="text" class="form-control" placeholder="Enter ..."/>
-                  </div>
-                </div>
-                <div class="form-group">
-                  <div>
-                    <label>Procedure</label>
-                  </div>
-                  <div>
-                    <input id="txtProcedure" type="text" class="form-control" placeholder="Enter ..."/>
-                  </div>
-                </div>
-                <div class="form-group">
-                  <div>
-                    <label>Current patient location</label>
-                  </div>
-                  <div>
-                    <input id="txtCurrentPatientLocation" type="text" class="form-control" placeholder="Enter ..."/>
-                  </div>
-                </div>
-                <div class="form-group">
-                  <div>
-                    <label>Current exam status</label>
-                  </div>
-                  <div>
-                    <input id="txtCurrentExamStatus" type="text" class="form-control" placeholder="Enter ..."/>
-                  </div>
-                </div>
-                <div class="form-group">
-                  <div>
-                    <label>Site</label>
-                  </div>
-                  <div>
-                    <input id="txtSite" type="text" class="form-control" placeholder="Enter ..."/>
-                  </div>
-                </div>
-                <div class="form-group">
-                  <div></div>
-                  <div>
-                    <div class="checkbox">
-                      <label>
-                        <input id="chkMyOrder" type="checkbox"/>
-                        My Orders </label>
+        <div id="RowForSearchCriteria" class="row"> 
+            <!-- left column --> 
+
+            <!-- right column -->
+            <div class="col-md-6"> 
+                <!-- general form elements disabled -->
+                <div class="box box-warning"> 
+                    <!-- <div class="box-header">
+                                            <h3 class="box-title">General Elements</h3>
+                                        </div> --><!-- /.box-header -->
+                    <div class="box-body">
+                        <div id="SearchCriteriaContainerDiv">
+                            <form role="form">
+
+                                <div class="form-group">
+                                    <div></div>
+                                    <div>
+                                        <div class="checkbox">
+                                            <label>
+                                                <input id="chkMyOrder" type="checkbox"/>
+                                                My Orders </label>
+                                        </div>
+                                        <div class="checkbox">
+                                            <label>
+                                                <input id="chkMyExams" type="checkbox"/>
+                                                My Exams </label>
+                                        </div>
+                                        <div class="checkbox">
+                                            <label>
+                                                <input id="chkMyReports" type="checkbox"/>
+                                                My Reports </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- text input -->
+                                <div class="form-group">
+                                    <div>
+                                        <label>Visit #</label>
+                                    </div>
+                                    <div>
+                                        <input id="txtVisitId" type="text" class="form-control" placeholder="Enter ..."/>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div>
+                                        <label>Order #</label>
+                                    </div>
+                                    <div>
+                                        <input id="txtOrderId" type="text" class="form-control" placeholder="Enter ..."/>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div>
+                                        <label>ACC #</label>
+                                    </div>
+                                    <div>
+                                        <input id="txtAccId" type="text" class="form-control" placeholder="Enter ..."/>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div>
+                                        <label>Patient Type</label>
+                                    </div>
+                                    <div>
+                                        <select id="ddlPatientType" class="form-control">
+                                            <option>Site class</option>
+                                            <option>Patient type</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div>
+                                        <label>Patient Name</label>
+                                    </div>
+                                    <div>
+                                        <input id="txtPatientName" type="text" class="form-control" placeholder="Enter ..."/>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div>
+                                        <label>Patient MRN</label>
+                                    </div>
+                                    <div>
+                                        <input id="txtPatientMRN" type="text" class="form-control" placeholder="Enter ..."/>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div>
+                                        <label>Rad Exam Dept</label>
+                                    </div>
+                                    <div>
+                                        <input id="txtRadExamDept" type="text" class="form-control" placeholder="Enter ..."/>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div>
+                                        <label>Resource</label>
+                                    </div>
+                                    <div>
+                                        <input id="txtResource" type="text" class="form-control" placeholder="Enter ..."/>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div>
+                                        <label>Modality</label>
+                                    </div>
+                                    <div>
+                                        <input id="txtModality" type="text" class="form-control" placeholder="Enter ..."/>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div>
+                                        <label>Procedure</label>
+                                    </div>
+                                    <div>
+                                        <input id="txtProcedure" type="text" class="form-control" placeholder="Enter ..."/>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div>
+                                        <label>Current patient location</label>
+                                    </div>
+                                    <div>
+                                        <input id="txtCurrentPatientLocation" type="text" class="form-control" placeholder="Enter ..."/>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div>
+                                        <label>Current exam status</label>
+                                    </div>
+                                    <div>
+                                        <input id="txtCurrentExamStatus" type="text" class="form-control" placeholder="Enter ..."/>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div>
+                                        <label>Site</label>
+                                    </div>
+                                    <div>
+                                        <input id="txtSite" type="text" class="form-control" placeholder="Enter ..."/>
+                                    </div>
+                                </div>
+
+                                <div class="box-footer">
+                                    <div class="form-group">
+                                        <div></div>
+                                        <div>
+                                            <button id="btnSearchExam" class="btn btn-primary" type="submit">Search</button>
+                                            <button class="btn btn-danger" type="reset">Reset</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
                     </div>
-                    <div class="checkbox">
-                      <label>
-                        <input id="chkMyExams" type="checkbox"/>
-                        My Exams </label>
-                    </div>
-                    <div class="checkbox">
-                      <label>
-                        <input id="chkMyReports" type="checkbox"/>
-                        My Reports </label>
-                    </div>
-                  </div>
+                    <!-- /.box-body --> 
                 </div>
-                <div class="box-footer">
-                  <div class="form-group">
-                    <div></div>
-                    <div>
-                      <button id="btnSearchExam" class="btn btn-primary" type="submit">Search</button>
-                      <button class="btn btn-danger" type="reset">Reset</button>
-                    </div>
-                  </div>
-                </div>
-              </form>
-             	</div>
+
+                <!-- /.box --> 
             </div>
-            <!-- /.box-body --> 
-          </div>
-          
-          <!-- /.box --> 
+            <!--/.col (right) --> 
         </div>
-        <!--/.col (right) --> 
-      </div>
-      <!-- /.row --> 
-      
-      <div id="RowForGridDiv" class="row" style="display:none;">
-      	<div class="col-md-12">  		
-          <div class="box box-warning">
-          	<div class="box-header">
-                 <!--h3 class="box-title">General Elements</h3-->
-                 <button id="btnShowSearchCriteria" style="float: right; margin:10px 40px 0 0;">Back To Search</button>
+        <!-- /.row --> 
+
+        <div id="RowForGridDiv" class="row" style="display:none;">
+            <div class="col-md-12">  		
+                <div class="box box-warning">
+                    <div class="box-header">
+                        <!--h3 class="box-title">General Elements</h3-->
+                        <button id="btnShowSearchCriteria" style="float: right; margin:10px 40px 0 0;">Back To Search</button>
+                    </div>
+                    <div class="box-body">
+                        <div id="SearchExamGridContainerDiv">
+                            <table id="tblSearchExam"></table>
+                            <div id="searchExamGridPagerDiv"></div>
+                        </div>
+                    </div>
+                </div>
             </div>
-          	<div class="box-body">
-          		<div id="SearchExamGridContainerDiv">
-          			<table id="tblSearchExam"></table>
-          			<div id="searchExamGridPagerDiv"></div>
-          		</div>
-          	</div>
-          </div>
-      	</div>
-      </div>
-      
+        </div>
+
     </section>
     <!-- /.content --> 
-  </aside>
-  <!-- /.right-side --> 
-  <!-- /.right-side --> 
+</aside>
+<!-- /.right-side --> 
+<!-- /.right-side --> 
 </div>
 <!-- ./wrapper --> 
 
 
 
-    
+
 
 <!--<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>-->
 
@@ -251,244 +253,254 @@
   <%= javascript_include_tag 'jqgrid/jquery.jqGrid.js' %>
   <%= javascript_tag "window._token = '#{form_authenticity_token}'" %>
   <script type='text/javascript'>
-  
-  $(document).ready(function(){
-  	
-               
-  	//========Search functionality=================
-  	$("#btnSearchExam").click(function(e){
-  		e.preventDefault();
-		
-		var searchCriteriaJSON = {
-  			"visit":$("#txtVisitId").val(),
-  			"order_id":$("#txtOrderId").val(),
-  			"accession":$("#txtAccId").val(),
-  			"patient_type":$("#ddlPatientType").val(),
-  			"patient_name":$("#txtPatientName").val(),
-  			"mrn":$("#txtPatientMRN").val(),
-  			"rad_exam_dept":$("#txtRadExamDept").val(),
-  			"resource_name":$("#txtResource").val(),
-  			"modality":$("#txtModality").val(),
-  			"code":$("#txtProcedure").val(),
-  			"patient_location_at_exam":$("#txtCurrentPatientLocation").val(),
-  			"current_status":$("#txtCurrentExamStatus").val(),
-  			"site_name":$("#txtSite").val(),
-  			"my_order":$("#chkMyOrder").val(),
-  			"my_exams":$("#chkMyExams").val(),
-  			"my_reports":$("#chkMyReports").val()
-  		};
-		
-  		$("#SearchCriteriaContainerDiv").slideUp('slow');
-  		$("#RowForSearchCriteria").hide();
-  		$("#RowForGridDiv").show();
-  		$('#SearchExamGridContainerDiv').html('').append('<table id="tblSearchExam" class="scroll"></table> <div id="searchExamGridPagerDiv" class="scroll text-center"></div>');
-        $("#tblSearchExam").jqGrid({
-            datatype: "json",
-            url: '/home/get_jqgridSearch_exam_data/',
-            mtype: 'POST',
-			postData: {
-                allSearchCriteriaInJson: searchCriteriaJSON,
-                authenticity_token: window._token
+
+    $(document).ready(function () {
+
+
+        //========Search functionality=================
+        $("#btnSearchExam").click(function (e) {
+            e.preventDefault();
+
+            var searchCriteriaJSON = {
+                "visit": $("#txtVisitId").val(),
+                "order_id": $("#txtOrderId").val(),
+                "accession": $("#txtAccId").val(),
+                "patient_type": $("#ddlPatientType").val(),
+                "patient_name": $("#txtPatientName").val(),
+                "mrn": $("#txtPatientMRN").val(),
+                "rad_exam_dept": $("#txtRadExamDept").val(),
+                "resource_name": $("#txtResource").val(),
+                "modality": $("#txtModality").val(),
+                "code": $("#txtProcedure").val(),
+                "patient_location_at_exam": $("#txtCurrentPatientLocation").val(),
+                "current_status": $("#txtCurrentExamStatus").val(),
+                "site_name": $("#txtSite").val(),
+                "my_order": $("#chkMyOrder").val(),
+                "my_exams": $("#chkMyExams").val(),
+                "my_reports": $("#chkMyReports").val()
+            };
+
+            $("#SearchCriteriaContainerDiv").slideUp('slow');
+            $("#RowForSearchCriteria").hide();
+            $("#RowForGridDiv").show();
+            $('#SearchExamGridContainerDiv').html('').append('<table id="tblSearchExam" class="scroll"></table> <div id="searchExamGridPagerDiv" class="scroll text-center"></div>');
+            $("#tblSearchExam").jqGrid({
+                datatype: "json",
+                url: '/home/get_jqgridSearch_exam_data/',
+                mtype: 'POST',
+                postData: {
+                    allSearchCriteriaInJson: searchCriteriaJSON,
+                    authenticity_token: window._token
+                },
+                colNames: ['A#', 'Appt Time', 'Begin Exam', 'End Exam', 'SignIn', 'CheckIn', 'Progress Status', 'Current Status', 'Status Last Changed', 'Patient Name', 'Patient MRN', 'Patient DOB', 'Site', 'Patient Class', 'Patient Type', 'Patient Location at exam', 'Radiology Department', 'Exam Resource', 'Modality', 'Proc Code', 'Proc Description', 'Ordering Provider', 'Scheduler', 'Technologist', 'PACS Image Count'],
+                colModel: [
+                    {name: 'accession', index: 'accession', align: 'center', width: 40, fixed: true, formatter: makeIdAsLinkFormatter}
+                    , {name: 'appt_time', index: 'appt_time', align: 'center', width: 150, fixed: true}
+                    , {name: 'begin_exam', index: 'begin_exam', align: 'center', width: 150, fixed: true}
+                    , {name: 'end_exam', index: 'end_exam', align: 'center', width: 150, fixed: true}
+                    , {name: 'sign_in', index: 'sign_in', align: 'center', width: 150, fixed: true}
+                    , {name: 'check_in', index: 'check_in', align: 'center', width: 140, fixed: true}
+                    , {name: 'graph_status', index: 'graph_status', align: 'center', width: 325, fixed: true, formatter: parseStatusOfExamFormatter}
+                    , {name: 'current_status', index: 'current_status', align: 'center', width: 100, fixed: true}
+                    , {name: 'updated_at', index: 'updated_at', align: 'center', width: 150, fixed: true}
+                    , {name: 'patient_name', index: 'patient_name', align: 'center', width: 140, fixed: true}
+                    , {name: 'mrn', index: 'mrn', align: 'center', width: 120, fixed: true}
+                    , {name: 'birthdate', index: 'birthdate', align: 'center', width: 140, fixed: true}
+                    , {name: 'site_name', index: 'site_name', align: 'center', width: 80, fixed: true}
+                    , {name: 'patient_class', index: 'patient_class', align: 'center', width: 80, fixed: true}
+                    , {name: 'patient_type', index: 'patient_type', align: 'center', width: 80, fixed: true}
+                    , {name: 'patient_location_at_exam', index: 'patient_location_at_exam', align: 'center', width: 150, fixed: true}
+                    , {name: 'radiology_department', index: 'radiology_department', align: 'center', width: 150, fixed: true}
+                    , {name: 'resource_name', index: 'resource_name', align: 'center', width: 130, fixed: true}
+                    , {name: 'modality', index: 'modality', align: 'center', width: 80, fixed: true}
+                    , {name: 'code', index: 'code', align: 'center', width: 80, fixed: true}
+                    , {name: 'description', index: 'description', align: 'center', width: 150, fixed: true}
+                    , {name: 'ordering_provider', index: 'ordering_provider', align: 'center', width: 150, fixed: true}
+                    , {name: 'scheduler', index: 'scheduler', align: 'center', width: 80, fixed: true}
+                    , {name: 'technologist', index: 'technologist', align: 'center', width: 80, fixed: true}
+                    , {name: 'pacs_image_count', index: 'pacs_image_count', align: 'center', width: 140, fixed: true}
+                ],
+                jsonReader: {repeatitems: false, id: "id", root: function (obj) {
+              return obj.rows;
+            }, page: function (obj) {
+              return obj.page;
+            }, total: function (obj) {
+              return obj.total;
             },
-            colNames: ['A#','Appt Time','Begin Exam','End Exam','SignIn','CheckIn','Progress Status','Current Status','Status Last Changed','Patient Name','Patient MRN','Patient DOB','Site','Patient Class','Patient Type','Patient Location at exam','Radiology Department','Exam Resource','Modality','Proc Code','Proc Description','Ordering Provider','Scheduler','Technologist','PACS Image Count'],
-            colModel: [
-                { name: 'accession', index: 'accession', align: 'center', width:40, fixed:true, formatter: makeIdAsLinkFormatter }
-				,{ name: 'appt_time', index: 'appt_time', align: 'center', width:150, fixed:true }
-				,{ name: 'begin_exam', index: 'begin_exam', align: 'center', width:150, fixed:true }
-				,{ name: 'end_exam', index: 'end_exam', align: 'center', width:150, fixed:true }
-				,{ name: 'sign_in', index: 'sign_in', align: 'center', width:150, fixed:true }
-                ,{ name: 'check_in', index: 'check_in', align: 'center', width:140, fixed:true }
-				,{ name: 'graph_status', index: 'graph_status', align: 'center', width:325, fixed:true, formatter: parseStatusOfExamFormatter }
-				,{ name: 'current_status', index: 'current_status', align: 'center', width:100, fixed:true }
-				,{ name: 'updated_at', index: 'updated_at', align: 'center', width:150, fixed:true }
-				,{ name: 'patient_name', index: 'patient_name', align: 'center', width:140, fixed:true }
-                ,{ name: 'mrn', index: 'mrn', align: 'center', width:120, fixed:true }
-				,{ name: 'birthdate', index: 'birthdate', align: 'center', width:140, fixed:true }
-				,{ name: 'site_name', index: 'site_name', align: 'center', width:80, fixed:true }
-				,{ name: 'patient_class', index: 'patient_class', align: 'center', width:80, fixed:true }
-				,{ name: 'patient_type', index: 'patient_type', align: 'center', width:80, fixed:true }
-				,{ name: 'patient_location_at_exam', index: 'patient_location_at_exam', align: 'center', width:150, fixed:true }
-				,{ name: 'radiology_department', index: 'radiology_department', align: 'center', width:150, fixed:true }
-				,{ name: 'resource_name', index: 'resource_name', align: 'center', width:130, fixed:true }
-				,{ name: 'modality', index: 'modality', align: 'center', width:80, fixed:true }			
-                ,{ name: 'code', index: 'code', align: 'center', width:80, fixed:true }
-                ,{ name: 'description', index: 'description', align: 'center', width:150, fixed:true }	
-				,{ name: 'ordering_provider', index: 'ordering_provider', align: 'center', width:150, fixed:true }
-				,{ name: 'scheduler', index: 'scheduler', align: 'center', width:80, fixed:true }
-				,{ name: 'technologist', index: 'technologist', align: 'center', width:80, fixed:true }
-                ,{ name: 'pacs_image_count', index: 'pacs_image_count', align: 'center', width:140, fixed:true }
-            ],
-            jsonReader: { repeatitems: false, id: "id", root: function (obj) { return obj.rows; }, page: function (obj) { return obj.page; }, total: function (obj) { return obj.total; },
-    records: function (obj) { return (obj.rows.length ); }
-			},
-			beforeSelectRow: function() { return false; },
-            multiselect: false,
-            autowidth: true,
-            //width:'90%',
-            scrollOffset: 0,
-            rowNum: 20,
-            rowList: [20, 30, 40, 50],
-            height: '250',
-            sortname: 'Id',
-            sortorder: "asc",
-            viewrecords: true,
-            ignoreCase: true,
-            pager: '#searchExamGridPagerDiv',
-            caption: "Exam Details",
-            rownumbers: true,
-            loadonce:true,
-            loadComplete: function (data) {
-            	
-                var datacount = $("#tblSearchExam").getGridParam("reccount");
-                if (datacount == 0) {
-                    $('.ui-jqgrid-bdiv').removeClass('JqgridAutoHeight'); 
-                    $('#tblSearchExam').jqGrid('setGridHeight','250'); 
-                }
-                if (datacount > 0) {   /*grid heigth */
-               	
-					$('#tblSearchExam').jqGrid('setGridHeight','auto');
-                    //$('.ui-jqgrid-bdiv').addClass('JqgridAutoHeight');
-                }
-                              
-            },
-        }).hideCol([ ]).navGrid('#searchExamGridPagerDiv', {
-            edit: false, add: false, del: false, search: true, refresh: true, beforeRefresh: function () {
-                //$("#tblUsersGrid").setGridParam({ postData: { pageXL: '_pageXL' } });
-                //$('#searchExamGridPagerDiv table:eq(1) tr td.nRCls').remove();
-            }, afterRefresh: function () {
-                //$('#SearchGridPager table:eq(1) tr td.nRCls').remove();
+                    records: function (obj) {
+              return (obj.rows.length);
             }
-        },
-       {}, {}, {}, {
-           width: 500, onSearch: function () {
-               //$('#searchExamGridPagerDiv table:eq(1) tr td.nRCls').remove();
-               //if ($('#searchExamGridPagerDiv table:eq(1) tr td.nRCls').length == 0 && $('#fbox_tblUsersGrid').find(':input').eq(2).val() != "") {
-                   //$('#searchExamGridPagerDiv table:eq(1) tr').append('<td class="nRCls"><span class="fntSiz11">Filtered Results Shown. Click on Refresh Data to clear filter.</span></td>');
-               //}
-               //if ($('#fbox_tblUsersGrid').find(':input').eq(2).val() != "") {
-                   //$('.ui-jqdialog-titlebar-close:eq(0)').click();
-               //}
-           },
-           onReset: function () {
-               //$('#searchExamGridPagerDiv table:eq(1) tr td.nRCls').remove();
-           }, sopt: ['cn', 'nc']
-       });
+                },
+                beforeSelectRow: function () {
+            return false;
+          },
+                multiselect: false,
+                autowidth: true,
+                //width:'90%',
+                scrollOffset: 0,
+                rowNum: 20,
+                rowList: [20, 30, 40, 50],
+                height: '250',
+                sortname: 'Id',
+                sortorder: "asc",
+                viewrecords: true,
+                ignoreCase: true,
+                pager: '#searchExamGridPagerDiv',
+                caption: "Exam Details",
+                rownumbers: true,
+                loadonce: true,
+                loadComplete: function (data) {
+
+                    var datacount = $("#tblSearchExam").getGridParam("reccount");
+                    if (datacount == 0) {
+                        $('.ui-jqgrid-bdiv').removeClass('JqgridAutoHeight');
+                        $('#tblSearchExam').jqGrid('setGridHeight', '250');
+                    }
+                    if (datacount > 0) {   /*grid heigth */
+
+                        $('#tblSearchExam').jqGrid('setGridHeight', 'auto');
+                        //$('.ui-jqgrid-bdiv').addClass('JqgridAutoHeight');
+                    }
+
+                },
+            }).hideCol([]).navGrid('#searchExamGridPagerDiv', {
+                edit: false, add: false, del: false, search: true, refresh: true, beforeRefresh: function () {
+                    //$("#tblUsersGrid").setGridParam({ postData: { pageXL: '_pageXL' } });
+                    //$('#searchExamGridPagerDiv table:eq(1) tr td.nRCls').remove();
+                }, afterRefresh: function () {
+                    //$('#SearchGridPager table:eq(1) tr td.nRCls').remove();
+                }
+            },
+            {}, {}, {}, {
+                width: 500, onSearch: function () {
+                    //$('#searchExamGridPagerDiv table:eq(1) tr td.nRCls').remove();
+                    //if ($('#searchExamGridPagerDiv table:eq(1) tr td.nRCls').length == 0 && $('#fbox_tblUsersGrid').find(':input').eq(2).val() != "") {
+                    //$('#searchExamGridPagerDiv table:eq(1) tr').append('<td class="nRCls"><span class="fntSiz11">Filtered Results Shown. Click on Refresh Data to clear filter.</span></td>');
+                    //}
+                    //if ($('#fbox_tblUsersGrid').find(':input').eq(2).val() != "") {
+                    //$('.ui-jqdialog-titlebar-close:eq(0)').click();
+                    //}
+                },
+                onReset: function () {
+                    //$('#searchExamGridPagerDiv table:eq(1) tr td.nRCls').remove();
+                }, sopt: ['cn', 'nc']
+            });
        
 		$('.ui-icon-refresh').click(function () {
 			$("#tblTechExam").setGridParam({ datatype: 'json', page: 1,postData:{accession:"",status:"",authenticity_token: window._token}}).trigger('reloadGrid');
 	   });
 	   
-  	});
-  	//==========End #btnSearchExam functionality==============
-  	
-  	$("#btnShowSearchCriteria").click(function(){
-  		$("#RowForSearchCriteria").show();
-  		$("#SearchCriteriaContainerDiv").slideDown('slow');
-  		$("#RowForGridDiv").hide();
-  	});
-  	
-	
-  	function makeIdAsLinkFormatter( cellvalue, option, rowobj ){
-  		
-  		if (cellvalue != undefined && cellvalue != null) {
-  			return '<a class="" id="lnk$#'+ cellvalue +'" onclick="showExamDetail(this.id)">' + cellvalue + '</a>';
-  		}
-  		else{
-  			return '';
-  		}
-  	}
-  	
-	function parseStatusOfExamFormatter (cellvalue, option, rowobj ) {
-		
-		var cellvalue_array = cellvalue.split(',');
-		//(cellvalue_array[0].split('->')[1] != "") ? cellvalue_array[0].split('->')[1] : cellvalue_array[1].split('->')[1];
-		firstStageTitle = cellvalue_array[0].split('->')[1]; //Order Stage
-		secondStageTitle = cellvalue_array[1].split('->')[1]; //Scheduled stage
-		thirdStageTitle = (cellvalue_array[3].split('->')[1] != "") ? cellvalue_array[3].split('->')[1] : cellvalue_array[4].split('->')[1]; //arrived stage
-		fourthStageTitle = cellvalue_array[5].split('->')[1]; //begin stage
-		fifthStageTitle = cellvalue_array[6].split('->')[1]; //complete or prelim stage
-		sixthStageTitle = cellvalue_array[7].split('->')[1]; //final stage
+        });
+        //==========End #btnSearchExam functionality==============
 
-		if(cellvalue_array[cellvalue_array.length -1] == "order"){
-			return '<div class="wizard"><a class="green" title='+ firstStageTitle +'><span class="badge"></span></a><a class="" title='+ secondStageTitle +'><span class="badge"></span></a><a class="" title='+ thirdStageTitle +'><span class="badge"></span></a><a class="" title='+ fourthStageTitle +'><span class="badge"></span></a><a class="" title='+ fifthStageTitle +'><span class="badge badge-inverse"></span></a><a title='+ sixthStageTitle +'><span class="badge"></span></a></div>';
-		}
-		else if(cellvalue_array[cellvalue_array.length -1]=="scheduled"){
-			return '<div class="wizard"><a class="current" title='+ firstStageTitle +'><span class="badge"></span></a><a class="green" title='+ secondStageTitle +'><span class="badge"></span></a><a class="" title='+ thirdStageTitle +'><span class="badge"></span></a><a class="" title='+ fourthStageTitle +'><span class="badge"></span></a><a class="" title='+ fifthStageTitle +'><span class="badge badge-inverse"></span></a><a title='+ sixthStageTitle +'><span class="badge"></span></a></div>';
-		}
-		else if(cellvalue_array[cellvalue_array.length -1] == "arrived"){
-			return '<div class="wizard"><a class="current" title='+ firstStageTitle +'><span class="badge"></span></a><a class="current" title='+ secondStageTitle +'><span class="badge"></span></a><a class="green" title='+ thirdStageTitle +'><span class="badge"></span></a><a class="" title='+ fourthStageTitle +'><span class="badge"></span></a><a class="" title='+ fifthStageTitle +'><span class="badge badge-inverse"></span></a><a title='+ sixthStageTitle +'><span class="badge"></span></a></div>';
-		}
-		else if(cellvalue_array[cellvalue_array.length -1] == "begin"){
-			return '<div class="wizard"><a class="current" title='+ firstStageTitle +'><span class="badge"></span></a><a class="current" title='+ secondStageTitle +'><span class="badge"></span></a><a class="current" title='+ thirdStageTitle +'><span class="badge"></span></a><a class="green" title='+ fourthStageTitle +'><span class="badge"></span></a><a class="" title='+ fifthStageTitle +'><span class="badge badge-inverse"></span></a><a title='+ sixthStageTitle +'><span class="badge"></span></a></div>';
-		}
-		else if(cellvalue_array[cellvalue_array.length-1] == "complete" || cellvalue_array[cellvalue_array.length-1] == "prelim"){
+        $("#btnShowSearchCriteria").click(function () {
+            $("#RowForSearchCriteria").show();
+            $("#SearchCriteriaContainerDiv").slideDown('slow');
+            $("#RowForGridDiv").hide();
+        });
 
-			return '<div class="wizard"><a class="current" title='+ firstStageTitle +'><span class="badge"></span></a><a class="current" title='+ secondStageTitle +'><span class="badge"></span></a><a class="current" title='+ thirdStageTitle +'><span class="badge"></span></a><a class="current" title='+ fourthStageTitle +'><span class="badge"></span></a><a class="green" title='+ fifthStageTitle +'><span class="badge badge-inverse"></span></a><a title='+ sixthStageTitle +'><span class="badge"></span></a></div>';
-		}
-		else if(cellvalue_array[cellvalue_array.length-1]=="final"){
-			return '<div class="wizard"><a class="current" title='+ firstStageTitle +'><span class="badge"></span></a><a class="current" title='+ secondStageTitle +'><span class="badge"></span></a><a class="current" title='+ thirdStageTitle +'><span class="badge"></span></a><a class="current" title='+ fourthStageTitle +'><span class="badge"></span></a><a class="current" title='+ fifthStageTitle +'><span class="badge badge-inverse"></span></a><a class="green" title='+ sixthStageTitle +'><i class="fa fa-check" style="display: table-cell; float: right; margin: 8px;"></i></a></div>';
-		}
-		else if(cellvalue_array[cellvalue_array.length-1]=="cancelled"){
-			
-			var cancelledAtStageClass;
-			if(sixthStageTitle == ""){
-				if(fifthStageTitle == ""){
-					if(fourthStageTitle == ""){
-						if(thirdStageTitle == ""){
-							if(secondStageTitle == ""){
-								cancelledAtStageClass = "firstStageClass";
-							}
-							else{
-								cancelledAtStageClass = "secondStageClass";
-							}
-						}
-						else{
-							cancelledAtStageClass = "thirdStageClass";
-						}
-					}
-					else{
-						cancelledAtStageClass = "fourthStageClass";
-					}
-				}
-				else{
-					cancelledAtStageClass = "fifthStageClass";
-				}
-			}
-			else{
-				cancelledAtStageClass = "sixthStageClass";
-			}
-			
-			var graphStatusUI;//GraphUI to be displayed when cancelled status comes.
-			if(cancelledAtStageClass == "sixthStageClass"){
-				graphStatusUI = $('<div class="wizard"><a class="firstStageClass" title='+ firstStageTitle +'><span class="badge"></span></a><a class="secondStageClass" title='+ secondStageTitle +'><span class="badge"></span></a><a class="thirdStageClass" title='+ thirdStageTitle +'><span class="badge"></span></a><a class="fourthStageClass" title='+ fourthStageTitle +'><span class="badge"></span></a><a class="fifthStageClass" title='+ fifthStageTitle +'><span class="badge badge-inverse"></span></a><a class="sixthStageClass" title='+ sixthStageTitle +'><i class="fa fa-check" style="display: table-cell; float: right; margin: 8px;"></i></a></div>');
-			}
-			else{
-				graphStatusUI = $('<div class="wizard"><a class="firstStageClass" title='+ firstStageTitle +'><span class="badge"></span></a><a class="secondStageClass" title='+ secondStageTitle +'><span class="badge"></span></a><a class="thirdStageClass" title='+ thirdStageTitle +'><span class="badge"></span></a><a class="fourthStageClass" title='+ fourthStageTitle +'><span class="badge"></span></a><a class="fifthStageClass" title='+ fifthStageTitle +'><span class="badge badge-inverse"></span></a><a class="sixthStageClass" title='+ sixthStageTitle +'></a></div>');
-			}
 
-			cancelledStageIndex = $(graphStatusUI).find('a.'+ cancelledAtStageClass +'').index();
-			$(graphStatusUI).find('a:lt('+cancelledStageIndex+')').addClass("current");
-			$(graphStatusUI).find('a:eq('+cancelledStageIndex+')').addClass("red");
-			$(graphStatusUI).find('a:gt('+cancelledStageIndex+')').addClass("grey");
-			
-			 return $(graphStatusUI).prop('outerHTML');
-		}
-		else{
-			return 'Can not parse "' + cellvalue + '" status';
-		}
-	  }
-  	       
-            
-  });
+        function makeIdAsLinkFormatter(cellvalue, option, rowobj) {
+
+            if (cellvalue != undefined && cellvalue != null) {
+                return '<a class="" id="lnk$#' + cellvalue + '" onclick="showExamDetail(this.id)">' + cellvalue + '</a>';
+            }
+            else {
+                return '';
+            }
+        }
+
+        function parseStatusOfExamFormatter(cellvalue, option, rowobj) {
+
+            var cellvalue_array = cellvalue.split(',');
+            //(cellvalue_array[0].split('->')[1] != "") ? cellvalue_array[0].split('->')[1] : cellvalue_array[1].split('->')[1];
+            firstStageTitle = cellvalue_array[0].split('->')[1]; //Order Stage
+            secondStageTitle = cellvalue_array[1].split('->')[1]; //Scheduled stage
+            thirdStageTitle = (cellvalue_array[3].split('->')[1] != "") ? cellvalue_array[3].split('->')[1] : cellvalue_array[4].split('->')[1]; //arrived stage
+            fourthStageTitle = cellvalue_array[5].split('->')[1]; //begin stage
+            fifthStageTitle = cellvalue_array[6].split('->')[1]; //complete or prelim stage
+            sixthStageTitle = cellvalue_array[7].split('->')[1]; //final stage
+
+            if (cellvalue_array[cellvalue_array.length - 1] == "order") {
+                return '<div class="wizard"><a class="green" title=' + firstStageTitle + '><span class="badge"></span></a><a class="" title=' + secondStageTitle + '><span class="badge"></span></a><a class="" title=' + thirdStageTitle + '><span class="badge"></span></a><a class="" title=' + fourthStageTitle + '><span class="badge"></span></a><a class="" title=' + fifthStageTitle + '><span class="badge badge-inverse"></span></a><a title=' + sixthStageTitle + '><span class="badge"></span></a></div>';
+            }
+            else if (cellvalue_array[cellvalue_array.length - 1] == "scheduled") {
+                return '<div class="wizard"><a class="current" title=' + firstStageTitle + '><span class="badge"></span></a><a class="green" title=' + secondStageTitle + '><span class="badge"></span></a><a class="" title=' + thirdStageTitle + '><span class="badge"></span></a><a class="" title=' + fourthStageTitle + '><span class="badge"></span></a><a class="" title=' + fifthStageTitle + '><span class="badge badge-inverse"></span></a><a title=' + sixthStageTitle + '><span class="badge"></span></a></div>';
+            }
+            else if (cellvalue_array[cellvalue_array.length - 1] == "arrived") {
+                return '<div class="wizard"><a class="current" title=' + firstStageTitle + '><span class="badge"></span></a><a class="current" title=' + secondStageTitle + '><span class="badge"></span></a><a class="green" title=' + thirdStageTitle + '><span class="badge"></span></a><a class="" title=' + fourthStageTitle + '><span class="badge"></span></a><a class="" title=' + fifthStageTitle + '><span class="badge badge-inverse"></span></a><a title=' + sixthStageTitle + '><span class="badge"></span></a></div>';
+            }
+            else if (cellvalue_array[cellvalue_array.length - 1] == "begin") {
+                return '<div class="wizard"><a class="current" title=' + firstStageTitle + '><span class="badge"></span></a><a class="current" title=' + secondStageTitle + '><span class="badge"></span></a><a class="current" title=' + thirdStageTitle + '><span class="badge"></span></a><a class="green" title=' + fourthStageTitle + '><span class="badge"></span></a><a class="" title=' + fifthStageTitle + '><span class="badge badge-inverse"></span></a><a title=' + sixthStageTitle + '><span class="badge"></span></a></div>';
+            }
+            else if (cellvalue_array[cellvalue_array.length - 1] == "complete" || cellvalue_array[cellvalue_array.length - 1] == "prelim") {
+
+                return '<div class="wizard"><a class="current" title=' + firstStageTitle + '><span class="badge"></span></a><a class="current" title=' + secondStageTitle + '><span class="badge"></span></a><a class="current" title=' + thirdStageTitle + '><span class="badge"></span></a><a class="current" title=' + fourthStageTitle + '><span class="badge"></span></a><a class="green" title=' + fifthStageTitle + '><span class="badge badge-inverse"></span></a><a title=' + sixthStageTitle + '><span class="badge"></span></a></div>';
+            }
+            else if (cellvalue_array[cellvalue_array.length - 1] == "final") {
+                return '<div class="wizard"><a class="current" title=' + firstStageTitle + '><span class="badge"></span></a><a class="current" title=' + secondStageTitle + '><span class="badge"></span></a><a class="current" title=' + thirdStageTitle + '><span class="badge"></span></a><a class="current" title=' + fourthStageTitle + '><span class="badge"></span></a><a class="current" title=' + fifthStageTitle + '><span class="badge badge-inverse"></span></a><a class="green" title=' + sixthStageTitle + '><i class="fa fa-check" style="display: table-cell; float: right; margin: 8px;"></i></a></div>';
+            }
+            else if (cellvalue_array[cellvalue_array.length - 1] == "cancelled") {
+
+                var cancelledAtStageClass;
+                if (sixthStageTitle == "") {
+                    if (fifthStageTitle == "") {
+                        if (fourthStageTitle == "") {
+                            if (thirdStageTitle == "") {
+                                if (secondStageTitle == "") {
+                                    cancelledAtStageClass = "firstStageClass";
+                                }
+                                else {
+                                    cancelledAtStageClass = "secondStageClass";
+                                }
+                            }
+                            else {
+                                cancelledAtStageClass = "thirdStageClass";
+                            }
+                        }
+                        else {
+                            cancelledAtStageClass = "fourthStageClass";
+                        }
+                    }
+                    else {
+                        cancelledAtStageClass = "fifthStageClass";
+                    }
+                }
+                else {
+                    cancelledAtStageClass = "sixthStageClass";
+                }
+
+                var graphStatusUI;//GraphUI to be displayed when cancelled status comes.
+                if (cancelledAtStageClass == "sixthStageClass") {
+                    graphStatusUI = $('<div class="wizard"><a class="firstStageClass" title=' + firstStageTitle + '><span class="badge"></span></a><a class="secondStageClass" title=' + secondStageTitle + '><span class="badge"></span></a><a class="thirdStageClass" title=' + thirdStageTitle + '><span class="badge"></span></a><a class="fourthStageClass" title=' + fourthStageTitle + '><span class="badge"></span></a><a class="fifthStageClass" title=' + fifthStageTitle + '><span class="badge badge-inverse"></span></a><a class="sixthStageClass" title=' + sixthStageTitle + '><i class="fa fa-check" style="display: table-cell; float: right; margin: 8px;"></i></a></div>');
+                }
+                else {
+                    graphStatusUI = $('<div class="wizard"><a class="firstStageClass" title=' + firstStageTitle + '><span class="badge"></span></a><a class="secondStageClass" title=' + secondStageTitle + '><span class="badge"></span></a><a class="thirdStageClass" title=' + thirdStageTitle + '><span class="badge"></span></a><a class="fourthStageClass" title=' + fourthStageTitle + '><span class="badge"></span></a><a class="fifthStageClass" title=' + fifthStageTitle + '><span class="badge badge-inverse"></span></a><a class="sixthStageClass" title=' + sixthStageTitle + '></a></div>');
+                }
+
+                cancelledStageIndex = $(graphStatusUI).find('a.' + cancelledAtStageClass + '').index();
+                $(graphStatusUI).find('a:lt(' + cancelledStageIndex + ')').addClass("current");
+                $(graphStatusUI).find('a:eq(' + cancelledStageIndex + ')').addClass("red");
+                $(graphStatusUI).find('a:gt(' + cancelledStageIndex + ')').addClass("grey");
+
+                return $(graphStatusUI).prop('outerHTML');
+            }
+            else {
+                return 'Can not parse "' + cellvalue + '" status';
+            }
+        }
+
+
+    });
   // =======End of documnet.ready()
-  
+
   //function showExamDetail(id) {
-	//	$("#ExamDetailPopupDiv").modal('show');
-	//  }
+    //	$("#ExamDetailPopupDiv").modal('show');
+    //  }
 
   </script>
 <% end %>  
 <!-- End of :body_javascript_section -->
 
 
- 
+
