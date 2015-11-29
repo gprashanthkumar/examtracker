@@ -187,7 +187,7 @@ class Rad_Exam < ActiveRecord::Base
         exams_search = exams_search.where("pmrn.mrn in ( '" +  params[:mrn] +"')" ).all ;
      end      
       if ((params[:patient_name] != "") && !(params[:patient_name].nil?) && !(params[:patient_name].blank?))          
-        exams_search = exams_search.where("p.name like ?,","%#{params[:patient_name]}%" ).all ;
+        exams_search = exams_search.where("p.name ilike ?,","%#{params[:patient_name]}%" ).all ;
       end
       
     
