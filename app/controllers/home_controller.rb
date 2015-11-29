@@ -85,7 +85,19 @@ class HomeController < ApplicationController
            blnFirstCall = true   
             puts "in my reports deep";
          end
-      end      
+      end   
+      
+      if (@myvalues[:my_orders] == "on")
+        @exams3 = Rad_Exam.get_exams_search(@employee.id,@myvalues,false,false,true)  
+          if (blnFirstCall == false)
+           @exams = @exams3;
+           blnFirstCall = true     
+          else
+            @exams3.each do |ex|
+              @exams.new(ex)
+            end
+         end
+      end  
       
     else
       @exams = Rad_Exam.get_exams_search(@employee.id,@myvalues)  
