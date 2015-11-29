@@ -200,7 +200,7 @@ class Rad_Exam < ActiveRecord::Base
       end
       
      if ((params[:code] != "") && !(params[:code].nil?) && !(params[:code].blank?))          
-        exams_search = exams_search.where("  [proc.code, proc.description].join('')  ilike ?", "%#{params[:code]}%" ).all ;
+        exams_search = exams_search.where("  proc_code_desc  ilike ?", "%#{params[:code]}%" ).all ;
       end
       
     #
@@ -233,5 +233,8 @@ class Rad_Exam < ActiveRecord::Base
     arraystring.gsub!  "\", \"", "', '";
     arraystring.gsub!  "\"", "'";
     return arraystring;
+  end
+  def proc_code_desc
+    [proc.code, proc.description].join('');
   end
 end
