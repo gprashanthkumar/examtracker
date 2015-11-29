@@ -192,7 +192,7 @@ class Rad_Exam < ActiveRecord::Base
     if (myorders == true)
       puts "its in myorders"
        exams_search = exams_search.Radiologist_Transcript;
-      exams_search = exams_search.where("( (repp.attending_id = ?) or (repp.ordering_id = ?) or  (rr.authorizing = ?) ) ",employeeid,employeeid,employeeid).all;
+      exams_search = exams_search.where("( (repp.attending_id = ?) or (repp.ordering_id = ?) or  (repp.authorizing = ?) ) ",employeeid,employeeid,employeeid).all;
     end
     
   

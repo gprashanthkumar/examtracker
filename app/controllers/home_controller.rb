@@ -74,27 +74,26 @@ class HomeController < ApplicationController
     @myvalues = params[:allSearchCriteriaInJson];
     
     symbolize_keys_deep! @myvalues;
-    blnFirstCall = false;
+    blnFirstCall = t;ue
     if ( (@myvalues[:my_reports] == "on") || (@myvalues[:my_exams] == "on") || (@myvalues[:my_orders] == "on"))
       
       if (@myvalues[:my_reports] == "on")
        
         @exams1 = Rad_Exam.get_exams_search(@employee.id,@myvalues,true,false,false) ;
         
-         if (blnFirstCall == false)
+         if (blnFirstCall)
            @exams = @exams1;
-           blnFirstCall = true   
+           blnFirstCall = false;   
             puts "in my reports deep";
          end
       end   
-      
-      if (@myvalues[:my_orders] == "on")
+      if (@myvalues[:my_exams] == "on")
          puts "in my :my_orders ";
         @exams3 = Rad_Exam.get_exams_search(@employee.id,@myvalues,false,false,true) ; 
         
-          if (blnFirstCall == false)
+          if (blnFirstCall)
            @exams = @exams3;
-           blnFirstCall = true     
+           blnFirstCall = false;
           else
             @exams3.each do |ex|
               @exams.new(ex)
@@ -102,10 +101,24 @@ class HomeController < ApplicationController
          end
       end  
       
-    else
-      @exams = Rad_Exam.get_exams_search(@employee.id,@myvalues)  
-    end
+      if (@myvalues[:my_orders] == "on")
+         puts "in my :my_orders ";
+        @exams3 = Rad_Exam.get_exams_search(@employee.id,@myvalues,false,false,true) ; 
+        
+          if (blnFirstCall)
+           @exams = @exams3;
+           blnFirstCall = false;
+          else
+            @exams3.each do |ex|
+              @exams.new(ex)
+            end
+         end
+      end  
+      
     
+      if (blnFirstCall == false)
+        @exams = Rad_Exam.get_exams_search(@employee.id,@myvalues)      
+      end
     
     
     @exams.each do |exam| 
