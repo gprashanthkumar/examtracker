@@ -220,7 +220,7 @@ class Rad_Exam < ActiveRecord::Base
       end
       
      if ((params[:site_name] != "") && !(params[:site_name].nil?) && !(params[:site_name].blank?))          
-        exams_search = exams_search.where("site_name ilike ?", "%#{params[:site_name]}%" ).all ;
+        exams_search = exams_search.where("CASE WHEN s.name IS NULL THEN s.site ELSE s.name END  ilike ?", "%#{params[:site_name]}%" ).all ;
       end
       
     #
