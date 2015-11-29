@@ -73,7 +73,7 @@ class HomeController < ApplicationController
     @employee = Employee.get_employee(session[:username])  
     @myvalues = params[:allSearchCriteriaInJson];
     
-    symbolize_keys_deep! @myvalues
+    symbolize_keys_deep! @myvalues;
     blnFirstCall = false;
     if ( (@myvalues[:my_reports] == "on") || (@myvalues[:my_exams] == "on") || (@myvalues[:my_orders] == "on"))
       if (@myvalues[:my_reports] == "on")
@@ -83,30 +83,8 @@ class HomeController < ApplicationController
            @exams = @exams1;
            blnFirstCall = true           
          end
-      end
-       if (@myvalues[:my_exams] == "on")
-         puts "in my exams";
-        @exams2 = Rad_Exam.get_exams_search(@employee.id,@myvalues,false,true,false)  
-          if (blnFirstCall = false)
-           @exams = @exams2;
-           blnFirstCall = true     
-          else
-            @exams2.each do |ex|
-              @exams.new(ex)
-            end
-         end
-      end
-       if (@myvalues[:my_orders] == "on")
-        @exams3 = Rad_Exam.get_exams_search(@employee.id,@myvalues,false,false,true)  
-          if (blnFirstCall = false)
-           @exams = @exams3;
-           blnFirstCall = true     
-          else
-            @exams3.each do |ex|
-              @exams.new(ex)
-            end
-         end
-      end  
+      end      
+      
     else
       @exams = Rad_Exam.get_exams_search(@employee.id,@myvalues)  
     end
