@@ -182,7 +182,13 @@ class Rad_Exam < ActiveRecord::Base
   
   def self.get_exams_search(employeeid,params)    
      
-    exams_search = self.join_Main;     
+    exams_search = self.join_Main;  
+    
+     if ((params[:order_id] != "") && !(params[:order_id].nil?) && !(params[:order_id].blank?)) 
+        exams_search = exams_search.join("Left JOIN orders o on o.id = rad_exams.order_id")
+        exams_search = exams_search.where(" (o.order_number ilike ?)  " , "%#{params[:order_id]}%" ).all ;
+      end
+    
      if ((params[:accession] != "") && !(params[:accession].nil?) && !(params[:accession].blank?))            
           exams_search = exams_search.where("accession ilike ?", "%#{params[:accession]}%" ).all ;
      end 
@@ -221,7 +227,7 @@ class Rad_Exam < ActiveRecord::Base
         exams_search = exams_search.where(" ((s.name ilike ?)  or (s.site ilike ?))", "%#{params[:site_name]}%" , "%#{params[:site_name]}%" ).all ;
       end
       
-    #
+   
      
     
       
