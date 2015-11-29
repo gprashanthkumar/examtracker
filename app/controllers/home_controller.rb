@@ -77,6 +77,7 @@ class HomeController < ApplicationController
     blnFirstCall = false;
     if ( (@myvalues[:my_reports] == "on") || (@myvalues[:my_exams] == "on") || (@myvalues[:my_orders] == "on"))
       if (@myvalues[:my_reports] == "on")
+        puts "in my reports";
         @exams1 = Rad_Exam.get_exams_search(@employee.id,@myvalues,true,false,false)  
          if (blnFirstCall = false)
            @exams = @exams1;
@@ -84,6 +85,7 @@ class HomeController < ApplicationController
          end
       end
        if (@myvalues[:my_exams] == "on")
+         puts "in my exams";
         @exams2 = Rad_Exam.get_exams_search(@employee.id,@myvalues,false,true,false)  
           if (blnFirstCall = false)
            @exams = @exams2;
