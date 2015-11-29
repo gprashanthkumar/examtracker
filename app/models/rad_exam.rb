@@ -198,6 +198,12 @@ class Rad_Exam < ActiveRecord::Base
       if ((params[:modality] != "") && !(params[:modality].nil?) && !(params[:modality].blank?))          
         exams_search = exams_search.where("modality ilike ?", "%#{params[:modality]}%" ).all ;
       end
+      
+     if ((params[:code] != "") && !(params[:code].nil?) && !(params[:code].blank?))          
+        exams_search = exams_search.where("proc.code + proc.description ilike ?", "%#{params[:code]}%" ).all ;
+      end
+      
+    #
       #if ((params[:patient_class] != "") && !(params[:patient_class].nil?) && !(params[:patient_class].blank?))          
        # exams_search = exams_search.where("sc.name ilike ?", "%#{params[:patient_class]}%" ).all ;
       #end
