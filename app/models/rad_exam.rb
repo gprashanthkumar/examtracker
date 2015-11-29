@@ -87,7 +87,6 @@ class Rad_Exam < ActiveRecord::Base
     csfilter = stringArray_to_string(csfilter);
     
     rad_exams = self.join_Main.Radiologist_Transcript.where("( (rr.rad1_id = ?) or (rr.rad2_id = ?) or  (rr.rad3_id = ?) or (rr.rad4_id = ?)) or (repp.performing_id = ?) ",employeeid,employeeid,employeeid,employeeid,employeeid) .order("id desc").all;              
-    #rad_exams = rad_exams.where("accession in (?)",accessions.to_s.gsub!("[","").gsub!("]","")).order("id desc").all unless accessions.blank?; 
     rad_exams = rad_exams.where("accession in ( " + accfilter +")" ).all unless accessions.blank?; 
     rad_exams = rad_exams.where("uet.event_type in ( " + csfilter +")" ).all unless current_status.blank?; 
     
@@ -180,7 +179,7 @@ class Rad_Exam < ActiveRecord::Base
     self.join_Main.order("id desc").all;
   end
   
-  def self.get_exams_search(employeeid,params)    
+  def self.get_exams_search(employeeid,params,myreports = false)    
      
     exams_search = self.join_Main;  
     if ((params[:visit] != "") && !(params[:visit].nil?) && !(params[:visit].blank?)) 
