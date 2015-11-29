@@ -219,12 +219,12 @@ class Rad_Exam < ActiveRecord::Base
         exams_search = exams_search.where("  patient_location_at_exam  ilike ?", "%#{params[:patient_exam_location]}%" ).all ;
       end
       
-    
+     if ((params[:site_name] != "") && !(params[:site_name].nil?) && !(params[:site_name].blank?))          
+        exams_search = exams_search.where("s.name ilike ?", "%#{params[:site_name]}%" ).all ;
+      end
       
     #
-      #if ((params[:patient_class] != "") && !(params[:patient_class].nil?) && !(params[:patient_class].blank?))          
-       # exams_search = exams_search.where("sc.name ilike ?", "%#{params[:patient_class]}%" ).all ;
-      #end
+     
     
       
     #exams_search = exams_search.where("mrn in ( '" +  mrn +"')" ).all unless mrn.blank?;
