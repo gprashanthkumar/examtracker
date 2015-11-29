@@ -275,7 +275,7 @@
                 "patient_location_at_exam": $("#txtCurrentPatientLocation").val(),
                 "current_status": $("#txtCurrentExamStatus").val(),
                 "site_name": $("#txtSite").val(),
-                "my_order": $("#chkMyOrder").attr('checked'),
+                "my_order": ($("#chkMyOrder").parent().hasClass('checked') == true? "on":""),
                 "my_exams": $("#chkMyExams").attr('checked'),
                 "my_reports": $("#chkMyReports").attr('checked')
             };
