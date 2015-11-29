@@ -179,7 +179,7 @@ class Rad_Exam < ActiveRecord::Base
     self.join_Main.order("id desc").all;
   end
   
-  def self.get_exams_search(employeeid,params,myreports = false,myexams = false,myorders =false)    
+  def self.get_exams_search(employeeid,params,myreports = false,myexams = false,myorders = false)    
      
     exams_search = self.join_Main;  
     if (myreports == true)
