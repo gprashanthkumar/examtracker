@@ -185,6 +185,11 @@ class Rad_Exam < ActiveRecord::Base
     if (myreports == true)
       exams_search = exams_search.where("( (rr.rad1_id = ?) or (rr.rad2_id = ?) or  (rr.rad3_id = ?) or (rr.rad4_id = ?)) ",employeeid,employeeid,employeeid,employeeid).all;
     end
+    if (myexams == true)
+       exams_search = exams_search.Radiologist_Transcript;
+      exams_search = exams_search.where("( (repp.attending_id = ?) or (repp.ordering_id = ?) or  (rr.authorizing = ?) ) ",employeeid,employeeid,employeeid).all;
+    end
+    
     if ((params[:visit] != "") && !(params[:visit].nil?) && !(params[:visit].blank?)) 
         exams_search = exams_search.joins("Left JOIN visits v on v.id = rad_exams.visit_id")
         exams_search = exams_search.where(" (v.visit_number ilike ?)  " , "%#{params[:visit]}%" ).all ;
