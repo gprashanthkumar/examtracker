@@ -183,13 +183,21 @@ class Rad_Exam < ActiveRecord::Base
   def self.get_exams_search(employeeid,params)    
      
     exams_search = self.join_Main;     
-     if ((params[:mrn] != "") && !(params[:mrn].nil?) && !(params[:mrn].blank?))          
-        exams_search = exams_search.where("pmrn.mrn in ( '" +  params[:mrn] +"')" ).all ;
+     if ((params[:mrn] != "") && !(params[:mrn].nil?) && !(params[:mrn].blank?))            
+          exams_search = exams_search.where("pmrn.mrn ilike ?", "%#{params[:mrn]}%" ).all ;
      end      
       if ((params[:patient_name] != "") && !(params[:patient_name].nil?) && !(params[:patient_name].blank?))          
         exams_search = exams_search.where("p.name ilike ?", "%#{params[:patient_name]}%" ).all ;
+      end      
+       if ((params[:site_name] != "") && !(params[:site_name].nil?) && !(params[:site_name].blank?))          
+        exams_search = exams_search.where("sc.name ilike ?", "%#{params[:site_name]}%" ).all ;
       end
-      
+      if ((params[:modality] != "") && !(params[:modality].nil?) && !(params[:modality].blank?))          
+        exams_search = exams_search.where("modality ilike ?", "%#{params[:modality]}%" ).all ;
+      end
+      if ((params[:patient_class] != "") && !(params[:patient_class].nil?) && !(params[:patient_class].blank?))          
+        exams_search = exams_search.where("sc.name ilike ?", "%#{params[:patient_class]}%" ).all ;
+      end
     
       
     #exams_search = exams_search.where("mrn in ( '" +  mrn +"')" ).all unless mrn.blank?;
