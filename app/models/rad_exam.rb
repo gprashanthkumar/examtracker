@@ -215,6 +215,10 @@ class Rad_Exam < ActiveRecord::Base
         exams_search = exams_search.where("  uet.event_type  ilike ?", "%#{params[:current_status]}%" ).all ;
       end
       
+    if ((params[:patient_exam_location] != "") && !(params[:patient_exam_location].nil?) && !(params[:patient_exam_location].blank?))          
+        exams_search = exams_search.where("  patient_location_at_exam  ilike ?", "%#{params[:patient_exam_location]}%" ).all ;
+      end
+      
     
       
     #
