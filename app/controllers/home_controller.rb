@@ -76,6 +76,7 @@ class HomeController < ApplicationController
     symbolize_keys_deep! @myvalues;
     blnFirstCall = false;
     if ( (@myvalues[:my_reports] == "on") || (@myvalues[:my_exams] == "on") || (@myvalues[:my_orders] == "on"))
+      
       if (@myvalues[:my_reports] == "on")
         puts "in my reports";
         @exams1 = Rad_Exam.get_exams_search(@employee.id,@myvalues,true,false,false)  

@@ -66,17 +66,17 @@
                                     <div>
                                         <div class="checkbox">
                                             <label>
-                                                <input id="chkMyOrder" type="checkbox"/>
+                                                <input id="chkMyOrder" type="checkbox"  />
                                                 My Orders </label>
                                         </div>
                                         <div class="checkbox">
                                             <label>
-                                                <input id="chkMyExams" type="checkbox"/>
+                                                <input id="chkMyExams" type="checkbox" />
                                                 My Exams </label>
                                         </div>
                                         <div class="checkbox">
                                             <label>
-                                                <input id="chkMyReports" type="checkbox"/>
+                                                <input id="chkMyReports" type="checkbox" />
                                                 My Reports </label>
                                         </div>
                                     </div>
@@ -275,9 +275,9 @@
                 "patient_location_at_exam": $("#txtCurrentPatientLocation").val(),
                 "current_status": $("#txtCurrentExamStatus").val(),
                 "site_name": $("#txtSite").val(),
-                "my_order": $("#chkMyOrder").val(),
-                "my_exams": $("#chkMyExams").val(),
-                "my_reports": $("#chkMyReports").val()
+                "my_order": $("#chkMyOrder").attr('checked'),
+                "my_exams": $("#chkMyExams").attr('checked'),
+                "my_reports": $("#chkMyReports").attr('checked')
             };
 
             $("#SearchCriteriaContainerDiv").slideUp('slow');
