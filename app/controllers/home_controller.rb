@@ -90,7 +90,7 @@ class HomeController < ApplicationController
       
       if (@myvalues[:my_exams] == "on")
          puts "in my :my_orders ";
-        @exams3 = Rad_Exam.get_exams_search(@employee.id,@myvalues,false,false,true) ; 
+        @exams3 = Rad_Exam.get_exams_search(@employee.id,@myvalues,false,true,false) ; 
         
           if (blnFirstCall)
            @exams = @exams3;

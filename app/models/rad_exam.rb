@@ -186,13 +186,13 @@ class Rad_Exam < ActiveRecord::Base
       exams_search = exams_search.where("( (rr.rad1_id = ?) or (rr.rad2_id = ?) or  (rr.rad3_id = ?) or (rr.rad4_id = ?)) ",employeeid,employeeid,employeeid,employeeid).all;
     end
     if (myexams == true)
-       exams_search = exams_search.Radiologist_Transcript;
+       exams_search = exams_search.Radiologist_Transcript
       exams_search = exams_search.where("( (repp.performing_id = ?) or (repp.technologist_id = ?) or  (rr.scheduler = ?) ) ",employeeid,employeeid,employeeid).all;
     end
     if (myorders == true)
       puts "its in myorders"
-       exams_search = exams_search.Radiologist_Transcript;
-      exams_search = exams_search.where("( (repp.attending_id = ?) or (repp.ordering_id = ?) or  (repp.authorizing_id = ?) ) ",employeeid,employeeid,employeeid).all;
+       exams_search = exams_search.Radiologist_Transcript
+        exams_search = exams_search.where("( (repp.attending_id = ?) or (repp.ordering_id = ?) or  (repp.authorizing_id = ?) ) ",employeeid,employeeid,employeeid).all;
     end
     
   
