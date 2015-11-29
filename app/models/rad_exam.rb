@@ -187,7 +187,7 @@ class Rad_Exam < ActiveRecord::Base
     end
     if (myexams == true)
        exams_search = exams_search.Radiologist_Transcript
-      exams_search = exams_search.where("( (repp.performing_id = ?) or (repp.technologist_id = ?) or  (rr.scheduler_id = ?) ) ",employeeid,employeeid,employeeid).all;
+      exams_search = exams_search.where("( (repp.performing_id = ?) or (repp.technologist_id = ?) or  (repp.scheduler_id = ?) ) ",employeeid,employeeid,employeeid).all;
     end
     if (myorders == true)
       puts "its in myorders"
