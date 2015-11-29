@@ -183,6 +183,9 @@ class Rad_Exam < ActiveRecord::Base
   def self.get_exams_search(employeeid,params)    
      
     exams_search = self.join_Main;     
+     if ((params[:accession] != "") && !(params[:accession].nil?) && !(params[:accession].blank?))            
+          exams_search = exams_search.where("accession ilike ?", "%#{params[:accession]}%" ).all ;
+     end 
      if ((params[:mrn] != "") && !(params[:mrn].nil?) && !(params[:mrn].blank?))            
           exams_search = exams_search.where("pmrn.mrn ilike ?", "%#{params[:mrn]}%" ).all ;
      end      
