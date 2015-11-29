@@ -200,7 +200,7 @@ class Rad_Exam < ActiveRecord::Base
       end
       
      if ((params[:code] != "") && !(params[:code].nil?) && !(params[:code].blank?))          
-        exams_search = exams_search.where("proc.code + proc.description ilike ?", "%#{params[:code]}%" ).all ;
+        exams_search = exams_search.where("  [proc.code, proc.description].join('')  ilike ?", "%#{params[:code]}%" ).all ;
       end
       
     #
