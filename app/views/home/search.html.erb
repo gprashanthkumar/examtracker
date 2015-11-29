@@ -276,8 +276,8 @@
                 "current_status": $("#txtCurrentExamStatus").val(),
                 "site_name": $("#txtSite").val(),
                 "my_order": ($("#chkMyOrder").parent().hasClass('checked') == true? "on":""),
-                "my_exams": $("#chkMyExams").attr('checked'),
-                "my_reports": $("#chkMyReports").attr('checked')
+                "my_exams": ($("#chkMyExams").parent().hasClass('checked') == true? "on":""),
+                "my_reports":($("#chkMyReports").parent().hasClass('checked') == true? "on":"")
             };
 
             $("#SearchCriteriaContainerDiv").slideUp('slow');
