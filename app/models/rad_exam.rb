@@ -203,6 +203,12 @@ class Rad_Exam < ActiveRecord::Base
         exams_search = exams_search.where("  concat(proc.code, proc.description)  ilike ?", "%#{params[:code]}%" ).all ;
       end
       
+     if ((params[:current_status] != "") && !(params[:current_status].nil?) && !(params[:current_status].blank?))          
+        exams_search = exams_search.where("  uet.event_type  ilike ?", "%#{params[:current_status]}%" ).all ;
+      end
+      
+    
+      
     #
       #if ((params[:patient_class] != "") && !(params[:patient_class].nil?) && !(params[:patient_class].blank?))          
        # exams_search = exams_search.where("sc.name ilike ?", "%#{params[:patient_class]}%" ).all ;
