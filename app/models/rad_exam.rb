@@ -190,7 +190,7 @@ class Rad_Exam < ActiveRecord::Base
         exams_search = exams_search.where("p.name ilike ?", "%#{params[:patient_name]}%" ).all ;
       end      
        if ((params[:site_name] != "") && !(params[:site_name].nil?) && !(params[:site_name].blank?))          
-        exams_search = exams_search.where("sc.name ilike ?", "%#{params[:site_name]}%" ).all ;
+        exams_search = exams_search.where("s.name ilike ?", "%#{params[:site_name]}%" ).all ;
       end
       if ((params[:modality] != "") && !(params[:modality].nil?) && !(params[:modality].blank?))          
         exams_search = exams_search.where("modality ilike ?", "%#{params[:modality]}%" ).all ;
