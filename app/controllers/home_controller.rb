@@ -91,13 +91,18 @@ class HomeController < ApplicationController
       
       if (@myvalues[:my_exams] == "on")
          puts "in my :my_exams ";
-        @exams2 = Rad_Exam.get_exams_search(@employee.id,@myvalues,false,true,false) ; 
-            @exams2.each do |ex|
-             if idList.include?(ex.id)
-                 puts ex.id.to_s + " exams"
-               idList << ex.id;
-             end
-            end
+        @exams2 = Rad_Exam.get_exams_search(@employee.id,@myvalues,false,true,false).pluck(:id) ; 
+        if @exams2.length > 0
+            #@exams2 = Rad_Exam.get_exams_search(@employee.id,@myvalues,false,true,false).pluck(:id) ; 
+              puts @exams2.to_json + " Fire --->";
+             @exams2.each_with_index do |exam, i|                    
+                if !(idList.include? exam.to_i)   #exam[:id].to_i                    
+                   idList << exam.to_i #exam[:id].to_i                
+                end     
+             end             
+          end 
+          @exams2 = nil;
+           
         
       end  
 
