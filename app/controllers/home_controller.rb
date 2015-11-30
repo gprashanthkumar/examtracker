@@ -109,7 +109,7 @@ class HomeController < ApplicationController
         @exams3 = Rad_Exam.get_exams_search(@employee.id,@myvalues,false,false,true) ;        
                
           if @exams3.size > 0
-            @exams3 = Rad_Exam.get_exams_search(@employee.id,@myvalues,false,false,true).select(:id) ; 
+            @exams3 = Rad_Exam.get_exams_search(@employee.id,@myvalues,false,false,true).pluck(:id) ; 
               puts @exams3.to_json + " Fire --->";
              @exams3.each_with_index do |exam, i|                    
                 if idList.include? exam[:id].to_i                    
