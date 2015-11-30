@@ -80,13 +80,17 @@ class HomeController < ApplicationController
       
       if (@myvalues[:my_reports] == "on")
        puts "in my :my_exams ";
-        @exams1 = Rad_Exam.get_exams_search(@employee.id,@myvalues,true,false,false) ;        
-        @exams1.each do |ex|
-             if idList.include?(ex.id)
-               puts ex.id.to_s + "reports"
-               idList << ex.id;
-             end
-            end
+        @exams1 = Rad_Exam.get_exams_search(@employee.id,@myvalues,true,false,false).pluck(:id) ;        
+           if @exams1.length > 0
+            #@exams2 = Rad_Exam.get_exams_search(@employee.id,@myvalues,true,false,false).pluck(:id) ; 
+              puts @exams1.to_json + " Fire --->";
+             @exams1.each_with_index do |exam, i|                    
+                if !(idList.include? exam.to_i)   #exam[:id].to_i                    
+                   idList << exam.to_i #exam[:id].to_i                
+                end     
+             end             
+          end 
+          @exams1 = nil;     
       end   
       
       if (@myvalues[:my_exams] == "on")
@@ -101,10 +105,9 @@ class HomeController < ApplicationController
                 end     
              end             
           end 
-          @exams2 = nil;
-           
+          @exams2 = nil;        
         
-      end  
+      end  #myexams 
 
 
       if (@myvalues[:my_orders] == "on")
@@ -122,12 +125,12 @@ class HomeController < ApplicationController
           @exams3 = nil;
       end   
       
-    end 
-    
-    
+    end   
     
     puts idList.length.to_s + "kumar "
-      if (idList.length > 0)
+      if( 
+          (idList.length > 0) ||  (@myvalues[:my_orders] == "on") || (@myvalues[:my_exams] == "on") || (@myvalues[:my_reports] == "on")
+          )
         puts idList.to_s;
        @exams = Rad_Exam.get_exams_search_by_id_array(idList)  
       else 
