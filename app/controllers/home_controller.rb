@@ -110,8 +110,8 @@ class HomeController < ApplicationController
         puts "prashanth ["+ @exams3.size.to_s + "]";
                
           if @exams3.size > 0
-            @exams3 = Rad_Exam.get_exams_search(@employee.id,@myvalues,false,false,true) ; 
-             @exams3.each_with_index do |exam, i|
+            @exams31 = Rad_Exam.get_exams_search(@employee.id,@myvalues,false,false,true) ; 
+             @exams31.each_with_index do |exam, i|
               puts exam[i].to_json + "Radhika"
              end
              
@@ -131,7 +131,7 @@ class HomeController < ApplicationController
     
     
     
-    puts idList.length.to_s + "kumar kumar kumar"
+    puts idList.length.to_s + "kumar "
       if (idList.length > 0)
         puts idList.to_s;
        @exams = Rad_Exam.get_exams_search_by_id_array(idList)  
