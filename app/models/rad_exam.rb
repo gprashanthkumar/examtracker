@@ -208,6 +208,10 @@ class Rad_Exam < ActiveRecord::Base
      if ((params[:accession] != "") && !(params[:accession].nil?) && !(params[:accession].blank?))            
           exams_search = exams_search.where("accession ilike ?", "%#{params[:accession]}%" ).all ;
      end 
+     
+     if ((params[:patient_type] != "") && !(params[:patient_type].nil?) && !(params[:patient_type].blank?))            
+          exams_search = exams_search.where("pt.id ilike ?", "%#{params[:patient_type]}%" ).all ;
+     end 
      if ((params[:mrn] != "") && !(params[:mrn].nil?) && !(params[:mrn].blank?))            
           exams_search = exams_search.where("pmrn.mrn ilike ?", "%#{params[:mrn]}%" ).all ;
      end      
