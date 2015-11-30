@@ -75,7 +75,7 @@ class HomeController < ApplicationController
     
     symbolize_keys_deep! @myvalues;
     blnFirstCall = true
-    idList = [];
+    idList = [-99,0];
     if ( (@myvalues[:my_reports] == "on") || (@myvalues[:my_exams] == "on") || (@myvalues[:my_orders] == "on"))
       
       if (@myvalues[:my_reports] == "on")
