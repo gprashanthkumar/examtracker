@@ -112,7 +112,7 @@ class HomeController < ApplicationController
           if @exams3.size > 0
             @exams3 = Rad_Exam.get_exams_search(@employee.id,@myvalues,false,false,true) ; 
              @exams3.each_with_index do |exam, i|
-              puts exam[i].id.to_s + "Radhika"
+              puts exam[i].to_json + "Radhika"
              end
              
           end
