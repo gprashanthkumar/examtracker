@@ -75,7 +75,7 @@ class HomeController < ApplicationController
     
     symbolize_keys_deep! @myvalues;
     blnFirstCall = true
-    idList = [-99,0];
+    idList = [];
     if ( (@myvalues[:my_reports] == "on") || (@myvalues[:my_exams] == "on") || (@myvalues[:my_orders] == "on"))
       
       if (@myvalues[:my_reports] == "on")
@@ -110,8 +110,8 @@ class HomeController < ApplicationController
         puts "prashanth ["+ @exams3.size.to_s + "]";
                
           if @exams3.size > 0
-            @exams31 = Rad_Exam.get_exams_search(@employee.id,@myvalues,false,false,true) ; 
-             @exams31.each_with_index do |exam, i|
+            @exams3 = Rad_Exam.get_exams_search(@employee.id,@myvalues,false,false,true) ; 
+             @exams3.each_with_index do |exam, i|
                     puts exam[:id].to_json + "Radhika"
                 if idList.include? exam[:id].to_i
                     puts exam[:id].to_s + " orders"
@@ -121,9 +121,7 @@ class HomeController < ApplicationController
              end
              
           end
-            #@exams3.each do |ex|
-                   
-            #end
+           
             
        
         
