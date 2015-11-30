@@ -121,6 +121,7 @@ class HomeController < ApplicationController
     
     
       if (idList.length > 0)
+        puts idList.to_s;
        @exams = Rad_Exam.get_exams_search_by_id_array(idList)  
       else 
         @exams = Rad_Exam.get_exams_search(@employee.id,@myvalues)      
