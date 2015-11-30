@@ -113,10 +113,11 @@ class HomeController < ApplicationController
             @exams31 = Rad_Exam.get_exams_search(@employee.id,@myvalues,false,false,true) ; 
              @exams31.each_with_index do |exam, i|
                     puts exam[:id].to_json + "Radhika"
-                if !idList.include? exam[:id].to_i
+                if idList.include? exam[:id].to_i
                     puts exam[:id].to_s + " orders"
-                  idList.insert(exam[:id].to_i);
-                  end     
+                else
+                  idList << exam[:id].to_i
+                end     
              end
              
           end
