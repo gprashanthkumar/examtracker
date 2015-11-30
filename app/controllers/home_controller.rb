@@ -107,13 +107,14 @@ class HomeController < ApplicationController
       if (@myvalues[:my_orders] == "on")
          puts "in my :my_orders ";
         @exams3 = Rad_Exam.get_exams_search(@employee.id,@myvalues,false,false,true) ; 
-        puts "prashanth ["+ @exams3.size.to_s + "]";
+        puts "prashanth ["+ @exams3.count.to_s + "]";
                 
             @exams3.each do |ex|
-              if idList.include?(ex.id)
-                  puts ex.id.to_s + " orders"
-               idList << ex.id;
-             end
+             # if idList.include?(ex.id)
+               #   puts ex.id.to_s + " orders"
+               #idList << ex.id;
+             #end
+             puts ex.to_json
             end
         
       end  
