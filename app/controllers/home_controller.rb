@@ -144,8 +144,8 @@ class HomeController < ApplicationController
             exam.current_status = "cancelled"       
         end
         if '1017' == exam.accession
-           exam.graph_status = "ordered"
-            exam.current_status = "ordered"    
+           exam.graph_status = "order"
+            exam.current_status = "order"    
         end
       
        exam = get_graph_status(exam);
