@@ -262,6 +262,30 @@
         //========Search functionality=================
         $("#btnSearchExam").click(function (e) {
             e.preventDefault();
+            
+             if (!(
+                           ($("#txtVisitId").val() != null && $("#txtVisitId").val() != "")
+                        || ($("#txtOrderId").val() != null && $("#txtOrderId").val() != "")
+                        || ($("#txtAccId").val() != null && $("#txtAccId").val() != "")
+                        || ($("#txtAccId").val() != null && $("#txtAccId").val() != "")
+                        || ($("#ddlPatientType").val() != null && $("#ddlPatientType").val() != "")
+                        || ($("#txtPatientName").val() != null && $("#txtPatientName").val() != "")
+                        || ($("#txtPatientMRN").val() != null && $("#txtPatientMRN").val() != "")
+                        || ($("#txtRadExamDept").val() != null && $("#txtRadExamDept").val() != "")
+                        || ($("#txtResource").val() != null && $("#txtResource").val() != "")
+                        || ($("#txtModality").val() != null && $("#txtModality").val() != "")
+                        || ($("#txtProcedure").val() != null && $("#txtProcedure").val() != "")
+                        || ($("#txtCurrentPatientLocation").val() != null && $("#txtCurrentPatientLocation").val() != "")
+                        || ($("#txtCurrentExamStatus").val() != null && $("#txtCurrentExamStatus").val() != "")
+                        || ($("#txtSite").val() == null && $("#txtSite").val() == "")
+                        || ($("#chkMyOrder").parent().hasClass('checked') == true)
+                        || ($("#chkMyExams").parent().hasClass('checked') == true)
+                        || ($("#chkMyReports").parent().hasClass('checked') == true)
+                    ))
+              {
+                  alert("Please select or enter atleast one criteria to search.");
+                  return false;
+                }
 
             var searchCriteriaJSON = {
                 "visit": $("#txtVisitId").val(),
