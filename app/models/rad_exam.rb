@@ -250,7 +250,7 @@ class Rad_Exam < ActiveRecord::Base
   
   def self.get_exams_search_by_id_array(idList)
     exams_search = self.join_Main.Radiologist_Transcript;  
-    exams_search = exams_search.where("id in (?)", idList ).all ;
+    exams_search = exams_search.where("rad_exams.id in (?)", idList ).all ;
      return exams_search;
     
   end
