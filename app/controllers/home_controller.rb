@@ -75,50 +75,54 @@ class HomeController < ApplicationController
     
     symbolize_keys_deep! @myvalues;
     blnFirstCall = true
+    idList = [];
     if ( (@myvalues[:my_reports] == "on") || (@myvalues[:my_exams] == "on") || (@myvalues[:my_orders] == "on"))
       
       if (@myvalues[:my_reports] == "on")
-       
+       puts "in my :my_exams ";
         @exams1 = Rad_Exam.get_exams_search(@employee.id,@myvalues,true,false,false) ;
         
-         if (blnFirstCall)
-           @exams = @exams1;
-           blnFirstCall = false;   
-            puts "in my reports deep";
-         end
+        @exams1.each do |ex|
+             if idList.include?(ex.id)
+               idList << ex.id;
+             end
+            end
       end   
       
       if (@myvalues[:my_exams] == "on")
-         puts "in my :my_orders ";
+         puts "in my :my_exams ";
         @exams2 = Rad_Exam.get_exams_search(@employee.id,@myvalues,false,true,false) ; 
         
-          if (blnFirstCall)
-           @exams = @exams2;
-           blnFirstCall = false;
-          else
+         
             @exams2.each do |ex|
-              @exams.new(ex)
+             if idList.include?(ex.id)
+               idList << ex.id;
+             end
             end
-         end
+        
       end  
 
 
       if (@myvalues[:my_orders] == "on")
          puts "in my :my_orders ";
         @exams3 = Rad_Exam.get_exams_search(@employee.id,@myvalues,false,false,true) ; 
-        
-          if (blnFirstCall)
-           @exams = @exams3;
-           blnFirstCall = false;
-          else
-            @exams3.each do |ex|
-              @exams.new(ex)
+                
+            @exams3.each do |en|
+              if idList.include?(ex.id)
+               idList << ex.id;
+             end
             end
-         end
+        
       end  
       
-    end      
-      if (blnFirstCall == false)
+    end 
+    
+    
+    
+    
+      if (idList.Length > 0)
+       @exams = Rad_Exam.get_exams_search(@employee.id,@myvalues)  
+      else 
         @exams = Rad_Exam.get_exams_search(@employee.id,@myvalues)      
       end
     

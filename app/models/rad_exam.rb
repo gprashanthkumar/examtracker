@@ -181,22 +181,19 @@ class Rad_Exam < ActiveRecord::Base
   
   def self.get_exams_search(employeeid,params,myreports = false,myexams = false,myorders = false)    
      
-    exams_search = self.join_Main;  
+    exams_search = self.join_Main.Radiologist_Transcript;  
     if (myreports == true)
       exams_search = exams_search.where("( (rr.rad1_id = ?) or (rr.rad2_id = ?) or  (rr.rad3_id = ?) or (rr.rad4_id = ?)) ",employeeid,employeeid,employeeid,employeeid).all;
     end
     if (myexams == true)
-       exams_search = exams_search.Radiologist_Transcript
+      
       exams_search = exams_search.where("( (repp.performing_id = ?) or (repp.technologist_id = ?) or  (repp.scheduler_id = ?) ) ",employeeid,employeeid,employeeid).all;
     end
     if (myorders == true)
-      puts "its in myorders"
-       exams_search = exams_search.Radiologist_Transcript
+      puts "its in myorders"     
         exams_search = exams_search.where("( (repp.attending_id = ?) or (repp.ordering_id = ?) or  (repp.authorizing_id = ?) ) ",employeeid,employeeid,employeeid).all;
         
-    end
-    
-  
+    end 
     
     if ((params[:visit] != "") && !(params[:visit].nil?) && !(params[:visit].blank?)) 
         exams_search = exams_search.joins("Left JOIN visits v on v.id = rad_exams.visit_id")
@@ -244,15 +241,18 @@ class Rad_Exam < ActiveRecord::Base
       
      if ((params[:site_name] != "") && !(params[:site_name].nil?) && !(params[:site_name].blank?))          
         exams_search = exams_search.where(" ((s.name ilike ?)  or (s.site ilike ?))", "%#{params[:site_name]}%" , "%#{params[:site_name]}%" ).all ;
-      end
-      
+      end  
+        
    
-     
-    
-      
-    #exams_search = exams_search.where("mrn in ( '" +  mrn +"')" ).all unless mrn.blank?;
     
     return exams_search;
+  end
+  
+  def self.get_exams_search_by_id_array(idList)
+    exams_search = self.join_Main.Radiologist_Transcript;  
+    exams_search = exams_search.where("id in (?)", idList ).all ;
+     return exams_search;
+    
   end
   
   #This is main query from ra_exams details of particular accession
