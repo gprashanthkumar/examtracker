@@ -3429,12 +3429,13 @@ height:28px; margin-right:5px; background:#666; position:relative; display:inlin
 .wizard .grey:after {border-left-color:#666;}
 .wizard .red {background:red; color:#fff;}
 .wizard .red:after {border-left-color:red;}
-.wizard .gold {background:gold; color:#FFD700;}
+
+.wizard .gold {background:gold; color:#FFFFFF;}
 .wizard .gold:after {border-left-color:gold;}
-.wizard .darkorange {background:darkorange; color:#FF8C00;}
+.wizard .darkorange {background:darkorange; color:#FFFFFF;}
 .wizard .darkorange:after {border-left-color:darkorange;}
 
-.wizard .violet {background:violet; color:#EE82EE;}
+.wizard .violet {background:violet; color:#FFFFFF;}
 .wizard .violet:after {border-left-color:violet;}
 
 .wizard .vanilla {background:#f3d9ab; color:#FFFFFF ;}
