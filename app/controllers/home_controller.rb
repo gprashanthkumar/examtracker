@@ -105,8 +105,8 @@ class HomeController < ApplicationController
       if (@myvalues[:my_orders] == "on")
        
         @exams3 = Rad_Exam.get_exams_search(@employee.id,@myvalues,false,false,true).pluck(:id) ;    
-          if @exams3.size > 0
-            @exams3 = Rad_Exam.get_exams_search(@employee.id,@myvalues,false,false,true).pluck(:id) ; 
+          if @exams3.length > 0
+            #@exams3 = Rad_Exam.get_exams_search(@employee.id,@myvalues,false,false,true).pluck(:id) ; 
               puts @exams3.to_json + " Fire --->";
              @exams3.each_with_index do |exam, i|                    
                 if !(idList.include? exam.to_i)   #exam[:id].to_i                    
