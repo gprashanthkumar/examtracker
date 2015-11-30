@@ -120,8 +120,8 @@ class HomeController < ApplicationController
     
     
     
-      if (idList.Length > 0)
-       @exams = Rad_Exam.get_exams_search(@employee.id,@myvalues)  
+      if (idList.length > 0)
+       @exams = Rad_Exam.get_exams_search_by_id_array(idList)  
       else 
         @exams = Rad_Exam.get_exams_search(@employee.id,@myvalues)      
       end
