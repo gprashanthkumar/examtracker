@@ -147,6 +147,10 @@ class HomeController < ApplicationController
            exam.graph_status = "order"
             exam.current_status = "order"    
         end
+         if '1015' == exam.accession
+           exam.graph_status = "arrived"
+            exam.current_status = "arrived"    
+        end
       
        exam = get_graph_status(exam);
     end  #end each
