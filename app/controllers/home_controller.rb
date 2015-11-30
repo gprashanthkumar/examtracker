@@ -116,9 +116,9 @@ class HomeController < ApplicationController
              #end            
             #end
             
-        @exams3.each_with_index do |exam, i|
-            puts exam[i].id.to_s + "Radhika"
-        end
+        #@exams3.each_with_index do |exam, i|
+         #   puts exam[i].id.to_s + "Radhika"
+        #end
         
       end  
       
