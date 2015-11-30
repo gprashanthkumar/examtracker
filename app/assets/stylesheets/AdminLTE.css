@@ -3433,10 +3433,17 @@ height:28px; margin-right:5px; background:#666; position:relative; display:inlin
 .wizard .gold:after {border-left-color:gold;}
 .wizard .darkorange {background:darkorange; color:#FF8C00;}
 .wizard .darkorange:after {border-left-color:darkorange;}
+
 .wizard .violet {background:violet; color:#EE82EE;}
 .wizard .violet:after {border-left-color:violet;}
+
 .wizard .vanilla {background:#f3d9ab; color:#f3d9ab ;}
 .wizard .vanilla:after {border-left-color:#f3d9ab ;}
+
+.wizard .softcyanlimegreen {background:#68e9bb; color:#fff;}
+.wizard .softcyanlimegreen:after {border-left-color:#68e9bb ;}
+
+
 
 
 #example1{ width:100% !important;}
