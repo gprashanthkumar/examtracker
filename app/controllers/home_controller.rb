@@ -115,9 +115,9 @@ class HomeController < ApplicationController
                 else
                   idList << exam[:id].to_i
                 end     
-             end
-             
+             end             
           end 
+          @exams3 = nil;
       end   
       
     end 
