@@ -119,7 +119,7 @@ class HomeController < ApplicationController
     
     
     
-    
+    puts idList.length.to_s + "kumar kumar kumar"
       if (idList.length > 0)
         puts idList.to_s;
        @exams = Rad_Exam.get_exams_search_by_id_array(idList)  
