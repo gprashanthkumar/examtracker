@@ -294,34 +294,36 @@
                     allSearchCriteriaInJson: searchCriteriaJSON,
                     authenticity_token: window._token
                 },
-                colNames: ['A#', 'Appt Time', 'Begin Exam', 'End Exam', 'SignIn', 'CheckIn', 'Progress Status', 'Current Status', 'Status Last Changed', 'Patient Name', 'Patient MRN', 'Patient DOB', 'Site', 'Patient Class', 'Patient Type', 'Patient Location at exam', 'Radiology Department', 'Exam Resource', 'Modality', 'Proc Code', 'Proc Description', 'Ordering Provider', 'Scheduler', 'Technologist', 'PACS Image Count'],
-                colModel: [
-                    {name: 'accession', index: 'accession', align: 'center', width: 40, fixed: true, formatter: makeIdAsLinkFormatter}
-                    , {name: 'appt_time', index: 'appt_time', align: 'center', width: 150, fixed: true}
-                    , {name: 'begin_exam', index: 'begin_exam', align: 'center', width: 150, fixed: true}
-                    , {name: 'end_exam', index: 'end_exam', align: 'center', width: 150, fixed: true}
-                    , {name: 'sign_in', index: 'sign_in', align: 'center', width: 150, fixed: true}
-                    , {name: 'check_in', index: 'check_in', align: 'center', width: 140, fixed: true}
-                    , {name: 'graph_status', index: 'graph_status', align: 'center', width: 325, fixed: true, formatter: parseStatusOfExamFormatter}
-                    , {name: 'current_status', index: 'current_status', align: 'center', width: 100, fixed: true}
-                    , {name: 'updated_at', index: 'updated_at', align: 'center', width: 150, fixed: true}
-                    , {name: 'patient_name', index: 'patient_name', align: 'center', width: 140, fixed: true}
-                    , {name: 'mrn', index: 'mrn', align: 'center', width: 120, fixed: true}
-                    , {name: 'birthdate', index: 'birthdate', align: 'center', width: 140, fixed: true}
-                    , {name: 'site_name', index: 'site_name', align: 'center', width: 80, fixed: true}
-                    , {name: 'patient_class', index: 'patient_class', align: 'center', width: 80, fixed: true}
-                    , {name: 'patient_type', index: 'patient_type', align: 'center', width: 80, fixed: true}
-                    , {name: 'patient_location_at_exam', index: 'patient_location_at_exam', align: 'center', width: 150, fixed: true}
-                    , {name: 'radiology_department', index: 'radiology_department', align: 'center', width: 150, fixed: true}
-                    , {name: 'resource_name', index: 'resource_name', align: 'center', width: 130, fixed: true}
-                    , {name: 'modality', index: 'modality', align: 'center', width: 80, fixed: true}
-                    , {name: 'code', index: 'code', align: 'center', width: 80, fixed: true}
-                    , {name: 'description', index: 'description', align: 'center', width: 150, fixed: true}
-                    , {name: 'ordering_provider', index: 'ordering_provider', align: 'center', width: 150, fixed: true}
-                    , {name: 'scheduler', index: 'scheduler', align: 'center', width: 80, fixed: true}
-                    , {name: 'technologist', index: 'technologist', align: 'center', width: 80, fixed: true}
-                    , {name: 'pacs_image_count', index: 'pacs_image_count', align: 'center', width: 140, fixed: true}
-                ],
+colNames: ['A#','Progress Status','Current Status','Status Last Changed','Patient Name','Patient MRN','Patient DOB','Appt Time','Begin Exam','End Exam','SignIn','CheckIn','Site','Patient Class','Patient Type','Patient Location at exam','Radiology Department','Exam Resource','Modality','Proc Code','Proc Description','Ordering Provider','Scheduler','Technologist','PACS Image Count'],
+            colModel: [
+                { name: 'accession', index: 'accession', align: 'center', width:40, fixed:true, formatter: makeIdAsLinkFormatter }
+				,{ name: 'graph_status', index: 'graph_status', align: 'center', width:325, fixed:true, formatter: parseStatusOfExamFormatter }
+				,{ name: 'current_status', index: 'current_status', align: 'center', width:100, fixed:true }
+				,{ name: 'updated_at', index: 'updated_at', align: 'center', width:150, fixed:true , formatter:format_date_time }
+				,{ name: 'patient_name', index: 'patient_name', align: 'center', width:140, fixed:true }
+                ,{ name: 'mrn', index: 'mrn', align: 'center', width:120, fixed:true }
+				,{ name: 'birthdate', index: 'birthdate', align: 'center', width:140, fixed:true }
+                ,{ name: 'appt_time', index: 'appt_time', align: 'center', width:150, fixed:true, formatter:format_date_time }
+				,{ name: 'begin_exam', index: 'begin_exam', align: 'center', width:150, fixed:true, formatter: TimeFromDateTime }
+				,{ name: 'end_exam', index: 'end_exam', align: 'center', width:150, fixed:true , formatter: TimeFromDateTime}
+				,{ name: 'sign_in', index: 'sign_in', align: 'center', width:150, fixed:true , formatter: TimeFromDateTime}
+                ,{ name: 'check_in', index: 'check_in', align: 'center', width:140, fixed:true , formatter: TimeFromDateTime}
+				,{ name: 'site_name', index: 'site_name', align: 'center', width:80, fixed:true }
+				,{ name: 'patient_class', index: 'patient_class', align: 'center', width:80, fixed:true }
+				,{ name: 'patient_type', index: 'patient_type', align: 'center', width:80, fixed:true }
+				,{ name: 'patient_location_at_exam', index: 'patient_location_at_exam', align: 'center', width:150, fixed:true }
+				,{ name: 'radiology_department', index: 'radiology_department', align: 'center', width:150, fixed:true }
+				,{ name: 'resource_name', index: 'resource_name', align: 'center', width:130, fixed:true }
+				,{ name: 'modality', index: 'modality', align: 'center', width:80, fixed:true }			
+                ,{ name: 'code', index: 'code', align: 'center', width:80, fixed:true }
+                ,{ name: 'description', index: 'description', align: 'center', width:150, fixed:true }	
+				,{ name: 'ordering_provider', index: 'ordering_provider', align: 'center', width:150, fixed:true }
+				,{ name: 'scheduler', index: 'scheduler', align: 'center', width:80, fixed:true }
+				,{ name: 'technologist', index: 'technologist', align: 'center', width:80, fixed:true }
+                ,{ name: 'pacs_image_count', index: 'pacs_image_count', align: 'center', width:140, fixed:true }
+                    
+                
+            ],
                 jsonReader: {repeatitems: false, id: "id", root: function (obj) {
               return obj.rows;
             }, page: function (obj) {
@@ -423,74 +425,74 @@
             fifthStageTitle = cellvalue_array[6].split('->')[1]; //complete or prelim stage
             sixthStageTitle = cellvalue_array[7].split('->')[1]; //final stage
 
-            if (cellvalue_array[cellvalue_array.length - 1] == "order") {
-                return '<div class="wizard"><a class="green" title=' + firstStageTitle + '><span class="badge"></span></a><a class="" title=' + secondStageTitle + '><span class="badge"></span></a><a class="" title=' + thirdStageTitle + '><span class="badge"></span></a><a class="" title=' + fourthStageTitle + '><span class="badge"></span></a><a class="" title=' + fifthStageTitle + '><span class="badge badge-inverse"></span></a><a title=' + sixthStageTitle + '><span class="badge"></span></a></div>';
-            }
-            else if (cellvalue_array[cellvalue_array.length - 1] == "scheduled") {
-                return '<div class="wizard"><a class="current" title=' + firstStageTitle + '><span class="badge"></span></a><a class="green" title=' + secondStageTitle + '><span class="badge"></span></a><a class="" title=' + thirdStageTitle + '><span class="badge"></span></a><a class="" title=' + fourthStageTitle + '><span class="badge"></span></a><a class="" title=' + fifthStageTitle + '><span class="badge badge-inverse"></span></a><a title=' + sixthStageTitle + '><span class="badge"></span></a></div>';
-            }
-            else if (cellvalue_array[cellvalue_array.length - 1] == "arrived") {
-                return '<div class="wizard"><a class="current" title=' + firstStageTitle + '><span class="badge"></span></a><a class="current" title=' + secondStageTitle + '><span class="badge"></span></a><a class="green" title=' + thirdStageTitle + '><span class="badge"></span></a><a class="" title=' + fourthStageTitle + '><span class="badge"></span></a><a class="" title=' + fifthStageTitle + '><span class="badge badge-inverse"></span></a><a title=' + sixthStageTitle + '><span class="badge"></span></a></div>';
-            }
-            else if (cellvalue_array[cellvalue_array.length - 1] == "begin") {
-                return '<div class="wizard"><a class="current" title=' + firstStageTitle + '><span class="badge"></span></a><a class="current" title=' + secondStageTitle + '><span class="badge"></span></a><a class="current" title=' + thirdStageTitle + '><span class="badge"></span></a><a class="green" title=' + fourthStageTitle + '><span class="badge"></span></a><a class="" title=' + fifthStageTitle + '><span class="badge badge-inverse"></span></a><a title=' + sixthStageTitle + '><span class="badge"></span></a></div>';
-            }
-            else if (cellvalue_array[cellvalue_array.length - 1] == "complete" || cellvalue_array[cellvalue_array.length - 1] == "prelim") {
+		if(cellvalue_array[cellvalue_array.length -1] == "order"){
+			return '<div class="wizard"><a class="green" title='+ firstStageTitle +'><span class="badge"></span></a><a class="grey" title='+ secondStageTitle +'><span class="badge"></span></a><a class="grey" title='+ thirdStageTitle +'><span class="badge"></span></a><a class="grey" title='+ fourthStageTitle +'><span class="badge"></span></a><a class="grey" title='+ fifthStageTitle +'><span class="badge badge-inverse"></span></a><a title='+ sixthStageTitle +'><span class="badge"></span></a></div>';
+		}
+		else if(cellvalue_array[cellvalue_array.length -1]=="scheduled"){
+			return '<div class="wizard"><a class="current" title='+ firstStageTitle +'><span class="badge"></span></a><a class="green" title='+ secondStageTitle +'><span class="badge"></span></a><a class="grey" title='+ thirdStageTitle +'><span class="badge"></span></a><a class="grey" title='+ fourthStageTitle +'><span class="badge"></span></a><a class="grey" title='+ fifthStageTitle +'><span class="badge badge-inverse"></span></a><a title='+ sixthStageTitle +'><span class="badge"></span></a></div>';
+		}
+		else if(cellvalue_array[cellvalue_array.length -1] == "arrived"){
+			return '<div class="wizard"><a class="current" title='+ firstStageTitle +'><span class="badge"></span></a><a class="current" title='+ secondStageTitle +'><span class="badge"></span></a><a class="green" title='+ thirdStageTitle +'><span class="badge"></span></a><a class="grey" title='+ fourthStageTitle +'><span class="badge"></span></a><a class="grey" title='+ fifthStageTitle +'><span class="badge badge-inverse"></span></a><a title='+ sixthStageTitle +'><span class="badge"></span></a></div>';
+		}
+		else if(cellvalue_array[cellvalue_array.length -1] == "begin"){
+			return '<div class="wizard"><a class="current" title='+ firstStageTitle +'><span class="badge"></span></a><a class="current" title='+ secondStageTitle +'><span class="badge"></span></a><a class="current" title='+ thirdStageTitle +'><span class="badge"></span></a><a class="green" title='+ fourthStageTitle +'><span class="badge"></span></a><a class="grey" title='+ fifthStageTitle +'><span class="badge badge-inverse"></span></a><a title='+ sixthStageTitle +'><span class="badge"></span></a></div>';
+		}
+		else if(cellvalue_array[cellvalue_array.length-1] == "complete" || cellvalue_array[cellvalue_array.length-1] == "prelim"){
 
-                return '<div class="wizard"><a class="current" title=' + firstStageTitle + '><span class="badge"></span></a><a class="current" title=' + secondStageTitle + '><span class="badge"></span></a><a class="current" title=' + thirdStageTitle + '><span class="badge"></span></a><a class="current" title=' + fourthStageTitle + '><span class="badge"></span></a><a class="green" title=' + fifthStageTitle + '><span class="badge badge-inverse"></span></a><a title=' + sixthStageTitle + '><span class="badge"></span></a></div>';
-            }
-            else if (cellvalue_array[cellvalue_array.length - 1] == "final") {
-                return '<div class="wizard"><a class="current" title=' + firstStageTitle + '><span class="badge"></span></a><a class="current" title=' + secondStageTitle + '><span class="badge"></span></a><a class="current" title=' + thirdStageTitle + '><span class="badge"></span></a><a class="current" title=' + fourthStageTitle + '><span class="badge"></span></a><a class="current" title=' + fifthStageTitle + '><span class="badge badge-inverse"></span></a><a class="green" title=' + sixthStageTitle + '><i class="fa fa-check" style="display: table-cell; float: right; margin: 8px;"></i></a></div>';
-            }
-            else if (cellvalue_array[cellvalue_array.length - 1] == "cancelled") {
+			return '<div class="wizard"><a class="current" title='+ firstStageTitle +'><span class="badge"></span></a><a class="current" title='+ secondStageTitle +'><span class="badge"></span></a><a class="current" title='+ thirdStageTitle +'><span class="badge"></span></a><a class="current" title='+ fourthStageTitle +'><span class="badge"></span></a><a class="green" title='+ fifthStageTitle +'><span class="badge badge-inverse"></span></a><a title='+ sixthStageTitle +'><span class="badge"></span></a></div>';
+		}
+		else if(cellvalue_array[cellvalue_array.length-1]=="final"){
+			return '<div class="wizard"><a class="current" title='+ firstStageTitle +'><span class="badge"></span></a><a class="current" title='+ secondStageTitle +'><span class="badge"></span></a><a class="current" title='+ thirdStageTitle +'><span class="badge"></span></a><a class="current" title='+ fourthStageTitle +'><span class="badge"></span></a><a class="current" title='+ fifthStageTitle +'><span class="badge badge-inverse"></span></a><a class="green" title='+ sixthStageTitle +'><i class="fa fa-check" style="display: table-cell; float: right; margin: 8px;"></i></a></div>';
+		}
+		else if(cellvalue_array[cellvalue_array.length-1]=="cancelled"){
+			
+			var cancelledAtStageClass;
+			if(sixthStageTitle == ""){
+				if(fifthStageTitle == ""){
+					if(fourthStageTitle == ""){
+						if(thirdStageTitle == ""){
+							if(secondStageTitle == ""){
+								cancelledAtStageClass = "firstStageClass";
+							}
+							else{
+								cancelledAtStageClass = "secondStageClass";
+							}
+						}
+						else{
+							cancelledAtStageClass = "thirdStageClass";
+						}
+					}
+					else{
+						cancelledAtStageClass = "fourthStageClass";
+					}
+				}
+				else{
+					cancelledAtStageClass = "fifthStageClass";
+				}
+			}
+			else{
+				cancelledAtStageClass = "sixthStageClass";
+			}
+			
+			var graphStatusUI;//GraphUI to be displayed when cancelled status comes.
+			if(cancelledAtStageClass == "sixthStageClass"){
+				graphStatusUI = $('<div class="wizard"><a class="firstStageClass" title='+ firstStageTitle +'><span class="badge"></span></a><a class="secondStageClass" title='+ secondStageTitle +'><span class="badge"></span></a><a class="thirdStageClass" title='+ thirdStageTitle +'><span class="badge"></span></a><a class="fourthStageClass" title='+ fourthStageTitle +'><span class="badge"></span></a><a class="fifthStageClass" title='+ fifthStageTitle +'><span class="badge badge-inverse"></span></a><a class="sixthStageClass" title='+ sixthStageTitle +'><i class="fa fa-check" style="display: table-cell; float: right; margin: 8px;"></i></a></div>');
+			}
+			else{
+				graphStatusUI = $('<div class="wizard"><a class="firstStageClass" title='+ firstStageTitle +'><span class="badge"></span></a><a class="secondStageClass" title='+ secondStageTitle +'><span class="badge"></span></a><a class="thirdStageClass" title='+ thirdStageTitle +'><span class="badge"></span></a><a class="fourthStageClass" title='+ fourthStageTitle +'><span class="badge"></span></a><a class="fifthStageClass" title='+ fifthStageTitle +'><span class="badge badge-inverse"></span></a><a class="sixthStageClass" title='+ sixthStageTitle +'></a></div>');
+			}
 
-                var cancelledAtStageClass;
-                if (sixthStageTitle == "") {
-                    if (fifthStageTitle == "") {
-                        if (fourthStageTitle == "") {
-                            if (thirdStageTitle == "") {
-                                if (secondStageTitle == "") {
-                                    cancelledAtStageClass = "firstStageClass";
-                                }
-                                else {
-                                    cancelledAtStageClass = "secondStageClass";
-                                }
-                            }
-                            else {
-                                cancelledAtStageClass = "thirdStageClass";
-                            }
-                        }
-                        else {
-                            cancelledAtStageClass = "fourthStageClass";
-                        }
-                    }
-                    else {
-                        cancelledAtStageClass = "fifthStageClass";
-                    }
-                }
-                else {
-                    cancelledAtStageClass = "sixthStageClass";
-                }
-
-                var graphStatusUI;//GraphUI to be displayed when cancelled status comes.
-                if (cancelledAtStageClass == "sixthStageClass") {
-                    graphStatusUI = $('<div class="wizard"><a class="firstStageClass" title=' + firstStageTitle + '><span class="badge"></span></a><a class="secondStageClass" title=' + secondStageTitle + '><span class="badge"></span></a><a class="thirdStageClass" title=' + thirdStageTitle + '><span class="badge"></span></a><a class="fourthStageClass" title=' + fourthStageTitle + '><span class="badge"></span></a><a class="fifthStageClass" title=' + fifthStageTitle + '><span class="badge badge-inverse"></span></a><a class="sixthStageClass" title=' + sixthStageTitle + '><i class="fa fa-check" style="display: table-cell; float: right; margin: 8px;"></i></a></div>');
-                }
-                else {
-                    graphStatusUI = $('<div class="wizard"><a class="firstStageClass" title=' + firstStageTitle + '><span class="badge"></span></a><a class="secondStageClass" title=' + secondStageTitle + '><span class="badge"></span></a><a class="thirdStageClass" title=' + thirdStageTitle + '><span class="badge"></span></a><a class="fourthStageClass" title=' + fourthStageTitle + '><span class="badge"></span></a><a class="fifthStageClass" title=' + fifthStageTitle + '><span class="badge badge-inverse"></span></a><a class="sixthStageClass" title=' + sixthStageTitle + '></a></div>');
-                }
-
-                cancelledStageIndex = $(graphStatusUI).find('a.' + cancelledAtStageClass + '').index();
-                $(graphStatusUI).find('a:lt(' + cancelledStageIndex + ')').addClass("current");
-                $(graphStatusUI).find('a:eq(' + cancelledStageIndex + ')').addClass("red");
-                $(graphStatusUI).find('a:gt(' + cancelledStageIndex + ')').addClass("grey");
-
-                return $(graphStatusUI).prop('outerHTML');
-            }
-            else {
-                return 'Can not parse "' + cellvalue + '" status';
-            }
-        }
+			cancelledStageIndex = $(graphStatusUI).find('a.'+ cancelledAtStageClass +'').index();
+			$(graphStatusUI).find('a:lt('+cancelledStageIndex+')').addClass("current");
+			$(graphStatusUI).find('a:eq('+cancelledStageIndex+')').addClass("red");
+			$(graphStatusUI).find('a:gt('+cancelledStageIndex+')').addClass("grey");
+			
+			 return $(graphStatusUI).prop('outerHTML');
+		}
+		else{
+			return 'Can not parse "' + cellvalue + '" status';
+		}
+	  }
 
 
     });
