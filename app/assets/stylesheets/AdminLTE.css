@@ -3437,7 +3437,7 @@ height:28px; margin-right:5px; background:#666; position:relative; display:inlin
 .wizard .violet {background:violet; color:#EE82EE;}
 .wizard .violet:after {border-left-color:violet;}
 
-.wizard .vanilla {background:#f3d9ab; color:#f3d9ab ;}
+.wizard .vanilla {background:#f3d9ab; color:#FFFFFF ;}
 .wizard .vanilla:after {border-left-color:#f3d9ab ;}
 
 .wizard .softcyanlimegreen {background:#68e9bb; color:#fff;}
