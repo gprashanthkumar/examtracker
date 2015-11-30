@@ -112,15 +112,16 @@ class HomeController < ApplicationController
           if @exams3.size > 0
             @exams31 = Rad_Exam.get_exams_search(@employee.id,@myvalues,false,false,true) ; 
              @exams31.each_with_index do |exam, i|
-              puts exam[:id].to_json + "Radhika"
+                    puts exam[:id].to_json + "Radhika"
+                if idList.include?(exam[:id])
+                    puts exam[:id].to_s + " orders"
+                  idList << exam[:id];
+                  end     
              end
              
           end
             #@exams3.each do |ex|
-             # if idList.include?(ex.id)
-               #   puts ex.id.to_s + " orders"
-               #idList << ex.id;
-             #end            
+                   
             #end
             
        
