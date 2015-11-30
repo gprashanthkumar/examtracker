@@ -107,7 +107,7 @@ class HomeController < ApplicationController
          puts "in my :my_orders ";
         @exams3 = Rad_Exam.get_exams_search(@employee.id,@myvalues,false,false,true) ; 
                 
-            @exams3.each do |en|
+            @exams3.each do |ex|
               if idList.include?(ex.id)
                idList << ex.id;
              end
