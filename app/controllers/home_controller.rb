@@ -80,10 +80,10 @@ class HomeController < ApplicationController
       
       if (@myvalues[:my_reports] == "on")
        puts "in my :my_exams ";
-        @exams1 = Rad_Exam.get_exams_search(@employee.id,@myvalues,true,false,false) ;
-        
+        @exams1 = Rad_Exam.get_exams_search(@employee.id,@myvalues,true,false,false) ;        
         @exams1.each do |ex|
              if idList.include?(ex.id)
+               puts ex.id.to_s + "reports"
                idList << ex.id;
              end
             end
@@ -96,6 +96,7 @@ class HomeController < ApplicationController
          
             @exams2.each do |ex|
              if idList.include?(ex.id)
+                 puts ex.id.to_s + " exams"
                idList << ex.id;
              end
             end
@@ -109,6 +110,7 @@ class HomeController < ApplicationController
                 
             @exams3.each do |ex|
               if idList.include?(ex.id)
+                  puts ex.id.to_s + " orders"
                idList << ex.id;
              end
             end
