@@ -303,8 +303,13 @@
                 
                 //****Binding data to AccessionId dropdown****//
                 $("#DdlAccessionIdSrch").empty();
+                 var uniqueACC = []; 
                 $.each(data.rows,function(index, value){
-                	$("#DdlAccessionIdSrch").append($('<option>', { value: value.accession, text: value.accession }));
+                  (uniqueACC.indexOf(value.accession) === -1){
+                    $("#DdlAccessionIdSrch").append($('<option>', { value: value.accession, text: value.accession }));
+                    uniqueACC.push(value.accession);
+                  }
+                	
                 });
                 ddlAccessionSrch_Var.multiselect('refresh');
                 //****End Binding data to AccessionId dropdown****//
@@ -314,8 +319,13 @@
                 var uniqueStatus = $.unique(data.rows.map(function (value) {    				
     				return value.current_status;
     			}));
+                var uniqueStatus = []; 
                 $.each(uniqueStatus,function(index, value){
-                	$("#DdlStatusSrch").append($('<option>', { value: value, text: value }));
+                        if(uniqueStatus.indexOf(value) === -1){
+                          $("#DdlStatusSrch").append($('<option>', { value: value, text: value }));
+                          uniqueStatus.push(value);
+                        }
+                	
                 });
                 ddlStatusSrch_Var.multiselect('refresh');
                 //****End Binding data to Status dropdown****//
