@@ -149,7 +149,7 @@ class HomeController < ApplicationController
     end  #end each
     
      #log output data
-     #log_hipaa_view(@exams);
+     log_hipaa_view(@exams);
     
     json_data = {
       :page=>"1",
@@ -255,7 +255,7 @@ class HomeController < ApplicationController
     @exams = @exams[0];
     end
      #log output data
-     #log_hipaa_view(@exams);
+     log_hipaa_view(@exams);
     
     respond_to do |format|
       format.json { render :json => @exams.to_json(:only => [ :accession,:mrn,:current_status,:code,:description,:modality,:resource_name,:graph_status,:current_status,:updated_at,:patient_name,:birthdate,:site_name,:patient_class,:trauma,:patient_type,:patient_location_at_exam,:radiology_department,:ordering_provider,:scheduler,:technologist,:pacs_image_count,:appt_time,:sign_in,:check_in,:begin_exam,:end_exam,:first_final,:last_final,:order_arrival,:rad1_name,:rad2_name]) }
