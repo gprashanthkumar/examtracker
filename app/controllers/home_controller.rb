@@ -251,7 +251,9 @@ class HomeController < ApplicationController
     end
     #@exams.graph_status = exam.graph_status;
     #@exams.graph_status = exam.graph_status;
-    
+    if @exams.size > 0
+    @exams = @exams[0];
+    end
      #log output data
      #log_hipaa_view(@exams);
     
