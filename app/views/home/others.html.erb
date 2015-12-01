@@ -296,20 +296,26 @@
                 
                 //****Binding data to AccessionId dropdown****//
                 $("#DdlAccessionIdSrch").empty();
+                 var uniqueACC = []; 
                 $.each(data.rows,function(index, value){
-                	$("#DdlAccessionIdSrch").append($('<option>', { value: value.accession, text: value.accession }));
+                  if (uniqueACC.indexOf(value.accession) === -1){
+                    $("#DdlAccessionIdSrch").append($('<option>', { value: value.accession, text: value.accession }));
+                    uniqueACC.push(value.accession);
+                  }
+                	
                 });
                 ddlAccessionSrch_Var.multiselect('refresh');
                 //****End Binding data to AccessionId dropdown****//
 				
 				//****Binding data to Status dropdown****//
-                $("#DdlStatusSrch").empty();
-                var uniqueStatus = $.unique(data.rows.map(function (value) {    				
-    				return value.current_status;
-    			}));
-                $.each(uniqueStatus,function(index, value){
-                	
-                	$("#DdlStatusSrch").append($('<option>', { value: value, text: value }));
+                $("#DdlStatusSrch").empty();               
+                var uniqueStatuses = []; 
+                $.each(data.rows,function(index, value){
+                      
+                        if(uniqueStatuses.indexOf(value.current_status) === -1){
+                          $("#DdlStatusSrch").append($('<option>', { value: value.current_status, text: value.current_status }));
+                          uniqueStatuses.push(value.current_status);
+                        }               	
                 });
                 ddlStatusSrch_Var.multiselect('refresh');
                 //****End Binding data to Status dropdown****//
