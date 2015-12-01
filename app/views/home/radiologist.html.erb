@@ -305,7 +305,7 @@
                 $("#DdlAccessionIdSrch").empty();
                  var uniqueACC = []; 
                 $.each(data.rows,function(index, value){
-                  (uniqueACC.indexOf(value.accession) === -1){
+                  if (uniqueACC.indexOf(value.accession) === -1){
                     $("#DdlAccessionIdSrch").append($('<option>', { value: value.accession, text: value.accession }));
                     uniqueACC.push(value.accession);
                   }
