@@ -60,7 +60,7 @@ class Rad_Exam < ActiveRecord::Base
     .joins("left join employees rademp2 on rademp2.id = rrlf.rad2_id")    
     .select("rrff.report_event as first_final, rrlf.report_event as last_final,rademp1.name as rad1_name,rademp1.name as rad2_name")
   }
-   scope :Radiologist_Reports, -> { 
+  scope :Radiologist_Reports, -> { 
     joins("LEFT join external_system_statuses ess1 on ess1.id = rr.report_status_id") 
     .joins("LEFT join universal_event_types uet1 on uet1.id = ess1.universal_event_type_id")
     .joins("LEFT join employees rademp1 on rademp1.id = rr.rad1_id")
@@ -186,60 +186,60 @@ class Rad_Exam < ActiveRecord::Base
     end
     
     if (myorders == true)        
-        exams_search = exams_search.where("( (repp.attending_id = ?) or (repp.ordering_id = ?) or  (repp.authorizing_id = ?) ) ",employeeid,employeeid,employeeid).all;        
+      exams_search = exams_search.where("( (repp.attending_id = ?) or (repp.ordering_id = ?) or  (repp.authorizing_id = ?) ) ",employeeid,employeeid,employeeid).all;        
     end 
     
     if ((params[:visit] != "") && !(params[:visit].nil?) && !(params[:visit].blank?)) 
-        exams_search = exams_search.joins("Left JOIN visits v on v.id = rad_exams.visit_id")
-        exams_search = exams_search.where(" (v.visit_number ilike ?)  " , "%#{params[:visit]}%" ).all ;
-      end
+      exams_search = exams_search.joins("Left JOIN visits v on v.id = rad_exams.visit_id")
+      exams_search = exams_search.where(" (v.visit_number ilike ?)  " , "%#{params[:visit]}%" ).all ;
+    end
     
-     if ((params[:order_id] != "") && !(params[:order_id].nil?) && !(params[:order_id].blank?)) 
-        exams_search = exams_search.joins("Left JOIN orders o on o.id = rad_exams.order_id")
-        exams_search = exams_search.where(" (o.order_number ilike ?)  " , "%#{params[:order_id]}%" ).all ;
-      end
+    if ((params[:order_id] != "") && !(params[:order_id].nil?) && !(params[:order_id].blank?)) 
+      exams_search = exams_search.joins("Left JOIN orders o on o.id = rad_exams.order_id")
+      exams_search = exams_search.where(" (o.order_number ilike ?)  " , "%#{params[:order_id]}%" ).all ;
+    end
     
-     if ((params[:accession] != "") && !(params[:accession].nil?) && !(params[:accession].blank?))            
-          exams_search = exams_search.where("accession ilike ?", "%#{params[:accession]}%" ).all ;
-     end 
+    if ((params[:accession] != "") && !(params[:accession].nil?) && !(params[:accession].blank?))            
+      exams_search = exams_search.where("accession ilike ?", "%#{params[:accession]}%" ).all ;
+    end 
      
-     if ((params[:patient_type] != "") && !(params[:patient_type].nil?) && !(params[:patient_type].blank?))            
-          exams_search = exams_search.where("pt.id ilike ?", "%#{params[:patient_type]}%" ).all ;
-     end 
-     if ((params[:mrn] != "") && !(params[:mrn].nil?) && !(params[:mrn].blank?))            
-          exams_search = exams_search.where("pmrn.mrn ilike ?", "%#{params[:mrn]}%" ).all ;
-     end      
-      if ((params[:patient_name] != "") && !(params[:patient_name].nil?) && !(params[:patient_name].blank?))          
-        exams_search = exams_search.where("p.name ilike ?", "%#{params[:patient_name]}%" ).all ;
-      end      
+    if ((params[:patient_type] != "") && !(params[:patient_type].nil?) && !(params[:patient_type].blank?))            
+      exams_search = exams_search.where("pt.id ilike ?", "%#{params[:patient_type]}%" ).all ;
+    end 
+    if ((params[:mrn] != "") && !(params[:mrn].nil?) && !(params[:mrn].blank?))            
+      exams_search = exams_search.where("pmrn.mrn ilike ?", "%#{params[:mrn]}%" ).all ;
+    end      
+    if ((params[:patient_name] != "") && !(params[:patient_name].nil?) && !(params[:patient_name].blank?))          
+      exams_search = exams_search.where("p.name ilike ?", "%#{params[:patient_name]}%" ).all ;
+    end      
       
-      if ((params[:modality] != "") && !(params[:modality].nil?) && !(params[:modality].blank?))          
-        exams_search = exams_search.where("modality ilike ?", "%#{params[:modality]}%" ).all ;
-      end
+    if ((params[:modality] != "") && !(params[:modality].nil?) && !(params[:modality].blank?))          
+      exams_search = exams_search.where("modality ilike ?", "%#{params[:modality]}%" ).all ;
+    end
       
-     if ((params[:code] != "") && !(params[:code].nil?) && !(params[:code].blank?))          
-        exams_search = exams_search.where("  concat(proc.code, proc.description)  ilike ?", "%#{params[:code]}%" ).all ;
-      end
+    if ((params[:code] != "") && !(params[:code].nil?) && !(params[:code].blank?))          
+      exams_search = exams_search.where("  concat(proc.code, proc.description)  ilike ?", "%#{params[:code]}%" ).all ;
+    end
       
     if ((params[:resource_name] != "") && !(params[:resource_name].nil?) && !(params[:resource_name].blank?))          
-        exams_search = exams_search.where("  res.name  ilike ?", "%#{params[:resource_name]}%" ).all ;
-      end
+      exams_search = exams_search.where("  res.name  ilike ?", "%#{params[:resource_name]}%" ).all ;
+    end
       
     if ((params[:rad_exam_dept] != "") && !(params[:rad_exam_dept].nil?) && !(params[:rad_exam_dept].blank?))          
-        exams_search = exams_search.where("  red.description  ilike ?", "%#{params[:rad_exam_dept]}%" ).all ;
-      end
+      exams_search = exams_search.where("  red.description  ilike ?", "%#{params[:rad_exam_dept]}%" ).all ;
+    end
       
-     if ((params[:current_status] != "") && !(params[:current_status].nil?) && !(params[:current_status].blank?))          
-        exams_search = exams_search.where("  uet.event_type  ilike ?", "%#{params[:current_status]}%" ).all ;
-      end
+    if ((params[:current_status] != "") && !(params[:current_status].nil?) && !(params[:current_status].blank?))          
+      exams_search = exams_search.where("  uet.event_type  ilike ?", "%#{params[:current_status]}%" ).all ;
+    end
       
     if ((params[:patient_exam_location] != "") && !(params[:patient_exam_location].nil?) && !(params[:patient_exam_location].blank?))          
-        exams_search = exams_search.where("  patient_location_at_exam  ilike ?", "%#{params[:patient_exam_location]}%" ).all ;
-      end
+      exams_search = exams_search.where("  patient_location_at_exam  ilike ?", "%#{params[:patient_exam_location]}%" ).all ;
+    end
       
-     if ((params[:site_name] != "") && !(params[:site_name].nil?) && !(params[:site_name].blank?))          
-        exams_search = exams_search.where(" ((s.name ilike ?)  or (s.site ilike ?))", "%#{params[:site_name]}%" , "%#{params[:site_name]}%" ).all ;
-      end  
+    if ((params[:site_name] != "") && !(params[:site_name].nil?) && !(params[:site_name].blank?))          
+      exams_search = exams_search.where(" ((s.name ilike ?)  or (s.site ilike ?))", "%#{params[:site_name]}%" , "%#{params[:site_name]}%" ).all ;
+    end  
         
    
     
@@ -249,7 +249,7 @@ class Rad_Exam < ActiveRecord::Base
   def self.get_exams_search_by_id_array(idList)
     exams_search = self.join_Main.Rad_Tech_Sched_Trans_Other;  
     exams_search = exams_search.where("rad_exams.id in (?)", idList ).all ;
-     return exams_search;    
+    return exams_search;    
   end
   
   #This is main query from ra_exams details of particular accession
@@ -260,7 +260,7 @@ class Rad_Exam < ActiveRecord::Base
   end
   
   def self.get_accession_reports(accessionid)
-     reports = self.join_Main.Radiologist_Reports.where(" rad_exams.accession = ? ",accessionid).order("id desc").all;
+    reports = self.join_Main.Radiologist_Reports.where(" rad_exams.accession = ? ",accessionid).order("id desc").all;
     return reports;
   end
   

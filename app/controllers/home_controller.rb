@@ -71,31 +71,31 @@ class HomeController < ApplicationController
       if (@myvalues[:my_reports] == "on")
        
         @exams1 = Rad_Exam.get_exams_search(@employee.id,@myvalues,true,false,false).pluck(:id) ;        
-           if @exams1.length > 0
-            #@exams2 = Rad_Exam.get_exams_search(@employee.id,@myvalues,true,false,false).pluck(:id) ; 
+        if @exams1.length > 0
+          #@exams2 = Rad_Exam.get_exams_search(@employee.id,@myvalues,true,false,false).pluck(:id) ; 
               
-             @exams1.each_with_index do |exam, i|                    
-                if !(idList.include? exam.to_i)   #exam[:id].to_i                    
-                   idList << exam.to_i #exam[:id].to_i                
-                end     
-             end             
-          end 
-          @exams1 = nil;     
+          @exams1.each_with_index do |exam, i|                    
+            if !(idList.include? exam.to_i)   #exam[:id].to_i                    
+              idList << exam.to_i #exam[:id].to_i                
+            end     
+          end             
+        end 
+        @exams1 = nil;     
       end   
       
       if (@myvalues[:my_exams] == "on")
          
         @exams2 = Rad_Exam.get_exams_search(@employee.id,@myvalues,false,true,false).pluck(:id) ; 
         if @exams2.length > 0
-            #@exams2 = Rad_Exam.get_exams_search(@employee.id,@myvalues,false,true,false).pluck(:id) ; 
+          #@exams2 = Rad_Exam.get_exams_search(@employee.id,@myvalues,false,true,false).pluck(:id) ; 
               
-             @exams2.each_with_index do |exam, i|                    
-                if !(idList.include? exam.to_i)   #exam[:id].to_i                    
-                   idList << exam.to_i #exam[:id].to_i                
-                end     
-             end             
-          end 
-          @exams2 = nil;        
+          @exams2.each_with_index do |exam, i|                    
+            if !(idList.include? exam.to_i)   #exam[:id].to_i                    
+              idList << exam.to_i #exam[:id].to_i                
+            end     
+          end             
+        end 
+        @exams2 = nil;        
         
       end  #myexams 
 
@@ -103,50 +103,50 @@ class HomeController < ApplicationController
       if (@myvalues[:my_orders] == "on")
        
         @exams3 = Rad_Exam.get_exams_search(@employee.id,@myvalues,false,false,true).pluck(:id) ;    
-          if @exams3.length > 0
-            #@exams3 = Rad_Exam.get_exams_search(@employee.id,@myvalues,false,false,true).pluck(:id) ; 
+        if @exams3.length > 0
+          #@exams3 = Rad_Exam.get_exams_search(@employee.id,@myvalues,false,false,true).pluck(:id) ; 
               
-             @exams3.each_with_index do |exam, i|                    
-                if !(idList.include? exam.to_i)   #exam[:id].to_i                    
-                   idList << exam.to_i #exam[:id].to_i                
-                end     
-             end             
-          end 
-          @exams3 = nil;
+          @exams3.each_with_index do |exam, i|                    
+            if !(idList.include? exam.to_i)   #exam[:id].to_i                    
+              idList << exam.to_i #exam[:id].to_i                
+            end     
+          end             
+        end 
+        @exams3 = nil;
       end   
       
     end   
     
-      if( 
-          (idList.length > 0) ||  (@myvalues[:my_orders] == "on") || (@myvalues[:my_exams] == "on") || (@myvalues[:my_reports] == "on")
-          )        
-       @exams = Rad_Exam.get_exams_search_by_id_array(idList)  
-      else 
-        @exams = Rad_Exam.get_exams_search(@employee.id,@myvalues)      
-      end
+    if( 
+        (idList.length > 0) ||  (@myvalues[:my_orders] == "on") || (@myvalues[:my_exams] == "on") || (@myvalues[:my_reports] == "on")
+      )        
+      @exams = Rad_Exam.get_exams_search_by_id_array(idList)  
+    else 
+      @exams = Rad_Exam.get_exams_search(@employee.id,@myvalues)      
+    end
     
     
     @exams.each do |exam| 
-         if ['1037','1027'].include? exam.accession
-            exam.graph_status = "cancelled"
-            exam.current_status = "cancelled"       
-        end
-         if '1027' == exam.accession
-           exam.graph_status = "cancelled"
-            exam.current_status = "cancelled"    
-            exam.report_time = "";
-        end
+      if ['1037','1027'].include? exam.accession
+        exam.graph_status = "cancelled"
+        exam.current_status = "cancelled"       
+      end
+      if '1027' == exam.accession
+        exam.graph_status = "cancelled"
+        exam.current_status = "cancelled"    
+        exam.report_time = "";
+      end
         
-        if '1017' == exam.accession
-           exam.graph_status = "order"
-            exam.current_status = "order"    
-        end
-         if '1015' == exam.accession
-           exam.graph_status = "arrived"
-            exam.current_status = "arrived"    
-        end
+      if '1017' == exam.accession
+        exam.graph_status = "order"
+        exam.current_status = "order"    
+      end
+      if '1015' == exam.accession
+        exam.graph_status = "arrived"
+        exam.current_status = "arrived"    
+      end
       
-       exam = get_graph_status(exam);
+      exam = get_graph_status(exam);
     end  #end each
     
     
@@ -183,27 +183,29 @@ class HomeController < ApplicationController
 	
     @exams.each do |exam| 
      
-       if ['1037','1027'].include? exam.accession
-            exam.graph_status = "cancelled"
-            exam.current_status = "cancelled"       
-        end
-         if '1027' == exam.accession
-           exam.graph_status = "cancelled"
-            exam.current_status = "cancelled"    
-            exam.report_time = "";
-        end
+      if ['1037','1027'].include? exam.accession
+        exam.graph_status = "cancelled"
+        exam.current_status = "cancelled"       
+      end
+      if '1027' == exam.accession
+        exam.graph_status = "cancelled"
+        exam.current_status = "cancelled"    
+        exam.report_time = "";
+      end
         
-        if '1017' == exam.accession
-           exam.graph_status = "order"
-            exam.current_status = "order"    
-        end
-         if '1015' == exam.accession
-           exam.graph_status = "arrived"
-            exam.current_status = "arrived"    
-        end
+      if '1017' == exam.accession
+        exam.graph_status = "order"
+        exam.current_status = "order"    
+      end
+      if '1015' == exam.accession
+        exam.graph_status = "arrived"
+        exam.current_status = "arrived"    
+      end
       exam = get_graph_status(exam);    
     
     end  #end each
+    #log
+     log_hipaa_view(@exams)
      
     json_data = {
       :page=>"1",
@@ -223,24 +225,24 @@ class HomeController < ApplicationController
     authenticity_token = params[:authenticity_token];      
     @exams = Rad_Exam.get_accession_detail(@accession_id.to_s)   
     exam = @exams 
-      if ['1037','1027'].include? exam.accession
-            exam.graph_status = "cancelled"
-            exam.current_status = "cancelled"       
-        end
-         if '1027' == exam.accession
-           exam.graph_status = "cancelled"
-            exam.current_status = "cancelled"    
-            exam.report_time = "";
-        end
+    if ['1037','1027'].include? exam.accession
+      exam.graph_status = "cancelled"
+      exam.current_status = "cancelled"       
+    end
+    if '1027' == exam.accession
+      exam.graph_status = "cancelled"
+      exam.current_status = "cancelled"    
+      exam.report_time = "";
+    end
         
-        if '1017' == exam.accession
-           exam.graph_status = "order"
-            exam.current_status = "order"    
-        end
-         if '1015' == exam.accession
-           exam.graph_status = "arrived"
-            exam.current_status = "arrived"    
-        end
+    if '1017' == exam.accession
+      exam.graph_status = "order"
+      exam.current_status = "order"    
+    end
+    if '1015' == exam.accession
+      exam.graph_status = "arrived"
+      exam.current_status = "arrived"    
+    end
     exam = get_graph_status(exam);    
     @exams.graph_status = exam.graph_status;
     @exams.graph_status = exam.graph_status;
@@ -250,51 +252,51 @@ class HomeController < ApplicationController
   end
   
   def get_graph_status(exam)
-      gstatus = ""
-      gstatus = exam.graph_status;
-      if not( (exam.order_arrival.nil?) || (exam.order_arrival.blank?))         
-        exam.graph_status += "order_time->" + exam.order_arrival.to_s + "," 
-      else
-        exam.graph_status  += "order_time->"  + ","  
-      end
+    gstatus = ""
+    gstatus = exam.graph_status;
+    if not( (exam.order_arrival.nil?) || (exam.order_arrival.blank?))         
+      exam.graph_status += "order_time->" + exam.order_arrival.to_s + "," 
+    else
+      exam.graph_status  += "order_time->"  + ","  
+    end
       
-       if not( (exam.sched_time.nil?) || (exam.sched_time.blank?))         
-        exam.graph_status += "sched_time->" + exam.sched_time.to_s + "," 
-      else
-        exam.graph_status  += "sched_time->"  + ","  
-      end
+    if not( (exam.sched_time.nil?) || (exam.sched_time.blank?))         
+      exam.graph_status += "sched_time->" + exam.sched_time.to_s + "," 
+    else
+      exam.graph_status  += "sched_time->"  + ","  
+    end
       
-      if not( (exam.appt_time.nil?) || (exam.appt_time.blank?))
-        exam.graph_status += "appt_time->" + exam.appt_time.to_s + "," 
-      else
-        exam.graph_status += "appt_time->" +  "," 
-      end
-      if not( (exam.sign_in.nil?) || (exam.sign_in.blank?))
-        exam.graph_status += "sign_in->" + exam.sign_in.to_s + ","
-      else
-        exam.graph_status += "sign_in->" +  ","
-      end  
-      if not( (exam.check_in.nil?) || (exam.check_in.blank?))
-        exam.graph_status += "check_in->" + exam.check_in.to_s + ","
-      else
-        exam.graph_status += "check_in->"  + ","
-      end  
-      if not( (exam.begin_exam.nil?) || (exam.begin_exam.blank?))
-        exam.graph_status += "begin_exam->" + exam.begin_exam.to_s + ","
-      else
-        exam.graph_status += "begin_exam->" + ","
-      end  
-      if not( (exam.end_exam.nil?) || (exam.end_exam.blank?))
-        exam.graph_status += "end_exam->" + exam.end_exam.to_s + ","
-      else
-        exam.graph_status += "end_exam->" +  ","
-      end 
-       if not( (exam.report_time.nil?) || (exam.report_time.blank?))
-        exam.graph_status += "final_time->" + exam.report_time.to_s + ","
-      else
-        exam.graph_status += "final_time->" +  ","
-      end      
-      exam.graph_status += gstatus;
+    if not( (exam.appt_time.nil?) || (exam.appt_time.blank?))
+      exam.graph_status += "appt_time->" + exam.appt_time.to_s + "," 
+    else
+      exam.graph_status += "appt_time->" +  "," 
+    end
+    if not( (exam.sign_in.nil?) || (exam.sign_in.blank?))
+      exam.graph_status += "sign_in->" + exam.sign_in.to_s + ","
+    else
+      exam.graph_status += "sign_in->" +  ","
+    end  
+    if not( (exam.check_in.nil?) || (exam.check_in.blank?))
+      exam.graph_status += "check_in->" + exam.check_in.to_s + ","
+    else
+      exam.graph_status += "check_in->"  + ","
+    end  
+    if not( (exam.begin_exam.nil?) || (exam.begin_exam.blank?))
+      exam.graph_status += "begin_exam->" + exam.begin_exam.to_s + ","
+    else
+      exam.graph_status += "begin_exam->" + ","
+    end  
+    if not( (exam.end_exam.nil?) || (exam.end_exam.blank?))
+      exam.graph_status += "end_exam->" + exam.end_exam.to_s + ","
+    else
+      exam.graph_status += "end_exam->" +  ","
+    end 
+    if not( (exam.report_time.nil?) || (exam.report_time.blank?))
+      exam.graph_status += "final_time->" + exam.report_time.to_s + ","
+    else
+      exam.graph_status += "final_time->" +  ","
+    end      
+    exam.graph_status += gstatus;
       
     return exam;
   end
