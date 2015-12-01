@@ -2,8 +2,7 @@ class HomeController < ApplicationController
   before_filter :general_authentication
   before_filter :get_entity_manager
   after_filter :close_entity_manager
-  layout 'examtracker_layout'
-  
+  layout 'examtracker_layout'  
     
   def radiologist
     @employee = Employee.get_employee(session[:username])
@@ -28,10 +27,7 @@ class HomeController < ApplicationController
   def search
     @employee = Employee.get_employee(session[:username])
   end
-  
-  
-  
-  
+    
   def get_jqgridRad
     accession_ids = params[:accession]
     exam_status = params[:status]
@@ -42,30 +38,25 @@ class HomeController < ApplicationController
   def get_jqgridTech
     accession_ids = params[:accession]
     exam_status = params[:status]
-  
-    get_jqgrid_common("tech",accession_ids,exam_status);
-    puts "its in get_jqgridTech"
+    get_jqgrid_common("tech",accession_ids,exam_status);    
   end
   
   def get_jqgridScheReg
     accession_ids = params[:accession]
     exam_status = params[:status]
-    get_jqgrid_common("schedreg",accession_ids,exam_status);
-    puts "its in get_jqgridScheReg"
+    get_jqgrid_common("schedreg",accession_ids,exam_status);    
   end
   
   def get_jqgridTranscript
     accession_ids = params[:accession]
     exam_status = params[:status]
-    get_jqgrid_common("trans",accession_ids,exam_status);
-    puts "its in get_jqgridTranscript"
+    get_jqgrid_common("trans",accession_ids,exam_status);    
   end
     
   def get_jqgridOthers
     accession_ids = params[:accession]
     exam_status = params[:status]
-    get_jqgrid_common("others",accession_ids,exam_status);
-    puts "its in get_jqgridOthers"
+    get_jqgrid_common("others",accession_ids,exam_status);    
   end
   
   def get_jqgridSearch_exam_data 
@@ -78,11 +69,11 @@ class HomeController < ApplicationController
     if ( (@myvalues[:my_reports] == "on") || (@myvalues[:my_exams] == "on") || (@myvalues[:my_orders] == "on"))
       
       if (@myvalues[:my_reports] == "on")
-       puts "in my :my_exams ";
+       
         @exams1 = Rad_Exam.get_exams_search(@employee.id,@myvalues,true,false,false).pluck(:id) ;        
            if @exams1.length > 0
             #@exams2 = Rad_Exam.get_exams_search(@employee.id,@myvalues,true,false,false).pluck(:id) ; 
-              puts @exams1.to_json + " Fire --->";
+              
              @exams1.each_with_index do |exam, i|                    
                 if !(idList.include? exam.to_i)   #exam[:id].to_i                    
                    idList << exam.to_i #exam[:id].to_i                
@@ -93,11 +84,11 @@ class HomeController < ApplicationController
       end   
       
       if (@myvalues[:my_exams] == "on")
-         puts "in my :my_exams ";
+         
         @exams2 = Rad_Exam.get_exams_search(@employee.id,@myvalues,false,true,false).pluck(:id) ; 
         if @exams2.length > 0
             #@exams2 = Rad_Exam.get_exams_search(@employee.id,@myvalues,false,true,false).pluck(:id) ; 
-              puts @exams2.to_json + " Fire --->";
+              
              @exams2.each_with_index do |exam, i|                    
                 if !(idList.include? exam.to_i)   #exam[:id].to_i                    
                    idList << exam.to_i #exam[:id].to_i                
@@ -114,7 +105,7 @@ class HomeController < ApplicationController
         @exams3 = Rad_Exam.get_exams_search(@employee.id,@myvalues,false,false,true).pluck(:id) ;    
           if @exams3.length > 0
             #@exams3 = Rad_Exam.get_exams_search(@employee.id,@myvalues,false,false,true).pluck(:id) ; 
-              puts @exams3.to_json + " Fire --->";
+              
              @exams3.each_with_index do |exam, i|                    
                 if !(idList.include? exam.to_i)   #exam[:id].to_i                    
                    idList << exam.to_i #exam[:id].to_i                
@@ -126,11 +117,9 @@ class HomeController < ApplicationController
       
     end   
     
-    puts idList.length.to_s + "kumar "
       if( 
           (idList.length > 0) ||  (@myvalues[:my_orders] == "on") || (@myvalues[:my_exams] == "on") || (@myvalues[:my_reports] == "on")
-          )
-        puts idList.to_s;
+          )        
        @exams = Rad_Exam.get_exams_search_by_id_array(idList)  
       else 
         @exams = Rad_Exam.get_exams_search(@employee.id,@myvalues)      
@@ -159,8 +148,7 @@ class HomeController < ApplicationController
       
        exam = get_graph_status(exam);
     end  #end each
-    puts "its in get_jqgridSearch_exam_data" 
-   
+    
     
     json_data = {
       :page=>"1",
@@ -314,8 +302,7 @@ class HomeController < ApplicationController
   def get_accession_report
     @accession_id = params[:accession_id];
     authenticity_token = params[:authenticity_token];      
-    @reports = Rad_Exam.get_accession_reports(@accession_id.to_s)
-    #puts @exams.to_json;
+    @reports = Rad_Exam.get_accession_reports(@accession_id.to_s)    
     respond_to do |format|
       format.json { render :json => @reports.to_json(:only => [ :status, :report_time,:report_impression, :report_body, :rad1_name,:rad2_name]) }
     end    

@@ -180,14 +180,13 @@ class Rad_Exam < ActiveRecord::Base
     if (myreports == true)
       exams_search = exams_search.where("( (rr.rad1_id = ?) or (rr.rad2_id = ?) or  (rr.rad3_id = ?) or (rr.rad4_id = ?)) ",employeeid,employeeid,employeeid,employeeid).all;
     end
-    if (myexams == true)
-      
+    
+    if (myexams == true)      
       exams_search = exams_search.where("( (repp.performing_id = ?) or (repp.technologist_id = ?) or  (repp.scheduler_id = ?) ) ",employeeid,employeeid,employeeid).all;
     end
-    if (myorders == true)
-      puts "its in myorders"     
-        exams_search = exams_search.where("( (repp.attending_id = ?) or (repp.ordering_id = ?) or  (repp.authorizing_id = ?) ) ",employeeid,employeeid,employeeid).all;
-        
+    
+    if (myorders == true)        
+        exams_search = exams_search.where("( (repp.attending_id = ?) or (repp.ordering_id = ?) or  (repp.authorizing_id = ?) ) ",employeeid,employeeid,employeeid).all;        
     end 
     
     if ((params[:visit] != "") && !(params[:visit].nil?) && !(params[:visit].blank?)) 
@@ -256,8 +255,7 @@ class Rad_Exam < ActiveRecord::Base
   #This is main query from ra_exams details of particular accession
   def self.get_accession_detail(accessionid)
   
-    accession = self.join_Main.Rad_report_event.where(" rad_exams.accession = ? ",accessionid).first;
-     puts accession.to_json;
+    accession = self.join_Main.Rad_report_event.where(" rad_exams.accession = ? ",accessionid).first;     
     return accession;
   end
   
