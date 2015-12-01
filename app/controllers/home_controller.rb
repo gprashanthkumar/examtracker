@@ -149,7 +149,7 @@ class HomeController < ApplicationController
     end  #end each
     
      #log output data
-     log_hipaa_view(@exams);
+     #log_hipaa_view(@exams);
     
     json_data = {
       :page=>"1",
