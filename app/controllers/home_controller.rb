@@ -62,9 +62,8 @@ class HomeController < ApplicationController
   def get_jqgridSearch_exam_data 
     @employee = Employee.get_employee(session[:username])  
     @myvalues = params[:allSearchCriteriaInJson];
-    
     symbolize_keys_deep! @myvalues;
-    blnFirstCall = true
+    
     idList = [];
     if ( (@myvalues[:my_reports] == "on") || (@myvalues[:my_exams] == "on") || (@myvalues[:my_orders] == "on"))
       
@@ -120,9 +119,9 @@ class HomeController < ApplicationController
     if( 
         (idList.length > 0) ||  (@myvalues[:my_orders] == "on") || (@myvalues[:my_exams] == "on") || (@myvalues[:my_reports] == "on")
       )        
-      @exams = Rad_Exam.get_exams_search_by_id_array(idList)  
+      @exams = Rad_Exam.get_exams_search_by_id_array(idList);  
     else 
-      @exams = Rad_Exam.get_exams_search(@employee.id,@myvalues)      
+      @exams = Rad_Exam.get_exams_search(@employee.id,@myvalues)  ;    
     end
     
     
@@ -149,6 +148,8 @@ class HomeController < ApplicationController
       exam = get_graph_status(exam);
     end  #end each
     
+     #log output data
+     log_hipaa_view(@exams);
     
     json_data = {
       :page=>"1",
@@ -325,6 +326,15 @@ class HomeController < ApplicationController
       symbolize_keys_deep! h[ks] if h[ks].kind_of? Hash
     end
   end 
+  
+    #checking if an api key is valid
+  def api_key_check(api_key)
+        if Java::HarbingerSdkData::AppAuthenticationToken.firstWith({".authToken" => api_key},@entity_manager)
+          true
+        else
+          false
+        end
+  end
   
   def logout
     reset_session
