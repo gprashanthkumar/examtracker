@@ -324,7 +324,7 @@
                 var uniqueStatuses = []; 
                 $.each(data.rows,function(index, value){
                       
-                        if(uniqueStatuses.indexOf(value) === -1){
+                        if(uniqueStatuses.indexOf(value.current_status) === -1){
                           $("#DdlStatusSrch").append($('<option>', { value: value.current_status, text: value.current_status }));
                           uniqueStatuses.push(value.current_status);
                         }
