@@ -272,6 +272,5 @@ class Rad_Exam < ActiveRecord::Base
     arraystring.gsub!  "\", \"", "', '";
     arraystring.gsub!  "\"", "'";
     return arraystring;
-  end
- 
+  end 
 end

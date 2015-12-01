@@ -36,8 +36,7 @@ class HomeController < ApplicationController
     accession_ids = params[:accession]
     exam_status = params[:status]
 	
-    get_jqgrid_common("rad",accession_ids,exam_status);
-    puts "its in get_jqgridRad"
+    get_jqgrid_common("rad",accession_ids,exam_status);  
   end
   
   def get_jqgridTech
@@ -321,8 +320,6 @@ class HomeController < ApplicationController
       format.json { render :json => @reports.to_json(:only => [ :status, :report_time,:report_impression, :report_body, :rad1_name,:rad2_name]) }
     end    
   end
-  
-  
   #convert hash to symbols
   def symbolize_keys_deep!(h)
     h.keys.each do |k|
@@ -330,9 +327,7 @@ class HomeController < ApplicationController
       h[ks] = h.delete k # Preserve order even when k == ks
       symbolize_keys_deep! h[ks] if h[ks].kind_of? Hash
     end
-  end  
-  
-
+  end 
   
   def logout
     reset_session
