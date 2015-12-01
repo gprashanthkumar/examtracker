@@ -196,10 +196,24 @@ class HomeController < ApplicationController
 	
     @exams.each do |exam| 
      
-      if ['1037','1027','1017'].include? exam.accession
-        exam.graph_status = "cancelled"
-        exam.current_status = "cancelled"       
-      end
+       if ['1037','1027'].include? exam.accession
+            exam.graph_status = "cancelled"
+            exam.current_status = "cancelled"       
+        end
+         if '1027' == exam.accession
+           exam.graph_status = "cancelled"
+            exam.current_status = "cancelled"    
+            exam.report_time = "";
+        end
+        
+        if '1017' == exam.accession
+           exam.graph_status = "order"
+            exam.current_status = "order"    
+        end
+         if '1015' == exam.accession
+           exam.graph_status = "arrived"
+            exam.current_status = "arrived"    
+        end
       exam = get_graph_status(exam);    
     
     end  #end each
@@ -222,10 +236,24 @@ class HomeController < ApplicationController
     authenticity_token = params[:authenticity_token];      
     @exams = Rad_Exam.get_accession_detail(@accession_id.to_s)   
     exam = @exams 
-     if ['1037','1027','1017'].include? exam.accession
-        exam.graph_status = "cancelled"
-        exam.current_status = "cancelled"       
-      end
+      if ['1037','1027'].include? exam.accession
+            exam.graph_status = "cancelled"
+            exam.current_status = "cancelled"       
+        end
+         if '1027' == exam.accession
+           exam.graph_status = "cancelled"
+            exam.current_status = "cancelled"    
+            exam.report_time = "";
+        end
+        
+        if '1017' == exam.accession
+           exam.graph_status = "order"
+            exam.current_status = "order"    
+        end
+         if '1015' == exam.accession
+           exam.graph_status = "arrived"
+            exam.current_status = "arrived"    
+        end
     exam = get_graph_status(exam);    
     @exams.graph_status = exam.graph_status;
     @exams.graph_status = exam.graph_status;
