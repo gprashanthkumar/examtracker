@@ -439,6 +439,7 @@ colNames: ['A#','Progress Status','Current Status','Status Last Changed','Patien
         }
 
         function parseStatusOfExamFormatter(cellvalue, option, rowobj) {
+          alert(cellvalue);
 
             var cellvalue_array = cellvalue.split(',');
             //(cellvalue_array[0].split('->')[1] != "") ? cellvalue_array[0].split('->')[1] : cellvalue_array[1].split('->')[1];
