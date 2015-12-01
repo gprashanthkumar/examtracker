@@ -319,11 +319,12 @@
                 var uniqueStatus = $.unique(data.rows.map(function (value) {    				
     				return value.current_status;
     			}));
-                var uniqueStatus = []; 
+                var uniqueStatuses = []; 
                 $.each(uniqueStatus,function(index, value){
-                        if(uniqueStatus.indexOf(value) === -1){
+                  debugger;
+                        if(uniqueStatuses.indexOf(value) === -1){
                           $("#DdlStatusSrch").append($('<option>', { value: value, text: value }));
-                          uniqueStatus.push(value);
+                          uniqueStatuses.push(value);
                         }
                 	
                 });
