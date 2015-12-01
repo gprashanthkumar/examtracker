@@ -143,6 +143,12 @@ class HomeController < ApplicationController
             exam.graph_status = "cancelled"
             exam.current_status = "cancelled"       
         end
+         if '1027' == exam.accession
+           exam.graph_status = "cancelled"
+            exam.current_status = "cancelled"    
+            exam.report_time = "";
+        end
+        
         if '1017' == exam.accession
            exam.graph_status = "order"
             exam.current_status = "order"    
