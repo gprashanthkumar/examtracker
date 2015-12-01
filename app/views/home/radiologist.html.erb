@@ -316,15 +316,17 @@
 				
 				//****Binding data to Status dropdown****//
                 $("#DdlStatusSrch").empty();
+                /*
                 var uniqueStatus = $.unique(data.rows.map(function (value) {    				
     				return value.current_status;
     			}));
+                 */
                 var uniqueStatuses = []; 
-                $.each(uniqueStatus,function(index, value){
-                  debugger;
+                $.each(data.rows,function(index, value){
+                      
                         if(uniqueStatuses.indexOf(value) === -1){
-                          $("#DdlStatusSrch").append($('<option>', { value: value, text: value }));
-                          uniqueStatuses.push(value);
+                          $("#DdlStatusSrch").append($('<option>', { value: value.current_status, text: value.current_status }));
+                          uniqueStatuses.push(value.current_status);
                         }
                 	
                 });
