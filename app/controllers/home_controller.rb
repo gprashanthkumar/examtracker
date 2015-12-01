@@ -226,7 +226,9 @@ class HomeController < ApplicationController
     @accession_id = params[:accession_id];
     authenticity_token = params[:authenticity_token];      
     @exams = Rad_Exam.get_accession_detail(@accession_id.to_s)   
-    exam = @exams 
+   
+   @exams.each do |exam| 
+   
     if ['1037','1027'].include? exam.accession
       exam.graph_status = "cancelled"
       exam.current_status = "cancelled"       
@@ -245,9 +247,10 @@ class HomeController < ApplicationController
       exam.graph_status = "arrived"
       exam.current_status = "arrived"    
     end
-    exam = get_graph_status(exam);    
-    @exams.graph_status = exam.graph_status;
-    @exams.graph_status = exam.graph_status;
+    exam = get_graph_status(exam); 
+    end
+    #@exams.graph_status = exam.graph_status;
+    #@exams.graph_status = exam.graph_status;
     
      #log output data
      #log_hipaa_view(@exams);
