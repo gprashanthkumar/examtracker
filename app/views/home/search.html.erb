@@ -197,7 +197,7 @@
                                         <div></div>
                                         <div>
                                             <button id="btnSearchExam" class="btn btn-primary" type="submit">Search</button>
-                                            <button class="btn btn-danger" type="reset">Reset</button>
+                                            <button id="btnSearchReset" class="btn btn-danger" type="reset">Reset</button>
                                         </div>
                                     </div>
                                 </div>
@@ -419,12 +419,18 @@ colNames: ['A#','Progress Status','Current Status','Status Last Changed','Patien
 	   });
 	   
         });
-        //==========End #btnSearchExam functionality==============
+        //========== #btnSearchExam functionality==============
 
         $("#btnShowSearchCriteria").click(function () {
             $("#RowForSearchCriteria").show();
             $("#SearchCriteriaContainerDiv").slideDown('slow');
             $("#RowForGridDiv").hide();
+        });
+          //========== #btnSearchReset functionality==============
+         $("#btnSearchReset").click(function () {
+            $("#chkMyOrder").parent().removeClass('checked') ;
+            $("#chkMyExams").parent().removeClass('checked') ;
+            $("#chkMyReports").parent().removeClass('checked') ;
         });
 
 
