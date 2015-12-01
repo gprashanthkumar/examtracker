@@ -204,8 +204,9 @@ class HomeController < ApplicationController
       exam = get_graph_status(exam);    
     
     end  #end each
-    #log
-     log_hipaa_view(@exams)
+    
+    #log output data
+     log_hipaa_view(@exams);
      
     json_data = {
       :page=>"1",
@@ -246,6 +247,10 @@ class HomeController < ApplicationController
     exam = get_graph_status(exam);    
     @exams.graph_status = exam.graph_status;
     @exams.graph_status = exam.graph_status;
+    
+     #log output data
+     log_hipaa_view(@exams);
+    
     respond_to do |format|
       format.json { render :json => @exams.to_json(:only => [ :accession,:mrn,:current_status,:code,:description,:modality,:resource_name,:graph_status,:current_status,:updated_at,:patient_name,:birthdate,:site_name,:patient_class,:trauma,:patient_type,:patient_location_at_exam,:radiology_department,:ordering_provider,:scheduler,:technologist,:pacs_image_count,:appt_time,:sign_in,:check_in,:begin_exam,:end_exam,:first_final,:last_final,:order_arrival,:rad1_name,:rad2_name]) }
     end    
@@ -305,6 +310,9 @@ class HomeController < ApplicationController
     @accession_id = params[:accession_id];
     authenticity_token = params[:authenticity_token];      
     @reports = Rad_Exam.get_accession_reports(@accession_id.to_s)    
+    
+        #log output data
+     log_hipaa_view(@reports);
     respond_to do |format|
       format.json { render :json => @reports.to_json(:only => [ :status, :report_time,:report_impression, :report_body, :rad1_name,:rad2_name]) }
     end    
