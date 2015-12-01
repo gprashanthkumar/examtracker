@@ -472,7 +472,7 @@ colNames: ['A#','Progress Status','Current Status','Status Last Changed','Patien
 		}
 		else if(cellvalue_array[cellvalue_array.length-1]=="cancelled"){
 			
-			var cancelledAtStageClass = "";
+			var cancelledAtStageClass = "sixthStageClass";
 			if(sixthStageTitle == ""){
 				if(fifthStageTitle == ""){
 					if(fourthStageTitle == ""){
@@ -493,6 +493,7 @@ colNames: ['A#','Progress Status','Current Status','Status Last Changed','Patien
 					}
 				}
 				else{
+                                      alert("inside fifth stage");
 					cancelledAtStageClass = "fifthStageClass";                                       
 				}
 			}
