@@ -265,6 +265,7 @@ class HomeController < ApplicationController
   def get_graph_status(exam)
     gstatus = ""
     gstatus = exam.graph_status;
+    exam.graph_status="";
     if not( (exam.order_arrival.nil?) || (exam.order_arrival.blank?))         
       exam.graph_status += "order_time->" + exam.order_arrival.to_s + "," 
     else
