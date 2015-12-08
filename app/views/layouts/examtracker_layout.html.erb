@@ -760,8 +760,12 @@
       }; 
       
       function Datetime_tag_change(mystring) {
-        
+        if ( mystring == null)|| (mystring.trim() == ""))
+        {
+          return "";
+        } else {
         return format_date_time(mystring.replaceAll("-","/"));
+      }
         
       }
 	
