@@ -1,6 +1,7 @@
 class Rad_Exam < ActiveRecord::Base
   self.table_name = "public.rad_exams"
   #Scopes
+  #This is the main scope to which other scopes are combined
   scope :join_Main, -> { 
     joins("LEFT JOIN patient_mrns pmrn ON pmrn.id = rad_exams.patient_mrn_id" )
     .joins("LEFT JOIN patients p ON p.id = pmrn.patient_id" )
@@ -50,9 +51,11 @@ class Rad_Exam < ActiveRecord::Base
      ,rad_exams.*")      
   }   
   
+  #This is the join scope for grids
   scope :Rad_Tech_Sched_Trans_Other, -> { 
     joins("left join rad_exam_personnel repp on repp.rad_exam_id = rad_exams.id") 
   }
+  #This is the join scope for accession details which is final exam report time this missing in main scope
   scope :Rad_report_event, -> {
     joins("LEFT JOIN rad_reports rrff ON rrff.rad_exam_id = rad_exams.id and rrff.id = rad_exams.first_final_report_id " )
     .joins("LEFT JOIN rad_reports rrlf ON rrlf.rad_exam_id = rad_exams.id and rrlf.id = rad_exams.last_final_report_id " )
@@ -60,6 +63,7 @@ class Rad_Exam < ActiveRecord::Base
     .joins("left join employees rademp2 on rademp2.id = rrlf.rad2_id")    
     .select("rrff.report_event as first_final, rrlf.report_event as last_final,rademp1.name as rad1_name,rademp1.name as rad2_name")
   }
+  #This is the scope to give list of reports 
   scope :Radiologist_Reports, -> { 
     joins("LEFT join external_system_statuses ess1 on ess1.id = rr.report_status_id") 
     .joins("LEFT join universal_event_types uet1 on uet1.id = ess1.universal_event_type_id")
@@ -69,17 +73,17 @@ class Rad_Exam < ActiveRecord::Base
     
   }
   
-  #definitions
+  #definitions: This the definition  to return resulset of Radiologist group records
   def self.get_rad_exams(employeeid,accessions,current_status)
     #self.where({patient_mrn_id: mrn}).order("created_at desc").first
     accfilter = "";
     csfilter = "";
     accfilter = accessions.to_s unless accessions.blank?;
-    accfilter = stringArray_to_string(accfilter);
+    accfilter = string_array_to_string(accfilter);
     
    
     csfilter = current_status.to_s unless current_status.blank?;
-    csfilter = stringArray_to_string(csfilter);
+    csfilter = string_array_to_string(csfilter);
     
     rad_exams = self.join_Main.Rad_Tech_Sched_Trans_Other.where("( (rr.rad1_id = ?) or (rr.rad2_id = ?) or  (rr.rad3_id = ?) or (rr.rad4_id = ?)) or (repp.performing_id = ?) ",employeeid,employeeid,employeeid,employeeid,employeeid) .order("id desc").all;              
     rad_exams = rad_exams.where("accession in ( " + accfilter +")" ).all unless accessions.blank?; 
@@ -87,76 +91,76 @@ class Rad_Exam < ActiveRecord::Base
     
     return rad_exams;
   end
-  
+  #Definitions: This is the definition tor return resultset of tecnologist group records
   def self.get_tech_exams(employeeid,accessions,current_status)
     accfilter = "";
     csfilter = "";
     
     accfilter = accessions.to_s unless accessions.blank?;
-    accfilter = stringArray_to_string(accfilter);   
+    accfilter = string_array_to_string(accfilter);   
     csfilter = current_status.to_s unless current_status.blank?;
-    csfilter = stringArray_to_string(csfilter);
+    csfilter = string_array_to_string(csfilter);
     tech_exams = self.join_Main.Rad_Tech_Sched_Trans_Other.where("( 
-(repp.performing_id = ?) OR
-(repp.scheduler_id  = ?) OR
-(repp.technologist_id  = ?)  OR
-(repp.assisting_tech1_id  = ?)  OR
-(repp.assisting_tech2_id  = ?)  OR
-(repp.assisting_tech3_id  = ?)  OR
-(repp.attending_id  = ?)  OR
-(repp.ordering_id  = ?)  OR
-(repp.authorizing_id  = ?) ) ",employeeid,employeeid,employeeid,employeeid,employeeid,employeeid,employeeid,employeeid,employeeid).order("id desc").all ;   
+    (repp.performing_id = ?) OR
+    (repp.scheduler_id  = ?) OR
+    (repp.technologist_id  = ?)  OR
+    (repp.assisting_tech1_id  = ?)  OR
+    (repp.assisting_tech2_id  = ?)  OR
+    (repp.assisting_tech3_id  = ?)  OR
+    (repp.attending_id  = ?)  OR
+    (repp.ordering_id  = ?)  OR
+    (repp.authorizing_id  = ?) ) ",employeeid,employeeid,employeeid,employeeid,employeeid,employeeid,employeeid,employeeid,employeeid).order("id desc").all ;   
     tech_exams = tech_exams.where("accession in ( " + accfilter +")" ).all unless accessions.blank?; 
     tech_exams = tech_exams.where("uet.event_type in ( " + csfilter +")" ).all unless current_status.blank?; 
     
     return tech_exams;
   end  
   
+   #Definitions: This is the definition tor return resultset of Scheduler group records
   def self.get_sched_exams(employeeid,accessions,current_status)
     accfilter = "";
-    csfilter = "";
-    
+    csfilter = "";    
     accfilter = accessions.to_s unless accessions.blank?;
-    accfilter = stringArray_to_string(accfilter);   
+    accfilter = string_array_to_string(accfilter);   
     csfilter = current_status.to_s unless current_status.blank?;
-    csfilter = stringArray_to_string(csfilter);
-    
+    csfilter = string_array_to_string(csfilter);    
     sched_exams = self.join_Main.Rad_Tech_Sched_Trans_Other.where("( 
-(repp.scheduler_id  = ?) OR
-(repp.signin_id  = ?) OR
-(repp.checkin_id  = ?) ) ",employeeid,employeeid,employeeid).order("id desc").all ;   
+    (repp.scheduler_id  = ?) OR
+    (repp.signin_id  = ?) OR
+    (repp.checkin_id  = ?) ) ",employeeid,employeeid,employeeid).order("id desc").all ;   
     sched_exams = sched_exams.where("accession in ( " + accfilter +")" ).all unless accessions.blank?; 
     sched_exams = sched_exams.where("uet.event_type in ( " + csfilter +")" ).all unless current_status.blank?; 
     return sched_exams;
   end  
   
+  #Definitions: This is the definition tor return resultset of transcript group records
   def self.get_trans_exams(employeeid,accessions,current_status)
     accfilter = "";
     csfilter = "";
     
     accfilter = accessions.to_s unless accessions.blank?;
-    accfilter = stringArray_to_string(accfilter);   
+    accfilter = string_array_to_string(accfilter);   
     csfilter = current_status.to_s unless current_status.blank?;
-    csfilter = stringArray_to_string(csfilter);    
+    csfilter = string_array_to_string(csfilter);    
     trans_exams = self.join_Main.Rad_Tech_Sched_Trans_Other.where("( (rr.transcriptionist_id  = ?)) ",employeeid).order("id desc").all ;   
     trans_exams = trans_exams.where("accession in ( " + accfilter +")" ).all unless accessions.blank?; 
     trans_exams = trans_exams.where("uet.event_type in ( " + csfilter +")" ).all unless current_status.blank?; 
     return trans_exams;
   end
-  
+  #Definitions: This is the definition tor return resultset of ordering group records
   def self.get_ordering_exams(employeeid,accessions,current_status)
     accfilter = "";
     csfilter = "";
     
     accfilter = accessions.to_s unless accessions.blank?;
-    accfilter = stringArray_to_string(accfilter);   
+    accfilter = string_array_to_string(accfilter);   
     csfilter = current_status.to_s unless current_status.blank?;
-    csfilter = stringArray_to_string(csfilter);
+    csfilter = string_array_to_string(csfilter);
     others_exams = self.join_Main.Rad_Tech_Sched_Trans_Other.where("( 
-(repp.attending_id  = ?)  OR
-(repp.ordering_id  = ?)  OR
-(repp.authorizing_id  = ?)
- ) ",employeeid,employeeid,employeeid).order("id desc").all ;  
+    (repp.attending_id  = ?)  OR
+    (repp.ordering_id  = ?)  OR
+    (repp.authorizing_id  = ?)
+    ) ",employeeid,employeeid,employeeid).order("id desc").all ;  
     others_exams = others_exams.where("accession in ( " + accfilter +")" ).all unless accessions.blank?; 
     others_exams = others_exams.where("uet.event_type in ( " + csfilter +")" ).all unless current_status.blank?; 
     
@@ -234,26 +238,29 @@ class Rad_Exam < ActiveRecord::Base
     
     return exams_search;
   end
-  
+  #Definition:  This is the definition called to return list of  exam records matching passed eccessionid list idList
   def self.get_exams_search_by_id_array(idList)
     exams_search = self.join_Main.Rad_Tech_Sched_Trans_Other;  
     exams_search = exams_search.where("rad_exams.id in (?)", idList ).order("id desc").all ;
     return exams_search;    
   end
   
-  #This is main query from ra_exams details of particular accession
+  #Definition: This is main query from ra_exams details of for passed accessionid as accession of the exam
   def self.get_accession_detail(accessionid)
   
     accession = self.join_Main.Rad_report_event.where(" rad_exams.accession = ? ",accessionid).all;     
     return accession;
   end
   
+  #Definitions: This is the definition to return resultset of reports records for passed accessionid as accession of the reports
   def self.get_accession_reports(accessionid)
     reports = self.join_Main.Radiologist_Reports.where(" rad_exams.accession = ? ",accessionid).order("id desc").all;
     return reports;
   end
   
-  def self.stringArray_to_string(arraystring)
+  #Definitions: This is the  utility definition 
+  #(this can be moved out of this module to any other, as long as its accessible from this module).
+  def self.string_array_to_string(arraystring)
     arraystring.gsub! "[","";
     arraystring.gsub! "]","";
     arraystring.gsub!  "\", \"", "', '";

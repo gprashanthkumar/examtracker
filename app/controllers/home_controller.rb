@@ -71,12 +71,12 @@ class HomeController < ApplicationController
           (@myvalues[:search_individual_buckets]== "1" )  || 
           (@myvalues[:search_individual_buckets]== "true" )
       )
+    #set as union Join search
       @Search_buckets_individually = true
     end
     
     if (@Search_buckets_individually == true) #its UNION Join
-      #perform search on individual  buckets and join the records      
-    
+      #perform search on individual  buckets and join the records          
       idList = [];
       if ( (@myvalues[:my_reports] == "on") || (@myvalues[:my_exams] == "on") || (@myvalues[:my_orders] == "on"))
 
@@ -141,24 +141,12 @@ class HomeController < ApplicationController
     end
     
     @exams.each do |exam| 
-      if ['1037','1027'].include? exam.accession
-        exam.graph_status = "cancelled"
-        exam.current_status = "cancelled"       
-      end
-      if '1027' == exam.accession
-        exam.graph_status = "cancelled"
-        exam.current_status = "cancelled"    
-        exam.report_time = "";
-      end
-        
-      if '1017' == exam.accession
-        exam.graph_status = "order"
-        exam.current_status = "order"    
-      end
-      if '1015' == exam.accession
-        exam.graph_status = "arrived"
-        exam.current_status = "arrived"    
-      end
+
+      
+       #remove this line after testing
+      #<start>
+      exam = manipulate_status(exam);
+      #<end>
       
       exam = get_graph_status(exam);
     end  #end each
