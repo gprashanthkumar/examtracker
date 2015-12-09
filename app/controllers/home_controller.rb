@@ -60,82 +60,84 @@ class HomeController < ApplicationController
   end
   
   def get_jqgridSearch_exam_data 
+    #search can be performed by 2 methods union or intesection
+    #if  @Search_buckets_individually value is true then its union else default intersection.
     @Search_buckets_individually = false;
     @employee = Employee.get_employee(session[:username])  
     @myvalues = params[:allSearchCriteriaInJson];
     symbolize_keys_deep! @myvalues;
     
     if ((@myvalues[:search_individual_buckets]== "on" ) ||
-         (@myvalues[:search_individual_buckets]== "1" )  || 
-         (@myvalues[:search_individual_buckets]== "true" )
-        )
-         @Search_buckets_individually = true
+          (@myvalues[:search_individual_buckets]== "1" )  || 
+          (@myvalues[:search_individual_buckets]== "true" )
+      )
+      @Search_buckets_individually = true
     end
     
     if (@Search_buckets_individually == true) #its UNION Join
-      
+      #perform search on individual  buckets and join the records      
     
-            idList = [];
-            if ( (@myvalues[:my_reports] == "on") || (@myvalues[:my_exams] == "on") || (@myvalues[:my_orders] == "on"))
+      idList = [];
+      if ( (@myvalues[:my_reports] == "on") || (@myvalues[:my_exams] == "on") || (@myvalues[:my_orders] == "on"))
 
-              if (@myvalues[:my_reports] == "on")
+        if (@myvalues[:my_reports] == "on")
 
-                @exams1 = Rad_Exam.get_exams_search(@employee.id,@myvalues,true,false,false).pluck(:id) ;        
-                if @exams1.length > 0
-                  #@exams2 = Rad_Exam.get_exams_search(@employee.id,@myvalues,true,false,false).pluck(:id) ; 
+          @exams1 = Rad_Exam.get_exams_search(@employee.id,@myvalues,true,false,false).pluck(:id) ;        
+          if @exams1.length > 0
+            #@exams2 = Rad_Exam.get_exams_search(@employee.id,@myvalues,true,false,false).pluck(:id) ; 
 
-                  @exams1.each_with_index do |exam, i|                    
-                    if !(idList.include? exam.to_i)   #exam[:id].to_i                    
-                      idList << exam.to_i #exam[:id].to_i                
-                    end     
-                  end             
-                end 
-                @exams1 = nil;     
-              end   
+            @exams1.each_with_index do |exam, i|                    
+              if !(idList.include? exam.to_i)   #exam[:id].to_i                    
+                idList << exam.to_i #exam[:id].to_i                
+              end     
+            end             
+          end 
+          @exams1 = nil;     
+        end   
 
-              if (@myvalues[:my_exams] == "on")
+        if (@myvalues[:my_exams] == "on")
 
-                @exams2 = Rad_Exam.get_exams_search(@employee.id,@myvalues,false,true,false).pluck(:id) ; 
-                if @exams2.length > 0
-                  #@exams2 = Rad_Exam.get_exams_search(@employee.id,@myvalues,false,true,false).pluck(:id) ; 
+          @exams2 = Rad_Exam.get_exams_search(@employee.id,@myvalues,false,true,false).pluck(:id) ; 
+          if @exams2.length > 0
+            #@exams2 = Rad_Exam.get_exams_search(@employee.id,@myvalues,false,true,false).pluck(:id) ; 
 
-                  @exams2.each_with_index do |exam, i|                    
-                    if !(idList.include? exam.to_i)   #exam[:id].to_i                    
-                      idList << exam.to_i #exam[:id].to_i                
-                    end     
-                  end             
-                end 
-                @exams2 = nil;        
+            @exams2.each_with_index do |exam, i|                    
+              if !(idList.include? exam.to_i)   #exam[:id].to_i                    
+                idList << exam.to_i #exam[:id].to_i                
+              end     
+            end             
+          end 
+          @exams2 = nil;        
 
-              end  #myexams 
+        end  #myexams 
 
 
-              if (@myvalues[:my_orders] == "on")
+        if (@myvalues[:my_orders] == "on")
 
-                @exams3 = Rad_Exam.get_exams_search(@employee.id,@myvalues,false,false,true).pluck(:id) ;    
-                if @exams3.length > 0
-                  #@exams3 = Rad_Exam.get_exams_search(@employee.id,@myvalues,false,false,true).pluck(:id) ; 
+          @exams3 = Rad_Exam.get_exams_search(@employee.id,@myvalues,false,false,true).pluck(:id) ;    
+          if @exams3.length > 0
+            #@exams3 = Rad_Exam.get_exams_search(@employee.id,@myvalues,false,false,true).pluck(:id) ; 
 
-                  @exams3.each_with_index do |exam, i|                    
-                    if !(idList.include? exam.to_i)   #exam[:id].to_i                    
-                      idList << exam.to_i #exam[:id].to_i                
-                    end     
-                  end             
-                end 
-                @exams3 = nil;
-              end   
+            @exams3.each_with_index do |exam, i|                    
+              if !(idList.include? exam.to_i)   #exam[:id].to_i                    
+                idList << exam.to_i #exam[:id].to_i                
+              end     
+            end             
+          end 
+          @exams3 = nil;
+        end   
 
-            end   
+      end   
     
-        if( 
-            (idList.length > 0) ||  (@myvalues[:my_orders] == "on") || (@myvalues[:my_exams] == "on") || (@myvalues[:my_reports] == "on")
-          )        
-          @exams = Rad_Exam.get_exams_search_by_id_array(idList);  
-        else 
-          @exams = Rad_Exam.get_exams_search(@employee.id,@myvalues)  ;    
-        end
+      if( 
+          (idList.length > 0) ||  (@myvalues[:my_orders] == "on") || (@myvalues[:my_exams] == "on") || (@myvalues[:my_reports] == "on")
+        )        
+        @exams = Rad_Exam.get_exams_search_by_id_array(idList);  
+      else 
+        @exams = Rad_Exam.get_exams_search(@employee.id,@myvalues)  ;    
+      end
     else #its  intersection  join NOT UNION Join
-         @exams = Rad_Exam.get_exams_search(@employee.id,@myvalues,(@myvalues[:my_orders] == "on"),(@myvalues[:my_exams] == "on"),(@myvalues[:my_reports] == "on"))  ;    
+      @exams = Rad_Exam.get_exams_search(@employee.id,@myvalues,(@myvalues[:my_orders] == "on"),(@myvalues[:my_exams] == "on"),(@myvalues[:my_reports] == "on"))  ;    
     end
     
     @exams.each do |exam| 
@@ -161,8 +163,8 @@ class HomeController < ApplicationController
       exam = get_graph_status(exam);
     end  #end each
     
-     #log output data
-     log_hipaa_view(@exams);
+    #log output data
+    log_hipaa_view(@exams);
     
     json_data = {
       :page=>"1",
@@ -192,35 +194,21 @@ class HomeController < ApplicationController
     when "trans"
       @exams = Rad_Exam.get_trans_exams(@employee.id,accession,currentstatus)
     when "others"
-      @exams = Rad_Exam.get_other_exams(@employee.id,accession,currentstatus)
+      @exams = Rad_Exam.get_ordering_exams(@employee.id,accession,currentstatus)
     end
 	
     @exams.each do |exam| 
      
-      if ['1037','1027'].include? exam.accession
-        exam.graph_status = "cancelled"
-        exam.current_status = "cancelled"       
-      end
-      if '1027' == exam.accession
-        exam.graph_status = "cancelled"
-        exam.current_status = "cancelled"    
-        exam.report_time = "";
-      end
-        
-      if '1017' == exam.accession
-        exam.graph_status = "order"
-        exam.current_status = "order"    
-      end
-      if '1015' == exam.accession
-        exam.graph_status = "arrived"
-        exam.current_status = "arrived"    
-      end
+      #remove this line after testing
+      #<start>
+      exam = manipulate_status(exam);
+      #<end>
       exam = get_graph_status(exam);    
     
     end  #end each
     
     #log output data
-     log_hipaa_view(@exams);
+    log_hipaa_view(@exams);
      
     json_data = {
       :page=>"1",
@@ -240,34 +228,19 @@ class HomeController < ApplicationController
     authenticity_token = params[:authenticity_token];      
     @exams = Rad_Exam.get_accession_detail(@accession_id.to_s)   
    
-   @exams.each do |exam| 
-   
-    if ['1037','1027'].include? exam.accession
-      exam.graph_status = "cancelled"
-      exam.current_status = "cancelled"       
-    end
-    if '1027' == exam.accession
-      exam.graph_status = "cancelled"
-      exam.current_status = "cancelled"    
-      exam.report_time = "";
-    end
-        
-    if '1017' == exam.accession
-      exam.graph_status = "order"
-      exam.current_status = "order"    
-    end
-    if '1015' == exam.accession
-      exam.graph_status = "arrived"
-      exam.current_status = "arrived"    
-    end
-    exam = get_graph_status(exam); 
+    @exams.each do |exam| 
+      #remove this line after testing
+      #<start>
+      exam = manipulate_status(exam);
+      #<end>
+      exam = get_graph_status(exam); 
     end
     #@exams.graph_status = exam.graph_status;
     #@exams.graph_status = exam.graph_status;
-     #log output data
-     log_hipaa_view(@exams);
+    #log output data
+    log_hipaa_view(@exams);
     if @exams.size > 0
-    @exams = @exams[0];
+      @exams = @exams[0];
     end
     
     
@@ -332,8 +305,8 @@ class HomeController < ApplicationController
     authenticity_token = params[:authenticity_token];      
     @reports = Rad_Exam.get_accession_reports(@accession_id.to_s)    
     
-        #log output data
-     log_hipaa_view(@reports);
+    #log output data
+    log_hipaa_view(@reports);
     respond_to do |format|
       format.json { render :json => @reports.to_json(:only => [ :status, :report_time,:report_impression, :report_body, :rad1_name,:rad2_name]) }
     end    
@@ -347,18 +320,42 @@ class HomeController < ApplicationController
     end
   end 
   
-    #checking if an api key is valid
+  #checking if an api key is valid
   def api_key_check(api_key)
-        if Java::HarbingerSdkData::AppAuthenticationToken.firstWith({".authToken" => api_key},@entity_manager)
-          true
-        else
-          false
-        end
+    if Java::HarbingerSdkData::AppAuthenticationToken.firstWith({".authToken" => api_key},@entity_manager)
+      true
+    else
+      false
+    end
   end
   
   def logout
     reset_session
     @employee = nil   
     redirect_to Java::HarbingerSdk::SSO.logoutUrl()   
+  end
+  
+  def manipulate_status(exam)
+    
+    if ['1037','1027'].include? exam.accession
+      exam.graph_status = "cancelled"
+      exam.current_status = "cancelled"       
+    end
+    if '1027' == exam.accession
+      exam.graph_status = "cancelled"
+      exam.current_status = "cancelled"    
+      exam.report_time = "";
+    end
+        
+    if '1017' == exam.accession
+      exam.graph_status = "order"
+      exam.current_status = "order"    
+    end
+    if '1015' == exam.accession
+      exam.graph_status = "arrived"
+      exam.current_status = "arrived"    
+    end
+    
+    return exam;
   end
 end

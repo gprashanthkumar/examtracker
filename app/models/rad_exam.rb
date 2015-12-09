@@ -137,18 +137,14 @@ class Rad_Exam < ActiveRecord::Base
     accfilter = accessions.to_s unless accessions.blank?;
     accfilter = stringArray_to_string(accfilter);   
     csfilter = current_status.to_s unless current_status.blank?;
-    csfilter = stringArray_to_string(csfilter);
-    
-    trans_exams = self.join_Main.Rad_Tech_Sched_Trans_Other.where("( 
-
-(rr.transcriptionist_id  = ?)
-) ",employeeid).order("id desc").all ;   
+    csfilter = stringArray_to_string(csfilter);    
+    trans_exams = self.join_Main.Rad_Tech_Sched_Trans_Other.where("( (rr.transcriptionist_id  = ?)) ",employeeid).order("id desc").all ;   
     trans_exams = trans_exams.where("accession in ( " + accfilter +")" ).all unless accessions.blank?; 
     trans_exams = trans_exams.where("uet.event_type in ( " + csfilter +")" ).all unless current_status.blank?; 
     return trans_exams;
   end
   
-  def self.get_other_exams(employeeid,accessions,current_status)
+  def self.get_ordering_exams(employeeid,accessions,current_status)
     accfilter = "";
     csfilter = "";
     
@@ -165,11 +161,6 @@ class Rad_Exam < ActiveRecord::Base
     others_exams = others_exams.where("uet.event_type in ( " + csfilter +")" ).all unless current_status.blank?; 
     
     return others_exams;
-  end
-   
-  def self.get_exams_all(employeeid)
-    #self.where({patient_mrn_id: mrn}).order("created_at desc").first
-    self.join_Main.order("id desc").all;
   end
   
   def self.get_exams_search(employeeid,params,myreports = false,myexams = false,myorders = false)    
