@@ -60,70 +60,83 @@ class HomeController < ApplicationController
   end
   
   def get_jqgridSearch_exam_data 
+    @Search_buckets_individually = false;
     @employee = Employee.get_employee(session[:username])  
     @myvalues = params[:allSearchCriteriaInJson];
     symbolize_keys_deep! @myvalues;
     
-    idList = [];
-    if ( (@myvalues[:my_reports] == "on") || (@myvalues[:my_exams] == "on") || (@myvalues[:my_orders] == "on"))
-      
-      if (@myvalues[:my_reports] == "on")
-       
-        @exams1 = Rad_Exam.get_exams_search(@employee.id,@myvalues,true,false,false).pluck(:id) ;        
-        if @exams1.length > 0
-          #@exams2 = Rad_Exam.get_exams_search(@employee.id,@myvalues,true,false,false).pluck(:id) ; 
-              
-          @exams1.each_with_index do |exam, i|                    
-            if !(idList.include? exam.to_i)   #exam[:id].to_i                    
-              idList << exam.to_i #exam[:id].to_i                
-            end     
-          end             
-        end 
-        @exams1 = nil;     
-      end   
-      
-      if (@myvalues[:my_exams] == "on")
-         
-        @exams2 = Rad_Exam.get_exams_search(@employee.id,@myvalues,false,true,false).pluck(:id) ; 
-        if @exams2.length > 0
-          #@exams2 = Rad_Exam.get_exams_search(@employee.id,@myvalues,false,true,false).pluck(:id) ; 
-              
-          @exams2.each_with_index do |exam, i|                    
-            if !(idList.include? exam.to_i)   #exam[:id].to_i                    
-              idList << exam.to_i #exam[:id].to_i                
-            end     
-          end             
-        end 
-        @exams2 = nil;        
-        
-      end  #myexams 
-
-
-      if (@myvalues[:my_orders] == "on")
-       
-        @exams3 = Rad_Exam.get_exams_search(@employee.id,@myvalues,false,false,true).pluck(:id) ;    
-        if @exams3.length > 0
-          #@exams3 = Rad_Exam.get_exams_search(@employee.id,@myvalues,false,false,true).pluck(:id) ; 
-              
-          @exams3.each_with_index do |exam, i|                    
-            if !(idList.include? exam.to_i)   #exam[:id].to_i                    
-              idList << exam.to_i #exam[:id].to_i                
-            end     
-          end             
-        end 
-        @exams3 = nil;
-      end   
-      
-    end   
-    
-    if( 
-        (idList.length > 0) ||  (@myvalues[:my_orders] == "on") || (@myvalues[:my_exams] == "on") || (@myvalues[:my_reports] == "on")
-      )        
-      @exams = Rad_Exam.get_exams_search_by_id_array(idList);  
-    else 
-      @exams = Rad_Exam.get_exams_search(@employee.id,@myvalues)  ;    
+    if ((@myvalues[:search_individual_buckets]== "on" ) ||
+         (@myvalues[:search_individual_buckets]== "1" )  || 
+         (@myvalues[:search_individual_buckets]== "true" )
+        )
+         @Search_buckets_individually = true
     end
     
+    if (@Search_buckets_individually == true) #its UNION Join
+      
+    
+            idList = [];
+            if ( (@myvalues[:my_reports] == "on") || (@myvalues[:my_exams] == "on") || (@myvalues[:my_orders] == "on"))
+
+              if (@myvalues[:my_reports] == "on")
+
+                @exams1 = Rad_Exam.get_exams_search(@employee.id,@myvalues,true,false,false).pluck(:id) ;        
+                if @exams1.length > 0
+                  #@exams2 = Rad_Exam.get_exams_search(@employee.id,@myvalues,true,false,false).pluck(:id) ; 
+
+                  @exams1.each_with_index do |exam, i|                    
+                    if !(idList.include? exam.to_i)   #exam[:id].to_i                    
+                      idList << exam.to_i #exam[:id].to_i                
+                    end     
+                  end             
+                end 
+                @exams1 = nil;     
+              end   
+
+              if (@myvalues[:my_exams] == "on")
+
+                @exams2 = Rad_Exam.get_exams_search(@employee.id,@myvalues,false,true,false).pluck(:id) ; 
+                if @exams2.length > 0
+                  #@exams2 = Rad_Exam.get_exams_search(@employee.id,@myvalues,false,true,false).pluck(:id) ; 
+
+                  @exams2.each_with_index do |exam, i|                    
+                    if !(idList.include? exam.to_i)   #exam[:id].to_i                    
+                      idList << exam.to_i #exam[:id].to_i                
+                    end     
+                  end             
+                end 
+                @exams2 = nil;        
+
+              end  #myexams 
+
+
+              if (@myvalues[:my_orders] == "on")
+
+                @exams3 = Rad_Exam.get_exams_search(@employee.id,@myvalues,false,false,true).pluck(:id) ;    
+                if @exams3.length > 0
+                  #@exams3 = Rad_Exam.get_exams_search(@employee.id,@myvalues,false,false,true).pluck(:id) ; 
+
+                  @exams3.each_with_index do |exam, i|                    
+                    if !(idList.include? exam.to_i)   #exam[:id].to_i                    
+                      idList << exam.to_i #exam[:id].to_i                
+                    end     
+                  end             
+                end 
+                @exams3 = nil;
+              end   
+
+            end   
+    
+        if( 
+            (idList.length > 0) ||  (@myvalues[:my_orders] == "on") || (@myvalues[:my_exams] == "on") || (@myvalues[:my_reports] == "on")
+          )        
+          @exams = Rad_Exam.get_exams_search_by_id_array(idList);  
+        else 
+          @exams = Rad_Exam.get_exams_search(@employee.id,@myvalues)  ;    
+        end
+    else #its  intersection  join NOT UNION Join
+         @exams = Rad_Exam.get_exams_search(@employee.id,@myvalues,(@myvalues[:my_orders] == "on"),(@myvalues[:my_exams] == "on"),(@myvalues[:my_reports] == "on"))  ;    
+    end
     
     @exams.each do |exam| 
       if ['1037','1027'].include? exam.accession

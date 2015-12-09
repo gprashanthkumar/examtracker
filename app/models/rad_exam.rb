@@ -140,11 +140,9 @@ class Rad_Exam < ActiveRecord::Base
     csfilter = stringArray_to_string(csfilter);
     
     trans_exams = self.join_Main.Rad_Tech_Sched_Trans_Other.where("( 
-(repp.scheduler_id  = ?) OR
-(repp.signin_id  = ?) OR
-(repp.checkin_id  = ?) OR 
+
 (rr.transcriptionist_id  = ?)
-) ",employeeid,employeeid,employeeid,employeeid).order("id desc").all ;   
+) ",employeeid).order("id desc").all ;   
     trans_exams = trans_exams.where("accession in ( " + accfilter +")" ).all unless accessions.blank?; 
     trans_exams = trans_exams.where("uet.event_type in ( " + csfilter +")" ).all unless current_status.blank?; 
     return trans_exams;
