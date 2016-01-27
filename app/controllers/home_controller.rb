@@ -5,7 +5,8 @@ class HomeController < ApplicationController
   layout 'examtracker_layout'  
     
   def radiologist
-    @employee = Employee.get_employee(session[:username])
+    @employee = nil;
+	@employee = Employee.get_employee(session[:username])
   end
   
   def technologist
