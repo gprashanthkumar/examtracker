@@ -10,14 +10,17 @@ class HomeController < ApplicationController
   end
   
   def technologist
+    @employee = nil;
     @employee = Employee.get_employee(session[:username])
   end
   
   def scheregistrar
+    @employee = nil;
     @employee = Employee.get_employee(session[:username])
   end
   
   def transcript
+    @employee = nil;
     @employee = Employee.get_employee(session[:username])
   end
   
