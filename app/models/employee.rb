@@ -3,7 +3,9 @@ class Employee < ActiveRecord::Base
   def self.get_employee(username)
     puts username
 	@employee ||= Java::HarbingerSdkData::Employee.withUserName(username, @entity_manager)
-	puts @employee.to_s
+	puts "kumar start"
+	puts @employee.to_json
+	puts "kumar end"
     #@employee = self.where("name = ?",username).first
     return @employee
   end
