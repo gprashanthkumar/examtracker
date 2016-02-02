@@ -100,16 +100,24 @@ class Rad_Exam < ActiveRecord::Base
     accfilter = string_array_to_string(accfilter);   
     csfilter = current_status.to_s unless current_status.blank?;
     csfilter = string_array_to_string(csfilter);
+    #tech_exams = self.join_Main.Rad_Tech_Sched_Trans_Other.where("( 
+    #(repp.performing_id = ?) OR
+    #(repp.scheduler_id  = ?) OR
+    #(repp.technologist_id  = ?)  OR
+    #(repp.assisting_tech1_id  = ?)  OR
+    #(repp.assisting_tech2_id  = ?)  OR
+    #(repp.assisting_tech3_id  = ?)  OR
+    #(repp.attending_id  = ?)  OR
+    #(repp.ordering_id  = ?)  OR
+    #(repp.authorizing_id  = ?) ) ",employeeid,employeeid,employeeid,employeeid,employeeid,employeeid,employeeid,employeeid,employeeid).order("id desc").all ;   
+    
     tech_exams = self.join_Main.Rad_Tech_Sched_Trans_Other.where("( 
-    (repp.performing_id = ?) OR
-    (repp.scheduler_id  = ?) OR
     (repp.technologist_id  = ?)  OR
     (repp.assisting_tech1_id  = ?)  OR
     (repp.assisting_tech2_id  = ?)  OR
-    (repp.assisting_tech3_id  = ?)  OR
-    (repp.attending_id  = ?)  OR
-    (repp.ordering_id  = ?)  OR
-    (repp.authorizing_id  = ?) ) ",employeeid,employeeid,employeeid,employeeid,employeeid,employeeid,employeeid,employeeid,employeeid).order("id desc").all ;   
+    (repp.assisting_tech3_id  = ?)  
+     ) ",employeeid,employeeid,employeeid,employeeid).order("id desc").all ;   
+    
     tech_exams = tech_exams.where("accession in ( " + accfilter +")" ).all unless accessions.blank?; 
     tech_exams = tech_exams.where("uet.event_type in ( " + csfilter +")" ).all unless current_status.blank?; 
     
