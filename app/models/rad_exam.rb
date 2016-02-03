@@ -1,5 +1,6 @@
 class Rad_Exam < ActiveRecord::Base
   self.table_name = "public.rad_exams"
+  querySDK = Java::HarbingerSdkData::RadExam.createQuery(@entity_manager)
   #Scopes
   #This is the main scope to which other scopes are combined
   scope :join_Main, -> { 
