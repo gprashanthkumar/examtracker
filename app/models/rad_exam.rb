@@ -92,7 +92,7 @@ class Rad_Exam < ActiveRecord::Base
     
     #return rad_exams;
     result = "";
-    result = @querySDK.select(".accession,.patientMrnId").list()
+    result = @querySDK.list()
    # result = result.select(".patientMrnId")
     puts result.to_json
     return result.to_a;
