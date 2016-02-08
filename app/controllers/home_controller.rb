@@ -39,9 +39,9 @@ class HomeController < ApplicationController
    puts "kumar" + @mysdk.size.to_s
    @mysdk1 = Rad_Exam.testsdkJson
     @mysdk1.each  do |e|
-     grades = { "accession" => 82,
+     grades = { "accession" => e.accession,
            "mrn" => e.patientMrn.mrn,
-           "current_status" => e.currentStatus.ExternalSystemStatus.universalEventType.eventType
+           "current_status" => e.currentStatusId
          }
     end
      puts @mysdk1
