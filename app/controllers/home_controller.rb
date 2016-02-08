@@ -38,7 +38,7 @@ class HomeController < ApplicationController
    @mysdk = Rad_Exam.testsdk();
    puts "kumar" + @mysdk.size.to_s
    
-     hello = Java::HarbingerSdkData::DataUtils.ToJson(@mysdk)
+     hello =@mysdk.ToJson
     puts "<----The End---->"
   end
     
