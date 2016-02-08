@@ -63,8 +63,14 @@
 hello world
 </p>
 <div>
-  <% @employee.to_json %>
-    
+  <% 
+  puts @employee
+  @employee.size.to_s  
+  
+  @employee.to_json
+
+%>
+    <%= @employee.to_json %>
 </div>
                         </div>
                     </div>
