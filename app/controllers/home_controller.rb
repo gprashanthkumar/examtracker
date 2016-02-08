@@ -5,7 +5,7 @@ class HomeController < ApplicationController
   layout 'examtracker_layout'  
     
   def radiologist
-    @employee = nil;
+  @employee = nil;
 	@employee = Employee.get_employee(session[:username])
   end
   
@@ -30,6 +30,11 @@ class HomeController < ApplicationController
   
   def search
     @employee = Employee.get_employee(session[:username])
+  end
+  
+  def sdk
+    @employee = nil;
+	@employee = Employee.get_employee(session[:username])
   end
     
   def get_jqgridRad

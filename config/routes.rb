@@ -14,6 +14,7 @@ VanillaApplication::Application.routes.draw do
   get 'transcript', to: 'home#transcript'
   get 'others', to: 'home#others'
   get 'search', to: 'home#search'
+  get 'sdk', to: 'home#sdk'
   match ':controller(/:action(/:id(.:format)))', via: [:get, :post]
   # Vanilla of regular route:
   #   match 'products/:id' => 'catalog#view'
