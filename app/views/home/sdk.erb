@@ -70,6 +70,17 @@ hello world
     <%= @employee.to_json %>
     <p>Now data</p>
     <%=@mysdk.to_json %>
+    <% if @mysdk.size > 0 %>
+     <%= harbinger_table_for @mysdk, :class => "table table-striped" do |ht| %>
+    <% ht.column("MRN") {|e| e.patientMrn.mrn if e.patientMrn } %>
+    <% ht.column("Accession") {|e| e.patientMrn.mrn if e.patientMrn } %>
+    <% ht.column("Current Status") {|e| e.currentStatus.universalEventTypeId ? "#{e.currentStatus.universalEventType.eventType} (#{e.currentStatus.status})" : e.currentStatus.status } %>
+    <% ht.column("Procedure Code") {|e| e.procedure.code if e.procedure } %>
+    <% ht.column("Procedure Description") {|e| e.procedure.description if e.procedure  } %>
+  <% end %>
+<% else %>
+ No exams.
+<% end %>
 </div>
                         </div>
                     </div>
