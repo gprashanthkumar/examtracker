@@ -89,13 +89,11 @@
 
 <% javascriptBody 'jquery.min.js' %>
 <% javascriptBody 'bootstrap.min' %>
-<% javascriptBody 'AdminLTE/app' %>
+
 <% javascriptBody 'jquery-ui-1.10.3.min' %>
 <% javascriptBody 'jquery.multiselect' %>
 
 <% content_for :body_javascript_section do %>
-  <%= javascript_include_tag 'jqgrid/grid.locale-en.js' %>
-  <%= javascript_include_tag 'jqgrid/jquery.jqGrid.js' %>
   <%= javascript_tag "window._token = '#{form_authenticity_token}'" %>
 <p> 
 hello world
