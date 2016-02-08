@@ -286,9 +286,9 @@ class Rad_Exam < ActiveRecord::Base
   end
   
   def self.testsdkJson
-  @mysdk = []
-   q = Java::HarbingerSdkData::RadExam.createQuery(@entity_manager)
-    @mysdk = q.ToJson
+  @mysdk1 = " ";
+   q1 = Java::HarbingerSdkData::RadExam.createQuery(@entity_manager)
+    @mysdk1 = q1.ToJson
    
   end
   
