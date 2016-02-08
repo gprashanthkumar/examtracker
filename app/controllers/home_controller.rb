@@ -36,6 +36,7 @@ class HomeController < ApplicationController
     @employee = nil;
 	@employee = Employee.get_employee(session[:username])
    @mysdk = Rad_Exam.testsdk();
+   puts "kumar" + @mysdk.size.to_s
   end
     
   def get_jqgridRad
