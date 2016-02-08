@@ -81,7 +81,7 @@ hello world
 <% else %>
  No exams.
 <% end %>
-  <%  @exams.each do |exam| %>
+  <%  @exams.each do |e| %>
      <%= |e| e.patientMrn.mrn if e.patientMrn %>
  </br>
   <%end%>
