@@ -37,8 +37,9 @@ class HomeController < ApplicationController
 	@employee = Employee.get_employee(session[:username])
    @mysdk = Rad_Exam.testsdk();
    puts "kumar" + @mysdk.size.to_s
+   @mysdk1 = Rad_Exam.testsdkJson
    
-     hello =@mysdk.to_h
+     puts @mysdk1
     puts "<----The End---->"
   end
     
