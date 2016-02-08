@@ -37,6 +37,9 @@ class HomeController < ApplicationController
 	@employee = Employee.get_employee(session[:username])
    @mysdk = Rad_Exam.testsdk();
    puts "kumar" + @mysdk.size.to_s
+   
+     @hello = Java::HarbingerSdkData::DataUtils.ToJson(@mysdk)
+    puts "<----The End---->"
   end
     
   def get_jqgridRad

@@ -282,9 +282,7 @@ class Rad_Exam < ActiveRecord::Base
   @mysdk = []
    q = Java::HarbingerSdkData::RadExam.createQuery(@entity_manager)
     @mysdk = q.list.to_a
-    
-    h3 = Hash[@mysdk.map {|key, value| [key, value]}]
-    puts "h3: #{h3.inspect}"
+      
    
   end
   
