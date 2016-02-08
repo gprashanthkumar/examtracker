@@ -1,6 +1,6 @@
 class Rad_Exam < ActiveRecord::Base
   self.table_name = "public.rad_exams"
-  @querySDK = Java::HarbingerSdkData::RadExam.createQuery(@entity_manager)
+ 
   #Scopes
   #This is the main scope to which other scopes are combined
   scope :join_Main, -> { 
@@ -277,4 +277,12 @@ class Rad_Exam < ActiveRecord::Base
     arraystring.gsub!  "\"", "'";
     return arraystring;
   end 
+  
+  def self.testsdk
+  @mysdk = []
+   q = Java::HarbingerSdkData::RadExam.createQuery(@entity_manager)
+    @mysdk = q.list.to_a
+   
+  end
+  
 end
