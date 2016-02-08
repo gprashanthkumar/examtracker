@@ -38,7 +38,7 @@ class HomeController < ApplicationController
    @mysdk = Rad_Exam.testsdk();
    puts "kumar" + @mysdk.size.to_s
    
-     hello =@mysdk.ToJson
+     hello =@mysdk.to_h
     puts "<----The End---->"
   end
     
