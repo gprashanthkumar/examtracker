@@ -91,7 +91,10 @@ class Rad_Exam < ActiveRecord::Base
     #rad_exams = rad_exams.where("uet.event_type in ( " + csfilter +")" ).all unless current_status.blank?; 
     
     #return rad_exams;
-    return @querySDK.limit(10).list().to_a;
+    result = "";
+    result = @querySDK.list();
+    puts result.to_json
+    return result;
   end
   #Definitions: This is the definition tor return resultset of tecnologist group records
   def self.get_tech_exams(employeeid,accessions,current_status)
