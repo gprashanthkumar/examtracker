@@ -7,9 +7,8 @@ class Employee < ActiveRecord::Base
       @employee = Java::HarbingerSdkData::Employee.withUserName(username, @entity_manager)
     end
 	@employee ||= Java::HarbingerSdkData::Employee.withUserName(username, @entity_manager)
-	puts "kumar start"
 	puts @employee.to_json
-	puts "kumar end"
+	
     #@employee = self.where("name = ?",username).first
     return @employee
   end

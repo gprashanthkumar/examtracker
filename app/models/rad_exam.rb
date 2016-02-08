@@ -1,6 +1,6 @@
 class Rad_Exam < ActiveRecord::Base
   self.table_name = "public.rad_exams"
-  querySDK = Java::HarbingerSdkData::RadExam.createQuery(@entity_manager)
+  @querySDK = Java::HarbingerSdkData::RadExam.createQuery(@entity_manager)
   #Scopes
   #This is the main scope to which other scopes are combined
   scope :join_Main, -> { 
@@ -91,7 +91,7 @@ class Rad_Exam < ActiveRecord::Base
     #rad_exams = rad_exams.where("uet.event_type in ( " + csfilter +")" ).all unless current_status.blank?; 
     
     #return rad_exams;
-    return querySDK.query.limit(10).list().results.to_a;
+    return @querySDK.query.limit(10).list().results.to_a;
   end
   #Definitions: This is the definition tor return resultset of tecnologist group records
   def self.get_tech_exams(employeeid,accessions,current_status)
