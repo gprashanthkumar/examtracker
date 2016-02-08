@@ -92,10 +92,10 @@ class Rad_Exam < ActiveRecord::Base
     
     #return rad_exams;
     result = "";
-    result = @querySDK.list()
+    result = @querySDK.select(".accesstion,.patientMrnId").list()
    # result = result.select(".patientMrnId")
     puts result.to_json
-    return result;
+    return result.to_a;
   end
   #Definitions: This is the definition tor return resultset of tecnologist group records
   def self.get_tech_exams(employeeid,accessions,current_status)
