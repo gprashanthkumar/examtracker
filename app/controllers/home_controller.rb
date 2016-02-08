@@ -35,7 +35,7 @@ class HomeController < ApplicationController
   def sdk
     @employee = nil;
 	@employee = Employee.get_employee(session[:username])
-   @exams = Rad_Exam.testsdk();
+   @mysdk = Rad_Exam.testsdk();
   end
     
   def get_jqgridRad
