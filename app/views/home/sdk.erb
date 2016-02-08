@@ -82,7 +82,8 @@ hello world
  No exams.
 <% end %>
   <%  @mysdk.each  do |e| %>
-     <%=e.patientMrn.mrn  %>
+     <%=e.patientMrn.mrn  %>,
+ <%=e.universal_event_types.event_type  %>
  </br>
   <%end%>
 </div>

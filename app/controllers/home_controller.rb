@@ -38,8 +38,14 @@ class HomeController < ApplicationController
    @mysdk = Rad_Exam.testsdk();
    puts "kumar" + @mysdk.size.to_s
    @mysdk1 = Rad_Exam.testsdkJson
-   
+    @mysdk1.each  do |e|
+     grades = { "accession" => 82,
+           "mrn" => e.patientMrn.mrn,
+           "current_status" => 58
+         }
+    end
      puts @mysdk1
+     #:accession,:mrn,:current_status,:code,:description,:modality,:resource_name,:graph_status,:current_status,:updated_at,:patient_name,:birthdate,:site_name,:patient_class,:patient_type,:patient_location_at_exam,:radiology_department,:ordering_provider,:scheduler,:technologist,:pacs_image_count,:appt_time,:sign_in,:check_in,:begin_exam,:end_exam
     puts "<----The End---->"
   end
     
