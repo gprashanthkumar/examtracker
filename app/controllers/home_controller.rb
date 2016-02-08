@@ -1,7 +1,7 @@
 class HomeController < ApplicationController
   before_filter :general_authentication
   before_filter :get_entity_manager
-  #after_filter :close_entity_manager
+  after_filter :close_entity_manager
   layout 'examtracker_layout'  
     
   def radiologist
@@ -190,18 +190,18 @@ class HomeController < ApplicationController
       @exams = Rad_Exam.get_ordering_exams(@employee.id,accession,currentstatus)
     end
 	
-    #@exams.each do |exam| 
+    @exams.each do |exam| 
      
       #remove this line after testing
       #<start>
-     # exam = manipulate_status(exam);
+     exam = manipulate_status(exam);
       #<end>
-      #exam = get_graph_status(exam);    
+      exam = get_graph_status(exam);    
     
-    #end  #end each
+    end  #end each
     
     #log output data
-    #log_hipaa_view(@exams);
+    log_hipaa_view(@exams);
      
     json_data = {
       :page=>"1",

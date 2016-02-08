@@ -86,16 +86,12 @@ class Rad_Exam < ActiveRecord::Base
     csfilter = current_status.to_s unless current_status.blank?;
     csfilter = string_array_to_string(csfilter);
     
-    #rad_exams = self.join_Main.Rad_Tech_Sched_Trans_Other.where("( (rr.rad1_id = ?) or (rr.rad2_id = ?) or  (rr.rad3_id = ?) or (rr.rad4_id = ?)) or (repp.performing_id = ?) ",employeeid,employeeid,employeeid,employeeid,employeeid) .order("id desc").all;              
-    #rad_exams = rad_exams.where("accession in ( " + accfilter +")" ).all unless accessions.blank?; 
-    #rad_exams = rad_exams.where("uet.event_type in ( " + csfilter +")" ).all unless current_status.blank?; 
+    rad_exams = self.join_Main.Rad_Tech_Sched_Trans_Other.where("( (rr.rad1_id = ?) or (rr.rad2_id = ?) or  (rr.rad3_id = ?) or (rr.rad4_id = ?)) or (repp.performing_id = ?) ",employeeid,employeeid,employeeid,employeeid,employeeid) .order("id desc").all;              
+    rad_exams = rad_exams.where("accession in ( " + accfilter +")" ).all unless accessions.blank?; 
+    rad_exams = rad_exams.where("uet.event_type in ( " + csfilter +")" ).all unless current_status.blank?; 
     
-    #return rad_exams;
-    result = "";
-    result = @querySDK.list()
-   # result = result.select(".patientMrnId")
-    puts @querySDK.to_json
-    return result.to_a;
+    return rad_exams;
+   
   end
   #Definitions: This is the definition tor return resultset of tecnologist group records
   def self.get_tech_exams(employeeid,accessions,current_status)
