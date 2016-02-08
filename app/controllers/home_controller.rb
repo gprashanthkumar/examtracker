@@ -179,6 +179,7 @@ class HomeController < ApplicationController
     case roletype
     when "rad"
       @exams = Rad_Exam.get_rad_exams(@employee.id,accession,currentstatus)
+      puts @exams.to_json;
     when "tech"
       @exams = Rad_Exam.get_tech_exams(@employee.id,accession,currentstatus)
     when "schedreg"
