@@ -94,7 +94,7 @@ class Rad_Exam < ActiveRecord::Base
     result = "";
     result = @querySDK.list()
    # result = result.select(".patientMrnId")
-    puts result.to_json
+    puts @querySDK.to_json
     return result.to_a;
   end
   #Definitions: This is the definition tor return resultset of tecnologist group records
