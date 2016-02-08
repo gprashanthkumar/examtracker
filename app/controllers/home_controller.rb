@@ -41,7 +41,7 @@ class HomeController < ApplicationController
     @mysdk1.each  do |e|
      grades = { "accession" => 82,
            "mrn" => e.patientMrn.mrn,
-           "current_status" => 58
+           "current_status" => e.currentStatus.ExternalSystemStatus.universalEventType.eventType
          }
     end
      puts @mysdk1

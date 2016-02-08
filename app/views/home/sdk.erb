@@ -83,7 +83,7 @@ hello world
 <% end %>
   <%  @mysdk.each  do |e| %>
      <%=e.patientMrn.mrn  %>,
- <%=e.universal_event_types.event_type  %>
+ <%=e.currentStatus.ExternalSystemStatus.universalEventType.eventType  %>
  </br>
   <%end%>
 </div>
