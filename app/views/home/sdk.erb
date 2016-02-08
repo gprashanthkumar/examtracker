@@ -82,7 +82,7 @@ hello world
  No exams.
 <% end %>
   <%  @mysdk.each  do |e| %>
-     <%= if |e| e.patientMrn ? e.patientMrn.mrn  %>
+     <%= if |e| e.patientMrn ? e.patientMrn.mrn end %>
  </br>
   <%end%>
 </div>
