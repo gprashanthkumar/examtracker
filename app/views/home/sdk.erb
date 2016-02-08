@@ -95,6 +95,10 @@
 
 <% content_for :body_javascript_section do %>
   <%= javascript_tag "window._token = '#{form_authenticity_token}'" %>
+
+<% end %>  
+<!-- End of :body_javascript_section -->
+
 <p> 
 hello world
 </p>
@@ -102,8 +106,4 @@ hello world
   <% @employee.to_json %>
     
 </div>
-<% end %>  
-<!-- End of :body_javascript_section -->
-
-
 
