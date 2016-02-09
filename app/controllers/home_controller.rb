@@ -63,7 +63,10 @@ class HomeController < ApplicationController
            "patient_class" => (e.siteClass.siteClass unless e.siteClass.nil?),
            "trauma" => (e.siteClass.trauma unless e.siteClass.nil?),
            "patient_type" => (e.siteClass.patientType.patientType unless e.siteClass.nil?),
-           "patient_location_at_exam" => siteLocation
+           "patient_location_at_exam" => siteLocation,
+           "radiology_department" => (e.radExamDepartment.description unless e.radExamDepartment.blank? )
+           
+           
            
            
          }
@@ -71,8 +74,8 @@ class HomeController < ApplicationController
     end
      #puts @mysdk1
      #:accession,:mrn,:current_status,:code,:description,:modality,:resource_name,:graph_status,:current_status,
-     #
      #:updated_at,:patient_name,:birthdate,:site_name,:patient_class,:patient_type,:patient_location_at_exam,
+     #     
      #:radiology_department,:ordering_provider,:scheduler,:technologist,:pacs_image_count,:appt_time,
      #:sign_in,:check_in,:begin_exam,:end_exam
     puts "<----The End---->"
