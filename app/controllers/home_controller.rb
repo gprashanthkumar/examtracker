@@ -41,15 +41,26 @@ class HomeController < ApplicationController
     @mysdk1.each  do |e|
       
      siteLocation = "";
+     ordering_provider = ""
+     scheduler = ""
+     technologist = ""
      siteLocation += e.siteSublocation.siteLocation.location  unless e.siteSublocation.blank?;
      if (!e.siteSublocation.blank?)        
            siteLocation += " " + e.siteSublocation.room unless e.siteSublocation.room.blank? ;
            siteLocation += "-" + e.siteSublocation.bed unless e.siteSublocation.bed.blank?;
               
      end
-     ordering_provider = ""
+    
       if (!e.radExamPersonnel.blank?) 
        ordering_provider = e.radExamPersonnel.ordering.name unless e.radExamPersonnel.ordering.blank?
+      end
+      
+       if (!e.radExamPersonnel.blank?) 
+       scheduler = e.radExamPersonnel.scheduler.name unless e.radExamPersonnel.scheduler.blank?
+      end
+      
+      if (!e.radExamPersonnel.blank?) 
+       technologist = e.radExamPersonnel.technologist.name unless e.radExamPersonnel.technologist.blank?
       end
      
      grades = { "accession" => e.accession,
@@ -70,8 +81,8 @@ class HomeController < ApplicationController
            "patient_location_at_exam" => siteLocation,
            "radiology_department" => (e.radExamDepartment.description unless e.radExamDepartment.blank? ),
            "ordering_provider" => ordering_provider,
-           "scheduler" => "",
-           "technologist" => ""
+           "scheduler" => scheduler,
+           "technologist" => technologist
            
            
            

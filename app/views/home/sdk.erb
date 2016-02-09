@@ -96,6 +96,7 @@ hello world
      <%  
      siteLocation = "";
      ordering_provider = ""
+     scheduler = ""
      siteLocation += e.siteSublocation.siteLocation.location  unless e.siteSublocation.blank?;
      if (!e.siteSublocation.blank?)        
            siteLocation += " " + e.siteSublocation.room unless e.siteSublocation.room.blank? ;
@@ -103,13 +104,18 @@ hello world
      end
     
       if (!e.radExamPersonnel.blank?) 
-       ordering_provider = e.radExamPersonnel.ordering.name unless e.radExamPersonnel.ordering.blank?
+       ordering_provider = e.radExamPersonnel.ordering.name unless e.radExamPersonnel.ordering.blank? ;
+       scheduler = e.radExamPersonnel.scheduler.name unless e.radExamPersonnel.scheduler.blank? ;
+       technologist = e.radExamPersonnel.technologist.name unless e.radExamPersonnel.technologist.blank? ;
       end
+     
      %>
      <%= siteLocation %>,
      <%= e.radExamDepartment.description unless e.radExamDepartment.blank?  %>,
       <%= ordering_provider %>,
-   
+      <%=scheduler %>,
+      <%=technologist%>
+   --->
  </br></hr>
   <%end%>
 </div>
