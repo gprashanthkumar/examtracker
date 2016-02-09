@@ -63,11 +63,7 @@
 hello world
 </p>
 <div>
-  <% 
-  puts "kumar garlapally" + @employee.to_json.to_s
 
-%>
-    <%= @employee.to_json %>
     <p>Now data</p>
     <%=@mysdk.to_json %>
     <% if @mysdk.size < 0 %>
@@ -81,6 +77,7 @@ hello world
 <% else %>
  No exams.
 <% end %>
+ </br></hr>
   <%  @mysdk.each  do |e| %>
      <%=e.patientMrn.mrn  %>,
  <%=e.currentStatusId %>,
@@ -89,10 +86,12 @@ hello world
      <%= e.procedure.description unless e.procedure.nil? %>,
      <%= e.resource.modality.modality unless e.resource.nil? %>,
      <%= e.resource.name unless e.resource.nil? %>,
-     <%= e.updatedAt unless e.updatedAt.nil? %>
+     <%= e.updatedAt unless e.updatedAt.nil? %>,
+     <%= e.patient.name unless e.patient.nil? %>,
+     <%= e.patient.birthdate unless e.patient.nil? %>,
      
    
- </br>
+ </br></hr>
   <%end%>
 </div>
                         </div>

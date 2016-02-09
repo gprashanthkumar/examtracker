@@ -47,7 +47,9 @@ class HomeController < ApplicationController
            "resource_name" => (e.resource.name unless e.resource.nil?),
            "graph_status" => e.currentStatus.universalEventType.eventType,
            "current_status" => e.currentStatus.universalEventType.eventType,
-           "updated_at" => (e.updatedAt unless e.updatedAt.nil?)
+           "updated_at" => (e.updatedAt unless e.updatedAt.nil?),
+           "patient_name" => ( e.patient.name unless e.patient.nil?),
+           "birthdate" => ( e.patient.birthdate unless e.patient.nil?)
            
          }
         puts grades.to_json; 
