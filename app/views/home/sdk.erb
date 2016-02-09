@@ -85,7 +85,7 @@ hello world
      <%=e.patientMrn.mrn  %>,
  <%=e.currentStatusId %>,
      <%=e.currentStatus.universalEventType.eventType%>,
-     <%=e.procedureId%>,
+      <%= e.procedure.code unless e.procedure.nil? %>,     
      <%= e.procedure.description unless e.procedure.nil? %>,
      
    

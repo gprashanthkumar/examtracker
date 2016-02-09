@@ -42,8 +42,8 @@ class HomeController < ApplicationController
      grades = { "accession" => e.accession,
            "mrn" => e.patientMrn.mrn,
            "current_status" => e.currentStatus.universalEventType.eventType,
-           "code" => e.procedureId  ,
-           "description" => "e.procedure.description"
+           "code" => (e.procedure.code unless e.procedure.nil?) ,
+           "description" => (e.procedure.description unless e.procedure.nil?)
          }
     end
      puts @mysdk1
