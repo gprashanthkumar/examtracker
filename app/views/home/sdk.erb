@@ -95,10 +95,10 @@ hello world
      <%=e.siteClass.patientType.patientType unless e.siteClass.nil?%>,
      <%  x = "";
      x += e.siteSublocation.siteLocation.location unless e.siteSublocation.blank?;
-     if (e.siteSublocation.blank?)        
+     if (!e.siteSublocation.blank?)        
            x += e.siteSublocation.room unless e.siteSublocation.room.blank? ;
            x += e.siteSublocation.bed unless e.siteSublocation.bed.blank?;
-         end     
+              
      end
      %>
      <%= x %>
