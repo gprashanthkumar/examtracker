@@ -70,7 +70,7 @@ hello world
     <%= @employee.to_json %>
     <p>Now data</p>
     <%=@mysdk.to_json %>
-    <% if @mysdk.size > 0 %>
+    <% if @mysdk.size < 0 %>
      <%= harbinger_table_for @mysdk, :class => "table table-striped" do |ht| %>
     <% ht.column("MRN") {|e| e.patientMrn.mrn if e.patientMrn } %>
     <% ht.column("Accession") {|e| e.patientMrn.mrn if e.patientMrn } %>
@@ -88,7 +88,8 @@ hello world
       <%= e.procedure.code unless e.procedure.nil? %>,     
      <%= e.procedure.description unless e.procedure.nil? %>,
      <%= e.resource.modality.modality unless e.resource.nil? %>,
-     <%= e.resource.name unless e.resource.nil? %>
+     <%= e.resource.name unless e.resource.nil? %>,
+     <%= e.updatedAt unless e.updatedAt.nil? %>
      
    
  </br>
