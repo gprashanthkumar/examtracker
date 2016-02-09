@@ -89,7 +89,7 @@ hello world
      <%= e.updatedAt unless e.updatedAt.nil? %>,
      <%= e.patient.name unless e.patient.nil? %>,
      <%= e.patient.birthdate unless e.patient.nil? %>,
-     <%= e.site.name unless e.site.name.nil?  else (e.site.site unless e.site.site.nil?) %>,
+     <%= e.site.name unless e.site.name.nil?  else (e.site.site unless e.site.site.nil?) end%>,
      
    
  </br></hr>
