@@ -92,9 +92,11 @@ hello world
      <%= e.site.site unless e.site.site.nil? %>,
      <%= e.siteClass.siteClass unless e.siteClass.nil? %>,
      <%= e.siteClass.trauma unless e.siteClass.nil?%>,
-     <%=e.siteClass.patientType.patientType unless e.siteClass.nil?%>
+     <%=e.siteClass.patientType.patientType unless e.siteClass.nil?%>,
      
-     
+     <%=  CASE WHEN e.siteSublocation.siteLocation.location IS NULL THEN "" ELSE e.siteSublocation.siteLocation.location END 
+     || CASE WHEN e.siteSublocation.siteLocation.room IS NULL THEN '' ELSE e.siteSublocation.siteLocation.room END 
+      || CASE WHEN e.siteSublocation.siteLocation.bed IS NULL THEN '' ELSE e.siteSublocation.siteLocation.bed END %>
    
  </br></hr>
   <%end%>
