@@ -42,7 +42,7 @@ class HomeController < ApplicationController
      grades = { "accession" => e.accession,
            "mrn" => e.patientMrn.mrn,
            "current_status" => e.currentStatus.universalEventType.eventType,
-           "code" => (e.procedure.code unless e.procedure.code.nil?) ,
+           "code" => e.procedure.id  ,
            "description" => e.procedure.description
          }
     end
