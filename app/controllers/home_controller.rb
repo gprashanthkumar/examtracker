@@ -39,6 +39,15 @@ class HomeController < ApplicationController
    puts "kumar" + @mysdk.size.to_s
    @mysdk1 = Rad_Exam.testsdkJson
     @mysdk1.each  do |e|
+      
+     siteLocation = "";
+     siteLocation += e.siteSublocation.siteLocation.location  unless e.siteSublocation.blank?;
+     if (!e.siteSublocation.blank?)        
+           siteLocation += " " + e.siteSublocation.room unless e.siteSublocation.room.blank? ;
+           siteLocation += "-" + e.siteSublocation.bed unless e.siteSublocation.bed.blank?;
+              
+     end
+     
      grades = { "accession" => e.accession,
            "mrn" => e.patientMrn.mrn,           
            "code" => (e.procedure.code unless e.procedure.nil?) ,
@@ -54,6 +63,7 @@ class HomeController < ApplicationController
            "patient_class" => (e.siteClass.siteClass unless e.siteClass.nil?),
            "trauma" => (e.siteClass.trauma unless e.siteClass.nil?),
            "patient_type" => (e.siteClass.patientType.patientType unless e.siteClass.nil?),
+           "patient_location_at_exam" => siteLocation
            
            
          }
