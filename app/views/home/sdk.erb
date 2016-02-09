@@ -84,7 +84,9 @@ hello world
   <%  @mysdk.each  do |e| %>
      <%=e.patientMrn.mrn  %>,
  <%=e.currentStatusId %>,
-     <%=e.currentStatus.universalEventType.eventType%>
+     <%=e.currentStatus.universalEventType.eventType%>,
+     <%=e.procedures.code%>,
+     <%=e.procedures.description%> 
  </br>
   <%end%>
 </div>
