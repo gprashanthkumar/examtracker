@@ -42,7 +42,7 @@ class HomeController < ApplicationController
      grades = { "accession" => e.accession,
            "mrn" => e.patientMrn.mrn,
            "current_status" => e.currentStatus.universalEventType.eventType,
-           "code" => e.procedure.id  ,
+           "code" => e.procedureId  ,
            "description" => e.procedure.description
          }
     end
