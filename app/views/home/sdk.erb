@@ -100,8 +100,9 @@ hello world
            siteLocation += "-" + e.siteSublocation.bed unless e.siteSublocation.bed.blank?;             
      end
      %>
-     <%= siteLocation %>
-     <%= e.radExamDepartment.description unless e.radExamDepartment.blank?  %>
+     <%= siteLocation %>,
+     <%= e.radExamDepartment.description unless e.radExamDepartment.blank?  %>,
+     <%= e.radExamPersonnel.ordering.name unless e.radExamPersonnel %>
    
  </br></hr>
   <%end%>

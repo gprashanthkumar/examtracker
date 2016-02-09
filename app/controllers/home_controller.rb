@@ -64,7 +64,10 @@ class HomeController < ApplicationController
            "trauma" => (e.siteClass.trauma unless e.siteClass.nil?),
            "patient_type" => (e.siteClass.patientType.patientType unless e.siteClass.nil?),
            "patient_location_at_exam" => siteLocation,
-           "radiology_department" => (e.radExamDepartment.description unless e.radExamDepartment.blank? )
+           "radiology_department" => (e.radExamDepartment.description unless e.radExamDepartment.blank? ),
+           "ordering_provider" => (e.radExamPersonnel.ordering.name unless e.radExamPersonnel.blank?),
+           "scheduler" => "",
+           "technologist" => ""
            
            
            
