@@ -94,9 +94,9 @@ hello world
      <%= e.siteClass.trauma unless e.siteClass.nil?%>,
      <%=e.siteClass.patientType.patientType unless e.siteClass.nil?%>,
      
-     <%=  case  when e.siteSublocation.siteLocation.location.nil?  "" else  e.siteSublocation.siteLocation.location end 
-     + case  when e.siteSublocation.siteLocation.room.nil?  "" else  e.siteSublocation.siteLocation.room end 
-      + case when e.siteSublocation.siteLocation.bed.nil?  "" else  e.siteSublocation.siteLocation.bed end %>
+     <%=   (e.siteSublocation.siteLocation.location unless e.siteSublocation.siteLocation.location.nil?)  
+     + (e.siteSublocation.siteLocation.room unless e.siteSublocation.siteLocation.room.nil? )
+      + (e.siteSublocation.siteLocation.bed unless e.siteSublocation.siteLocation.bed.nil?) %>
    
  </br></hr>
   <%end%>
