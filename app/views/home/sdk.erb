@@ -95,8 +95,13 @@ hello world
      <%=e.siteClass.patientType.patientType unless e.siteClass.nil?%>,
      <%  x ="";
      x += e.siteSublocation.siteLocation.location unless e.siteSublocation.nil?;
-     x += e.siteSublocation.siteLocation.room unless (e.siteSublocation.nil?) && (e.siteSublocation.siteLocation.nil?) ;
-     x += e.siteSublocation.siteLocation.bed unless e.siteSublocation.nil?;
+     if (e.siteSublocation.nil?
+         if (e.siteSublocation.siteLocation.nil?) 
+           x += e.siteSublocation.siteLocation.room unless e.siteSublocation.siteLocation.room.nil ;
+         end     
+     end
+   
+     #x += e.siteSublocation.siteLocation.bed unless e.siteSublocation.nil?;
      %>>
      <%= x %>
    
