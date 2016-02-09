@@ -93,16 +93,22 @@ hello world
      <%= e.siteClass.siteClass unless e.siteClass.nil? %>,
      <%= e.siteClass.trauma unless e.siteClass.nil?%>,
      <%=e.siteClass.patientType.patientType unless e.siteClass.nil?%>,
-     <%  siteLocation = "";
+     <%  
+     siteLocation = "";
+     ordering_provider = ""
      siteLocation += e.siteSublocation.siteLocation.location  unless e.siteSublocation.blank?;
      if (!e.siteSublocation.blank?)        
            siteLocation += " " + e.siteSublocation.room unless e.siteSublocation.room.blank? ;
            siteLocation += "-" + e.siteSublocation.bed unless e.siteSublocation.bed.blank?;             
      end
+    
+      if (!e.radExamPersonnel.blank?) 
+       ordering_provider = e.radExamPersonnel.ordering.name unless e.radExamPersonnel.ordering.blank?
+      end
      %>
      <%= siteLocation %>,
      <%= e.radExamDepartment.description unless e.radExamDepartment.blank?  %>,
-     <%= e.radExamPersonnel.ordering.name unless e.radExamPersonnel %>
+      <%= ordering_provider %>,
    
  </br></hr>
   <%end%>

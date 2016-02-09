@@ -47,6 +47,10 @@ class HomeController < ApplicationController
            siteLocation += "-" + e.siteSublocation.bed unless e.siteSublocation.bed.blank?;
               
      end
+     ordering_provider = ""
+      if (!e.radExamPersonnel.blank?) 
+       ordering_provider = e.radExamPersonnel.ordering.name unless e.radExamPersonnel.ordering.blank?
+      end
      
      grades = { "accession" => e.accession,
            "mrn" => e.patientMrn.mrn,           
@@ -65,7 +69,7 @@ class HomeController < ApplicationController
            "patient_type" => (e.siteClass.patientType.patientType unless e.siteClass.nil?),
            "patient_location_at_exam" => siteLocation,
            "radiology_department" => (e.radExamDepartment.description unless e.radExamDepartment.blank? ),
-           "ordering_provider" => (e.radExamPersonnel.ordering.name unless e.radExamPersonnel.blank?),
+           "ordering_provider" => ordering_provider,
            "scheduler" => "",
            "technologist" => ""
            
