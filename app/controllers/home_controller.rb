@@ -40,10 +40,14 @@ class HomeController < ApplicationController
    @mysdk1 = Rad_Exam.testsdkJson
     @mysdk1.each  do |e|
      grades = { "accession" => e.accession,
-           "mrn" => e.patientMrn.mrn,
-           "current_status" => e.currentStatus.universalEventType.eventType,
+           "mrn" => e.patientMrn.mrn,           
            "code" => (e.procedure.code unless e.procedure.nil?) ,
-           "description" => (e.procedure.description unless e.procedure.nil?)
+           "description" => (e.procedure.description unless e.procedure.nil?),
+           "modality" => (e.resource.modality.modality unless e.resource.nil?),
+           "resource_name" => (e.resource.name unless e.resource.nil?),
+           "graph_status" => e.currentStatus.universalEventType.eventType,
+           "current_status" => e.currentStatus.universalEventType.eventType,
+           
          }
         puts grades.to_json; 
     end
