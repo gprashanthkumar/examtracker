@@ -53,7 +53,7 @@ class HomeController < ApplicationController
            "site_name" => (e.site.site unless e.site.site.nil?),
            "patient_class" => (e.siteClass.siteClass unless e.siteClass.nil?),
            "trauma" => (e.siteClass.trauma unless e.siteClass.nil?),
-           "patient_type" => (e.siteClass.patientType.patientType unless e.siteClass.patientType.nil?),
+           "patient_type" => (e.siteClass.patientType.patientType unless e.siteClass.nil?),
            
            
          }
