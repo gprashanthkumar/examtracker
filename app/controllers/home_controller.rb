@@ -49,7 +49,12 @@ class HomeController < ApplicationController
            "current_status" => e.currentStatus.universalEventType.eventType,
            "updated_at" => (e.updatedAt unless e.updatedAt.nil?),
            "patient_name" => ( e.patient.name unless e.patient.nil?),
-           "birthdate" => ( e.patient.birthdate unless e.patient.nil?)
+           "birthdate" => ( e.patient.birthdate unless e.patient.nil?),
+           "site_name" => (e.site.site unless e.site.site.nil?),
+           "patient_class" => (e.siteClass.siteClass unless e.siteClass.nil?),
+           "trauma" => (e.siteClass.trauma unless e.siteClass.nil?),
+           "patient_type" => (e.siteClass.patientType.patientType unless e.siteClass.patientType.nil?),
+           
            
          }
         puts grades.to_json; 
