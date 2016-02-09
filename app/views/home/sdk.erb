@@ -94,9 +94,9 @@ hello world
      <%= e.siteClass.trauma unless e.siteClass.nil?%>,
      <%=e.siteClass.patientType.patientType unless e.siteClass.nil?%>,
      
-     <%=   (e.siteSublocation.siteLocation.location unless e.siteSublocation.siteLocation.location.nil?)  
-     + (e.siteSublocation.siteLocation.room unless e.siteSublocation.siteLocation.room.nil? )
-      + (e.siteSublocation.siteLocation.bed unless e.siteSublocation.siteLocation.bed.nil?) %>
+     <%=   (e.siteSublocation.siteLocation.location unless e.siteSublocation.nil?)  
+     + (e.siteSublocation.siteLocation.room unless e.siteSublocation.nil? )
+      + (e.siteSublocation.siteLocation.bed unless e.siteSublocation.nil?) %>
    
  </br></hr>
   <%end%>
