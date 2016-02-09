@@ -43,7 +43,7 @@ class HomeController < ApplicationController
            "mrn" => e.patientMrn.mrn,
            "current_status" => e.currentStatus.universalEventType.eventType,
            "code" => e.procedureId  ,
-           "description" => e.procedure.description
+           "description" => "e.procedure.description"
          }
     end
      puts @mysdk1
