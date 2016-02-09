@@ -62,6 +62,8 @@ class HomeController < ApplicationController
       if (!e.radExamPersonnel.blank?) 
        technologist = e.radExamPersonnel.technologist.name unless e.radExamPersonnel.technologist.blank?
       end
+      image_count = 0;
+      image_count = e.radPacsMetadatum.imageCount unless e.radExamMetadata.blank?
      
      grades = { "accession" => e.accession,
            "mrn" => e.patientMrn.mrn,           
@@ -82,7 +84,8 @@ class HomeController < ApplicationController
            "radiology_department" => (e.radExamDepartment.description unless e.radExamDepartment.blank? ),
            "ordering_provider" => ordering_provider,
            "scheduler" => scheduler,
-           "technologist" => technologist
+           "technologist" => technologist,
+           "image_count" => image_count
            
            
            
@@ -94,8 +97,8 @@ class HomeController < ApplicationController
      #:accession,:mrn,:current_status,:code,:description,:modality,:resource_name,:graph_status,:current_status,
      #:updated_at,:patient_name,:birthdate,:site_name,:patient_class,:patient_type,:patient_location_at_exam,
      #     
-     #:radiology_department,:ordering_provider,:scheduler,:technologist,:pacs_image_count,:appt_time,
-     #:sign_in,:check_in,:begin_exam,:end_exam
+     #:radiology_department,:ordering_provider,:scheduler,:technologist,:pacs_image_count,
+     #:appt_time,:sign_in,:check_in,:begin_exam,:end_exam
     puts "<----The End---->"
   end
     

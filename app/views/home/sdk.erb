@@ -97,6 +97,9 @@ hello world
      siteLocation = "";
      ordering_provider = ""
      scheduler = ""
+      image_count = 0;
+     
+     image_count = e.radPacsMetadatum.imageCount unless e.radExamMetadata.blank?
      siteLocation += e.siteSublocation.siteLocation.location  unless e.siteSublocation.blank?;
      if (!e.siteSublocation.blank?)        
            siteLocation += " " + e.siteSublocation.room unless e.siteSublocation.room.blank? ;
@@ -114,7 +117,8 @@ hello world
      <%= e.radExamDepartment.description unless e.radExamDepartment.blank?  %>,
       <%= ordering_provider %>,
       <%=scheduler %>,
-      <%=technologist%>
+      <%=technologist%>,
+      <%=image_count%>,
    --->
  </br></hr>
   <%end%>
