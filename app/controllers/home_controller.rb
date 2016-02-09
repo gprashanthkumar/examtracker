@@ -45,8 +45,9 @@ class HomeController < ApplicationController
            "code" => (e.procedure.code unless e.procedure.nil?) ,
            "description" => (e.procedure.description unless e.procedure.nil?)
          }
+        puts grades.to_json; 
     end
-     puts @mysdk1
+     #puts @mysdk1
      #:accession,:mrn,:current_status,:code,:description,:modality,:resource_name,:graph_status,:current_status,:updated_at,:patient_name,:birthdate,:site_name,:patient_class,:patient_type,:patient_location_at_exam,:radiology_department,:ordering_provider,:scheduler,:technologist,:pacs_image_count,:appt_time,:sign_in,:check_in,:begin_exam,:end_exam
     puts "<----The End---->"
   end
