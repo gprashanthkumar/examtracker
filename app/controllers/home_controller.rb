@@ -64,6 +64,16 @@ class HomeController < ApplicationController
       end
       image_count = 0;
       image_count = e.radPacsMetadatum.imageCount unless e.radExamMetadata.blank?
+      sched_time  = e.radExamTime.scheduleEvent unless e.radExamTime.blank?;
+      appt_time = e.radExamTime.appointment unless e.radExamTime.blank?;
+      sign_in = e.radExamTime.sign_in unless e.radExamTime.blank?;
+      check_in = e.radExamTime.check_in unless e.radExamTime.blank?;
+      begin_exam = e.radExamTime.begin_exam unless e.radExamTime.blank?;
+      end_exam = e.radExamTime.end_exam unless e.radExamTime.blank?;
+      order_arrival = e.radExamTime.order_arrival unless e.radExamTime.blank?; 
+      report_time = e.radReports.report_event unless e.radReports.blank?
+      
+      
      
      grades = { "accession" => e.accession,
            "mrn" => e.patientMrn.mrn,           
@@ -96,8 +106,8 @@ class HomeController < ApplicationController
      #puts @mysdk1
      #:accession,:mrn,:current_status,:code,:description,:modality,:resource_name,:graph_status,:current_status,
      #:updated_at,:patient_name,:birthdate,:site_name,:patient_class,:patient_type,:patient_location_at_exam,
-     #     
      #:radiology_department,:ordering_provider,:scheduler,:technologist,:pacs_image_count,
+     #
      #:appt_time,:sign_in,:check_in,:begin_exam,:end_exam
     puts "<----The End---->"
   end

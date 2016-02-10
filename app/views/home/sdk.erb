@@ -98,9 +98,29 @@ hello world
      ordering_provider = ""
      scheduler = ""
       image_count = 0;
+      sched_time = nil;
+      appt_time = nil;
+      sign_in = nil;
+      check_in = nil;
+      begin_exam = nil;
+      end_exam = nil;
+      order_arrival = nil;
+      report_time = nil;
+      
+      
      
      image_count = e.radPacsMetadatum.imageCount unless e.radExamMetadata.blank?
      siteLocation += e.siteSublocation.siteLocation.location  unless e.siteSublocation.blank?;
+     
+      sched_time  = e.radExamTime.scheduleEvent unless e.radExamTime.blank?;
+      appt_time = e.radExamTime.appointment unless e.radExamTime.blank?;
+      sign_in = e.radExamTime.sign_in unless e.radExamTime.blank?;
+      check_in = e.radExamTime.check_in unless e.radExamTime.blank?;
+      begin_exam = e.radExamTime.begin_exam unless e.radExamTime.blank?;
+      end_exam = e.radExamTime.end_exam unless e.radExamTime.blank?;
+      order_arrival = e.radExamTime.order_arrival unless e.radExamTime.blank?; 
+      report_time = e.radReports.report_event unless e.radReports.blank?
+      
      if (!e.siteSublocation.blank?)        
            siteLocation += " " + e.siteSublocation.room unless e.siteSublocation.room.blank? ;
            siteLocation += "-" + e.siteSublocation.bed unless e.siteSublocation.bed.blank?;             
@@ -119,6 +139,11 @@ hello world
       <%=scheduler %>,
       <%=technologist%>,
       <%=image_count%>,
+      <%=sched_time%>,
+      <%=appt_time%>,
+      sign_in: <%=sign_in%>,
+      
+      
    --->
  </br></hr>
   <%end%>
