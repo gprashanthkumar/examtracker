@@ -289,7 +289,7 @@ class Rad_Exam < ActiveRecord::Base
   @mysdk1 = " ";
    q1 = Java::HarbingerSdkData::RadExam.createQuery(@entity_manager)
     q1.join(".radReports")
-    puts Java::HarbingerSdkData::DataUtils(@entity_manager,q1)
+    puts Java::HarbingerSdkData::DataUtils.getSql(@entity_manager,q1)
    @mysdk1=  q1.list.to_a 
   end
   
