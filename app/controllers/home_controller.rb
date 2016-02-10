@@ -469,3 +469,11 @@ class HomeController < ApplicationController
     return exam;
   end
 end
+
+class Hash
+  def method_missing(m)
+    key = m.to_s
+    return self[key] if self.has_key? key
+    super
+  end
+end
