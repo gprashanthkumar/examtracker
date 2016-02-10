@@ -74,12 +74,12 @@ class HomeController < ApplicationController
       image_count = e.radPacsMetadatum.imageCount unless e.radExamMetadata.blank?
       sched_time  = e.radExamTime.scheduleEvent unless e.radExamTime.blank?;
       appt_time = e.radExamTime.appointment unless e.radExamTime.blank?;
-      sign_in = e.radExamTime.sign_in unless e.radExamTime.blank?;
-      check_in = e.radExamTime.check_in unless e.radExamTime.blank?;
-      begin_exam = e.radExamTime.begin_exam unless e.radExamTime.blank?;
-      end_exam = e.radExamTime.end_exam unless e.radExamTime.blank?;
-      order_arrival = e.radExamTime.order_arrival unless e.radExamTime.blank?; 
-      report_time = e.radReport.report_event unless e.radReports.blank?
+      sign_in = e.radExamTime.signIn unless e.radExamTime.blank?;
+      check_in = e.radExamTime.checkIn unless e.radExamTime.blank?;
+      begin_exam = e.radExamTime.beginExam unless e.radExamTime.blank?;
+      end_exam = e.radExamTime.endExam unless e.radExamTime.blank?;
+      order_arrival = e.radExamTime.orderArrival unless e.radExamTime.blank?; 
+      report_time = e.radReports.reportEvent unless e.radReports.blank?
       
       
      
