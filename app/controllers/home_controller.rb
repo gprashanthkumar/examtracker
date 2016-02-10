@@ -123,7 +123,7 @@ class HomeController < ApplicationController
       #<end>
       exam = get_graph_status(grades);    
     
-    end  #end each
+   
     
     #log output data
     log_hipaa_view(grades);
