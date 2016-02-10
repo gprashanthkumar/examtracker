@@ -79,7 +79,7 @@ class HomeController < ApplicationController
       begin_exam = e.radExamTime.beginExam unless e.radExamTime.blank?;
       end_exam = e.radExamTime.endExam unless e.radExamTime.blank?;
       order_arrival = e.radExamTime.orderArrival unless e.radExamTime.blank?; 
-      report_time = e.radReports.reportEvent unless e.radReports.blank?
+      #report_time = e.radReports.reportEvent unless e.radReports.blank?
       
       
      
