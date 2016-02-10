@@ -288,6 +288,8 @@ class Rad_Exam < ActiveRecord::Base
   def self.testsdkJson
   @mysdk1 = " ";
    q1 = Java::HarbingerSdkData::RadExam.createQuery(@entity_manager)
+   q1.join(".radReports")
+    q1.join("RadReport.radExamId")
    @mysdk1=  q1.list.to_a 
   end
   
