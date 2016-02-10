@@ -79,7 +79,9 @@ class HomeController < ApplicationController
       begin_exam = e.radExamTime.beginExam unless e.radExamTime.blank?;
       end_exam = e.radExamTime.endExam unless e.radExamTime.blank?;
       order_arrival = e.radExamTime.orderArrival unless e.radExamTime.blank?; 
-      #report_time = e.radReports.reportEvent unless e.radReports.blank?
+       e.radReports.each  do |r|          
+           report_time = r.reportEvent unless r.reportEvent.blank?
+        end
       
       
      
@@ -104,11 +106,14 @@ class HomeController < ApplicationController
            "scheduler" => scheduler,
            "technologist" => technologist,
            "image_count" => image_count,
-           "sched_time" => sched_time
-           
-           
-           
-           
+           "sched_time" => sched_time,
+           "appt_time" => appt_time,
+           "sign_in" => sign_in,
+           "check_in" => check_in,
+           "begin_exam" => begin_exam,
+           "end_exam" => end_exam,
+           "order_arrival" => order_arrival,
+           "report_time" => report_time
          }
         puts grades.to_json; 
     end
