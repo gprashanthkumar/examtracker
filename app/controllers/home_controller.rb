@@ -116,6 +116,29 @@ class HomeController < ApplicationController
            "report_time" => report_time
          }
         puts grades.to_json; 
+        
+        #remove this line after testing
+      #<start>
+     exam = manipulate_status(grades);
+      #<end>
+      exam = get_graph_status(grades);    
+    
+    end  #end each
+    
+    #log output data
+    log_hipaa_view(grades);
+     
+    json_data = {
+      :page=>"1",
+      :total=>"3",
+      :records=>"6", 
+      :rows=> JSON.parse(grades.to_json(:only => [ :accession,:mrn,:current_status,:code,:description,:modality,:resource_name,:graph_status,:current_status,:updated_at,:patient_name,:birthdate,:site_name,:patient_class,:patient_type,:patient_location_at_exam,:radiology_department,:ordering_provider,:scheduler,:technologist,:pacs_image_count,:appt_time,:sign_in,:check_in,:begin_exam,:end_exam]))    
+    
+    }    
+    respond_to do |format|
+      format.json { render :json => json_data }
+    end
+    
     end
      #puts @mysdk1
      #:accession,:mrn,:current_status,:code,:description,:modality,:resource_name,:graph_status,:current_status,
