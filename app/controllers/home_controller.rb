@@ -63,6 +63,14 @@ class HomeController < ApplicationController
        technologist = e.radExamPersonnel.technologist.name unless e.radExamPersonnel.technologist.blank?
       end
       image_count = 0;
+       sched_time = nil;
+      appt_time = nil;
+      sign_in = nil;
+      check_in = nil;
+      begin_exam = nil;
+      end_exam = nil;
+      order_arrival = nil;
+      report_time = nil;
       image_count = e.radPacsMetadatum.imageCount unless e.radExamMetadata.blank?
       sched_time  = e.radExamTime.scheduleEvent unless e.radExamTime.blank?;
       appt_time = e.radExamTime.appointment unless e.radExamTime.blank?;
@@ -95,7 +103,8 @@ class HomeController < ApplicationController
            "ordering_provider" => ordering_provider,
            "scheduler" => scheduler,
            "technologist" => technologist,
-           "image_count" => image_count
+           "image_count" => image_count,
+           "sched_time" => sched_time
            
            
            
