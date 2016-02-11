@@ -152,8 +152,8 @@ class HomeController < ApplicationController
     accession_ids = params[:accession]
     exam_status = params[:status]
 	
-    #get_jqgrid_common("rad",accession_ids,exam_status);  
-    sdk();
+    get_jqgrid_common("rad",accession_ids,exam_status);  
+    #sdk();
   end
   
   def get_jqgridTech
