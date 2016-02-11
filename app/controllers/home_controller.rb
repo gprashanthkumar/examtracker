@@ -95,9 +95,9 @@ class HomeController < ApplicationController
            "resource_name" => (e.resource.name unless e.resource.nil?),
            "graph_status" => e.currentStatus.universalEventType.eventType,
            "current_status" => e.currentStatus.universalEventType.eventType,
-           "updated_at" => (e.updatedAt unless e.updatedAt.nil?),
+           "updated_at" => (e.updatedAt.to_s unless e.updatedAt.nil?),
            "patient_name" => ( e.patient.name unless e.patient.nil?),
-           "birthdate" => ( e.patient.birthdate unless e.patient.nil?),
+           "birthdate" => ( e.patient.birthdate.to_s unless e.patient.nil?),
            "site_name" => (e.site.site unless e.site.site.nil?),
            "patient_class" => (e.siteClass.siteClass unless e.siteClass.nil?),
            "trauma" => (e.siteClass.trauma unless e.siteClass.nil?),
@@ -108,14 +108,14 @@ class HomeController < ApplicationController
            "scheduler" => scheduler,
            "technologist" => technologist,
            "image_count" => image_count,
-           "sched_time" => sched_time,
-           "appt_time" => appt_time,
-           "sign_in" => sign_in,
-           "check_in" => check_in,
-           "begin_exam" => begin_exam,
-           "end_exam" => end_exam,
-           "order_arrival" => order_arrival,
-           "report_time" => report_time
+           "sched_time" => sched_time.to_s,
+           "appt_time" => appt_time.to_s,
+           "sign_in" => sign_in.to_s,
+           "check_in" => check_in.to_s,
+           "begin_exam" => begin_exam.to_s,
+           "end_exam" => end_exam.to_s,
+           "order_arrival" => order_arrival.to_s,
+           "report_time" => report_time.to_s
          }
         puts grades.to_json; 
         
@@ -123,9 +123,9 @@ class HomeController < ApplicationController
       #<start>
      #exam = manipulate_status(grades);
       #<end>
-      
+       @exams << grades ;
       grades = get_graph_status_hash(grades);    
-      @exams << grades ;
+     
     
     end 
     #end @mysdk1 loop
