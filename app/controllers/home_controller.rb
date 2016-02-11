@@ -88,13 +88,13 @@ class HomeController < ApplicationController
       
      
      grades = { "accession" => e.accession,
-           "mrn" => e.patientMrn.mrn,           
-           "code" => (e.procedure.code unless e.procedure.nil?) ,
+          "mrn" => e.patientMrn.mrn,           
+          "current_status" => e.currentStatus.universalEventType.eventType,   
+          "code" => (e.procedure.code unless e.procedure.nil?) ,           
            "description" => (e.procedure.description unless e.procedure.nil?),
            "modality" => (e.resource.modality.modality unless e.resource.nil?),
            "resource_name" => (e.resource.name unless e.resource.nil?),
-           "graph_status" => e.currentStatus.universalEventType.eventType,
-           "current_status" => e.currentStatus.universalEventType.eventType,
+           "graph_status" => e.currentStatus.universalEventType.eventType,           
            "updated_at" => (e.updatedAt.to_s unless e.updatedAt.nil?),
            "patient_name" => ( e.patient.name unless e.patient.nil?),
            "birthdate" => ( e.patient.birthdate.to_s unless e.patient.nil?),
@@ -138,8 +138,8 @@ class HomeController < ApplicationController
       :page=>"1",
       :total=>"3",
       :records=>"6", 
-      :rows=> JSON.parse(@exams.to_json(:only => [ :accession,:mrn,:current_status,:code,:description,:modality,:resource_name,:graph_status,:current_status,:updated_at,:patient_name,:birthdate,:site_name,:patient_class,:patient_type,:patient_location_at_exam,:radiology_department,:ordering_provider,:scheduler,:technologist,:pacs_image_count,:appt_time,:sign_in,:check_in,:begin_exam,:end_exam]))    
-     #:rows=> JSON.parse(@exams.to_json)
+      #:rows=> JSON.parse(@exams.to_json(:only => [ :accession,:mrn,:current_status,:code,:description,:modality,:resource_name,:graph_status,:current_status,:updated_at,:patient_name,:birthdate,:site_name,:patient_class,:patient_type,:patient_location_at_exam,:radiology_department,:ordering_provider,:scheduler,:technologist,:pacs_image_count,:appt_time,:sign_in,:check_in,:begin_exam,:end_exam]))    
+     :rows=> JSON.parse(@exams.to_json)
     }    
     respond_to do |format|
       format.json { render :json => json_data }
