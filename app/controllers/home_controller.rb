@@ -36,7 +36,7 @@ class HomeController < ApplicationController
     @employee = nil;
 	@employee = Employee.get_employee(session[:username])
    @mysdk = Rad_Exam.testsdk();
-   puts "kumar" + @mysdk.size.to_s
+   #puts "kumar" + @mysdk.size.to_s
    @mysdk1 = Rad_Exam.testsdkJson
    @exams = [];
     
@@ -123,15 +123,17 @@ class HomeController < ApplicationController
       #<start>
      #exam = manipulate_status(grades);
       #<end>
+      
       grades = get_graph_status_hash(grades);    
-      @exams.push(grades);
+      @exams << grades ;
     
     end 
     #end @mysdk1 loop
     
      #log output data
     log_hipaa_view(@mysdk1);
-     
+    puts "<---- start --->"
+     put @exams.to_json;
     json_data = {
       :page=>"1",
       :total=>"3",
