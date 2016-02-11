@@ -87,7 +87,7 @@ class HomeController < ApplicationController
            report_time = r.reportEvent unless r.reportEvent.blank?
         end
       
-      puts type(updated_at).to_s + "kumar kumar "
+      puts updated_at.to_s + "kumar kumar "
      
      grades = { "accession" => e.accession,
           "mrn" => e.patientMrn.mrn,           
@@ -97,7 +97,7 @@ class HomeController < ApplicationController
            "modality" => (e.resource.modality.modality unless e.resource.nil?),
            "resource_name" => (e.resource.name unless e.resource.nil?),
            "graph_status" => e.currentStatus.universalEventType.eventType,           
-           "updated_at" => updated_at,
+           "updated_at" => updated_at.to_s,
            "patient_name" => ( e.patient.name unless e.patient.nil?),
            "birthdate" => ( e.patient.birthdate.to_s unless e.patient.nil?),
            "site_name" => (e.site.site unless e.site.site.nil?),
