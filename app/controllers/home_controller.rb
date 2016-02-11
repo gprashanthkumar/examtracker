@@ -87,7 +87,7 @@ class HomeController < ApplicationController
            report_time = r.reportEvent unless r.reportEvent.blank?
         end
       
-      puts is_a?(updated_at).to_s + "kumar kumar "
+      puts object.is_a?(updated_at).to_s + "kumar kumar "
      
      grades = { "accession" => e.accession,
           "mrn" => e.patientMrn.mrn,           
