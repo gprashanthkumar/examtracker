@@ -82,12 +82,12 @@ class HomeController < ApplicationController
       begin_exam = e.radExamTime.beginExam unless e.radExamTime.blank?;
       end_exam = e.radExamTime.endExam unless e.radExamTime.blank?;
       order_arrival = e.radExamTime.orderArrival unless e.radExamTime.blank?; 
-       updated_at = e.updatedAt unless e.updatedAt.nil?
+       updated_at = Time.parse(updated_at.to_s).getutc unless e.updatedAt.nil?
        e.radReports.each  do |r|          
            report_time = r.reportEvent unless r.reportEvent.blank?
         end
 
-puts Time.parse(updated_at.to_s).getutc
+puts 
      
      grades = { "accession" => e.accession,
           "mrn" => e.patientMrn.mrn,           
