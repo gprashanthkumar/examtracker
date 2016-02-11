@@ -135,7 +135,7 @@ class HomeController < ApplicationController
      #log output data
     log_hipaa_view(@mysdk1);
     puts "<---- start --->"
-     puts @exams.to_json;
+     #puts @exams.to_json;
     json_data = {
       :page=>"1",
       :total=>"3",
