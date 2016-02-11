@@ -123,9 +123,9 @@ class HomeController < ApplicationController
       #<start>
      #exam = manipulate_status(grades);
       #<end>
-       @exams << grades ;
+      
       grades = get_graph_status_hash(grades);    
-     
+      @exams << grades ;
     
     end 
     #end @mysdk1 loop
@@ -139,7 +139,7 @@ class HomeController < ApplicationController
       :total=>"3",
       :records=>"6", 
       #:rows=> JSON.parse(@exams.to_json(:only => [ :accession,:mrn,:current_status,:code,:description,:modality,:resource_name,:graph_status,:current_status,:updated_at,:patient_name,:birthdate,:site_name,:patient_class,:patient_type,:patient_location_at_exam,:radiology_department,:ordering_provider,:scheduler,:technologist,:pacs_image_count,:appt_time,:sign_in,:check_in,:begin_exam,:end_exam]))    
-     :rows=> @exams.to_json
+     :rows=> JSON.parse(@exams.to_json)
     }    
     respond_to do |format|
       format.json { render :json => json_data }
@@ -151,8 +151,8 @@ class HomeController < ApplicationController
     accession_ids = params[:accession]
     exam_status = params[:status]
 	
-    get_jqgrid_common("rad",accession_ids,exam_status);  
-    #sdk();
+    #get_jqgrid_common("rad",accession_ids,exam_status);  
+    sdk();
   end
   
   def get_jqgridTech
