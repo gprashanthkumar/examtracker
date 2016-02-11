@@ -73,6 +73,7 @@ class HomeController < ApplicationController
       end_exam = nil;
       order_arrival = nil;
       report_time = nil;
+      updated_at = nil;
       image_count = e.radPacsMetadatum.imageCount unless e.radExamMetadata.blank?
       sched_time  = e.radExamTime.scheduleEvent unless e.radExamTime.blank?;
       appt_time = e.radExamTime.appointment unless e.radExamTime.blank?;
@@ -81,11 +82,12 @@ class HomeController < ApplicationController
       begin_exam = e.radExamTime.beginExam unless e.radExamTime.blank?;
       end_exam = e.radExamTime.endExam unless e.radExamTime.blank?;
       order_arrival = e.radExamTime.orderArrival unless e.radExamTime.blank?; 
+       updated_at = e.updatedAt unless e.updatedAt.nil?
        e.radReports.each  do |r|          
            report_time = r.reportEvent unless r.reportEvent.blank?
         end
       
-      
+      puts is_a?(updated_at).to_s + "kumar kumar "
      
      grades = { "accession" => e.accession,
           "mrn" => e.patientMrn.mrn,           
@@ -95,7 +97,7 @@ class HomeController < ApplicationController
            "modality" => (e.resource.modality.modality unless e.resource.nil?),
            "resource_name" => (e.resource.name unless e.resource.nil?),
            "graph_status" => e.currentStatus.universalEventType.eventType,           
-           "updated_at" => ( DateTime.strptime(e.updatedAt,'%Y-%m-%dT%H:%M:%S%z') unless e.updatedAt.nil?),
+           "updated_at" => updated_at,
            "patient_name" => ( e.patient.name unless e.patient.nil?),
            "birthdate" => ( e.patient.birthdate.to_s unless e.patient.nil?),
            "site_name" => (e.site.site unless e.site.site.nil?),
@@ -117,7 +119,7 @@ class HomeController < ApplicationController
            "order_arrival" => order_arrival.to_s,
            "report_time" => report_time.to_s
          }
-        puts grades.to_json; 
+        #puts grades.to_json; 
         
         #remove this line after testing
       #<start>
