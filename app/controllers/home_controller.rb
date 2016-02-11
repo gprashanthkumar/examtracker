@@ -84,7 +84,7 @@ class HomeController < ApplicationController
       order_arrival = e.radExamTime.orderArrival unless e.radExamTime.blank?; 
        updated_at = updated_at.to_s unless e.updatedAt.nil?
               
-           report_time = e.currentReport.reportEvent unless e.reportEvent.blank?
+           report_time = e.currentReport.reportEvent unless e.currentReport.blank?
       
 
 puts 
