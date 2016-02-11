@@ -88,7 +88,7 @@ class HomeController < ApplicationController
         end
  #     date_and_time = '%m-%d-%Y %H:%M:%S %Z'
 #DateTime.strptime("04-15-2010 10:00:00 Central Time (US & Canada)",date_and_time)
-      puts DateTime.strptime(updated_at.to_s, "%Y-%m-%d %H:%M:%S %Z")  + "kumar kumar "
+      puts DateTime.strptime(updated_at, "%Y-%m-%d %H:%M:%S %Z")  + "kumar kumar "
      
      grades = { "accession" => e.accession,
           "mrn" => e.patientMrn.mrn,           
