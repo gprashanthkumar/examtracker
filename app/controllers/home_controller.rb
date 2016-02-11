@@ -86,8 +86,9 @@ class HomeController < ApplicationController
        e.radReports.each  do |r|          
            report_time = r.reportEvent unless r.reportEvent.blank?
         end
-      
-      puts updated_at.to_s + "kumar kumar "
+ #     date_and_time = '%m-%d-%Y %H:%M:%S %Z'
+#DateTime.strptime("04-15-2010 10:00:00 Central Time (US & Canada)",date_and_time)
+      puts DateTime.strptime(updated_at.to_s, "%Y-%m-%dT%H:%M:%S %Z")  + "kumar kumar "
      
      grades = { "accession" => e.accession,
           "mrn" => e.patientMrn.mrn,           
