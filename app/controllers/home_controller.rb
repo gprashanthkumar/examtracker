@@ -72,7 +72,7 @@ class HomeController < ApplicationController
       begin_exam = nil;
       end_exam = nil;
       order_arrival = nil;
-      report_time = nil;
+      report_time = "";
       updated_at = "";
       image_count = e.radPacsMetadatum.imageCount unless e.radExamMetadata.blank?
       sched_time  = e.radExamTime.scheduleEvent unless e.radExamTime.blank?;
@@ -82,10 +82,8 @@ class HomeController < ApplicationController
       begin_exam = e.radExamTime.beginExam unless e.radExamTime.blank?;
       end_exam = e.radExamTime.endExam unless e.radExamTime.blank?;
       order_arrival = e.radExamTime.orderArrival unless e.radExamTime.blank?; 
-       updated_at =  DateTime.parse(e.updatedAt.to_s).utc.to_s  unless e.updatedAt.blank?          
-           #  mydate = DateTime.parse(updated_at)
-           # formatted_date = mydate.strftime('%Y-%m-%d%H:%M:%S %Z')   
-           report_time = e.currentReport.reportEvent unless e.currentReport.blank?
+      updated_at =  DateTime.parse(e.updatedAt.to_s).utc.to_s  unless e.updatedAt.blank?                    
+      report_time = DateTime.parse(e.currentReport.reportEvent.to_s).utc.to_s  unless e.currentReport.blank?
       
 puts updated_at
 
