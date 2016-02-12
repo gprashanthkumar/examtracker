@@ -66,12 +66,12 @@ class HomeController < ApplicationController
       end
       image_count = 0;
        sched_time = nil;
-      appt_time = nil;
-      sign_in = nil;
-      check_in = nil;
-      begin_exam = nil;
-      end_exam = nil;
-      order_arrival = nil;
+      appt_time = "";
+      sign_in = "";
+      check_in = "";
+      begin_exam = "";
+      end_exam = "";
+      order_arrival = "";
       report_time = "";
       updated_at = "";
       image_count = e.radPacsMetadatum.imageCount unless e.radExamMetadata.blank?
