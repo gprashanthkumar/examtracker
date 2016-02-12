@@ -76,7 +76,7 @@ class HomeController < ApplicationController
       updated_at = nil;
       image_count = e.radPacsMetadatum.imageCount unless e.radExamMetadata.blank?
       sched_time  = e.radExamTime.scheduleEvent unless e.radExamTime.blank?;
-      appt_time = e.radExamTime.appointment unless e.radExamTime.blank?;
+      appt_time = DateTime.parse(e.radExamTime.appointment.to_s).utc.to_s  unless e.radExamTime.blank?;
       sign_in = e.radExamTime.signIn unless e.radExamTime.blank?;
       check_in = e.radExamTime.checkIn unless e.radExamTime.blank?;
       begin_exam = e.radExamTime.beginExam unless e.radExamTime.blank?;
