@@ -83,11 +83,11 @@ class HomeController < ApplicationController
       end_exam = e.radExamTime.endExam unless e.radExamTime.blank?;
       order_arrival = e.radExamTime.orderArrival unless e.radExamTime.blank?; 
        updated_at = e.updatedAt.to_s unless e.updatedAt.nil?
-              
+          var2 = e.updatedAt.strftime("%Y-%m-%d %H:%M:%S %z")    
            report_time = e.currentReport.reportEvent unless e.currentReport.blank?
       
 
-puts 
+puts var2 + "ZULU";
      
      grades = { "accession" => e.accession,
           "mrn" => e.patientMrn.mrn,           
