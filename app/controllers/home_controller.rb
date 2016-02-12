@@ -85,7 +85,7 @@ class HomeController < ApplicationController
       updated_at =  DateTime.parse(e.updatedAt.to_s).utc.to_s  unless e.updatedAt.blank?                    
       report_time = DateTime.parse(e.currentReport.reportEvent.to_s).utc.to_s  unless e.currentReport.blank?
       @i+=1;
-puts "begin Exam" + e.radExamTime.endExam.to_s + "@i" + @i.to_s unless e.radExamTime.endExam.nil?
+puts "begin Exam" + e.radExamTime.endExam.to_s + "@i" + @i.to_s unless(e.radExamTime.blank? && e.radExamTime.endExam.blank?)
 puts "now @i" + @i.to_s
      
      grades = { "accession" => e.accession,
