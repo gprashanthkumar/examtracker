@@ -76,7 +76,8 @@ class HomeController < ApplicationController
       updated_at = nil;
       image_count = e.radPacsMetadatum.imageCount unless e.radExamMetadata.blank?
       sched_time  = e.radExamTime.scheduleEvent unless e.radExamTime.blank?;
-      appt_time = e.radExamTime.appointment unless e.radExamTime.blank?;
+      appt_time = e.radExamTime.appointment.to_s unless e.radExamTime.blank?;
+      appt_time = DateTime.parse(appt_time).utc.to_s;
       sign_in = e.radExamTime.signIn unless e.radExamTime.blank?;
       check_in = e.radExamTime.checkIn unless e.radExamTime.blank?;
       begin_exam = e.radExamTime.beginExam unless e.radExamTime.blank?;
@@ -84,12 +85,12 @@ class HomeController < ApplicationController
       order_arrival = e.radExamTime.orderArrival unless e.radExamTime.blank?; 
        updated_at = e.updatedAt.to_s unless e.updatedAt.nil?
        mydate = DateTime.parse(updated_at)
-formatted_date = mydate.utc.to_s;
+updated_at = mydate.utc.to_s;
          
            report_time = e.currentReport.reportEvent unless e.currentReport.blank?
       
 
-puts formatted_date + "ZULU";
+puts updated_at + "ZULU";
      
      grades = { "accession" => e.accession,
           "mrn" => e.patientMrn.mrn,           
