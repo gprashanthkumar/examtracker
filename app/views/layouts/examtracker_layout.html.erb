@@ -687,12 +687,13 @@
       }
 
       function format_date_time(mydate) {
-	     console.info('[' + mydate + ']')
+	    console.info('[' + mydate + ']')
           var datetext = '';
           if (mydate == null) {
               return datetext;
           }
             d = new Date(mydate);
+             console.info('[' + d + ']')
           if (d != null) {
               datetext = d.getFullYear() + "-"
               datetext += pad2(d.getMonth() + 1) + "-"
