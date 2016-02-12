@@ -77,15 +77,14 @@ class HomeController < ApplicationController
       image_count = e.radPacsMetadatum.imageCount unless e.radExamMetadata.blank?
       if (!e.radExamTime.nil?)
       
-      sched_time  = e.radExamTime.scheduleEvent unless e.radExamTime.scheduleEvent.blank?;
+      sched_time  = DateTime.parse(e.radExamTime.scheduleEvent.to_s).utc.to_s  unless e.radExamTime.scheduleEvent.blank?;
       appt_time = DateTime.parse(e.radExamTime.appointment.to_s).utc.to_s  unless e.radExamTime.appointment.blank?;
-      sign_in = e.radExamTime.signIn unless e.radExamTime.signIn.blank?;
+      sign_in = (DateTime.parse(e.radExamTime.signIn.to_s).utc.to_s) unless e.radExamTime.signIn.blank?;
       check_in = (DateTime.parse(e.radExamTime.checkIn.to_s).utc.to_s) unless e.radExamTime.checkIn.blank?;
       begin_exam = (DateTime.parse(e.radExamTime.beginExam.to_s).utc.to_s)  unless e.radExamTime.beginExam.blank?;      
       end_exam =   (DateTime.parse(e.radExamTime.endExam.to_s).utc.to_s)  unless (e.radExamTime.endExam.blank?)      
       order_arrival = DateTime.parse(e.radExamTime.orderArrival.to_s).utc.to_s  unless e.radExamTime.blank?;  
-      end
-      
+      end      
       updated_at =  DateTime.parse(e.updatedAt.to_s).utc.to_s  unless e.updatedAt.blank?                    
       report_time = DateTime.parse(e.currentReport.reportEvent.to_s).utc.to_s  unless e.currentReport.blank?
       @i+=1;
