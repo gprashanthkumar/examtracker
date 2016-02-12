@@ -87,7 +87,7 @@ class HomeController < ApplicationController
             formatted_date = mydate.strftime('%Y-%m-%d %H:%M:%S %Z')   
            report_time = e.currentReport.reportEvent unless e.currentReport.blank?
       
-puts formatted_date.t_s
+puts formatted_date.to_s
 
      
      grades = { "accession" => e.accession,
