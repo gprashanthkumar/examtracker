@@ -73,7 +73,7 @@ class HomeController < ApplicationController
       end_exam = nil;
       order_arrival = nil;
       report_time = nil;
-      updated_at = nil;
+      updated_at = "";
       image_count = e.radPacsMetadatum.imageCount unless e.radExamMetadata.blank?
       sched_time  = e.radExamTime.scheduleEvent unless e.radExamTime.blank?;
       appt_time = DateTime.parse(e.radExamTime.appointment.to_s).utc.to_s  unless e.radExamTime.blank?;
@@ -82,12 +82,12 @@ class HomeController < ApplicationController
       begin_exam = e.radExamTime.beginExam unless e.radExamTime.blank?;
       end_exam = e.radExamTime.endExam unless e.radExamTime.blank?;
       order_arrival = e.radExamTime.orderArrival unless e.radExamTime.blank?; 
-       updated_at = e.updatedAt.to_s unless e.updatedAt.nil?          
-             mydate = DateTime.parse(updated_at)
-            formatted_date = mydate.strftime('%Y-%m-%d%H:%M:%S %Z')   
+       updated_at =  DateTime.parse(e.updatedAt.to_s).utc.to_s  unless e.updatedAt.blank?          
+           #  mydate = DateTime.parse(updated_at)
+           # formatted_date = mydate.strftime('%Y-%m-%d%H:%M:%S %Z')   
            report_time = e.currentReport.reportEvent unless e.currentReport.blank?
       
-puts formatted_date + " <-> " + mydate.utc.to_s
+puts updated_at
 
      
      grades = { "accession" => e.accession,
@@ -98,7 +98,7 @@ puts formatted_date + " <-> " + mydate.utc.to_s
            "modality" => (e.resource.modality.modality unless e.resource.nil?),
            "resource_name" => (e.resource.name unless e.resource.nil?),
            "graph_status" => e.currentStatus.universalEventType.eventType,           
-           "updated_at" => formatted_date.to_s,
+           "updated_at" => updated_at,
            "patient_name" => ( e.patient.name unless e.patient.nil?),
            "birthdate" => ( e.patient.birthdate.to_s unless e.patient.nil?),
            "site_name" => (e.site.site unless e.site.site.nil?),
