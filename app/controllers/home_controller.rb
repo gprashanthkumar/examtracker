@@ -35,11 +35,10 @@ class HomeController < ApplicationController
   def sdk
     @employee = nil;
 	@employee = Employee.get_employee(session[:username])
-   @mysdk = Rad_Exam.testsdk();
-   #puts "kumar" + @mysdk.size.to_s
+   @mysdk = Rad_Exam.testsdk();   
    @mysdk1 = Rad_Exam.testsdkJson
    @exams = [];
-   @i = 0
+   
     @mysdk1.each  do |e|
       
      siteLocation = "";
@@ -86,9 +85,7 @@ class HomeController < ApplicationController
       end      
       updated_at =  DateTime.parse(e.updatedAt.to_s).utc.to_s  unless e.updatedAt.blank?                    
       report_time = DateTime.parse(e.currentReport.reportEvent.to_s).utc.to_s  unless e.currentReport.blank?
-      @i+=1;
-puts ("begin Exam" + end_exam + "@i" + @i.to_s) 
-puts "now @i" + @i.to_s
+    
      
      grades = { "accession" => e.accession,
           "mrn" => e.patientMrn.mrn,           
@@ -127,7 +124,8 @@ puts "now @i" + @i.to_s
      #exam = manipulate_status(grades);
       #<end>
       
-      grades = get_graph_status_hash(grades);    
+      grades = get_graph_status_hash(grades);  
+      puts grades[:graph_status].to_s
       @exams << grades ;
     
     end 
