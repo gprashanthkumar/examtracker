@@ -121,7 +121,7 @@ class HomeController < ApplicationController
         
         #remove this line after testing
       #<start>
-     #exam = manipulate_status(grades);
+     grades = manipulate_status_hash(grades);
       #<end>
       
       grades = get_graph_status_hash(grades);  
@@ -521,6 +521,31 @@ class HomeController < ApplicationController
     
     return exam;
   end
+  
+  def manipulate_status_hash(exam)
+    
+    if ['1037','1027'].include? exam["accession"]
+      exam["graph_status"] = "cancelled"
+      exam["current_status"] = "cancelled"       
+    end
+    if '1027' == exam["accession"]
+      exam["graph_status"] = "cancelled"
+      exam["current_status"] = "cancelled"    
+      exam["report_time"] = "";
+    end
+        
+    if '1017' == exam["accession"]
+      exam["graph_status"] = "order"
+      exam["current_status"] = "order"    
+    end
+    if '1015' == exam["accession"]
+      exam["graph_status"] = "arrived"
+      exam["current_status"] = "arrived"    
+    end
+    
+    return exam;
+  end
+  
 end
 
 
