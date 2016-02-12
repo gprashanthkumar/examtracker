@@ -37,7 +37,7 @@ class HomeController < ApplicationController
     @employee = nil;
     @employee = Employee.get_employee(session[:username])
   
-    @mysdk1 = Rad_Exam.testsdkJson  
+    @mysdk1 = nil;
     @roleType = roletype
     case roletype
     when "rad"
