@@ -82,7 +82,7 @@ class HomeController < ApplicationController
       begin_exam = e.radExamTime.beginExam unless e.radExamTime.blank?;
       end_exam = e.radExamTime.endExam unless e.radExamTime.blank?;
       order_arrival = e.radExamTime.orderArrival unless e.radExamTime.blank?; 
-       updated_at = e.updatedAt unless e.updatedAt.nil?          
+       updated_at = e.updatedAt.to_s unless e.updatedAt.nil?          
              mydate = DateTime.parse(updated_at)
             formatted_date = mydate.strftime('%Y-%m-%d %H:%M:%S %Z')   
            report_time = e.currentReport.reportEvent unless e.currentReport.blank?
