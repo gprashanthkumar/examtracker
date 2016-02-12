@@ -70,22 +70,29 @@ class HomeController < ApplicationController
       sign_in = nil;
       check_in = nil;
       begin_exam = nil;
-      end_exam = nil;
+      end_exam = "";
       order_arrival = nil;
       report_time = "";
       updated_at = "";
       image_count = e.radPacsMetadatum.imageCount unless e.radExamMetadata.blank?
-      sched_time  = e.radExamTime.scheduleEvent unless e.radExamTime.blank?;
+      if (!e.radExamTime.nil?)
+       sched_time  = e.radExamTime.scheduleEvent unless e.radExamTime.blank?;
       appt_time = DateTime.parse(e.radExamTime.appointment.to_s).utc.to_s  unless e.radExamTime.blank?;
       sign_in = e.radExamTime.signIn unless e.radExamTime.blank?;
       check_in = e.radExamTime.checkIn unless e.radExamTime.blank?;
       begin_exam = e.radExamTime.beginExam unless e.radExamTime.blank?;
-      end_exam =   (DateTime.parse(e.radExamTime.endExam.to_s).utc.to_s)  unless (e.radExamTime.blank? && e.radExamTime.endExam.blank?);
-      order_arrival = DateTime.parse(e.radExamTime.orderArrival.to_s).utc.to_s  unless e.radExamTime.blank?; 
+      
+      end_exam =   (DateTime.parse(e.radExamTime.endExam.to_s).utc.to_s)  unless (e.radExamTime.endExam.blank?)
+      if  (e.radExamTime.endExam.blank?)
+        puts "kumar " +  e.radExamTime.endExam.to_s  
+      end       
+      order_arrival = DateTime.parse(e.radExamTime.orderArrival.to_s).utc.to_s  unless e.radExamTime.blank?;  
+      end
+      
       updated_at =  DateTime.parse(e.updatedAt.to_s).utc.to_s  unless e.updatedAt.blank?                    
       report_time = DateTime.parse(e.currentReport.reportEvent.to_s).utc.to_s  unless e.currentReport.blank?
       @i+=1;
-puts ("begin Exam" + e.radExamTime.endExam.to_s + "@i" + @i.to_s) unless(e.radExamTime.blank? && e.radExamTime.endExam.blank?)
+puts ("begin Exam" + end_exam + "@i" + @i.to_s) 
 puts "now @i" + @i.to_s
      
      grades = { "accession" => e.accession,
