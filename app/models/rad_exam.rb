@@ -297,7 +297,7 @@ class Rad_Exam < ActiveRecord::Base
     csfilter = string_array_to_string(csfilter);
    q1 = Java::HarbingerSdkData::RadExam.createQuery(@entity_manager)
    # q1.join(".radReports")
-    q1.where(q1.in(".accession", accfilter))
+    q1.where(q1.in(".accession", accfilter)) unless accessions.blank?
     
    # puts Java::HarbingerSdkData::DataUtils.getSql(@entity_manager,q1)
    @mysdk1=  q1.list.to_a 
