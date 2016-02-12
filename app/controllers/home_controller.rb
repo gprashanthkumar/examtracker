@@ -86,7 +86,7 @@ class HomeController < ApplicationController
              
            report_time = e.currentReport.reportEvent unless e.currentReport.blank?
       
-
+puts updated_at.t_s
 
      
      grades = { "accession" => e.accession,
