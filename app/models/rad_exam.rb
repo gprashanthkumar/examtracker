@@ -287,8 +287,18 @@ class Rad_Exam < ActiveRecord::Base
   
   def self.testsdkJson(employeeid,accessions,current_status)
   @mysdk1 = " ";
+   accfilter = "";
+    csfilter = "";
+    accfilter = accessions.to_s unless accessions.blank?;
+    accfilter = string_array_to_string(accfilter);
+    
+   
+    csfilter = current_status.to_s unless current_status.blank?;
+    csfilter = string_array_to_string(csfilter);
    q1 = Java::HarbingerSdkData::RadExam.createQuery(@entity_manager)
     q1.join(".radReports")
+    q1.where(q1.in(".accession", accfilter))
+    
    # puts Java::HarbingerSdkData::DataUtils.getSql(@entity_manager,q1)
    @mysdk1=  q1.list.to_a 
   end

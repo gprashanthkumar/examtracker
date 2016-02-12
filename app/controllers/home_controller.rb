@@ -139,7 +139,7 @@ class HomeController < ApplicationController
       #<end>
       
       grades = get_graph_status_hash(grades);  
-      puts grades["graph_status"]
+      #puts grades["graph_status"]
       @exams << grades ;
     
     end 
