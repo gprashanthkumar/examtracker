@@ -39,7 +39,7 @@ class HomeController < ApplicationController
    #puts "kumar" + @mysdk.size.to_s
    @mysdk1 = Rad_Exam.testsdkJson
    @exams = [];
-    
+   @i = 0
     @mysdk1.each  do |e|
       
      siteLocation = "";
@@ -84,9 +84,9 @@ class HomeController < ApplicationController
       order_arrival = DateTime.parse(e.radExamTime.orderArrival.to_s).utc.to_s  unless e.radExamTime.blank?; 
       updated_at =  DateTime.parse(e.updatedAt.to_s).utc.to_s  unless e.updatedAt.blank?                    
       report_time = DateTime.parse(e.currentReport.reportEvent.to_s).utc.to_s  unless e.currentReport.blank?
-      
-puts e.radExamTime.endExam
-
+      @i+=1;
+puts e.radExamTime.endExam + "@i" + @i.to_s
+puts "now @i" + @i.to_s
      
      grades = { "accession" => e.accession,
           "mrn" => e.patientMrn.mrn,           
