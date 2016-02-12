@@ -80,7 +80,7 @@ class HomeController < ApplicationController
       sign_in = e.radExamTime.signIn unless e.radExamTime.blank?;
       check_in = e.radExamTime.checkIn unless e.radExamTime.blank?;
       begin_exam = e.radExamTime.beginExam unless e.radExamTime.blank?;
-      end_exam = e.radExamTime.endExam unless e.radExamTime.blank?;
+      end_exam =  DateTime.parse(e.radExamTime.endExam.to_s).utc.to_s  unless e.radExamTime.blank?;
       order_arrival = DateTime.parse(e.radExamTime.orderArrival.to_s).utc.to_s  unless e.radExamTime.blank?; 
       updated_at =  DateTime.parse(e.updatedAt.to_s).utc.to_s  unless e.updatedAt.blank?                    
       report_time = DateTime.parse(e.currentReport.reportEvent.to_s).utc.to_s  unless e.currentReport.blank?
