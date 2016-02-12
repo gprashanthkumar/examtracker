@@ -84,7 +84,7 @@ class HomeController < ApplicationController
       order_arrival = e.radExamTime.orderArrival unless e.radExamTime.blank?; 
        updated_at = e.updatedAt.to_s unless e.updatedAt.nil?
        mydate = DateTime.parse(updated_at)
-formatted_date = mydate.strftime('%Y-%m-%d %H:%M:%S %Z')
+formatted_date = mydate.utc.to_s;
          
            report_time = e.currentReport.reportEvent unless e.currentReport.blank?
       
