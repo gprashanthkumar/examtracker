@@ -32,13 +32,27 @@ class HomeController < ApplicationController
     @employee = Employee.get_employee(session[:username])
   end
   
-  def sdk
+  def sdk(roletype,accession,currentstatus)
+    @exams = [];
     @employee = nil;
-	@employee = Employee.get_employee(session[:username])
-   @mysdk = Rad_Exam.testsdk();   
-   @mysdk1 = Rad_Exam.testsdkJson
-   @exams = [];
-   
+    @employee = Employee.get_employee(session[:username])
+  
+    @mysdk1 = Rad_Exam.testsdkJson  
+    @roleType = roletype
+    case roletype
+    when "rad"
+      @mysdk1 = Rad_Exam.testsdkJson(@employee.id,accession,currentstatus)        
+      puts @exams.to_json;
+    when "tech"
+      @mysdk1 = Rad_Exam.testsdkJson(@employee.id,accession,currentstatus)  
+    when "schedreg"
+      @mysdk1 = Rad_Exam.testsdkJson(@employee.id,accession,currentstatus)  
+    when "trans"
+      @mysdk1 = Rad_Exam.testsdkJson(@employee.id,accession,currentstatus)  
+    when "others"
+      @mysdk1 = Rad_Exam.testsdkJson(@employee.id,accession,currentstatus)  
+    end
+    
     @mysdk1.each  do |e|
       
      siteLocation = "";
@@ -133,7 +147,7 @@ class HomeController < ApplicationController
     
      #log output data
     log_hipaa_view(@mysdk1);
-    puts "<---- start --->"
+   
      #puts @exams.to_json;
     json_data = {
       :page=>"1",
@@ -145,7 +159,7 @@ class HomeController < ApplicationController
     respond_to do |format|
       format.json { render :json => json_data }
     end
-    puts "<----The End---->"
+   
   end
     
   def get_jqgridRad
@@ -153,7 +167,7 @@ class HomeController < ApplicationController
     exam_status = params[:status]
 	
     #get_jqgrid_common("rad",accession_ids,exam_status);  
-    sdk();
+    sdk("rad",accession_ids,exam_status);
   end
   
   def get_jqgridTech
@@ -295,8 +309,7 @@ class HomeController < ApplicationController
     @roleType = roletype
     case roletype
     when "rad"
-      @exams = Rad_Exam.get_rad_exams(@employee.id,accession,currentstatus)
-      puts @exams.to_json;
+      @exams = Rad_Exam.get_rad_exams(@employee.id,accession,currentstatus)     
     when "tech"
       @exams = Rad_Exam.get_tech_exams(@employee.id,accession,currentstatus)
     when "schedreg"
