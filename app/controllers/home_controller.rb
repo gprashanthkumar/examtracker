@@ -65,15 +65,15 @@ class HomeController < ApplicationController
        technologist = e.radExamPersonnel.technologist.name unless e.radExamPersonnel.technologist.blank?
       end
       image_count = 0;
-       sched_time = nil;
-      appt_time = nil;
-      sign_in = nil;
-      check_in= nil;
-      begin_exam = nil;
-      end_exam = nil;
-      order_arrival= nil;
-      report_time = nil;
-      updated_at = nil;
+       sched_time = "";
+      appt_time = "";
+      sign_in = "";
+      check_in = "";
+      begin_exam = "";
+      end_exam = "";
+      order_arrival = "";
+      report_time = "";
+      updated_at = "";
       image_count = e.radPacsMetadatum.imageCount unless e.radExamMetadata.blank?
       if (!e.radExamTime.nil?)      
       sched_time  = DateTime.parse(e.radExamTime.scheduleEvent.to_s).utc.to_s  unless e.radExamTime.scheduleEvent.blank?;

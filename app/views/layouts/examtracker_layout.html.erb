@@ -658,7 +658,8 @@
       function TimeFromDateTime(mydate)
       {
           var datetext = '';
-          if (mydate == null) {
+          if ((mydate == null) ||(mydate = ="") )
+          {
               return datetext;
           }
           d = new Date(mydate);
@@ -670,7 +671,8 @@
       }
       function DaysTimeWait(mydate) {
           var datetext = '';
-          if (mydate == null) {
+           if ((mydate == null) ||(mydate = ="") )
+          {
               return datetext;
           }
           d = new Date(mydate);
@@ -689,7 +691,8 @@
       function format_date_time(mydate) {
 	    console.info('[' + mydate + ']')
           var datetext = '';
-          if (mydate == null) {
+          if ((mydate == null) ||(mydate = ="") )
+          {
               return datetext;
           }
             d = new Date(mydate);
