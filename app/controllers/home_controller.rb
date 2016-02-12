@@ -65,27 +65,24 @@ class HomeController < ApplicationController
        technologist = e.radExamPersonnel.technologist.name unless e.radExamPersonnel.technologist.blank?
       end
       image_count = 0;
-       sched_time = nil;
-      appt_time = nil;
-      sign_in = nil;
-      check_in = nil;
-      begin_exam = nil;
+       sched_time = "";
+      appt_time = "";
+      sign_in = "";
+      check_in = "";
+      begin_exam = "";
       end_exam = "";
-      order_arrival = nil;
+      order_arrival = "";
       report_time = "";
       updated_at = "";
       image_count = e.radPacsMetadatum.imageCount unless e.radExamMetadata.blank?
       if (!e.radExamTime.nil?)
-       sched_time  = e.radExamTime.scheduleEvent unless e.radExamTime.blank?;
-      appt_time = DateTime.parse(e.radExamTime.appointment.to_s).utc.to_s  unless e.radExamTime.blank?;
-      sign_in = e.radExamTime.signIn unless e.radExamTime.blank?;
-      check_in = e.radExamTime.checkIn unless e.radExamTime.blank?;
-      begin_exam = e.radExamTime.beginExam unless e.radExamTime.blank?;
       
-      end_exam =   (DateTime.parse(e.radExamTime.endExam.to_s).utc.to_s)  unless (e.radExamTime.endExam.blank?)
-      if  (e.radExamTime.endExam.blank?)
-        puts "kumar " +  e.radExamTime.endExam.to_s  
-      end       
+      sched_time  = e.radExamTime.scheduleEvent unless e.radExamTime.scheduleEvent.blank?;
+      appt_time = DateTime.parse(e.radExamTime.appointment.to_s).utc.to_s  unless e.radExamTime.appointment.blank?;
+      sign_in = e.radExamTime.signIn unless e.radExamTime.signIn.blank?;
+      check_in = (DateTime.parse(e.radExamTime.checkIn.to_s).utc.to_s) unless e.radExamTime.checkIn.blank?;
+      begin_exam = (DateTime.parse(e.radExamTime.beginExam.to_s).utc.to_s)  unless e.radExamTime.beginExam.blank?;      
+      end_exam =   (DateTime.parse(e.radExamTime.endExam.to_s).utc.to_s)  unless (e.radExamTime.endExam.blank?)      
       order_arrival = DateTime.parse(e.radExamTime.orderArrival.to_s).utc.to_s  unless e.radExamTime.blank?;  
       end
       
