@@ -82,11 +82,12 @@ class HomeController < ApplicationController
       begin_exam = e.radExamTime.beginExam unless e.radExamTime.blank?;
       end_exam = e.radExamTime.endExam unless e.radExamTime.blank?;
       order_arrival = e.radExamTime.orderArrival unless e.radExamTime.blank?; 
-       updated_at = DateTime.parse(e.updatedAt.to_s).utc.to_s unless e.updatedAt.nil?           
-             
+       updated_at = e.updatedAt unless e.updatedAt.nil?          
+             mydate = DateTime.parse(updated_at)
+            formatted_date = mydate.strftime('%Y-%m-%d %H:%M:%S %Z')   
            report_time = e.currentReport.reportEvent unless e.currentReport.blank?
       
-puts updated_at.t_s
+puts formatted_date.t_s
 
      
      grades = { "accession" => e.accession,
@@ -97,7 +98,7 @@ puts updated_at.t_s
            "modality" => (e.resource.modality.modality unless e.resource.nil?),
            "resource_name" => (e.resource.name unless e.resource.nil?),
            "graph_status" => e.currentStatus.universalEventType.eventType,           
-           "updated_at" => updated_at.to_s,
+           "updated_at" => formatted_date.t_s,
            "patient_name" => ( e.patient.name unless e.patient.nil?),
            "birthdate" => ( e.patient.birthdate.to_s unless e.patient.nil?),
            "site_name" => (e.site.site unless e.site.site.nil?),
