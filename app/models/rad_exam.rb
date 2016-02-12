@@ -291,12 +291,13 @@ class Rad_Exam < ActiveRecord::Base
     csfilter = "";
     accfilter = accessions.to_s unless accessions.blank?;
     accfilter = string_array_to_string(accfilter);
-    puts accessions
+    accfilter = "[" + accfilter + ']'
+    puts accfilter
    
     csfilter = current_status.to_s unless current_status.blank?;
     csfilter = string_array_to_string(csfilter);
    q1 = Java::HarbingerSdkData::RadExam.createQuery(@entity_manager)   
-    q1.where(q1.in(".id", accessions)) unless accessions.blank?
+    q1.where(q1.in(".accession", accessions)) unless accessions.blank?
     
    # puts Java::HarbingerSdkData::DataUtils.getSql(@entity_manager,q1)
    @mysdk1=  q1.list.to_a 
