@@ -98,7 +98,7 @@ puts formatted_date.to_s
            "modality" => (e.resource.modality.modality unless e.resource.nil?),
            "resource_name" => (e.resource.name unless e.resource.nil?),
            "graph_status" => e.currentStatus.universalEventType.eventType,           
-           "updated_at" => formatted_date.t_s,
+           "updated_at" => formatted_date.to_s,
            "patient_name" => ( e.patient.name unless e.patient.nil?),
            "birthdate" => ( e.patient.birthdate.to_s unless e.patient.nil?),
            "site_name" => (e.site.site unless e.site.site.nil?),
