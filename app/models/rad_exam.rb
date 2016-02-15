@@ -283,9 +283,7 @@ class Rad_Exam < ActiveRecord::Base
   @mysdk1 = " ";  
    q1 = Java::HarbingerSdkData::RadExam.createQuery(@entity_manager)  
     puts "<----kumar --->" + (accessions.blank?).to_s + " ---" + (current_status.blank?).to_s
-    
-
-    
+        
     puts "accessions not blank"  unless (accessions.blank?)
     q1.where(q1.in(".accession", accessions)) unless accessions.blank?
     
@@ -293,25 +291,10 @@ class Rad_Exam < ActiveRecord::Base
       q1.where(q1.in(".currentStatus.universalEventType.eventType", current_status)) unless current_status.blank?     
      
  #q1.where (q1.and(q1.in(".accession", accessions), q1.equal("1","1")))unless (accessions.blank? &&  current_status.blank?)
-   c = 0;
-    x = nil;
-    x = q1.in(".accession", accessions)  unless accessions.blank?
-    c +=1 unless accessions.blank?
-    y= nil;
-    y = q1.in(".currentStatus.universalEventType.eventType", current_status) unless current_status.blank?  
-    c +=2 unless current_status.blank?  
- 
-    if c == 3
-      @mysdk1= q1.where(q1.and(x,y))
-    elseif c == 1
-        @mysdk1= q1.where(x)
-    elseif c ==2
-        @mysdk1= q1.where(x)
-    else
-       @mysdk1=  q1.list.to_a 
-    end
+  q1.where(query.or(q1.ilike(".code","MR%")
+                     q1.regex(".code","^CT.+MOD1$")))
 
-  
+   @mysdk1=  q1.list.to_a 
     
   end
   
