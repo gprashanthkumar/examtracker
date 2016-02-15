@@ -286,24 +286,11 @@ class Rad_Exam < ActiveRecord::Base
     
      q1.where(q1.and(q1.in(".accession", accessions),
                        q1.in(".currentStatus.universalEventType.eventType", current_status)
-                      )
-              )   
-   if ( (accessions.blank?)== false  &&  (current_status.blank? == false))
-       puts "<!-- inside both filters -->"
-              
-   elseif (accessions.blank? == false)
-        puts "<!-- inside accession filter-->" 
-      q1.where(q1.in(".accession", accessions)) unless accessions.blank?
-       
-   elseif (current_status.blank? == false)
-      puts "<!-- inside current status filter-->"
-       q1.where(q1.in(".currentStatus.universalEventType.eventType", current_status)) unless current_status.blank?
-   else
-     puts "someting is wrong!!!"
-    
-   end
+                      ))
+
   
-    
+    q1.where(q1.in(".accession", accessions)) unless accessions.blank?
+    q1.where(q1.in(".currentStatus.universalEventType.eventType", current_status)) unless current_status.blank?
    @mysdk1=  q1.list.to_a 
   end
   
