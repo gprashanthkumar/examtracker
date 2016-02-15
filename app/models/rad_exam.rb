@@ -283,8 +283,9 @@ class Rad_Exam < ActiveRecord::Base
   @mysdk1 = " ";  
    q1 = Java::HarbingerSdkData::RadExam.createQuery(@entity_manager)  
    if (!accessions.blank? &&   !current_status.blank?)
-       q1.where(q1.and(q1.in(".accession", accessions)),
-                q1.and(q1.in(".currentStatus.universalEventType.eventType", current_status))
+       q1.where(q1.and(q1.in(".accession", accessions),
+                       q1.in(".currentStatus.universalEventType.eventType", current_status)
+                      )
               )
               puts "<!-- inside both filters -->"
    elseif (!accessions.blank?)
