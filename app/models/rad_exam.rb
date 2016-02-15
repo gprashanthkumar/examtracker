@@ -287,6 +287,9 @@ class Rad_Exam < ActiveRecord::Base
 #    q1.where(q1.and(q1.in(".accession", accessions),
 #                       q1.in(".currentStatus.universalEventType.eventType", current_status)   ))
 
+    puts "Both blank"  unless (accessions.blank? && current_status.blank?)
+    puts "accessions blank"  unless (accessions.blank?)
+    puts "current_status blank"  unless (current_status.blank?)
   
     q1.where(q1.in(".accession", accessions)) unless accessions.blank?
     q1.where(q1.in(".currentStatus.universalEventType.eventType", current_status)) unless current_status.blank?
