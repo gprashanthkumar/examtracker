@@ -292,8 +292,7 @@ class Rad_Exam < ActiveRecord::Base
     puts "current_status not  blank"  unless (current_status.blank?)
       q1.where(q1.in(".currentStatus.universalEventType.eventType", current_status)) unless current_status.blank?
       
-    q1.where(q1.and(q1.in(".accession", accessions),
-    q1.in(".currentStatus.universalEventType.eventType", current_status) )) unless (accessions.blank? && current_status.blank?)
+    q1.where(q1.and(q1.in(".accession", accessions))) unless (accessions.blank? && current_status.blank?)
   
      @mysdk1=  q1.list.to_a 
   end
