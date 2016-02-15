@@ -292,10 +292,12 @@ class Rad_Exam < ActiveRecord::Base
      
  #q1.where (q1.and(q1.in(".accession", accessions), q1.equal("1","1")))unless (accessions.blank? &&  current_status.blank?)
   #q1.where(q1.or( [q1.ilike(".procedure.code","MR%"),q1.regex(".procedure.code","^CT.+MOD1$")]))
-  if !((current_status.blank?) && (accessions.blank?)) 
-    puts "both are not blank"    
+  if ( (accessions.blank? == false) && (current_status.blank? == false) ) 
+    puts "both are not blank start"    
    q1.where (q1.and(
-       [q1.in(".accession", accessions), q1.in(".currentStatus.universalEventType.eventType", current_status)] )) unless (accessions.blank? &&  current_status.blank?);
+                [q1.in(".accession", accessions), q1.in(".currentStatus.universalEventType.eventType", current_status)] 
+       ));
+     puts "both are not blank end"    
      
   end
 #q1.where (q1.and([q1.in(".accession", accessions), q1.in(".currentStatus.universalEventType.eventType", current_status)] ) unless (accessions.blank? &&  current_status.blank?);
