@@ -277,21 +277,13 @@ class Rad_Exam < ActiveRecord::Base
     arraystring.gsub!  "\"", "'";
     return arraystring;
   end 
-  
-  def self.testsdk
-  @mysdk = []
-   q = Java::HarbingerSdkData::RadExam.createQuery(@entity_manager)
-    @mysdk = q.list.to_a    
-   
-  end
+
   
   def self.testsdkJson(employeeid,accessions,current_status)
   @mysdk1 = " ";  
    q1 = Java::HarbingerSdkData::RadExam.createQuery(@entity_manager)   
     q1.where(q1.in(".accession", accessions)) unless accessions.blank?
     q1.where(q1.in(".currentStatus.universalEventType.eventType", current_status)) unless current_status.blank?
-    
-   # puts Java::HarbingerSdkData::DataUtils.getSql(@entity_manager,q1)
    @mysdk1=  q1.list.to_a 
   end
   
