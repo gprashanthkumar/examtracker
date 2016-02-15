@@ -294,7 +294,7 @@ class Rad_Exam < ActiveRecord::Base
      
  #q1.where (q1.and(q1.in(".accession", accessions), q1.equal("1","1")))unless (accessions.blank? &&  current_status.blank?)
  
-puts q1.toSQL.to_s
+puts q1.toSQL
   
      @mysdk1=  q1.list.to_a 
   end
