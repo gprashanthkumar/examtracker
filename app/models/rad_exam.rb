@@ -296,6 +296,8 @@ class Rad_Exam < ActiveRecord::Base
    elseif (!current_status.blank?)
       puts "<!-- inside current status filter-->"
        q1.where(q1.in(".currentStatus.universalEventType.eventType", current_status)) unless current_status.blank?
+   else
+     puts "someting is wrong!!!"
     
    end
   
