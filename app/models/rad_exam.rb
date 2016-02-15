@@ -282,7 +282,7 @@ class Rad_Exam < ActiveRecord::Base
   def self.testsdkJson(employeeid,accessions,current_status)
   @mysdk1 = " ";  
    q1 = Java::HarbingerSdkData::RadExam.createQuery(@entity_manager)  
-    puts "<----kumar --->" + (accessions.blank?).to_s
+    puts "<----kumar --->" + (!accessions.blank?).to_s
    if (!accessions.blank? &&   !current_status.blank?)
        puts "<!-- inside both filters -->"
        q1.where(q1.and(q1.in(".accession", accessions),
