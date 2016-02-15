@@ -291,8 +291,8 @@ class Rad_Exam < ActiveRecord::Base
       q1.where(q1.in(".currentStatus.universalEventType.eventType", current_status)) unless current_status.blank?     
      
  #q1.where (q1.and(q1.in(".accession", accessions), q1.equal("1","1")))unless (accessions.blank? &&  current_status.blank?)
-  q1.where(q1.or(q1.ilike(".code","MR%"),
-                     q1.regex(".code","^CT.+MOD1$")))
+  q1.where(q1.or(q1.ilike(".procedure.code","MR%"),
+                     q1.regex(".procedure.code","^CT.+MOD1$")))
 
    @mysdk1=  q1.list.to_a 
     
