@@ -290,7 +290,7 @@ class Rad_Exam < ActiveRecord::Base
   if ( (accessions.blank? == false) && (current_status.blank? == false) ) 
     puts "both are not blank start"  
         
-   q1.where (q1.and(
+   q1.where(q1.and(
           [
             q1.in(".accession", accessions), q1.in(".currentStatus.universalEventType.eventType", current_status),
             q1.or(
@@ -303,10 +303,28 @@ class Rad_Exam < ActiveRecord::Base
      puts "both are not blank end"    
   elseif  (accessions.blank? == false)
    puts "accessions not blank"  unless (accessions.blank?)
-    q1.where(q1.in(".accession", accessions)) unless accessions.blank?;
+     q1.where(q1.and(
+          [
+            q1.in(".accession", accessions),
+            q1.or(
+              [
+                q1.equal(".currentReport.rad1.id",employeeid),q1.equal(".currentReport.rad2.id",employeeid),q1.equal(".currentReport.rad3.id",employeeid),q1.equal(".currentReport.rad4.id",employeeid),q1.equal(".radExamPersonnel.performingId",employeeid)
+              ]
+            )         
+         ] 
+       ));
   elseif (current_status.blank? == false)
    puts "current_status not  blank"  unless (current_status.blank?)
-      q1.where(q1.in(".currentStatus.universalEventType.eventType", current_status)) unless current_status.blank?;   
+      q1.where(q1.and(
+                        [
+                          q1.in(".currentStatus.universalEventType.eventType", current_status),
+                          q1.or(
+                            [
+                              q1.equal(".currentReport.rad1.id",employeeid),q1.equal(".currentReport.rad2.id",employeeid),q1.equal(".currentReport.rad3.id",employeeid),q1.equal(".currentReport.rad4.id",employeeid),q1.equal(".radExamPersonnel.performingId",employeeid)
+                            ]
+                          )         
+                       ] 
+       ));
   else 
     #none
     puts "Both are BLANK  (default) !!!" + employeeid.to_s
