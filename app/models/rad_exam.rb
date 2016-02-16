@@ -294,16 +294,15 @@ class Rad_Exam < ActiveRecord::Base
   #q1.where(q1.or( [q1.ilike(".procedure.code","MR%"),q1.regex(".procedure.code","^CT.+MOD1$")]))
   if ( (accessions.blank? == false) && (current_status.blank? == false) ) 
     puts "both are not blank start"  
-    rad1 = q1.equal(".currentReport.rad1id",employeeid)
-    rad2 = q1.equal(".currentReport.rad2id",employeeid)
-    rad3 = q1.equal(".currentReport.rad3id",employeeid)
-    rad4 = q1.equal(".currentReport.rad4id",employeeid)
-    perfid = q1.equal(".radExamPersonnel.performingId",employeeid)
-    Orcondition = q1.or([rad1,rad2,rad3,rad4,perfid] )
+        
    q1.where (q1.and(
           [
             q1.in(".accession", accessions), q1.in(".currentStatus.universalEventType.eventType", current_status),
-            Orcondition
+            q1.or(
+              [
+                q1.equal(".currentReport.rad1id",employeeid),q1.equal(".currentReport.rad2id",employeeid),q1.equal(".currentReport.rad3id",employeeid),q1.equal(".currentReport.rad4id",employeeid),q1.equal(".radExamPersonnel.performingId",employeeid)
+              ]
+            )
          
          ] 
        ));
