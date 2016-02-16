@@ -282,6 +282,7 @@ class Rad_Exam < ActiveRecord::Base
   def self.testsdkJson(employeeid,accessions,current_status)
   @mysdk1 = " ";  
    q1 = Java::HarbingerSdkData::RadExam.createQuery(@entity_manager)  
+   q1.join(".currentReport")
     puts "<----kumar --->" + (accessions.blank?).to_s + " ---" + (current_status.blank?).to_s
         
     puts "accessions not blank"  unless (accessions.blank?)
