@@ -311,7 +311,7 @@ class Rad_Exam < ActiveRecord::Base
   elseif (current_status.blank? == false)
   else 
     #none
-    puts "Both are BLANK  (default) !!!"
+    puts "Both are BLANK  (default) !!!" + employeeid.to_s
    q1.where(q1.or(
               [
                 q1.equal(".currentReport.rad1id",employeeid),q1.equal(".currentReport.rad2id",employeeid),q1.equal(".currentReport.rad3id",employeeid),q1.equal(".currentReport.rad4id",employeeid),q1.equal(".radExamPersonnel.performingId",employeeid)
