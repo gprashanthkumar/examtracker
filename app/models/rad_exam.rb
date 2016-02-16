@@ -301,7 +301,7 @@ class Rad_Exam < ActiveRecord::Base
          ] 
        ));
      puts "both are not blank end"    
-  elseif  (accessions.blank? == false)
+  elseif (accessions.blank? == false)
    puts "accessions not blank"  unless (accessions.blank?)
      q1.where(q1.and(
           [
