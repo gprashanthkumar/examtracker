@@ -282,15 +282,9 @@ class Rad_Exam < ActiveRecord::Base
   def self.testsdkJson(employeeid,accessions,current_status)
   @mysdk1 = " ";  
    q1 = Java::HarbingerSdkData::RadExam.createQuery(@entity_manager)  
-   q1.join(".currentReport")
+   
     puts "<----kumar --->" + (accessions.blank?).to_s + " ---" + (current_status.blank?).to_s
-        
-    puts "accessions not blank"  unless (accessions.blank?)
-    q1.where(q1.in(".accession", accessions)) unless accessions.blank?;
-    
-    puts "current_status not  blank"  unless (current_status.blank?)
-      q1.where(q1.in(".currentStatus.universalEventType.eventType", current_status)) unless current_status.blank?;     
-     
+       
  #q1.where (q1.and(q1.in(".accession", accessions), q1.equal("1","1")))unless (accessions.blank? &&  current_status.blank?)
   #q1.where(q1.or( [q1.ilike(".procedure.code","MR%"),q1.regex(".procedure.code","^CT.+MOD1$")]))
   if ( (accessions.blank? == false) && (current_status.blank? == false) ) 
@@ -301,15 +295,18 @@ class Rad_Exam < ActiveRecord::Base
             q1.in(".accession", accessions), q1.in(".currentStatus.universalEventType.eventType", current_status),
             q1.or(
               [
-                q1.equal(".currentReport,rad1.id",employeeid),q1.equal(".currentReport.rad2.id",employeeid),q1.equal(".currentReport.rad3.id",employeeid),q1.equal(".currentReport.rad4.id",employeeid),q1.equal(".radExamPersonnel.performingId",employeeid)
+                q1.equal(".currentReport.rad1.id",employeeid),q1.equal(".currentReport.rad2.id",employeeid),q1.equal(".currentReport.rad3.id",employeeid),q1.equal(".currentReport.rad4.id",employeeid),q1.equal(".radExamPersonnel.performingId",employeeid)
               ]
-            )
-         
+            )         
          ] 
        ));
      puts "both are not blank end"    
   elseif  (accessions.blank? == false)
+   puts "accessions not blank"  unless (accessions.blank?)
+    q1.where(q1.in(".accession", accessions)) unless accessions.blank?;
   elseif (current_status.blank? == false)
+   puts "current_status not  blank"  unless (current_status.blank?)
+      q1.where(q1.in(".currentStatus.universalEventType.eventType", current_status)) unless current_status.blank?;   
   else 
     #none
     puts "Both are BLANK  (default) !!!" + employeeid.to_s
