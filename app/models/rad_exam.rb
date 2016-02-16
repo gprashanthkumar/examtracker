@@ -312,7 +312,8 @@ class Rad_Exam < ActiveRecord::Base
   else 
     #none
     puts "Both are BLANK  (default) !!!" + employeeid.to_s
-   q1.where(q1.equal(".radExamPersonnel.performingId",employeeid) )
+   #q1.where(q1.equal(".radExamPersonnel.performingId",employeeid) )
+   q1.where(q1.equal(".currentReport.rad1id",employeeid) )
   end
 #q1.where (q1.and([q1.in(".accession", accessions), q1.in(".currentStatus.universalEventType.eventType", current_status)] ) unless (accessions.blank? &&  current_status.blank?);
 
