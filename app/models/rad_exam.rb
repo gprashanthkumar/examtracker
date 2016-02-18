@@ -279,7 +279,7 @@ class Rad_Exam < ActiveRecord::Base
   end 
 
   
-  def self.testsdkJson(employeeid,accessions,current_status)
+  def self.radRoleData(employeeid,accessions,current_status)
   @mysdk1 = " ";  
    q1 = Java::HarbingerSdkData::RadExam.createQuery(@entity_manager)  
    
@@ -288,7 +288,7 @@ class Rad_Exam < ActiveRecord::Base
  #q1.where (q1.and(q1.in(".accession", accessions), q1.equal("1","1")))unless (accessions.blank? &&  current_status.blank?)
   #q1.where(q1.or( [q1.ilike(".procedure.code","MR%"),q1.regex(".procedure.code","^CT.+MOD1$")]))
   if ( (accessions.blank? == false) && (current_status.blank? == false) ) 
-    puts "both are not blank start"  
+   
         
    q1.where(q1.and(
           [
@@ -300,9 +300,9 @@ class Rad_Exam < ActiveRecord::Base
             )         
          ] 
        ));
-     puts "both are not blank end"    
+   
   elsif (accessions.blank? == false)
-   puts "accessions not blank"  unless (accessions.blank?)
+   
      q1.where(q1.and(
           [
             q1.in(".accession", accessions),
@@ -314,7 +314,7 @@ class Rad_Exam < ActiveRecord::Base
          ] 
        ));
   elsif (current_status.blank? == false)
-   puts "current_status not  blank"  unless (current_status.blank?)
+   
       q1.where(q1.and(
                         [
                           q1.in(".currentStatus.universalEventType.eventType", current_status),
@@ -339,4 +339,243 @@ class Rad_Exam < ActiveRecord::Base
     
   end
   
+   def self.techRoleData(employeeid,accessions,current_status)
+  @mysdk1 = " ";  
+   q1 = Java::HarbingerSdkData::RadExam.createQuery(@entity_manager)  
+   
+    puts "<----kumar --->" + (accessions.blank?).to_s + " ---" + (current_status.blank?).to_s
+       
+ #q1.where (q1.and(q1.in(".accession", accessions), q1.equal("1","1")))unless (accessions.blank? &&  current_status.blank?)
+  #q1.where(q1.or( [q1.ilike(".procedure.code","MR%"),q1.regex(".procedure.code","^CT.+MOD1$")]))
+  if ( (accessions.blank? == false) && (current_status.blank? == false) ) 
+   
+        
+   q1.where(q1.and(
+          [
+            q1.in(".accession", accessions), q1.in(".currentStatus.universalEventType.eventType", current_status),
+            q1.or(
+              [
+                q1.equal(".currentReport.rad1.id",employeeid),q1.equal(".currentReport.rad2.id",employeeid),q1.equal(".currentReport.rad3.id",employeeid),q1.equal(".currentReport.rad4.id",employeeid),q1.equal(".radExamPersonnel.performingId",employeeid)
+              ]
+            )         
+         ] 
+       ));
+   
+  elsif (accessions.blank? == false)
+   
+     q1.where(q1.and(
+          [
+            q1.in(".accession", accessions),
+            q1.or(
+              [
+                q1.equal(".currentReport.rad1.id",employeeid),q1.equal(".currentReport.rad2.id",employeeid),q1.equal(".currentReport.rad3.id",employeeid),q1.equal(".currentReport.rad4.id",employeeid),q1.equal(".radExamPersonnel.performingId",employeeid)
+              ]
+            )         
+         ] 
+       ));
+  elsif (current_status.blank? == false)
+   
+      q1.where(q1.and(
+                        [
+                          q1.in(".currentStatus.universalEventType.eventType", current_status),
+                          q1.or(
+                            [
+                              q1.equal(".currentReport.rad1.id",employeeid),q1.equal(".currentReport.rad2.id",employeeid),q1.equal(".currentReport.rad3.id",employeeid),q1.equal(".currentReport.rad4.id",employeeid),q1.equal(".radExamPersonnel.performingId",employeeid)
+                            ]
+                          )         
+                       ] 
+       ));
+  else 
+    #none
+    puts "Both are BLANK  (default) !!!" + employeeid.to_s
+   #q1.where(q1.equal(".radExamPersonnel.performingId",employeeid) )
+   q1.where(q1.or ( [
+         q1.equal(".currentReport.rad1.id",employeeid),q1.equal(".currentReport.rad2.id",employeeid),q1.equal(".currentReport.rad3.id",employeeid),q1.equal(".currentReport.rad4.id",employeeid)]  )
+     )
+  end
+#q1.where (q1.and([q1.in(".accession", accessions), q1.in(".currentStatus.universalEventType.eventType", current_status)] ) unless (accessions.blank? &&  current_status.blank?);
+
+   @mysdk1=  q1.list.to_a 
+    
+  end
+  
+   def self.schedRegRoleData(employeeid,accessions,current_status)
+  @mysdk1 = " ";  
+   q1 = Java::HarbingerSdkData::RadExam.createQuery(@entity_manager)  
+   
+    puts "<----kumar --->" + (accessions.blank?).to_s + " ---" + (current_status.blank?).to_s
+       
+ #q1.where (q1.and(q1.in(".accession", accessions), q1.equal("1","1")))unless (accessions.blank? &&  current_status.blank?)
+  #q1.where(q1.or( [q1.ilike(".procedure.code","MR%"),q1.regex(".procedure.code","^CT.+MOD1$")]))
+  if ( (accessions.blank? == false) && (current_status.blank? == false) ) 
+   
+        
+   q1.where(q1.and(
+          [
+            q1.in(".accession", accessions), q1.in(".currentStatus.universalEventType.eventType", current_status),
+            q1.or(
+              [
+                q1.equal(".currentReport.rad1.id",employeeid),q1.equal(".currentReport.rad2.id",employeeid),q1.equal(".currentReport.rad3.id",employeeid),q1.equal(".currentReport.rad4.id",employeeid),q1.equal(".radExamPersonnel.performingId",employeeid)
+              ]
+            )         
+         ] 
+       ));
+   
+  elsif (accessions.blank? == false)
+   
+     q1.where(q1.and(
+          [
+            q1.in(".accession", accessions),
+            q1.or(
+              [
+                q1.equal(".currentReport.rad1.id",employeeid),q1.equal(".currentReport.rad2.id",employeeid),q1.equal(".currentReport.rad3.id",employeeid),q1.equal(".currentReport.rad4.id",employeeid),q1.equal(".radExamPersonnel.performingId",employeeid)
+              ]
+            )         
+         ] 
+       ));
+  elsif (current_status.blank? == false)
+   
+      q1.where(q1.and(
+                        [
+                          q1.in(".currentStatus.universalEventType.eventType", current_status),
+                          q1.or(
+                            [
+                              q1.equal(".currentReport.rad1.id",employeeid),q1.equal(".currentReport.rad2.id",employeeid),q1.equal(".currentReport.rad3.id",employeeid),q1.equal(".currentReport.rad4.id",employeeid),q1.equal(".radExamPersonnel.performingId",employeeid)
+                            ]
+                          )         
+                       ] 
+       ));
+  else 
+    #none
+    puts "Both are BLANK  (default) !!!" + employeeid.to_s
+   #q1.where(q1.equal(".radExamPersonnel.performingId",employeeid) )
+   q1.where(q1.or ( [
+         q1.equal(".currentReport.rad1.id",employeeid),q1.equal(".currentReport.rad2.id",employeeid),q1.equal(".currentReport.rad3.id",employeeid),q1.equal(".currentReport.rad4.id",employeeid)]  )
+     )
+  end
+#q1.where (q1.and([q1.in(".accession", accessions), q1.in(".currentStatus.universalEventType.eventType", current_status)] ) unless (accessions.blank? &&  current_status.blank?);
+
+   @mysdk1=  q1.list.to_a 
+    
+  end
+  
+  def self.transRoleData(employeeid,accessions,current_status)
+  @mysdk1 = " ";  
+   q1 = Java::HarbingerSdkData::RadExam.createQuery(@entity_manager)  
+   
+    puts "<----kumar --->" + (accessions.blank?).to_s + " ---" + (current_status.blank?).to_s
+       
+ #q1.where (q1.and(q1.in(".accession", accessions), q1.equal("1","1")))unless (accessions.blank? &&  current_status.blank?)
+  #q1.where(q1.or( [q1.ilike(".procedure.code","MR%"),q1.regex(".procedure.code","^CT.+MOD1$")]))
+  if ( (accessions.blank? == false) && (current_status.blank? == false) ) 
+   
+        
+   q1.where(q1.and(
+          [
+            q1.in(".accession", accessions), q1.in(".currentStatus.universalEventType.eventType", current_status),
+            q1.or(
+              [
+                q1.equal(".currentReport.rad1.id",employeeid),q1.equal(".currentReport.rad2.id",employeeid),q1.equal(".currentReport.rad3.id",employeeid),q1.equal(".currentReport.rad4.id",employeeid),q1.equal(".radExamPersonnel.performingId",employeeid)
+              ]
+            )         
+         ] 
+       ));
+   
+  elsif (accessions.blank? == false)
+   
+     q1.where(q1.and(
+          [
+            q1.in(".accession", accessions),
+            q1.or(
+              [
+                q1.equal(".currentReport.rad1.id",employeeid),q1.equal(".currentReport.rad2.id",employeeid),q1.equal(".currentReport.rad3.id",employeeid),q1.equal(".currentReport.rad4.id",employeeid),q1.equal(".radExamPersonnel.performingId",employeeid)
+              ]
+            )         
+         ] 
+       ));
+  elsif (current_status.blank? == false)
+   
+      q1.where(q1.and(
+                        [
+                          q1.in(".currentStatus.universalEventType.eventType", current_status),
+                          q1.or(
+                            [
+                              q1.equal(".currentReport.rad1.id",employeeid),q1.equal(".currentReport.rad2.id",employeeid),q1.equal(".currentReport.rad3.id",employeeid),q1.equal(".currentReport.rad4.id",employeeid),q1.equal(".radExamPersonnel.performingId",employeeid)
+                            ]
+                          )         
+                       ] 
+       ));
+  else 
+    #none
+    puts "Both are BLANK  (default) !!!" + employeeid.to_s
+   #q1.where(q1.equal(".radExamPersonnel.performingId",employeeid) )
+   q1.where(q1.or ( [
+         q1.equal(".currentReport.rad1.id",employeeid),q1.equal(".currentReport.rad2.id",employeeid),q1.equal(".currentReport.rad3.id",employeeid),q1.equal(".currentReport.rad4.id",employeeid)]  )
+     )
+  end
+#q1.where (q1.and([q1.in(".accession", accessions), q1.in(".currentStatus.universalEventType.eventType", current_status)] ) unless (accessions.blank? &&  current_status.blank?);
+
+   @mysdk1=  q1.list.to_a 
+    
+  end
+  
+  def self.othersRoleData(employeeid,accessions,current_status)
+  @mysdk1 = " ";  
+   q1 = Java::HarbingerSdkData::RadExam.createQuery(@entity_manager)  
+   
+    puts "<----kumar --->" + (accessions.blank?).to_s + " ---" + (current_status.blank?).to_s
+       
+ #q1.where (q1.and(q1.in(".accession", accessions), q1.equal("1","1")))unless (accessions.blank? &&  current_status.blank?)
+  #q1.where(q1.or( [q1.ilike(".procedure.code","MR%"),q1.regex(".procedure.code","^CT.+MOD1$")]))
+  if ( (accessions.blank? == false) && (current_status.blank? == false) ) 
+   
+        
+   q1.where(q1.and(
+          [
+            q1.in(".accession", accessions), q1.in(".currentStatus.universalEventType.eventType", current_status),
+            q1.or(
+              [
+                q1.equal(".currentReport.rad1.id",employeeid),q1.equal(".currentReport.rad2.id",employeeid),q1.equal(".currentReport.rad3.id",employeeid),q1.equal(".currentReport.rad4.id",employeeid),q1.equal(".radExamPersonnel.performingId",employeeid)
+              ]
+            )         
+         ] 
+       ));
+   
+  elsif (accessions.blank? == false)
+   
+     q1.where(q1.and(
+          [
+            q1.in(".accession", accessions),
+            q1.or(
+              [
+                q1.equal(".currentReport.rad1.id",employeeid),q1.equal(".currentReport.rad2.id",employeeid),q1.equal(".currentReport.rad3.id",employeeid),q1.equal(".currentReport.rad4.id",employeeid),q1.equal(".radExamPersonnel.performingId",employeeid)
+              ]
+            )         
+         ] 
+       ));
+  elsif (current_status.blank? == false)
+   
+      q1.where(q1.and(
+                        [
+                          q1.in(".currentStatus.universalEventType.eventType", current_status),
+                          q1.or(
+                            [
+                              q1.equal(".currentReport.rad1.id",employeeid),q1.equal(".currentReport.rad2.id",employeeid),q1.equal(".currentReport.rad3.id",employeeid),q1.equal(".currentReport.rad4.id",employeeid),q1.equal(".radExamPersonnel.performingId",employeeid)
+                            ]
+                          )         
+                       ] 
+       ));
+  else 
+    #none
+    puts "Both are BLANK  (default) !!!" + employeeid.to_s
+   #q1.where(q1.equal(".radExamPersonnel.performingId",employeeid) )
+   q1.where(q1.or ( [
+         q1.equal(".currentReport.rad1.id",employeeid),q1.equal(".currentReport.rad2.id",employeeid),q1.equal(".currentReport.rad3.id",employeeid),q1.equal(".currentReport.rad4.id",employeeid)]  )
+     )
+  end
+#q1.where (q1.and([q1.in(".accession", accessions), q1.in(".currentStatus.universalEventType.eventType", current_status)] ) unless (accessions.blank? &&  current_status.blank?);
+
+   @mysdk1=  q1.list.to_a 
+    
+  end
 end

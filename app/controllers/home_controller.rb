@@ -41,12 +41,12 @@ class HomeController < ApplicationController
     @roleType = roletype
     case roletype
     when "rad"
-      @mysdk1 = Rad_Exam.testsdkJson(@employee.id,accession,currentstatus)        
+      @mysdk1 = Rad_Exam.radRoleData(@employee.id,accession,currentstatus)        
       puts @exams.to_json;
     when "tech"
-      @mysdk1 = Rad_Exam.testsdkJson(@employee.id,accession,currentstatus)  
+      @mysdk1 = Rad_Exam.techRoleData(@employee.id,accession,currentstatus)  
     when "schedreg"
-      @mysdk1 = Rad_Exam.testsdkJson(@employee.id,accession,currentstatus)  
+      @mysdk1 = Rad_Exam.schedRegRoleData(@employee.id,accession,currentstatus)  
     when "trans"
       @mysdk1 = Rad_Exam.testsdkJson(@employee.id,accession,currentstatus)  
     when "others"
