@@ -301,7 +301,7 @@ class Rad_Exam < ActiveRecord::Base
          ] 
        ));
      puts "both are not blank end"    
-  elseif (accessions.blank? == false)
+  elsif (accessions.blank? == false)
    puts "accessions not blank"  unless (accessions.blank?)
      q1.where(q1.and(
           [
@@ -313,7 +313,7 @@ class Rad_Exam < ActiveRecord::Base
             )         
          ] 
        ));
-  elseif (current_status.blank? == false)
+  elsif (current_status.blank? == false)
    puts "current_status not  blank"  unless (current_status.blank?)
       q1.where(q1.and(
                         [
