@@ -518,7 +518,7 @@ class Rad_Exam < ActiveRecord::Base
     puts "<----kumar --->" + (accessions.blank?).to_s + " ---" + (current_status.blank?).to_s
        
  #q1.where (q1.and(q1.in(".accession", accessions), q1.equal("1","1")))unless (accessions.blank? &&  current_status.blank?)
-  #q1.where(q1.or( [q1.ilike(".procedure.code","MR%"),q1.regex(".procedure.code","^CT.+MOD1$")]))
+  #q1.where(q1.or([q1.ilike(".procedure.code","MR%"),q1.regex(".procedure.code","^CT.+MOD1$")]))
   if ( (accessions.blank? == false) && (current_status.blank? == false) ) 
    
         

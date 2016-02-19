@@ -197,7 +197,7 @@ class HomeController < ApplicationController
   end
   
   def get_jqgridSearch_exam_data 
-    #search can be performed by 2 methods union or intersection
+    #search can be performed by 2 methods union or intersection.
     #if  @Search_buckets_individually value is true then its union else default intersection.
     @Search_buckets_individually = false;
     @employee = Employee.get_employee(session[:username])  
