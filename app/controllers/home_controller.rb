@@ -310,49 +310,7 @@ class HomeController < ApplicationController
     
   end
   
-  def get_jqgrid_common(roletype,accession,currentstatus)
-    #currently this is used to get data for jqgrid_page.
-    @employee = Employee.get_employee(session[:username])
-    @roleType = roletype
-    case roletype
-    when "rad"
-      @exams = Rad_Exam.get_rad_exams(@employee.id,accession,currentstatus)     
-    when "tech"
-      @exams = Rad_Exam.get_tech_exams(@employee.id,accession,currentstatus)
-    when "schedreg"
-      @exams = Rad_Exam.get_sched_exams(@employee.id,accession,currentstatus)
-    when "trans"
-      @exams = Rad_Exam.get_trans_exams(@employee.id,accession,currentstatus)
-    when "others"
-      @exams = Rad_Exam.get_ordering_exams(@employee.id,accession,currentstatus)
-    end
-	
-    @exams.each do |exam| 
-     
-      #remove this line after testing
-      #<start>
-     exam = manipulate_status(exam);
-      #<end>
-      exam = get_graph_status(exam);    
-    
-    end  #end each
-    
-    #log output data
-    log_hipaa_view(@exams);
-     
-    json_data = {
-      :page=>"1",
-      :total=>"3",
-      :records=>"6", 
-      :rows=> JSON.parse(@exams.to_json(:only => [ :accession,:mrn,:current_status,:code,:description,:modality,:resource_name,:graph_status,:current_status,:updated_at,:patient_name,:birthdate,:site_name,:patient_class,:patient_type,:patient_location_at_exam,:radiology_department,:ordering_provider,:scheduler,:technologist,:pacs_image_count,:appt_time,:sign_in,:check_in,:begin_exam,:end_exam]))    
-    
-    }
-    
-    respond_to do |format|
-      format.json { render :json => json_data }
-    end
-  end  
-  
+ 
   def get_accession
     @accession_id = params[:accession_id];
     authenticity_token = params[:authenticity_token];      
@@ -378,59 +336,7 @@ class HomeController < ApplicationController
       format.json { render :json => @exams.to_json(:only => [ :accession,:mrn,:current_status,:code,:description,:modality,:resource_name,:graph_status,:current_status,:updated_at,:patient_name,:birthdate,:site_name,:patient_class,:trauma,:patient_type,:patient_location_at_exam,:radiology_department,:ordering_provider,:scheduler,:technologist,:pacs_image_count,:appt_time,:sign_in,:check_in,:begin_exam,:end_exam,:first_final,:last_final,:order_arrival,:rad1_name,:rad2_name]) }
     end    
   end
-  
-  def get_graph_status(exam)
-    gstatus = ""
-    gstatus = exam.graph_status;
-    exam.graph_status="";
-    if not( (exam.order_arrival.nil?) || (exam.order_arrival.blank?))         
-      exam.graph_status += "order_time->" + exam.order_arrival.to_s + "," 
-    else
-      exam.graph_status  += "order_time->"  + ","  
-    end
-      
-    if not( (exam.sched_time.nil?) || (exam.sched_time.blank?))         
-      exam.graph_status += "sched_time->" + exam.sched_time.to_s + "," 
-    else
-      exam.graph_status  += "sched_time->"  + ","  
-    end
-      
-    if not( (exam.appt_time.nil?) || (exam.appt_time.blank?))
-      exam.graph_status += "appt_time->" + exam.appt_time.to_s + "," 
-    else
-      exam.graph_status += "appt_time->" +  "," 
-    end
-    if not( (exam.sign_in.nil?) || (exam.sign_in.blank?))
-      exam.graph_status += "sign_in->" + exam.sign_in.to_s + ","
-    else
-      exam.graph_status += "sign_in->" +  ","
-    end  
-    if not( (exam.check_in.nil?) || (exam.check_in.blank?))
-      exam.graph_status += "check_in->" + exam.check_in.to_s + ","
-    else
-      exam.graph_status += "check_in->"  + ","
-    end  
-    if not( (exam.begin_exam.nil?) || (exam.begin_exam.blank?))
-      exam.graph_status += "begin_exam->" + exam.begin_exam.to_s + ","
-    else
-      exam.graph_status += "begin_exam->" + ","
-    end  
-    if not( (exam.end_exam.nil?) || (exam.end_exam.blank?))
-      exam.graph_status += "end_exam->" + exam.end_exam.to_s + ","
-    else
-      exam.graph_status += "end_exam->" +  ","
-    end 
-    if not( (exam.report_time.nil?) || (exam.report_time.blank?))
-      exam.graph_status += "final_time->" + exam.report_time.to_s + ","
-    else
-      exam.graph_status += "final_time->" +  ","
-    end      
-    exam.graph_status += gstatus;
-      
-    return exam;
-  end
-  
-  
+   
   def get_graph_status_hash(exam={} )
     gstatus = ""
     gstatus = exam["graph_status"];
