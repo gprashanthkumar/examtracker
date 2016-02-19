@@ -249,7 +249,7 @@ class HomeController < ApplicationController
   
     
     #log output data
-    log_hipaa_view(@exams);
+    
     
     json_data = {
       :page=>"1",
