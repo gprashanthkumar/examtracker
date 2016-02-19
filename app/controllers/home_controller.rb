@@ -250,12 +250,12 @@ class HomeController < ApplicationController
     
     #log output data
     
-    
+    @exams = {"hello" => "world"};
     json_data = {
       :page=>"1",
       :total=>"3",
       :records=>"6", 
-      :rows=> JSON.parse(idList)    
+      :rows=> JSON.parse(@exams)    
     
     }
     
