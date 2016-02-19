@@ -527,7 +527,7 @@ class Rad_Exam < ActiveRecord::Base
             q1.in(".accession", accessions), q1.in(".currentStatus.universalEventType.eventType", current_status),
             q1.or(
               [
-                q1.equal(".currentReport.ordering.id",employeeid),q1.equal(".currentReport.attending.id",employeeid),q1.equal(".currentReport.authorizing.id",employeeid)
+                q1.equal(".radExamPersonnel.ordering.id",employeeid),q1.equal(".radExamPersonnel.attending.id",employeeid),q1.equal(".radExamPersonnel.authorizing.id",employeeid)
               ]
             )         
          ] 
@@ -540,7 +540,7 @@ class Rad_Exam < ActiveRecord::Base
             q1.in(".accession", accessions),
             q1.or(
               [
-                q1.equal(".currentReport.ordering.id",employeeid),q1.equal(".currentReport.attending.id",employeeid),q1.equal(".currentReport.authorizing.id",employeeid)
+                q1.equal(".radExamPersonnel.ordering.id",employeeid),q1.equal(".radExamPersonnel.attending.id",employeeid),q1.equal(".radExamPersonnel.authorizing.id",employeeid)
               ]
             )         
          ] 
@@ -552,7 +552,7 @@ class Rad_Exam < ActiveRecord::Base
                           q1.in(".currentStatus.universalEventType.eventType", current_status),
                           q1.or(
                             [
-                             q1.equal(".currentReport.ordering.id",employeeid),q1.equal(".currentReport.attending.id",employeeid),q1.equal(".currentReport.authorizing.id",employeeid)
+                             q1.equal(".radExamPersonnel.ordering.id",employeeid),q1.equal(".radExamPersonnel.attending.id",employeeid),q1.equal(".radExamPersonnel.authorizing.id",employeeid)
                             ]
                           )         
                        ] 
@@ -563,7 +563,7 @@ class Rad_Exam < ActiveRecord::Base
    #q1.where(q1.equal(".radExamPersonnel.performingId",employeeid) )
    q1.where(q1.or( 
        [
-          q1.equal(".currentReport.ordering.id",employeeid),q1.equal(".currentReport.attending.id",employeeid),q1.equal(".currentReport.authorizing.id",employeeid)
+          q1.equal(".radExamPersonnel.ordering.id",employeeid),q1.equal(".radExamPersonnel.attending.id",employeeid),q1.equal(".radExamPersonnel.authorizing.id",employeeid)
        ]  
      )
      )
