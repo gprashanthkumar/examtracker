@@ -12,7 +12,7 @@ VanillaApplication::Application.routes.draw do
   get 'technologist', to: 'home#technologist'
   get 'scheregistrar', to: 'home#scheregistrar'
   get 'transcript', to: 'home#transcript'
-  get 'others', to: 'home#others'
+  get 'orders', to: 'home#orders'
   get 'search', to: 'home#search'
   get 'sdk', to: 'home#sdk'
   match ':controller(/:action(/:id(.:format)))', via: [:get, :post]

@@ -27,7 +27,7 @@ class HomeController < ApplicationController
     @employee = Employee.get_employee(session[:username])
   end
   
-  def others
+  def orders
     @employee = Employee.get_employee(session[:username])
   end
   
