@@ -224,13 +224,14 @@ class HomeController < ApplicationController
 
         if (@myvalues[:my_reports] == "on")
 
-          @exams1 = Rad_Exam.get_exams_search(@employee.id,@myvalues,true,false,false).pluck(:id) ;        
+          #@exams1 = Rad_Exam.get_exams_search(@employee.id,@myvalues,true,false,false).pluck(:id) ;        
+          @exams1 = Rad_Exam.get_exams_search_sdk(@employee.id,@myvalues,true,false,false)
           if @exams1.length > 0
             #@exams2 = Rad_Exam.get_exams_search(@employee.id,@myvalues,true,false,false).pluck(:id) ; 
 
             @exams1.each_with_index do |exam, i|                    
-              if !(idList.include? exam.to_i)   #exam[:id].to_i                    
-                idList << exam.to_i #exam[:id].to_i                
+              if !(idList.include? exam.id.to_i)   #exam[:id].to_i                    
+                idList << exam.id.to_i #exam[:id].to_i                
               end     
             end             
           end 
