@@ -368,7 +368,7 @@ class Rad_Exam < ActiveRecord::Base
             q1.in(".accession", accessions),
             q1.or(
               [
-                q1.equal(".currentReport.rad1.id",employeeid),q1.equal(".currentReport.rad2.id",employeeid),q1.equal(".currentReport.rad3.id",employeeid),q1.equal(".currentReport.rad4.id",employeeid),q1.equal(".radExamPersonnel.performingId",employeeid)
+                q1.equal(".radExamPersonnel.assistingTech1.id",employeeid),q1.equal(".radExamPersonnel.assistingTech2.id",employeeid),q1.equal(".radExamPersonnel.assistingTech3.id",employeeid),q1.equal(".radExamPersonnel.technologist.id",employeeid)
               ]
             )         
          ] 
@@ -380,7 +380,7 @@ class Rad_Exam < ActiveRecord::Base
                           q1.in(".currentStatus.universalEventType.eventType", current_status),
                           q1.or(
                             [
-                              q1.equal(".currentReport.rad1.id",employeeid),q1.equal(".currentReport.rad2.id",employeeid),q1.equal(".currentReport.rad3.id",employeeid),q1.equal(".currentReport.rad4.id",employeeid),q1.equal(".radExamPersonnel.performingId",employeeid)
+                               q1.equal(".radExamPersonnel.assistingTech1.id",employeeid),q1.equal(".radExamPersonnel.assistingTech2.id",employeeid),q1.equal(".radExamPersonnel.assistingTech3.id",employeeid),q1.equal(".radExamPersonnel.technologist.id",employeeid)
                             ]
                           )         
                        ] 
@@ -389,9 +389,12 @@ class Rad_Exam < ActiveRecord::Base
     #none
     puts "Both are BLANK  (default) !!!" + employeeid.to_s
    #q1.where(q1.equal(".radExamPersonnel.performingId",employeeid) )
-   q1.where(q1.or ( [
-         q1.equal(".currentReport.rad1.id",employeeid),q1.equal(".currentReport.rad2.id",employeeid),q1.equal(".currentReport.rad3.id",employeeid),q1.equal(".currentReport.rad4.id",employeeid)]  )
-     )
+   q1.where(q1.or(
+              [
+                   q1.equal(".radExamPersonnel.assistingTech1.id",employeeid),q1.equal(".radExamPersonnel.assistingTech2.id",employeeid),q1.equal(".radExamPersonnel.assistingTech3.id",employeeid),q1.equal(".radExamPersonnel.technologist.id",employeeid)            
+              ] 
+           )
+          )
   end
 #q1.where (q1.and([q1.in(".accession", accessions), q1.in(".currentStatus.universalEventType.eventType", current_status)] ) unless (accessions.blank? &&  current_status.blank?);
 
