@@ -237,8 +237,19 @@ class HomeController < ApplicationController
           end 
           @exams1 = nil;     
         end   
+          
+        puts idList.to_s + "kumar hello world"
+       
 
-      puts "kumar hello " + idList.to_s
+
+       
+
+      end   
+    
+    
+    else #its  intersection  join NOT UNION Join
+      #@exams = Rad_Exam.get_exams_search(@employee.id,@myvalues,(@myvalues[:my_orders] == "on"),(@myvalues[:my_exams] == "on"),(@myvalues[:my_reports] == "on"))  ;    
+    end
     
     @exams.each do |exam| 
 
