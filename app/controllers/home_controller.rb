@@ -51,7 +51,7 @@ class HomeController < ApplicationController
     when "schedreg"
       @mysdk1 = Rad_Exam.schedRegRoleData(@employee.id,accession,currentstatus)  
     when "trans"
-      @mysdk1 = Rad_Exam.testsdkJson(@employee.id,accession,currentstatus)  
+      @mysdk1 = Rad_Exam.transRoleData(@employee.id,accession,currentstatus)  
     when "order"
       @mysdk1 = Rad_Exam.orderingRoleData(@employee.id,accession,currentstatus)  
     end
@@ -183,13 +183,15 @@ class HomeController < ApplicationController
   def get_jqgridScheReg
     accession_ids = params[:accession]
     exam_status = params[:status]
-    get_jqgrid_common("schedreg",accession_ids,exam_status);    
+    #get_jqgrid_common("schedreg",accession_ids,exam_status);    
+    sdk("schedreg",accession_ids,exam_status);
   end
   
   def get_jqgridTranscript
     accession_ids = params[:accession]
     exam_status = params[:status]
-    get_jqgrid_common("trans",accession_ids,exam_status);    
+    #get_jqgrid_common("trans",accession_ids,exam_status); 
+    sdk("trans",accession_ids,exam_status);
   end
     
   def get_jqgridOthers
