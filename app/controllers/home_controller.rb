@@ -173,7 +173,8 @@ class HomeController < ApplicationController
   def get_jqgridTech
     accession_ids = params[:accession]
     exam_status = params[:status]
-    get_jqgrid_common("tech",accession_ids,exam_status);    
+    #get_jqgrid_common("tech",accession_ids,exam_status);    
+       sdk("tech",accession_ids,exam_status);
   end
   
   def get_jqgridScheReg
