@@ -169,35 +169,35 @@ class HomeController < ApplicationController
     accession_ids = params[:accession]
     exam_status = params[:status]
 	
-    #get_jqgrid_common("rad",accession_ids,exam_status);  
+    
     sdk("rad",accession_ids,exam_status);
   end
   
   def get_jqgridTech
     accession_ids = params[:accession]
     exam_status = params[:status]
-    #get_jqgrid_common("tech",accession_ids,exam_status);    
+    
        sdk("tech",accession_ids,exam_status);
   end
   
   def get_jqgridScheReg
     accession_ids = params[:accession]
     exam_status = params[:status]
-    #get_jqgrid_common("schedreg",accession_ids,exam_status);    
+    
     sdk("schedreg",accession_ids,exam_status);
   end
   
   def get_jqgridTranscript
     accession_ids = params[:accession]
     exam_status = params[:status]
-    #get_jqgrid_common("trans",accession_ids,exam_status); 
+    
     sdk("trans",accession_ids,exam_status);
   end
     
   def get_jqgridOthers
     accession_ids = params[:accession]
     exam_status = params[:status]
-    #get_jqgrid_common("others",accession_ids,exam_status);        
+    
     sdk("order",accession_ids,exam_status);
   end
   
@@ -422,30 +422,6 @@ class HomeController < ApplicationController
     reset_session
     @employee = nil   
     redirect_to Java::HarbingerSdk::SSO.logoutUrl()   
-  end
-  
-  def manipulate_status(exam)
-    
-    if ['1037','1027'].include? exam.accession
-      exam.graph_status = "cancelled"
-      exam.current_status = "cancelled"       
-    end
-    if '1027' == exam.accession
-      exam.graph_status = "cancelled"
-      exam.current_status = "cancelled"    
-      exam.report_time = "";
-    end
-        
-    if '1017' == exam.accession
-      exam.graph_status = "order"
-      exam.current_status = "order"    
-    end
-    if '1015' == exam.accession
-      exam.graph_status = "arrived"
-      exam.current_status = "arrived"    
-    end
-    
-    return exam;
   end
   
   def manipulate_status_hash(exam)
