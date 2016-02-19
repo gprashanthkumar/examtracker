@@ -238,50 +238,7 @@ class HomeController < ApplicationController
           @exams1 = nil;     
         end   
 
-        if (@myvalues[:my_exams] == "on")
-
-          @exams2 = Rad_Exam.get_exams_search(@employee.id,@myvalues,false,true,false).pluck(:id) ; 
-          if @exams2.length > 0
-            #@exams2 = Rad_Exam.get_exams_search(@employee.id,@myvalues,false,true,false).pluck(:id) ; 
-
-            @exams2.each_with_index do |exam, i|                    
-              if !(idList.include? exam.to_i)   #exam[:id].to_i                    
-                idList << exam.to_i #exam[:id].to_i                
-              end     
-            end             
-          end 
-          @exams2 = nil;        
-
-        end  #myexams 
-
-
-        if (@myvalues[:my_orders] == "on")
-
-          @exams3 = Rad_Exam.get_exams_search(@employee.id,@myvalues,false,false,true).pluck(:id) ;    
-          if @exams3.length > 0
-            #@exams3 = Rad_Exam.get_exams_search(@employee.id,@myvalues,false,false,true).pluck(:id) ; 
-
-            @exams3.each_with_index do |exam, i|                    
-              if !(idList.include? exam.to_i)   #exam[:id].to_i                    
-                idList << exam.to_i #exam[:id].to_i                
-              end     
-            end             
-          end 
-          @exams3 = nil;
-        end   
-
-      end   
-    
-      if( 
-          (idList.length > 0) ||  (@myvalues[:my_orders] == "on") || (@myvalues[:my_exams] == "on") || (@myvalues[:my_reports] == "on")
-        )        
-        @exams = Rad_Exam.get_exams_search_by_id_array(idList);  
-      else 
-        @exams = Rad_Exam.get_exams_search(@employee.id,@myvalues)  ;    
-      end
-    else #its  intersection  join NOT UNION Join
-      @exams = Rad_Exam.get_exams_search(@employee.id,@myvalues,(@myvalues[:my_orders] == "on"),(@myvalues[:my_exams] == "on"),(@myvalues[:my_reports] == "on"))  ;    
-    end
+      puts "kumar hello " + idList.to_s
     
     @exams.each do |exam| 
 
