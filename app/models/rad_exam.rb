@@ -148,7 +148,8 @@ class Rad_Exam < ActiveRecord::Base
   
    def self.get_exams_search_sdk(employeeid,params,myreports = false,myexams = false,myorders = false)    
      
-    #exams_search = self.join_Main.Rad_Tech_Sched_Trans_Other; 
+    puts "inside get_exams_search_sdk "
+     #exams_search = self.join_Main.Rad_Tech_Sched_Trans_Other; 
     @mysdk1 = " ";  
    q1 = Java::HarbingerSdkData::RadExam.createQuery(@entity_manager)  
    
