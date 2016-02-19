@@ -4,6 +4,9 @@ class HomeController < ApplicationController
   after_filter :close_entity_manager
   layout 'examtracker_layout'  
     
+  def index
+   search();
+  end
   def radiologist
   @employee = nil;
 	@employee = Employee.get_employee(session[:username])
