@@ -418,7 +418,8 @@ class Rad_Exam < ActiveRecord::Base
             q1.in(".accession", accessions), q1.in(".currentStatus.universalEventType.eventType", current_status),
             q1.or(
               [
-                q1.equal(".currentReport.rad1.id",employeeid),q1.equal(".currentReport.rad2.id",employeeid),q1.equal(".currentReport.rad3.id",employeeid),q1.equal(".currentReport.rad4.id",employeeid),q1.equal(".radExamPersonnel.performingId",employeeid)
+                q1.equal(".radExamPersonnel.scheduler.id",employeeid),q1.equal(".radExamPersonnel.checkin.id",employeeid),q1.equal(".radExamPersonnel.beginExam.id",employeeid)
+                
               ]
             )         
          ] 
@@ -476,11 +477,7 @@ class Rad_Exam < ActiveRecord::Base
    q1.where(q1.and(
           [
             q1.in(".accession", accessions), q1.in(".currentStatus.universalEventType.eventType", current_status),
-            q1.or(
-              [
-                q1.equal(".currentReport.rad1.id",employeeid),q1.equal(".currentReport.rad2.id",employeeid),q1.equal(".currentReport.rad3.id",employeeid),q1.equal(".currentReport.rad4.id",employeeid),q1.equal(".radExamPersonnel.performingId",employeeid)
-              ]
-            )         
+            q1.equal(".currentReport.transcriptionist.id",employeeid)         
          ] 
        ));
    
@@ -489,40 +486,32 @@ class Rad_Exam < ActiveRecord::Base
      q1.where(q1.and(
           [
             q1.in(".accession", accessions),
-            q1.or(
-              [
-                q1.equal(".currentReport.rad1.id",employeeid),q1.equal(".currentReport.rad2.id",employeeid),q1.equal(".currentReport.rad3.id",employeeid),q1.equal(".currentReport.rad4.id",employeeid),q1.equal(".radExamPersonnel.performingId",employeeid)
-              ]
-            )         
+            q1.equal(".currentReport.transcriptionist.id",employeeid)                             
          ] 
-       ));
+       )
+     );
   elsif (current_status.blank? == false)
    
       q1.where(q1.and(
                         [
                           q1.in(".currentStatus.universalEventType.eventType", current_status),
-                          q1.or(
-                            [
-                              q1.equal(".currentReport.rad1.id",employeeid),q1.equal(".currentReport.rad2.id",employeeid),q1.equal(".currentReport.rad3.id",employeeid),q1.equal(".currentReport.rad4.id",employeeid),q1.equal(".radExamPersonnel.performingId",employeeid)
-                            ]
-                          )         
+                         q1.equal(".currentReport.transcriptionist.id",employeeid)                
                        ] 
        ));
   else 
     #none
     puts "Both are BLANK  (default) !!!" + employeeid.to_s
    #q1.where(q1.equal(".radExamPersonnel.performingId",employeeid) )
-   q1.where(q1.or ( [
-         q1.equal(".currentReport.rad1.id",employeeid),q1.equal(".currentReport.rad2.id",employeeid),q1.equal(".currentReport.rad3.id",employeeid),q1.equal(".currentReport.rad4.id",employeeid)]  )
+   q1.where(
+     q1.equal(".currentReport.transcriptionist.id",employeeid)         
      )
   end
-#q1.where (q1.and([q1.in(".accession", accessions), q1.in(".currentStatus.universalEventType.eventType", current_status)] ) unless (accessions.blank? &&  current_status.blank?);
 
    @mysdk1=  q1.list.to_a 
     
   end
   
-  def self.othersRoleData(employeeid,accessions,current_status)
+  def self.orderingRoleData(employeeid,accessions,current_status)
   @mysdk1 = " ";  
    q1 = Java::HarbingerSdkData::RadExam.createQuery(@entity_manager)  
    
@@ -538,7 +527,7 @@ class Rad_Exam < ActiveRecord::Base
             q1.in(".accession", accessions), q1.in(".currentStatus.universalEventType.eventType", current_status),
             q1.or(
               [
-                q1.equal(".currentReport.rad1.id",employeeid),q1.equal(".currentReport.rad2.id",employeeid),q1.equal(".currentReport.rad3.id",employeeid),q1.equal(".currentReport.rad4.id",employeeid),q1.equal(".radExamPersonnel.performingId",employeeid)
+                q1.equal(".currentReport.ordering.id",employeeid),q1.equal(".currentReport.attending.id",employeeid),q1.equal(".currentReport.authorizing.id",employeeid)
               ]
             )         
          ] 
@@ -551,7 +540,7 @@ class Rad_Exam < ActiveRecord::Base
             q1.in(".accession", accessions),
             q1.or(
               [
-                q1.equal(".currentReport.rad1.id",employeeid),q1.equal(".currentReport.rad2.id",employeeid),q1.equal(".currentReport.rad3.id",employeeid),q1.equal(".currentReport.rad4.id",employeeid),q1.equal(".radExamPersonnel.performingId",employeeid)
+                q1.equal(".currentReport.ordering.id",employeeid),q1.equal(".currentReport.attending.id",employeeid),q1.equal(".currentReport.authorizing.id",employeeid)
               ]
             )         
          ] 
@@ -563,7 +552,7 @@ class Rad_Exam < ActiveRecord::Base
                           q1.in(".currentStatus.universalEventType.eventType", current_status),
                           q1.or(
                             [
-                              q1.equal(".currentReport.rad1.id",employeeid),q1.equal(".currentReport.rad2.id",employeeid),q1.equal(".currentReport.rad3.id",employeeid),q1.equal(".currentReport.rad4.id",employeeid),q1.equal(".radExamPersonnel.performingId",employeeid)
+                             q1.equal(".currentReport.ordering.id",employeeid),q1.equal(".currentReport.attending.id",employeeid),q1.equal(".currentReport.authorizing.id",employeeid)
                             ]
                           )         
                        ] 
@@ -572,8 +561,11 @@ class Rad_Exam < ActiveRecord::Base
     #none
     puts "Both are BLANK  (default) !!!" + employeeid.to_s
    #q1.where(q1.equal(".radExamPersonnel.performingId",employeeid) )
-   q1.where(q1.or ( [
-         q1.equal(".currentReport.rad1.id",employeeid),q1.equal(".currentReport.rad2.id",employeeid),q1.equal(".currentReport.rad3.id",employeeid),q1.equal(".currentReport.rad4.id",employeeid)]  )
+   q1.where(q1.or( 
+       [
+          q1.equal(".currentReport.ordering.id",employeeid),q1.equal(".currentReport.attending.id",employeeid),q1.equal(".currentReport.authorizing.id",employeeid)
+       ]  
+     )
      )
   end
 #q1.where (q1.and([q1.in(".accession", accessions), q1.in(".currentStatus.universalEventType.eventType", current_status)] ) unless (accessions.blank? &&  current_status.blank?);

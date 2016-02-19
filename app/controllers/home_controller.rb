@@ -49,8 +49,8 @@ class HomeController < ApplicationController
       @mysdk1 = Rad_Exam.schedRegRoleData(@employee.id,accession,currentstatus)  
     when "trans"
       @mysdk1 = Rad_Exam.testsdkJson(@employee.id,accession,currentstatus)  
-    when "others"
-      @mysdk1 = Rad_Exam.testsdkJson(@employee.id,accession,currentstatus)  
+    when "order"
+      @mysdk1 = Rad_Exam.orderingRoleData(@employee.id,accession,currentstatus)  
     end
     
     @mysdk1.each  do |e|
@@ -192,11 +192,12 @@ class HomeController < ApplicationController
   def get_jqgridOthers
     accession_ids = params[:accession]
     exam_status = params[:status]
-    get_jqgrid_common("others",accession_ids,exam_status);    
+    #get_jqgrid_common("others",accession_ids,exam_status);        
+    sdk("order",accession_ids,exam_status);
   end
   
   def get_jqgridSearch_exam_data 
-    #search can be performed by 2 methods union or intesection
+    #search can be performed by 2 methods union or intersection
     #if  @Search_buckets_individually value is true then its union else default intersection.
     @Search_buckets_individually = false;
     @employee = Employee.get_employee(session[:username])  
