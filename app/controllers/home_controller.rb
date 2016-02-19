@@ -230,6 +230,7 @@ class HomeController < ApplicationController
             #@exams2 = Rad_Exam.get_exams_search(@employee.id,@myvalues,true,false,false).pluck(:id) ; 
             puts "inside length";
           end 
+          @exams = @exams1;
           @exams1 = nil;     
         end   
           
@@ -245,17 +246,7 @@ class HomeController < ApplicationController
     else #its  intersection  join NOT UNION Join
       #@exams = Rad_Exam.get_exams_search(@employee.id,@myvalues,(@myvalues[:my_orders] == "on"),(@myvalues[:my_exams] == "on"),(@myvalues[:my_reports] == "on"))  ;    
     end
-    
-    @exams.each do |exam| 
-
-      
-       #remove this line after testing
-      #<start>
-      exam = manipulate_status(exam);
-      #<end>
-      
-      exam = get_graph_status(exam);
-    end  #end each
+  
     
     #log output data
     log_hipaa_view(@exams);
