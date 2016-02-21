@@ -216,6 +216,7 @@ class HomeController < ApplicationController
     #set as union Join search
       @Search_buckets_individually = true
     end
+    @Search_buckets_individually = true
     puts "Hello world"
     
     if (@Search_buckets_individually == true) #its UNION Join
