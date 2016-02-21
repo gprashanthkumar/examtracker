@@ -151,6 +151,47 @@ class Rad_Exam < ActiveRecord::Base
     puts "inside get_exams_search_sdk "
      #exams_search = self.join_Main.Rad_Tech_Sched_Trans_Other; 
     @mysdk1 = " ";  
+    
+      q1 = Java::HarbingerSdkData::RadExam.createQuery(@entity_manager) 
+  
+    qmyreports = nil;
+    qmyexams =nil;
+    qmyorders = nil;
+       
+ 
+      #exams_search = exams_search.where("( (rr.rad1_id = ?) or (rr.rad2_id = ?) or  (rr.rad3_id = ?) or (rr.rad4_id = ?)) ",employeeid,employeeid,employeeid,employeeid).all;
+      qmyreports =   
+           q1.or([
+              q1.equal(".currentReport.rad1.id",employeeid),q1.equal(".currentReport.rad2.id",employeeid),q1.equal(".currentReport.rad3.id",employeeid),q1.equal(".currentReport.rad4.id",employeeid)
+                 ].delete_if {myreports != true}
+               )
+           
+   #if (myreports == true)    end
+   
+    if (myexams == true)     
+      #exams_search = exams_search.where("( (repp.performing_id = ?) or (repp.technologist_id = ?) or  (repp.scheduler_id = ?) ) ",employeeid,employeeid,employeeid).all;
+        qmyexams =   
+           q1.or([
+              q1.equal(".radExamPersonnel.performing.id",employeeid),q1.equal(".radExamPersonnel.technologist.id",employeeid),q1.equal(".radExamPersonnel.scheduler.id",employeeid)
+                 ].delete_if {myreports != true}
+               )
+    end
+   
+    if (myorders == true)       
+      #exams_search = exams_search.where("( (repp.attending_id = ?) or (repp.ordering_id = ?) or  (repp.authorizing_id = ?) ) ",employeeid,employeeid,employeeid).all;       
+        qmyorders =   
+           q1.or([
+              q1.equal(".radExamPersonnel.attending.id",employeeid),q1.equal(".radExamPersonnel.ordering.id",employeeid),q1.equal(".radExamPersonnel.authorizing.id",employeeid)
+                 ].delete_if {myorders != true}
+               )
+    end
+      
+      q1.where(q1.and(
+          [qmyreports,qmyexams,qmyorders]
+         ));
+    puts q1.toSQL;
+    return q1.list.to_a ;
+
   
   end
   
