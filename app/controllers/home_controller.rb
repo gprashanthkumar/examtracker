@@ -233,8 +233,9 @@ class HomeController < ApplicationController
           @exams = @exams1;
           @exams1 = nil;     
         end   
-          
-        puts idList.to_s + "kumar hello world"
+          puts  "kumar hello world"
+        puts idList.to_s 
+         puts  "end  hello world"
        
 
 
@@ -250,12 +251,12 @@ class HomeController < ApplicationController
     
     #log output data
     
-    @exams = {"hello" => "world"};
+   
     json_data = {
       :page=>"1",
       :total=>"3",
       :records=>"6", 
-      :rows=> JSON.parse(@exams.to_s)    
+      :rows=> "JSON.parse([])    "
     
     }
     
