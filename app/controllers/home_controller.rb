@@ -216,6 +216,7 @@ class HomeController < ApplicationController
     #set as union Join search
       @Search_buckets_individually = true
     end
+    puts "Hello world"
     
     if (@Search_buckets_individually == true) #its UNION Join
       #perform search on individual  buckets and join the records          
