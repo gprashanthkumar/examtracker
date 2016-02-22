@@ -231,6 +231,10 @@ class HomeController < ApplicationController
           if @exams1.length > 0
             #@exams2 = Rad_Exam.get_exams_search(@employee.id,@myvalues,true,false,false).pluck(:id) ; 
             puts "inside length total "  +@exams1.length.to_s ;
+             @mysdk1.each  do |e|
+               idList << e.accession
+             end
+            
           end 
           @exams = @exams1;
           @exams1 = nil;     
