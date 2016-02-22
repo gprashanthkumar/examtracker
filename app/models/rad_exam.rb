@@ -176,10 +176,10 @@ class Rad_Exam < ActiveRecord::Base
                )
              myFilters << qmyexams unless myexams != true   
              
-      x = myFilters.join(',')
+      
    
         q1.where(q1.and(
-          [x]
+          [qmyreports]
          ));
     
     puts q1.toSQL;
