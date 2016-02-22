@@ -178,7 +178,7 @@ class Rad_Exam < ActiveRecord::Base
                  ].delete_if {myexams != true}
                )
              
-       puts "<--- qmyexams " +  qmyexams.to_s  + "--> \n"       
+       puts "<--- qmyexams " +  qmyexams.toSQL.to_s  + "--> \n"       
       
    
         q1.where(q1.and(
