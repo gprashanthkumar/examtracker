@@ -168,9 +168,7 @@ class Rad_Exam < ActiveRecord::Base
                  ].delete_if {myreports != true}
                );
       else
-       qmyreports =   
-          
-              q1.equal(".id",".id");
+       qmyreports =   q1.equal(".id",".id");
       end
     
     
@@ -185,9 +183,7 @@ class Rad_Exam < ActiveRecord::Base
                  ].delete_if {myexams != true}
                );
       else
-         qmyexams =   
-          
-              q1.equal(".id",".id");
+         qmyexams = q1.equal(".id",".id");
       end
              
        puts "<--- qmyexams " +  qmyexams.to_s  + "--> \n"       
@@ -207,8 +203,12 @@ class Rad_Exam < ActiveRecord::Base
   def self.get_exams_search_by_id_array(idList)
     #exams_search = self.join_Main.Rad_Tech_Sched_Trans_Other;  
     #exams_search = exams_search.where("rad_exams.id in (?)", idList ).order("id desc").all ;
-    #return exams_search;    
+    #return exams_search;   
+    puts "Inside idList"
      q1 = Java::HarbingerSdkData::RadExam.createQuery(@entity_manager) 
+     if idList.length == 0
+       idlist << 0;
+     end
      q1.where(
       q1.in(".accession", idList)
      );
