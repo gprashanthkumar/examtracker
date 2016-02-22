@@ -213,7 +213,7 @@ class Rad_Exam < ActiveRecord::Base
      
      else
         q1.where(
-      q1.in(".id", "-1")
+      q1.equal(".id", -1)
       );
      end
      return q1.list.to_a 
