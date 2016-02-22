@@ -174,7 +174,7 @@ class Rad_Exam < ActiveRecord::Base
       
         qmyexams =   
            q1.or([
-              q1.equal(".radExamPersonnel.performing.id",employeeid)
+              q1.equal(".radExamPersonnel.performing.id",employeeid), q1.equal(".radExamPersonnel.performing.id",employeeid)
                  ].delete_if {myexams != true}
                )
              
