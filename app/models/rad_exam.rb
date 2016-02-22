@@ -179,7 +179,7 @@ class Rad_Exam < ActiveRecord::Base
       
    
         q1.where(q1.and(
-          [qmyreports]
+          [qmyreports,qmyreports]
          ));
     
     puts q1.toSQL;
