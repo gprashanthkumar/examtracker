@@ -188,9 +188,20 @@ class Rad_Exam < ActiveRecord::Base
              
        puts "<--- qmyexams " +  qmyexams.to_s  + "--> \n"       
       
+     
+        if (myorders == true)       
+      #exams_search = exams_search.where("( (repp.attending_id = ?) or (repp.ordering_id = ?) or  (repp.authorizing_id = ?) ) ",employeeid,employeeid,employeeid).all;       
+        qmyorders =   
+           q1.or([
+              q1.equal(".radExamPersonnel.attending.id",employeeid),q1.equal(".radExamPersonnel.ordering.id",employeeid),q1.equal(".radExamPersonnel.authorizing.id",employeeid)
+                 ].delete_if {myorders != true}
+               );
+        else
+           qmyorders = q1.equal(".id",".id");
+        end 
    
         q1.where(q1.and(
-          [qmyreports,qmyexams]
+          [qmyreports,qmyexams,qmyorders]
          ));
     
     puts q1.toSQL;
