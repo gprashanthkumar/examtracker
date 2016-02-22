@@ -177,7 +177,7 @@ class Rad_Exam < ActiveRecord::Base
      puts "<--- qmyreports" +  qmyreports.to_s  + "--> \n"
      
       #exams_search = exams_search.where("( (repp.performing_id = ?) or (repp.technologist_id = ?) or  (repp.scheduler_id = ?) ) ",employeeid,employeeid,employeeid).all;
-      if (myexams = true)
+      if (myexams == true)
         
         qmyexams =   
            q1.or([
