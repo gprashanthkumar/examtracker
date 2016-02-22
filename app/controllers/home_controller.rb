@@ -238,7 +238,10 @@ class HomeController < ApplicationController
             
           end  #length>0
        
-          @exams1 = nil;     
+          @exams1 = nil;    
+        
+          puts idList.to_s + "is idList \n"
+         
         end   
         
          if (@myvalues[:my_exams] == "on")
@@ -255,7 +258,10 @@ class HomeController < ApplicationController
             
           end  #length>0
        
-          @exams1 = nil;     
+          @exams1 = nil; 
+          
+          puts idList.to_s + "is idList \n"
+       
         end   
         
         if (@myvalues[:my_orders] == "on")
@@ -273,12 +279,15 @@ class HomeController < ApplicationController
           end  #length>0
        
           @exams1 = nil;     
+           
+          puts idList.to_s + "is idList \n"
+         
         end   
        
-        
           puts  "kumar hello world"
           puts idList.to_s + "is idList \n"
           puts  "end  hello world \n"
+        
        
            @mysdk1 = Rad_Exam.get_exams_search_by_id_array(idList);
 
