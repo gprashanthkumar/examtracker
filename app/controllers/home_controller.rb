@@ -236,8 +236,8 @@ class HomeController < ApplicationController
           @exams1 = nil;     
         end   
           puts  "kumar hello world"
-        puts idList.to_s 
-         puts  "end  hello world"
+        puts idList.to_s + "is idList \n"
+         puts  "end  hello world \n"
        
 
 
