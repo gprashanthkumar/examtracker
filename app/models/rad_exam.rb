@@ -158,7 +158,7 @@ class Rad_Exam < ActiveRecord::Base
     qmyexams =nil;
     qmyorders = nil;   
    
- 
+
      
       #exams_search = exams_search.where("( (rr.rad1_id = ?) or (rr.rad2_id = ?) or  (rr.rad3_id = ?) or (rr.rad4_id = ?)) ",employeeid,employeeid,employeeid,employeeid).all;
                   
