@@ -234,9 +234,9 @@ class HomeController < ApplicationController
                     idList << e.accession
                 end
              
-             end
+             end #each
             
-          end 
+          end  #length>0
        
           @exams1 = nil;     
         end   
