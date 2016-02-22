@@ -175,8 +175,11 @@ class Rad_Exam < ActiveRecord::Base
                  ].delete_if {myexams != true}
                )
              myFilters << qmyexams unless myexams != true   
+             
+     
+   
         q1.where(q1.and(
-          [myFilters]
+          [myFilters.join(',')]
          ));
     
     puts q1.toSQL;
