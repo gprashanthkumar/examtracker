@@ -206,8 +206,8 @@ class Rad_Exam < ActiveRecord::Base
     #return exams_search;   
     puts "Inside idList"
      q1 = Java::HarbingerSdkData::RadExam.createQuery(@entity_manager) 
-     if idList.length == 0
-       idlist << 0;
+     if (idList.length == 0)
+       idList << 0;
      end
      q1.where(
       q1.in(".accession", idList)
