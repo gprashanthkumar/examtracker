@@ -161,11 +161,7 @@ class Rad_Exam < ActiveRecord::Base
  
      
       #exams_search = exams_search.where("( (rr.rad1_id = ?) or (rr.rad2_id = ?) or  (rr.rad3_id = ?) or (rr.rad4_id = ?)) ",employeeid,employeeid,employeeid,employeeid).all;
-       qmyreports =   
-           q1.or([
-              q1.equal(".id",".id")
-                 ].delete_if {myreports != false}
-               );
+     
                
       qmyreports =   
            q1.or([
@@ -176,11 +172,7 @@ class Rad_Exam < ActiveRecord::Base
      puts "<--- qmyreports" +  qmyreports.to_s  + "--> \n"
      
       #exams_search = exams_search.where("( (repp.performing_id = ?) or (repp.technologist_id = ?) or  (repp.scheduler_id = ?) ) ",employeeid,employeeid,employeeid).all;
-       qmyexams =   
-           q1.or([
-              q1.equal(".id",".id")
-                 ].delete_if {myexams != false}
-               );
+      
         qmyexams =   
            q1.or([
               q1.equal(".radExamPersonnel.performing.id",employeeid),q1.equal(".radExamPersonnel.technologist.id",employeeid),q1.equal(".radExamPersonnel.scheduler.id",employeeid)
