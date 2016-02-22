@@ -165,9 +165,14 @@ class Rad_Exam < ActiveRecord::Base
               q1.equal(".currentReport.rad1.id",employeeid),q1.equal(".currentReport.rad2.id",employeeid),q1.equal(".currentReport.rad3.id",employeeid),q1.equal(".currentReport.rad4.id",employeeid)
                  ].delete_if {myreports != true}
                );
+        qmyexams =   
+           q1.or([
+              q1.equal(".currentReport.rad1.id",employeeid),q1.equal(".currentReport.rad2.id",employeeid),q1.equal(".currentReport.rad3.id",employeeid),q1.equal(".currentReport.rad4.id",employeeid)
+                 ].delete_if {myreports != true}
+               );
                
         q1.where(q1.and(
-          [qmyreports,qmyexams,qmyorders]
+          [qmyreports,qmyexams]
          ));
     
     puts q1.toSQL;
