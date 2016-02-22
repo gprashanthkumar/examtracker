@@ -241,6 +241,39 @@ class HomeController < ApplicationController
           @exams1 = nil;     
         end   
         
+         if (@myvalues[:my_exams] == "on")
+          
+          @exams1 = Rad_Exam.get_exams_search_sdk(@employee.id,@myvalues,false,true,false)
+          if @exams1.length > 0            
+            puts "inside :my_exams length total "  +@exams1.length.to_s ;
+             @exams1.each  do |e|
+                if !(idList.include? e.accession)
+                    idList << e.accession
+                end
+             
+             end #each
+            
+          end  #length>0
+       
+          @exams1 = nil;     
+        end   
+        
+        if (@myvalues[:my_orders] == "on")
+          
+          @exams1 = Rad_Exam.get_exams_search_sdk(@employee.id,@myvalues,false,false,true)
+          if @exams1.length > 0            
+            puts "inside :my_orders length total "  +@exams1.length.to_s ;
+             @exams1.each  do |e|
+                if !(idList.include? e.accession)
+                    idList << e.accession
+                end
+             
+             end #each
+            
+          end  #length>0
+       
+          @exams1 = nil;     
+        end   
        
         
           puts  "kumar hello world"
