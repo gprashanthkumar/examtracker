@@ -230,7 +230,7 @@ class HomeController < ApplicationController
           @exams1 = Rad_Exam.get_exams_search_sdk(@employee.id,@myvalues,true,false,false)
           if @exams1.length > 0
             #@exams2 = Rad_Exam.get_exams_search(@employee.id,@myvalues,true,false,false).pluck(:id) ; 
-            puts "inside length";
+            puts "inside length total "  +@exams1.length.to_s ;
           end 
           @exams = @exams1;
           @exams1 = nil;     
