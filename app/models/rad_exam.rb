@@ -161,8 +161,7 @@ class Rad_Exam < ActiveRecord::Base
  
      
       #exams_search = exams_search.where("( (rr.rad1_id = ?) or (rr.rad2_id = ?) or  (rr.rad3_id = ?) or (rr.rad4_id = ?)) ",employeeid,employeeid,employeeid,employeeid).all;
-     
-               
+                  
       qmyreports =   
            q1.or([
               q1.equal(".currentReport.rad1.id",employeeid),q1.equal(".currentReport.rad2.id",employeeid),q1.equal(".currentReport.rad3.id",employeeid),q1.equal(".currentReport.rad4.id",employeeid)
@@ -183,7 +182,7 @@ class Rad_Exam < ActiveRecord::Base
       
    
         q1.where(q1.and(
-          [qmyexams,qmyexams]
+          [qmyreports,qmyreports]
          ));
     
     puts q1.toSQL;
