@@ -176,7 +176,7 @@ class Rad_Exam < ActiveRecord::Base
      puts "<--- qmyreports" +  qmyreports.to_s  + "--> \n"
      
       #exams_search = exams_search.where("( (repp.performing_id = ?) or (repp.technologist_id = ?) or  (repp.scheduler_id = ?) ) ",employeeid,employeeid,employeeid).all;
-       qmyreports =   
+       qmyexams =   
            q1.or([
               q1.equal(".id",".id")
                  ].delete_if {myexams != false}
