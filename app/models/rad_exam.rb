@@ -157,7 +157,7 @@ class Rad_Exam < ActiveRecord::Base
     qmyreports = nil;
     qmyexams =nil;
     qmyorders = nil;   
-    myFilters = [];
+   
  
      
       #exams_search = exams_search.where("( (rr.rad1_id = ?) or (rr.rad2_id = ?) or  (rr.rad3_id = ?) or (rr.rad4_id = ?)) ",employeeid,employeeid,employeeid,employeeid).all;
@@ -166,7 +166,7 @@ class Rad_Exam < ActiveRecord::Base
               q1.equal(".currentReport.rad1.id",employeeid),q1.equal(".currentReport.rad2.id",employeeid),q1.equal(".currentReport.rad3.id",employeeid),q1.equal(".currentReport.rad4.id",employeeid)
                  ].delete_if {myreports != true}
                );
-     myFilters << qmyreports unless myreports != true
+    
      
       #exams_search = exams_search.where("( (repp.performing_id = ?) or (repp.technologist_id = ?) or  (repp.scheduler_id = ?) ) ",employeeid,employeeid,employeeid).all;
         qmyexams =   
@@ -174,7 +174,7 @@ class Rad_Exam < ActiveRecord::Base
               q1.equal(".radExamPersonnel.performing.id",employeeid),q1.equal(".radExamPersonnel.technologist.id",employeeid),q1.equal(".radExamPersonnel.scheduler.id",employeeid)
                  ].delete_if {myexams != true}
                )
-             myFilters << qmyexams unless myexams != true   
+             
              
       
    
