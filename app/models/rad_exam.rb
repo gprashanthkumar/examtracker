@@ -167,9 +167,14 @@ class Rad_Exam < ActiveRecord::Base
   
   #Definition:  This is the definition called to return list of  exam records matching passed eccessionid list idList
   def self.get_exams_search_by_id_array(idList)
-    exams_search = self.join_Main.Rad_Tech_Sched_Trans_Other;  
-    exams_search = exams_search.where("rad_exams.id in (?)", idList ).order("id desc").all ;
-    return exams_search;    
+    #exams_search = self.join_Main.Rad_Tech_Sched_Trans_Other;  
+    #exams_search = exams_search.where("rad_exams.id in (?)", idList ).order("id desc").all ;
+    #return exams_search;    
+     q1 = Java::HarbingerSdkData::RadExam.createQuery(@entity_manager) 
+     q1.where(
+      q1.in(".accession", idList)
+     );
+     return q1.list.to_a 
   end
   
   #Definition: This is main query from ra_exams details of for passed accessionid as accession of the exam
