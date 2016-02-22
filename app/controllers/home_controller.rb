@@ -230,8 +230,8 @@ class HomeController < ApplicationController
           if @exams1.length > 0            
             puts "inside :my_reports length total "  +@exams1.length.to_s ;
              @exams1.each  do |e|
-                if !(idList.include? e.accession.to_i)
-                    idList << e.accession.to_i
+                if !(idList.include? e.accession)
+                    idList << e.accession
                 end
              
              end
@@ -241,35 +241,7 @@ class HomeController < ApplicationController
           @exams1 = nil;     
         end   
         
-        if (@myvalues[:my_exams] == "on")
-          
-          @exams1 = Rad_Exam.get_exams_search_sdk(@employee.id,@myvalues,false,true,false)
-          if @exams1.length > 0            
-            puts "inside :my_exams length total "  +@exams1.length.to_s ;
-             @exams1.each  do |e|
-               if !(idList.include? e.accession.to_i)
-                    idList << e.accession.to_i
-               end
-             end
-            
-          end          
-          @exams1 = nil;     
-        end   
-        
-          if (@myvalues[:my_orders] == "on")
-          
-          @exams1 = Rad_Exam.get_exams_search_sdk(@employee.id,@myvalues,false,false,true)
-          if @exams1.length > 0            
-            puts "inside  :my_orders length total "  +@exams1.length.to_s ;
-             @exams1.each  do |e|
-               if !(idList.include? e.accession.to_i)
-                    idList << e.accession.to_i
-               end
-             end
-            
-          end          
-          @exams1 = nil;     
-        end   
+       
         
           puts  "kumar hello world"
           puts idList.to_s + "is idList \n"
