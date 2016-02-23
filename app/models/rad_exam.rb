@@ -164,7 +164,10 @@ class Rad_Exam < ActiveRecord::Base
       if( myreports == true) 
          qmyreports =   
            q1.or([
-              q1.equal(".currentReport.rad1.id",employeeid),q1.equal(".currentReport.rad2.id",employeeid),q1.equal(".currentReport.rad3.id",employeeid),q1.equal(".currentReport.rad4.id",employeeid)
+              q1.equal(".currentReport.rad1.id",employeeid),\
+              q1.equal(".currentReport.rad2.id",employeeid),\
+              q1.equal(".currentReport.rad3.id",employeeid),\
+              q1.equal(".currentReport.rad4.id",employeeid)
                  ].delete_if {myreports != true}
                );
       else
@@ -179,7 +182,9 @@ class Rad_Exam < ActiveRecord::Base
         
         qmyexams =   
            q1.or([
-                  q1.equal(".radExamPersonnel.performing.id",employeeid),q1.equal(".radExamPersonnel.technologist.id",employeeid),q1.equal(".radExamPersonnel.scheduler.id",employeeid)
+                  q1.equal(".radExamPersonnel.performing.id",employeeid),\
+                    q1.equal(".radExamPersonnel.technologist.id",employeeid),\
+                    q1.equal(".radExamPersonnel.scheduler.id",employeeid)
                  ].delete_if {myexams != true}
                );
       else
@@ -193,7 +198,9 @@ class Rad_Exam < ActiveRecord::Base
       #exams_search = exams_search.where("( (repp.attending_id = ?) or (repp.ordering_id = ?) or  (repp.authorizing_id = ?) ) ",employeeid,employeeid,employeeid).all;       
         qmyorders =   
            q1.or([
-              q1.equal(".radExamPersonnel.attending.id",employeeid),q1.equal(".radExamPersonnel.ordering.id",employeeid),q1.equal(".radExamPersonnel.authorizing.id",employeeid)
+              q1.equal(".radExamPersonnel.attending.id",employeeid),\
+                q1.equal(".radExamPersonnel.ordering.id",employeeid),\
+                q1.equal(".radExamPersonnel.authorizing.id",employeeid)
                  ].delete_if {myorders != true}
                );
         else
@@ -237,10 +244,18 @@ class Rad_Exam < ActiveRecord::Base
       #exams_search = exams_search.where("pmrn.mrn ilike ?", "%#{params[:mrn]}%" ).all ;
       qmymrn = q1.ilike(".patientMrn.mrn", "#{params[:mrn]}");
     end 
+    
+    #:patient_name
+      qmyname =  q1.equal(".id",".id");
+    if ((params[:patient_name] != "") && !(params[:patient_name].nil?) && !(params[:patient_name].blank?))          
+      qmyname  = q1.ilike(".patient.name", "#{params[:patient_name]}");
+    end   
+     
    
         q1.where(q1.and(
-          [qmyreports,qmyexams,qmyorders,qmyvisit,qmyorder,qmyaccession,qmypatientType,\
-           qmymrn
+          [qmyreports,qmyexams,qmyorders,qmyvisit,\
+           qmyorder,qmyaccession,qmypatientType,\
+           qmymrn,qmyname
           ]
          ));
     
