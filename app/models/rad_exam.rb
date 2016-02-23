@@ -251,7 +251,7 @@ class Rad_Exam < ActiveRecord::Base
       qmyname  = q1.ilike(".patientMrn.patient.name", "%#{params[:patient_name]}%");
     end   
      #:modality
-     qmymodality
+     qmymodality =  q1.equal(".id",".id");
       if ((params[:modality] != "") && !(params[:modality].nil?) && !(params[:modality].blank?))          
       qmymodality =  q1.ilike(".modality", "%#{params[:modality]}%");
     end
