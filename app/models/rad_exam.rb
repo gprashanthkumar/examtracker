@@ -253,7 +253,7 @@ class Rad_Exam < ActiveRecord::Base
      #:modality
      qmymodality =  q1.equal(".id",".id");
       if ((params[:modality] != "") && !(params[:modality].nil?) && !(params[:modality].blank?))          
-      qmymodality =  q1.ilike(".modality", "%#{params[:modality]}%");
+      qmymodality =  q1.ilike(".resource.modality.modality", "%#{params[:modality]}%");
     end
    
         q1.where(q1.and(
