@@ -291,13 +291,14 @@ class HomeController < ApplicationController
        
            @mysdk1 = Rad_Exam.get_exams_search_by_id_array(idList);
 
-       
-
+      else
+          @mysdk1 = Rad_Exam.get_exams_search_sdk(@employee.id,@myvalues,false,false,false)
       end   
     
     
     else #its  intersection  join NOT UNION Join
       #@exams = Rad_Exam.get_exams_search(@employee.id,@myvalues,(@myvalues[:my_orders] == "on"),(@myvalues[:my_exams] == "on"),(@myvalues[:my_reports] == "on"))  ;    
+         @mysdk1 = Rad_Exam.get_exams_search_sdk(@employee.id,@myvalues,false,false,false)
     end
   
     
