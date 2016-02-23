@@ -230,9 +230,18 @@ class Rad_Exam < ActiveRecord::Base
       #exams_search = exams_search.where("pt.id = ?", params[:patient_type] ).all ;
       qmypatientType = q1.ilike(".siteClass.patientType.patientType", "#{params[:patient_type]}");
     end 
+    
+    #:mrn 
+    qmymrn =  q1.equal(".id",".id");
+    if ((params[:mrn] != "") && !(params[:mrn].nil?) && !(params[:mrn].blank?))            
+      #exams_search = exams_search.where("pmrn.mrn ilike ?", "%#{params[:mrn]}%" ).all ;
+      qmymrn = q1.ilike(".patientMrn.mrn", "#{params[:mrn]}");
+    end 
    
         q1.where(q1.and(
-          [qmyreports,qmyexams,qmyorders,qmyvisit,qmyorder,qmyaccession,qmypatientType]
+          [qmyreports,qmyexams,qmyorders,qmyvisit,qmyorder,qmyaccession,qmypatientType,\
+           qmymrn
+          ]
          ));
     
     puts q1.toSQL;
