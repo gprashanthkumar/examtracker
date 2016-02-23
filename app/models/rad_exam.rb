@@ -242,13 +242,13 @@ class Rad_Exam < ActiveRecord::Base
     qmymrn =  q1.equal(".id",".id");
     if ((params[:mrn] != "") && !(params[:mrn].nil?) && !(params[:mrn].blank?))            
       #exams_search = exams_search.where("pmrn.mrn ilike ?", "%#{params[:mrn]}%" ).all ;
-      qmymrn = q1.ilike(".patientMrn.mrn", "#{params[:mrn]}");
+      qmymrn = q1.ilike(".patientMrn.mrn", "%#{params[:mrn]}");
     end 
     
     #:patient_name
       qmyname =  q1.equal(".id",".id");
     if ((params[:patient_name] != "") && !(params[:patient_name].nil?) && !(params[:patient_name].blank?))          
-      qmyname  = q1.ilike(".patient.name", "#{params[:patient_name]}");
+      qmyname  = q1.ilike(".patient.name", "%#{params[:patient_name]}");
     end   
      
    
