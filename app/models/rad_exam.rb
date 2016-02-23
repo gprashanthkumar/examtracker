@@ -205,14 +205,21 @@ class Rad_Exam < ActiveRecord::Base
      
      if ((params[:visit] != "") && !(params[:visit].nil?) && !(params[:visit].blank?)) 
       #exams_search = exams_search.joins("Left JOIN visits v on v.id = rad_exams.visit_id")
-      #exams_search = exams_search.where(" (v.visit_number ilike ?)  " , "%#{params[:visit]}%" ).all ;
-      #mrn_like = query.ilike(".patientMrn.mrn","%987%") 
+      #exams_search = exams_search.where(" (v.visit_number ilike ?)  " , "%#{params[:visit]}%" ).all ;      
       qmyvisit = q1.ilike(".visit.visitNumber", "%#{params[:visit]}%");
     end
      
+      #order_id
+     qmyorder =  q1.equal(".id",".id");
+     
+     if ((params[:order_id] != "") && !(params[:order_id].nil?) && !(params[:order_id].blank?)) 
+      #exams_search = exams_search.joins("Left JOIN orders o on o.id = rad_exams.order_id")
+      #exams_search = exams_search.where(" (o.order_number ilike ?)  " , "%#{params[:order_id]}%" ).all ;
+        qmyorder = q1.ilike(".order.orderNumber", "%#{params[:order_id]}%");
+    end
    
         q1.where(q1.and(
-          [qmyreports,qmyexams,qmyorders,qmyvisit]
+          [qmyreports,qmyexams,qmyorders,qmyvisit,qmyorder]
          ));
     
     puts q1.toSQL;
