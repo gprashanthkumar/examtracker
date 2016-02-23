@@ -217,9 +217,15 @@ class Rad_Exam < ActiveRecord::Base
       #exams_search = exams_search.where(" (o.order_number ilike ?)  " , "%#{params[:order_id]}%" ).all ;
         qmyorder = q1.ilike(".order.orderNumber", "%#{params[:order_id]}%");
     end
+    
+     #:accession
+     qmyaccession =  q1.equal(".id",".id");
+     if ((params[:accession] != "") && !(params[:accession].nil?) && !(params[:accession].blank?))            
+       qmyaccession = q1.ilike(".accession", "%#{params[:accession]}%");
+    end 
    
         q1.where(q1.and(
-          [qmyreports,qmyexams,qmyorders,qmyvisit,qmyorder]
+          [qmyreports,qmyexams,qmyorders,qmyvisit,qmyorder,qmyaccession]
          ));
     
     puts q1.toSQL;
