@@ -250,12 +250,16 @@ class Rad_Exam < ActiveRecord::Base
     if ((params[:patient_name] != "") && !(params[:patient_name].nil?) && !(params[:patient_name].blank?))          
       qmyname  = q1.ilike(".patientMrn.patient.name", "%#{params[:patient_name]}%");
     end   
-     
+     #:modality
+     qmymodality
+      if ((params[:modality] != "") && !(params[:modality].nil?) && !(params[:modality].blank?))          
+      qmymodality =  q1.ilike(".modality", "%#{params[:modality]}%");
+    end
    
         q1.where(q1.and(
           [qmyreports,qmyexams,qmyorders,qmyvisit,\
            qmyorder,qmyaccession,qmypatientType,\
-           qmymrn,qmyname
+           qmymrn,qmyname,qmymodality
           ]
          ));
     
