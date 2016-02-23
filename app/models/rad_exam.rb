@@ -153,7 +153,7 @@ class Rad_Exam < ActiveRecord::Base
     @mysdk1 = " ";  
     
       q1 = Java::HarbingerSdkData::RadExam.createQuery(@entity_manager) 
-  
+      q1.join(".patient")
     qmyreports = nil;
     qmyexams =nil;
     qmyorders = nil;   
