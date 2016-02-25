@@ -268,7 +268,7 @@ class Rad_Exam < ActiveRecord::Base
      #:resource_name
       qmyresourceName  =  q1.equal(".id",".id");
      if ((params[:resource_name] != "") && !(params[:resource_name].nil?) && !(params[:resource_name].blank?))          
-      end
+      
       #exams_search = exams_search.where("  res.name  ilike ?", "%#{params[:resource_name]}%" ).all ;
       qmyresourceName  =  q1.ilike(".resource.name", "%#{params[:resource_name]}%");
     end
