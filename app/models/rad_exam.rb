@@ -259,7 +259,7 @@ class Rad_Exam < ActiveRecord::Base
      #:code 
       qmycode  =  q1.equal(".id",".id");
      if ((params[:code] != "") && !(params[:code].nil?) && !(params[:code].blank?))          
-      end
+      
       #exams_search = exams_search.where("  concat(proc.code, proc.description)  ilike ?", "%#{params[:code]}%" ).all ;
       qmycode =  q1.ilike(".procedure.codey", "%#{params[:code]}%");
       
@@ -268,7 +268,7 @@ class Rad_Exam < ActiveRecord::Base
         q1.where(q1.and(
           [qmyreports,qmyexams,qmyorders,qmyvisit,\
            qmyorder,qmyaccession,qmypatientType,\
-           qmymrn,qmyname,qmymodality
+           qmymrn,qmyname,qmymodality,qmycode
           ]
          ));
     
