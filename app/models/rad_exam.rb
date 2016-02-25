@@ -261,7 +261,7 @@ class Rad_Exam < ActiveRecord::Base
      if ((params[:code] != "") && !(params[:code].nil?) && !(params[:code].blank?))          
       
       #exams_search = exams_search.where("  concat(proc.code, proc.description)  ilike ?", "%#{params[:code]}%" ).all ;
-      qmycode =  q1.ilike(".procedure.codey", "%#{params[:code]}%");
+      qmycode =  q1.ilike(".procedure.code", "%#{params[:code]}%");
       
     end
    
