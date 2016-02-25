@@ -255,6 +255,15 @@ class Rad_Exam < ActiveRecord::Base
       if ((params[:modality] != "") && !(params[:modality].nil?) && !(params[:modality].blank?))          
       qmymodality =  q1.ilike(".resource.modality.modality", "%#{params[:modality]}%");
     end
+    
+     #:code 
+      qmycode  =  q1.equal(".id",".id");
+     if ((params[:code] != "") && !(params[:code].nil?) && !(params[:code].blank?))          
+      end
+      #exams_search = exams_search.where("  concat(proc.code, proc.description)  ilike ?", "%#{params[:code]}%" ).all ;
+      qmycode =  q1.ilike(".procedure.codey", "%#{params[:code]}%");
+      
+    end
    
         q1.where(q1.and(
           [qmyreports,qmyexams,qmyorders,qmyvisit,\
