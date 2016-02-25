@@ -272,11 +272,28 @@ class Rad_Exam < ActiveRecord::Base
       #exams_search = exams_search.where("  res.name  ilike ?", "%#{params[:resource_name]}%" ).all ;
       qmyresourceName  =  q1.ilike(".resource.name", "%#{params[:resource_name]}%");
     end
+    
+      
+     #:rad_exam_dept
+     qmyradExamDept =  q1.equal(".id",".id");
+     if ((params[:rad_exam_dept] != "") && !(params[:rad_exam_dept].nil?) && !(params[:rad_exam_dept].blank?))   
+       
+      qmyradExamDept  =  q1.ilike(".radExamDepartment.description", "%#{params[:rad_exam_dept]}%");
+      
+     end
+     
+     # :current_status
+     qmycurrentStatus =  q1.equal(".id",".id");
+     if ((params[:current_status] != "") && !(params[:current_status].nil?) && !(params[:current_status].blank?))          
+      qmycurrentStatus =  q1.ilike(".currentStatus.universalEventType.eventType", "%#{params[:current_status]}%");
+     end
    
         q1.where(q1.and(
           [qmyreports,qmyexams,qmyorders,qmyvisit,\
            qmyorder,qmyaccession,qmypatientType,\
-           qmymrn,qmyname,qmymodality,qmycode,qmyresourceName 
+           qmymrn,qmyname,qmymodality,qmycode,qmyresourceName,\
+           qmyradExamDept,qmycurrentStatus
+           
           ]
          ));
     
