@@ -264,11 +264,19 @@ class Rad_Exam < ActiveRecord::Base
       qmycode =  q1.ilike(".procedure.code", "%#{params[:code]}%");
       
     end
+    
+     #:resource_name
+      qmyresourceName  =  q1.equal(".id",".id");
+     if ((params[:resource_name] != "") && !(params[:resource_name].nil?) && !(params[:resource_name].blank?))          
+      end
+      #exams_search = exams_search.where("  res.name  ilike ?", "%#{params[:resource_name]}%" ).all ;
+      qmyresourceName  =  q1.ilike(".resource.name", "%#{params[:resource_name]}%");
+    end
    
         q1.where(q1.and(
           [qmyreports,qmyexams,qmyorders,qmyvisit,\
            qmyorder,qmyaccession,qmypatientType,\
-           qmymrn,qmyname,qmymodality,qmycode
+           qmymrn,qmyname,qmymodality,qmycode,qmyresourceName 
           ]
          ));
     
