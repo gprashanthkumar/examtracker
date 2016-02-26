@@ -316,7 +316,7 @@ class HomeController < ApplicationController
              technologist = ""
              siteLocation += e.siteSublocation.siteLocation.location  unless e.siteSublocation.blank?;
              if (!e.siteSublocation.blank?)        
-                   siteLocation += " " + e.siteSublocation.room unless e.siteSublocation.room.blank? ;
+                   siteLocation += ", " + e.siteSublocation.room unless e.siteSublocation.room.blank? ;
                    siteLocation += "-" + e.siteSublocation.bed unless e.siteSublocation.bed.blank?;
 
              end
