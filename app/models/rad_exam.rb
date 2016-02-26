@@ -293,7 +293,7 @@ class Rad_Exam < ActiveRecord::Base
      end
         qmysiteName =  q1.equal(".id",".id");
        if ((params[:site_name] != "") && !(params[:site_name].nil?) && !(params[:site_name].blank?))
-         qmysiteName = =  q1.ilike(".e.site.site", "%#{params[:site_name]}%");
+         qmysiteName =  q1.ilike(".e.site.site", "%#{params[:site_name]}%");
        end
          
       
@@ -303,7 +303,8 @@ class Rad_Exam < ActiveRecord::Base
           [qmyreports,qmyexams,qmyorders,qmyvisit,\
            qmyorder,qmyaccession,qmypatientType,\
            qmymrn,qmyname,qmymodality,qmycode,qmyresourceName,\
-           qmyradExamDept,qmycurrentStatus,qmypatientExamLocation
+           qmyradExamDept,qmycurrentStatus,qmypatientExamLocation, \
+           qmysiteName
            
           ]
          ));
