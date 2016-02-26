@@ -283,8 +283,8 @@ class Rad_Exam < ActiveRecord::Base
      end
      
      # :current_status
-     #qmycurrentStatus =  q1.equal(".id",".id");
-      qmycurrentStatus = nil;
+     qmycurrentStatus =  q1.equal(".id",".id");
+      #qmycurrentStatus = nil;
      if ((params[:current_status] != "") && !(params[:current_status].nil?) && !(params[:current_status].blank?))          
       qmycurrentStatus =  q1.ilike(".currentStatus.universalEventType.eventType", "%#{params[:current_status]}%");
      end
