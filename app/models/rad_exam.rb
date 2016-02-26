@@ -288,13 +288,14 @@ class Rad_Exam < ActiveRecord::Base
       qmycurrentStatus =  q1.ilike(".currentStatus.universalEventType.eventType", "%#{params[:current_status]}%");
      end
      qmypatientExamLocation =  q1.equal(".id",".id");
-     if ((params[:patient_exam_location] != "") && !(params[:patient_exam_location].nil?) && !(params[:patient_exam_location].blank?))          
-       qmypatientExamLocation =  q1.ilike(".siteSublocation.siteLocation.location", "%#{params[:patient_exam_location]}%");
+     if ((params[:patient_location_at_exam] != "") && !(params[:patient_location_at_exam].nil?) && !(params[:patient_location_at_exam].blank?))          
+       qmypatientExamLocation =  q1.ilike(".siteSublocation.siteLocation.location", "%#{params[:patient_location_at_exam]}%");
      end
-        qmysiteName =  q1.equal(".id",".id");
-       if ((params[:site_name] != "") && !(params[:site_name].nil?) && !(params[:site_name].blank?))
+     
+     qmysiteName =  q1.equal(".id",".id");
+     if ((params[:site_name] != "") && !(params[:site_name].nil?) && !(params[:site_name].blank?))
          qmysiteName =  q1.ilike(".site.site", "%#{params[:site_name]}%");
-       end
+     end
          
       
      
