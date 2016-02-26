@@ -293,7 +293,7 @@ class Rad_Exam < ActiveRecord::Base
      end
         qmysiteName =  q1.equal(".id",".id");
        if ((params[:site_name] != "") && !(params[:site_name].nil?) && !(params[:site_name].blank?))
-         qmysiteName =  q1.ilike(".e.site.site", "%#{params[:site_name]}%");
+         qmysiteName =  q1.ilike(".site.site", "%#{params[:site_name]}%");
        end
          
       
