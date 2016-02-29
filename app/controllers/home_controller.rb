@@ -61,35 +61,33 @@ class HomeController < ApplicationController
      ordering_provider = ""
      scheduler = ""
      technologist = ""
-     siteLocation += e.siteSublocation.siteLocation.location  unless e.siteSublocation.blank?;
+     image_count = 0;
+     sched_time = "";
+     appt_time = "";
+     sign_in = "";
+     check_in = "";
+     begin_exam = "";
+     end_exam = "";
+     order_arrival = "";
+     report_time = "";
+     updated_at = "";
+     
      if (!e.siteSublocation.blank?)        
-           siteLocation += " " + e.siteSublocation.room unless e.siteSublocation.room.blank? ;
-           siteLocation += "-" + e.siteSublocation.bed unless e.siteSublocation.bed.blank?;
+          siteLocation += e.siteSublocation.siteLocation.location  unless e.siteSublocation.blank?;
+          siteLocation += " " + e.siteSublocation.room unless e.siteSublocation.room.blank? ;
+          siteLocation += "-" + e.siteSublocation.bed unless e.siteSublocation.bed.blank?;
               
      end
     
       if (!e.radExamPersonnel.blank?) 
        ordering_provider = e.radExamPersonnel.ordering.name unless e.radExamPersonnel.ordering.blank?
-      end
-      
-       if (!e.radExamPersonnel.blank?) 
        scheduler = e.radExamPersonnel.scheduler.name unless e.radExamPersonnel.scheduler.blank?
-      end
-      
-      if (!e.radExamPersonnel.blank?) 
        technologist = e.radExamPersonnel.technologist.name unless e.radExamPersonnel.technologist.blank?
-      end
-      image_count = 0;
-       sched_time = "";
-      appt_time = "";
-      sign_in = "";
-      check_in = "";
-      begin_exam = "";
-      end_exam = "";
-      order_arrival = "";
-      report_time = "";
-      updated_at = "";
+      end     
+       
+      
       image_count = e.radPacsMetadatum.imageCount unless e.radExamMetadata.blank?
+      
       if (!e.radExamTime.nil?)      
       sched_time  = DateTime.parse(e.radExamTime.scheduleEvent.to_s).utc.to_s  unless e.radExamTime.scheduleEvent.blank?;
       appt_time = DateTime.parse(e.radExamTime.appointment.to_s).utc.to_s  unless e.radExamTime.appointment.blank?;
