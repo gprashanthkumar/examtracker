@@ -630,22 +630,20 @@ class HomeController < ApplicationController
   
   
   def get_accession_report
-     @accession_id = params[:accession_id];
+    @accession_id = params[:accession_id];
     @mysdk1 = nil;
     @exams = [];
     grades= "";
     authenticity_token = params[:authenticity_token];
     
     
-     #@exams = Rad_Exam.get_accession_detail(@accession_id.to_s)   
-     @mysdk1 = Rad_Exam.get_accession_detail_sdk(@accession_id.to_s)   
-     
-      #log output data
-      if @mysdk1.length > 0
-      
-      
+    #@exams = Rad_Exam.get_accession_detail(@accession_id.to_s)   
+    @mysdk1 = Rad_Exam.get_accession_detail_sdk(@accession_id.to_s)   
+    
+    #log output data
+    if @mysdk1.length > 0
       @mysdk1.each  do |e|
-        x= nil;
+        
         if(!e.radReports.blank?)
           
           
@@ -666,20 +664,17 @@ class HomeController < ApplicationController
             @exams << grades ;
           end
           
-          
-          
-        end #!e.radReports.blank?
-        
+        end #!e.radReports.blank?  
         
         
       end 
       #end @mysdk1 loop
     end
     
-     #log output data
+    #log output data
     log_hipaa_view(@mysdk1);
-   json_data = "";
-     json_data =   JSON.parse(@exams.to_json)
+    json_data = "";
+    json_data =   JSON.parse(@exams.to_json)
     #JSON.parse(@exams.to_json)
     respond_to do |format|
       format.json { render :json => json_data.to_json }
