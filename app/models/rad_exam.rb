@@ -367,6 +367,12 @@ class Rad_Exam < ActiveRecord::Base
     return reports;
   end
   
+   #Definitions: This is the definition to return resultset of reports records for passed accessionid as accession of the reports
+  def self.get_accession_reports_sdk(accessionid)
+    reports = self.join_Main.Radiologist_Reports.where(" rad_exams.accession = ? ",accessionid).order("id desc").all;
+    return reports;
+  end
+  
   #Definitions: This is the  utility definition 
   #(this can be moved out of this module to any other, as long as its accessible from this module).
   def self.string_array_to_string(arraystring)
