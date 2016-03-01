@@ -524,7 +524,7 @@ class HomeController < ApplicationController
                    "report_time" => report_time.to_s,
                    "first_final"=> report_time.to_s,
                    "last_final" => report_time.to_s,
-                   "rad1_name"=> "RAM RAM",
+                   "rad1_name"=> "RAM RAM""",
                    "rad2_name" => "Krishna MMMM"
                  }
                 #puts grades.to_json; 
