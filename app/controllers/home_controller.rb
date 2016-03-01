@@ -615,7 +615,7 @@ class HomeController < ApplicationController
   end
   
   
-  def get_accession_report_old
+  def get_accession_report
    
     @accession_id = params[:accession_id];
     authenticity_token = params[:authenticity_token];      
@@ -629,7 +629,7 @@ class HomeController < ApplicationController
   end
   
   
-  def get_accession_report
+  def get_accession_report_new
      @accession_id = params[:accession_id];
     @mysdk1 = nil;
     @exams = [];
