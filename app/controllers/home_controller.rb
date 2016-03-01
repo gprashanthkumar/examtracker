@@ -615,7 +615,7 @@ class HomeController < ApplicationController
   end
   
   
-  def get_accession_report
+  def get_accession_report_old
    
     @accession_id = params[:accession_id];
     authenticity_token = params[:authenticity_token];      
@@ -629,7 +629,7 @@ class HomeController < ApplicationController
   end
   
   
-  def get_accession_report_new
+  def get_accession_report
      @accession_id = params[:accession_id];
     @mysdk1 = nil;
     @exams = [];
@@ -655,7 +655,7 @@ class HomeController < ApplicationController
             #:status, :report_time,:report_impression, :report_body, :rad1_name,:rad2_name
             grades = {        
               "current_status" => y.reportStatus.universalEventType.eventType,
-              "report_time" => y.reportImpression,  
+              "report_time" => y.reportEvent.to_s,  
               "report_impression" => y.reportImpression,
               "report_body" =>y.reportBody,
               "rad1_name" => y.rad1.name,
