@@ -345,6 +345,22 @@ class Rad_Exam < ActiveRecord::Base
     return accession;
   end
   
+   def self.get_accession_detail_sdk(accessionid)
+  
+    q1 = Java::HarbingerSdkData::RadExam.createQuery(@entity_manager) 
+     if (!accessionid.blank?)
+       q1.where(
+          q1.equal(".accession", accessionid)      
+     );
+     
+     else
+        q1.where(
+      q1.equal(".id", -1)
+      );
+     end
+     return q1.list.to_a 
+  end
+  
   #Definitions: This is the definition to return resultset of reports records for passed accessionid as accession of the reports
   def self.get_accession_reports(accessionid)
     reports = self.join_Main.Radiologist_Reports.where(" rad_exams.accession = ? ",accessionid).order("id desc").all;
