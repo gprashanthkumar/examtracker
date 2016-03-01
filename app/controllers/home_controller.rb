@@ -474,25 +474,11 @@ class HomeController < ApplicationController
 
               if (!e.radExamPersonnel.blank?) 
                ordering_provider = e.radExamPersonnel.ordering.name unless e.radExamPersonnel.ordering.blank?
-              end
-
-               if (!e.radExamPersonnel.blank?) 
                scheduler = e.radExamPersonnel.scheduler.name unless e.radExamPersonnel.scheduler.blank?
-              end
-
-              if (!e.radExamPersonnel.blank?) 
                technologist = e.radExamPersonnel.technologist.name unless e.radExamPersonnel.technologist.blank?
               end
-              image_count = 0;
-               sched_time = "";
-              appt_time = "";
-              sign_in = "";
-              check_in = "";
-              begin_exam = "";
-              end_exam = "";
-              order_arrival = "";
-              report_time = "";
-              updated_at = "";
+              
+             
               image_count = e.radPacsMetadatum.imageCount unless e.radExamMetadata.blank?
               if (!e.radExamTime.nil?)      
               sched_time  = DateTime.parse(e.radExamTime.scheduleEvent.to_s).utc.to_s  unless e.radExamTime.scheduleEvent.blank?;
@@ -527,7 +513,7 @@ class HomeController < ApplicationController
                    "ordering_provider" => ordering_provider,
                    "scheduler" => scheduler,
                    "technologist" => technologist,
-                   "image_count" => image_count,
+                   "pacs_image_count" => image_count,
                    "sched_time" => sched_time.to_s,
                    "appt_time" => appt_time.to_s,
                    "sign_in" => sign_in.to_s,
@@ -535,7 +521,11 @@ class HomeController < ApplicationController
                    "begin_exam" => begin_exam.to_s,
                    "end_exam" => end_exam.to_s,
                    "order_arrival" => order_arrival.to_s,
-                   "report_time" => report_time.to_s
+                   "report_time" => report_time.to_s,
+                   "first_final"=> report_time.to_s,
+                   "last_final" => report_time.to_s,
+                   "rad1_name"=> "RAM RAM",
+                   "rad2_name" => "Krishna MMMM"
                  }
                 #puts grades.to_json; 
 
