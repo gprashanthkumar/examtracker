@@ -641,39 +641,39 @@ class HomeController < ApplicationController
      @mysdk1 = Rad_Exam.get_accession_detail_sdk(@accession_id.to_s)   
      
       #log output data
-     if @mysdk1.length > 0
+      if @mysdk1.length > 0
       
-    
-            @mysdk1.each  do |e|
-             x= nil;
-             if(!e.radReports.blank?)
-               {
-                 
-                   e.radReports.each do |y|
-                     
-                     
-                      #:status, :report_time,:report_impression, :report_body, :rad1_name,:rad2_name
-             grades = {        
-                  "current_status" => y.reportStatus.universalEventType.eventType,
-                 "report_time" => y.reportImpression,  
-                "report_impression" => y.reportImpression,
-                  "report_body" =>y.reportBody,
-                  "rad1_name" => y.rad1.name,
-                   "rad2_name" => y.rad2.name
-                 };
-                 
-             #puts grades["graph_status"]
-              @exams << grades ;
-                   end
+      
+      @mysdk1.each  do |e|
+        x= nil;
+        if(!e.radReports.blank?)
+          
+          
+          e.radReports.each do |y|
             
-              
-               }
-             end #!e.radReports.blank?
-           
-             
-
-            end 
-            #end @mysdk1 loop
+            
+            #:status, :report_time,:report_impression, :report_body, :rad1_name,:rad2_name
+            grades = {        
+              "current_status" => y.reportStatus.universalEventType.eventType,
+              "report_time" => y.reportImpression,  
+              "report_impression" => y.reportImpression,
+              "report_body" =>y.reportBody,
+              "rad1_name" => y.rad1.name,
+              "rad2_name" => y.rad2.name
+            };
+            
+            #puts grades["graph_status"]
+            @exams << grades ;
+          end
+          
+          
+          
+        end #!e.radReports.blank?
+        
+        
+        
+      end 
+      #end @mysdk1 loop
     end
     
      #log output data
