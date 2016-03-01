@@ -446,6 +446,7 @@ class HomeController < ApplicationController
     @accession_id = params[:accession_id];
     @mysdk1 = nil;
     @exams = [];
+    grades= "";
     authenticity_token = params[:authenticity_token];
     
     
