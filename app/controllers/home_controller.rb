@@ -654,7 +654,7 @@ class HomeController < ApplicationController
             
             #:status, :report_time,:report_impression, :report_body, :rad1_name,:rad2_name
             grades = {        
-              "report_time" => y.reportEvent.utc.to_s,  
+              "report_time" =>  DateTime.parse(y.reportEvent.to_s).utc.to_s,  
               "report_impression" => y.reportImpression,
               "report_body" =>y.reportBody,
               "status" => y.reportStatus.universalEventType.eventType,
