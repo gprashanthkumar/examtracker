@@ -557,7 +557,7 @@ class HomeController < ApplicationController
        
     #JSON.parse(@exams.to_json)
     respond_to do |format|
-      format.json { render :json => JSON.parse(@exams.to_json) }
+      format.json { render :json => @exams.to_json }
     end
      
   end
