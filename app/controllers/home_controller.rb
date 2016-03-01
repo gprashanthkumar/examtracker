@@ -312,24 +312,6 @@ class HomeController < ApplicationController
              ordering_provider = ""
              scheduler = ""
              technologist = ""
-             siteLocation += e.siteSublocation.siteLocation.location  unless e.siteSublocation.blank?;
-             if (!e.siteSublocation.blank?)        
-                   siteLocation += ", " + e.siteSublocation.room unless e.siteSublocation.room.blank? ;
-                   siteLocation += "-" + e.siteSublocation.bed unless e.siteSublocation.bed.blank?;
-
-             end
-
-              if (!e.radExamPersonnel.blank?) 
-               ordering_provider = e.radExamPersonnel.ordering.name unless e.radExamPersonnel.ordering.blank?
-              end
-
-               if (!e.radExamPersonnel.blank?) 
-               scheduler = e.radExamPersonnel.scheduler.name unless e.radExamPersonnel.scheduler.blank?
-              end
-
-              if (!e.radExamPersonnel.blank?) 
-               technologist = e.radExamPersonnel.technologist.name unless e.radExamPersonnel.technologist.blank?
-              end
               image_count = 0;
                sched_time = "";
               appt_time = "";
@@ -340,7 +322,21 @@ class HomeController < ApplicationController
               order_arrival = "";
               report_time = "";
               updated_at = "";
-              image_count = e.radPacsMetadatum.imageCount unless e.radExamMetadata.blank?
+              
+             siteLocation += e.siteSublocation.siteLocation.location  unless e.siteSublocation.blank?;
+             if (!e.siteSublocation.blank?)        
+                   siteLocation += ", " + e.siteSublocation.room unless e.siteSublocation.room.blank? ;
+                   siteLocation += "-" + e.siteSublocation.bed unless e.siteSublocation.bed.blank?;
+
+             end
+
+              if (!e.radExamPersonnel.blank?) 
+               ordering_provider = e.radExamPersonnel.ordering.name unless e.radExamPersonnel.ordering.blank?
+               scheduler = e.radExamPersonnel.scheduler.name unless e.radExamPersonnel.scheduler.blank?
+               technologist = e.radExamPersonnel.technologist.name unless e.radExamPersonnel.technologist.blank?
+              end
+             
+              
               if (!e.radExamTime.nil?)      
               sched_time  = DateTime.parse(e.radExamTime.scheduleEvent.to_s).utc.to_s  unless e.radExamTime.scheduleEvent.blank?;
               appt_time = DateTime.parse(e.radExamTime.appointment.to_s).utc.to_s  unless e.radExamTime.appointment.blank?;
@@ -349,7 +345,9 @@ class HomeController < ApplicationController
               begin_exam = (DateTime.parse(e.radExamTime.beginExam.to_s).utc.to_s)  unless e.radExamTime.beginExam.blank?;      
               end_exam =   (DateTime.parse(e.radExamTime.endExam.to_s).utc.to_s)  unless (e.radExamTime.endExam.blank?)      
               order_arrival = DateTime.parse(e.radExamTime.orderArrival.to_s).utc.to_s  unless e.radExamTime.blank?;  
-              end      
+              end  
+              
+              image_count = e.radPacsMetadatum.imageCount unless e.radExamMetadata.blank?
               updated_at =  DateTime.parse(e.updatedAt.to_s).utc.to_s  unless e.updatedAt.blank?                    
               report_time = DateTime.parse(e.currentReport.reportEvent.to_s).utc.to_s  unless e.currentReport.blank?
 
@@ -442,7 +440,7 @@ class HomeController < ApplicationController
       format.json { render :json => @exams.to_json(:only => [ :accession,:mrn,:current_status,:code,:description,:modality,:resource_name,:graph_status,:current_status,:updated_at,:patient_name,:birthdate,:site_name,:patient_class,:trauma,:patient_type,:patient_location_at_exam,:radiology_department,:ordering_provider,:scheduler,:technologist,:pacs_image_count,:appt_time,:sign_in,:check_in,:begin_exam,:end_exam,:first_final,:last_final,:order_arrival,:rad1_name,:rad2_name]) }
     end    
   end
-   def get_accession
+  def get_accession
     @accession_id = params[:accession_id];
     @mysdk1 = nil;
     @exams = [];
@@ -450,107 +448,138 @@ class HomeController < ApplicationController
     authenticity_token = params[:authenticity_token];
     
     
-     #@exams = Rad_Exam.get_accession_detail(@accession_id.to_s)   
-     @mysdk1 = Rad_Exam.get_accession_detail_sdk(@accession_id.to_s)   
-     
-      #log output data
+    #@exams = Rad_Exam.get_accession_detail(@accession_id.to_s)   
+    @mysdk1 = Rad_Exam.get_accession_detail_sdk(@accession_id.to_s)   
     
-   
+    #log output data
+    
+    
     if @mysdk1.length > 0
       
-    
-            @mysdk1.each  do |e|
-
-             siteLocation = "";
-             ordering_provider = ""
-             scheduler = ""
-             technologist = ""
-             siteLocation += e.siteSublocation.siteLocation.location  unless e.siteSublocation.blank?;
-             if (!e.siteSublocation.blank?)        
-                   siteLocation += ", " + e.siteSublocation.room unless e.siteSublocation.room.blank? ;
-                   siteLocation += "-" + e.siteSublocation.bed unless e.siteSublocation.bed.blank?;
-
-             end
-
-              if (!e.radExamPersonnel.blank?) 
-               ordering_provider = e.radExamPersonnel.ordering.name unless e.radExamPersonnel.ordering.blank?
-               scheduler = e.radExamPersonnel.scheduler.name unless e.radExamPersonnel.scheduler.blank?
-               technologist = e.radExamPersonnel.technologist.name unless e.radExamPersonnel.technologist.blank?
-              end
-              
-             
-              image_count = e.radPacsMetadatum.imageCount unless e.radExamMetadata.blank?
-              if (!e.radExamTime.nil?)      
-              sched_time  = DateTime.parse(e.radExamTime.scheduleEvent.to_s).utc.to_s  unless e.radExamTime.scheduleEvent.blank?;
-              appt_time = DateTime.parse(e.radExamTime.appointment.to_s).utc.to_s  unless e.radExamTime.appointment.blank?;
-              sign_in = (DateTime.parse(e.radExamTime.signIn.to_s).utc.to_s) unless e.radExamTime.signIn.blank?;
-              check_in = (DateTime.parse(e.radExamTime.checkIn.to_s).utc.to_s) unless e.radExamTime.checkIn.blank?;
-              begin_exam = (DateTime.parse(e.radExamTime.beginExam.to_s).utc.to_s)  unless e.radExamTime.beginExam.blank?;      
-              end_exam =   (DateTime.parse(e.radExamTime.endExam.to_s).utc.to_s)  unless (e.radExamTime.endExam.blank?)      
-              order_arrival = DateTime.parse(e.radExamTime.orderArrival.to_s).utc.to_s  unless e.radExamTime.blank?;  
-              end      
-              updated_at =  DateTime.parse(e.updatedAt.to_s).utc.to_s  unless e.updatedAt.blank?                    
-              report_time = DateTime.parse(e.currentReport.reportEvent.to_s).utc.to_s  unless e.currentReport.blank?
-
-
-             grades = { "accession" => e.accession,
-                  "mrn" => e.patientMrn.mrn,           
-                  "current_status" => e.currentStatus.universalEventType.eventType,   
-                  "code" => (e.procedure.code unless e.procedure.nil?) ,           
-                   "description" => (e.procedure.description unless e.procedure.nil?),
-                   "modality" => (e.resource.modality.modality unless e.resource.nil?),
-                   "resource_name" => (e.resource.name unless e.resource.nil?),
-                   "graph_status" => e.currentStatus.universalEventType.eventType,           
-                   "updated_at" => updated_at,
-                   "patient_name" => ( e.patient.name unless e.patient.nil?),
-                   "birthdate" => ( e.patient.birthdate.to_s unless e.patient.nil?),
-                   "site_name" => (e.site.site unless e.site.site.nil?),
-                   "patient_class" => (e.siteClass.siteClass unless e.siteClass.nil?),
-                   "trauma" => (e.siteClass.trauma unless e.siteClass.nil?),
-                   "patient_type" => (e.siteClass.patientType.patientType unless e.siteClass.nil?),
-                   "patient_location_at_exam" => siteLocation,
-                   "radiology_department" => (e.radExamDepartment.description unless e.radExamDepartment.blank? ),
-                   "ordering_provider" => ordering_provider,
-                   "scheduler" => scheduler,
-                   "technologist" => technologist,
-                   "pacs_image_count" => image_count,
-                   "sched_time" => sched_time.to_s,
-                   "appt_time" => appt_time.to_s,
-                   "sign_in" => sign_in.to_s,
-                   "check_in" => check_in.to_s,
-                   "begin_exam" => begin_exam.to_s,
-                   "end_exam" => end_exam.to_s,
-                   "order_arrival" => order_arrival.to_s,
-                   "report_time" => report_time.to_s,
-                   "first_final"=> report_time.to_s,
-                   "last_final" => report_time.to_s,
-                   "rad1_name"=> "RAM RAM""",
-                   "rad2_name" => "Krishna MMMM"
-                 }
-                #puts grades.to_json; 
-
-                #remove this line after testing
-              #<start>
-             grades = manipulate_status_hash(grades);
-              #<end>
-
-              grades = get_graph_status_hash(grades);  
-              #puts grades["graph_status"]
-              @exams << grades ;
-
-            end 
-            #end @mysdk1 loop
+      
+      @mysdk1.each  do |e|
+        
+        
+        siteLocation = "";
+        ordering_provider = ""
+        scheduler = ""
+        technologist = ""
+        image_count = 0;
+        sched_time = "";
+        appt_time = "";
+        sign_in = "";
+        check_in = "";
+        begin_exam = "";
+        end_exam = "";
+        order_arrival = "";
+        report_time = "";
+        updated_at = "";
+        rad1_name = "Rad1";
+        rad2_name = "Rad2";
+        first_final ="";
+        last_final="";
+        
+       
+        
+        siteLocation += e.siteSublocation.siteLocation.location  unless e.siteSublocation.blank?;
+        if (!e.siteSublocation.blank?)        
+          siteLocation += ", " + e.siteSublocation.room unless e.siteSublocation.room.blank? ;
+          siteLocation += "-" + e.siteSublocation.bed unless e.siteSublocation.bed.blank?;
+          
+        end
+        
+        if (!e.radExamPersonnel.blank?) 
+          ordering_provider = e.radExamPersonnel.ordering.name unless e.radExamPersonnel.ordering.blank?
+          scheduler = e.radExamPersonnel.scheduler.name unless e.radExamPersonnel.scheduler.blank?
+          technologist = e.radExamPersonnel.technologist.name unless e.radExamPersonnel.technologist.blank?
+        end
+        
+        if (!e.radExamTime.nil?)      
+          sched_time  = DateTime.parse(e.radExamTime.scheduleEvent.to_s).utc.to_s  unless e.radExamTime.scheduleEvent.blank?;
+          appt_time = DateTime.parse(e.radExamTime.appointment.to_s).utc.to_s  unless e.radExamTime.appointment.blank?;
+          sign_in = (DateTime.parse(e.radExamTime.signIn.to_s).utc.to_s) unless e.radExamTime.signIn.blank?;
+          check_in = (DateTime.parse(e.radExamTime.checkIn.to_s).utc.to_s) unless e.radExamTime.checkIn.blank?;
+          begin_exam = (DateTime.parse(e.radExamTime.beginExam.to_s).utc.to_s)  unless e.radExamTime.beginExam.blank?;      
+          end_exam =   (DateTime.parse(e.radExamTime.endExam.to_s).utc.to_s)  unless (e.radExamTime.endExam.blank?)      
+          order_arrival = DateTime.parse(e.radExamTime.orderArrival.to_s).utc.to_s  unless e.radExamTime.blank?;  
+        end   
+        if(!e.firstFinalReport.blank?)
+          first_final = DateTime.parse(e.firstFinalReport.reportEvent.to_s).utc.to_s  unless e.firstFinalReport.blank?; 
+        end
+        
+         if(!e.lastFinalReport.blank?)
+          last_final = DateTime.parse(e.lastFinalReport.reportEvent.to_s).utc.to_s  unless e.lastFinalReport.blank?; 
+        end
+        
+        if (!e.currentReport.blank? )
+           rad1_name = e.currentReport.rad1.name unless e.currentReport.rad1.blank?
+           rad2_name = e.currentReport.rad2.name unless e.currentReport.rad2.blank?
+        end
+        
+        
+        image_count = e.radPacsMetadatum.imageCount unless e.radExamMetadata.blank?
+        updated_at =  DateTime.parse(e.updatedAt.to_s).utc.to_s  unless e.updatedAt.blank?                    
+        report_time = DateTime.parse(e.currentReport.reportEvent.to_s).utc.to_s  unless e.currentReport.blank?
+        
+        
+        grades = { "accession" => e.accession,
+          "mrn" => e.patientMrn.mrn,           
+          "current_status" => e.currentStatus.universalEventType.eventType,   
+          "code" => (e.procedure.code unless e.procedure.nil?) ,           
+          "description" => (e.procedure.description unless e.procedure.nil?),
+          "modality" => (e.resource.modality.modality unless e.resource.nil?),
+          "resource_name" => (e.resource.name unless e.resource.nil?),
+          "graph_status" => e.currentStatus.universalEventType.eventType,           
+          "updated_at" => updated_at,
+          "patient_name" => ( e.patient.name unless e.patient.nil?),
+          "birthdate" => ( e.patient.birthdate.to_s unless e.patient.nil?),
+          "site_name" => (e.site.site unless e.site.site.nil?),
+          "patient_class" => (e.siteClass.siteClass unless e.siteClass.nil?),
+          "trauma" => (e.siteClass.trauma unless e.siteClass.nil?),
+          "patient_type" => (e.siteClass.patientType.patientType unless e.siteClass.nil?),
+          "patient_location_at_exam" => siteLocation,
+          "radiology_department" => (e.radExamDepartment.description unless e.radExamDepartment.blank? ),
+          "ordering_provider" => ordering_provider,
+          "scheduler" => scheduler,
+          "technologist" => technologist,
+          "pacs_image_count" => image_count,
+          "sched_time" => sched_time.to_s,
+          "appt_time" => appt_time.to_s,
+          "sign_in" => sign_in.to_s,
+          "check_in" => check_in.to_s,
+          "begin_exam" => begin_exam.to_s,
+          "end_exam" => end_exam.to_s,
+          "order_arrival" => order_arrival.to_s,
+          "report_time" => report_time.to_s,
+          "first_final"=> first_final.to_s,
+          "last_final" => last_final.to_s,
+          "rad1_name"=> rad1_name,
+          "rad2_name" => rad2_name
+        }
+        #puts grades.to_json; 
+        
+        #remove this line after testing
+        #<start>
+        grades = manipulate_status_hash(grades);
+        #<end>
+        
+        grades = get_graph_status_hash(grades);  
+        #puts grades["graph_status"]
+        @exams << grades ;
+        
+      end 
+      #end @mysdk1 loop
     end
     
-     #log output data
+    #log output data
     log_hipaa_view(@mysdk1);
-   
-       
+    
+    
     #JSON.parse(@exams.to_json)
     respond_to do |format|
       format.json { render :json => grades.to_json }
     end
-     
+    
   end
    
   def get_graph_status_hash(exam={} )
