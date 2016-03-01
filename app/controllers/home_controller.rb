@@ -445,6 +445,7 @@ class HomeController < ApplicationController
    def get_accession
     @accession_id = params[:accession_id];
     @mysdk1 = nil;
+    @exams = [];
     authenticity_token = params[:authenticity_token];
     
     
