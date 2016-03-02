@@ -18,17 +18,28 @@ class HomeController < ApplicationController
   def technologist
     @employee = nil;
     @employee = Employee.get_employee(session[:username])
+     @role = nil;
+    @role="tech"
+    puts "<-- Inside tech --> \n"
+     render :radiologist
   end
   
   def scheregistrar
     @employee = nil;
     @employee = Employee.get_employee(session[:username])
+     @role = nil;
+    @role="schedreg"
+    puts "<-- Inside trans --> \n"
+     render :radiologist
   end
   
   def transcript
     @employee = nil;
     @employee = Employee.get_employee(session[:username])
-    
+     @role = nil;
+    @role="trans"
+    puts "<-- Inside trans --> \n"
+     render :radiologist
     
   end
   
