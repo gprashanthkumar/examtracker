@@ -10,6 +10,8 @@ class HomeController < ApplicationController
   def radiologist
   @employee = nil;
 	@employee = Employee.get_employee(session[:username])
+  @role = nil;
+  @role="rad"
   end
   
   def technologist

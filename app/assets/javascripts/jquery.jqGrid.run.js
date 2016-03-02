@@ -130,6 +130,7 @@
 			postData: {
                 accession: $("#DdlAccessionIdSrch").val(),
                 status: $("#DdlStatusSrch").val(),
+                role: window._role,
                 authenticity_token: window._token
             },
             colNames: ['A#','Progress Status','Current Status','Status Last Changed','Patient Name','Patient MRN','Patient DOB','Appt Time','Begin Exam','End Exam','SignIn','CheckIn','Site','Patient Class','Patient Type','Patient Location at exam','Radiology Department','Exam Resource','Modality','Proc Code','Proc Description','Ordering Provider','Scheduler','Technologist','PACS Image Count'],

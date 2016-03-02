@@ -106,6 +106,7 @@
 	<%= javascript_include_tag 'jqgrid/grid.locale-en.js' %>
 	<%= javascript_include_tag 'jqgrid/jquery.jqGrid.js' %>
 	<%= javascript_tag "window._token = '#{form_authenticity_token}'" %>
+        <%= javascript_tag "window._role = '#{@role}'" %>
         <%= javascript_include_tag 'jquery.jqGrid.run.js' %>
   
 <% end %>  
