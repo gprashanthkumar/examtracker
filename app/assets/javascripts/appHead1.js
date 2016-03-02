@@ -357,7 +357,6 @@
           {
               return "";
           } else {
-              alert("inside Datetime_tag_change [" + mystring + "]")
               //return format_date_time(mystring.replaceAll("-","/"));
               return format_date_time(mystring);
           }
