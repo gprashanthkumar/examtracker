@@ -12,6 +12,7 @@ class HomeController < ApplicationController
 	@employee = Employee.get_employee(session[:username])
   @role = nil;
   @role="rad"
+  puts "<-- Inside radiologist --> \n"
   end
   
   def technologist
@@ -27,10 +28,16 @@ class HomeController < ApplicationController
   def transcript
     @employee = nil;
     @employee = Employee.get_employee(session[:username])
+    
+    
   end
   
   def orders
     @employee = Employee.get_employee(session[:username])
+    @role = nil;
+    @role="order"
+    puts "<-- Inside order --> \n"
+     render :radiologist
   end
   
   def search
@@ -167,8 +174,8 @@ class HomeController < ApplicationController
   def get_jqgridRad
     accession_ids = params[:accession]
     exam_status = params[:status]
-    role  = params[:role]
-	
+    role = params[:role]
+	puts role
     
     sdk(role,accession_ids,exam_status);
   end
