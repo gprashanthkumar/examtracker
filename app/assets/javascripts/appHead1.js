@@ -1,6 +1,5 @@
 //kumar 
 
-
  function showExamDetail(id) {
 
           $("#divstatus").html('<div class=wizard"><a class="grey"><span class="badge"></span></a><a class="grey"><span class="badge"></span></a><a class="grey"><span class="badge"></span></a><a class="grey"><span class="badge"></span></a><a class="grey"><span class="badge badge-inverse"></span></a><a class="grey"><span class="badge"></span></a></div>')
