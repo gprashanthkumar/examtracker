@@ -28,7 +28,8 @@ Rails.application.config.assets.precompile += %w( bootstrap.min.css
                                                   AdminLTE/app.js
                                                   jquery-ui-1.10.3.min.js 
                                                   jquery.multiselect.js
-												  appHead1.js)
+												  appHead1.js
+												  jqgrid/jquery.jqGrid.run.js)
 
 
 #config.assets.precompile += [Rails.root.to_s + '/vendor/assets/stylesheets/custom/*.gif']
