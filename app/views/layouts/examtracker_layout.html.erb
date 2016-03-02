@@ -522,19 +522,32 @@
                       var btime = null;
                       var etime = null;
                       var aptime = null;
-                      var scheventime = null;
-                     
-
+                      var scheventime = null;  
                       $("#lbleduration").text("");
                       $("#lblwaitduration").text("");
                       $("#lblscheEventToappt").text("");
                       $("#lbltotalpatientwait").text("");
                       $("#lblfinalTurnaroundTime").text("");
+                      
+                       if ((myobj.order_arrival != null) && (myobj.order_arrival != ""))
+                       {
+                         scheventime = new Date(myobj.order_arrival);                         
+                       }
+                       if ((myobj.appt_time != null) && (myobj.appt_time != ""))
+                       {
+                            aptime = new Date(myobj.appt_time);                         
+                       }
+                       
+                       if ((myobj.begin_exam != null) && (myobj.begin_exam != ""))
+                       {
+                               btime = new Date(myobj.begin_exam);                         
+                       }
+                       
+                      if ((myobj.end_exam != null) && (myobj.end_exam != ""))
+                      {
+                        etime = new Date(myobj.end_exam);
+                      }
 
-                      scheventime = new Date(myobj.order_arrival);
-                      aptime = new Date(myobj.appt_time);
-                      btime = new Date(myobj.begin_exam);
-                      etime = new Date(myobj.end_exam);
 
                       if ((etime != null) && (btime != null)) {
                          var eduration = new Date(etime - btime);
