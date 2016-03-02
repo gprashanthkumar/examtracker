@@ -50,7 +50,7 @@
               <li><%= global_navigation_link "About", :controller => :main,  :action => :about %></li>
               <li><%= global_navigation_link "Help", :controller => :main,  :action => :help %></li>
         <% any_authorized(["ai-staff", "it-staff"]) do %>
-                    <li><%= global_navigation_link "Admin", :controller => :admin, :action => :index %></li>
+                        <li><%= global_navigation_link "Admin", :controller => :admin, :action => :index %></li>
         <% end %>
               <li><a href="<%= root_url %>/home/logout">Logout</a></li>
             </ul>
@@ -134,7 +134,7 @@
                         <li><a href="orders"><i class="fa fa-medkit"></i><span>Ordering</span></a></li>
                         <li><a href="search"><i class="fa fa-eye"></i><span>Search</span></a></li>
                         <li><a href="sdk"><i class="fa fa-eye"></i><span>sdk</span></a></li>
-                     
+
                     </ul>
                 </section>
                 <!-- /.sidebar -->
@@ -555,110 +555,110 @@
 
       }
 
-      function parseExamStatusGraph(cellvalue){         
-            var cellvalue_array = cellvalue.split(',');
-            //(cellvalue_array[0].split('->')[1] != "") ? cellvalue_array[0].split('->')[1] : cellvalue_array[1].split('->')[1];
-            var firstStageTitle = cellvalue_array[0].split('->')[1]; //Order Stage
-            var secondStageTitle = cellvalue_array[1].split('->')[1]; //Scheduled stage
-            var thirdStageTitle = (cellvalue_array[3].split('->')[1] != "") ? cellvalue_array[3].split('->')[1] : cellvalue_array[4].split('->')[1]; //arrived stage
-            var fourthStageTitle = cellvalue_array[5].split('->')[1]; //begin stage
-            var fifthStageTitle = cellvalue_array[6].split('->')[1]; //complete or prelim stage
-            var sixthStageTitle = cellvalue_array[7].split('->')[1]; //final stage
-            
-                firstStageTitle = Datetime_tag_change(firstStageTitle);
-                secondStageTitle = Datetime_tag_change(secondStageTitle);
-                thirdStageTitle = Datetime_tag_change(thirdStageTitle);
-                fourthStageTitle = Datetime_tag_change(fourthStageTitle);
-                fifthStageTitle = Datetime_tag_change(fifthStageTitle);
-                sixthStageTitle = Datetime_tag_change(sixthStageTitle);
-                
-		if(cellvalue_array[cellvalue_array.length -1] == "order"){
-			return '<div class="wizard"><a class="current" title="'+ firstStageTitle +'"><i class="fa fa-check" style="display: table-cell; float: right; margin: 8px;"></i><span class="badge"></span></a><a class="grey" title="'+ secondStageTitle +'"><span class="badge"></span></a><a class="grey" title="'+ thirdStageTitle +'"><span class="badge"></span></a><a class="grey" title="'+ fourthStageTitle +'"><span class="badge"></span></a><a class="grey" title="'+ fifthStageTitle +'"><span class="badge badge-inverse"></span></a><a title="'+ sixthStageTitle +'"><span class="badge"></span></a></div>';
-		}
-		else if(cellvalue_array[cellvalue_array.length -1]=="scheduled"){
-			return '<div class="wizard"><a class="current" title="'+ firstStageTitle +'"><span class="badge"></span></a><a class="softcyanlimegreen" title="'+ secondStageTitle +'"><i class="fa fa-check" style="display: table-cell; float: right; margin: 8px;"></i><span class="badge"></span></a><a class="grey" title="'+ thirdStageTitle +'"><span class="badge"></span></a><a class="grey" title="'+ fourthStageTitle +'"><span class="badge"></span></a><a class="grey" title="'+ fifthStageTitle +'"><span class="badge badge-inverse"></span></a><a title="'+ sixthStageTitle +'"><span class="badge"></span></a></div>';
-		}
-		else if(cellvalue_array[cellvalue_array.length -1] == "arrived"){
-			return '<div class="wizard"><a class="current" title="'+ firstStageTitle +'"><span class="badge"></span></a><a class="softcyanlimegreen" title="'+ secondStageTitle +'"><span class="badge"></span></a><a class="vanilla" title="'+ thirdStageTitle +'"><i class="fa fa-check" style="display: table-cell; float: right; margin: 8px;"></i><span class="badge"></span></a><a class="grey" title="'+ fourthStageTitle +'"><span class="badge"></span></a><a class="grey" title="'+ fifthStageTitle +'"><span class="badge badge-inverse"></span></a><a title="'+ sixthStageTitle +'"><span class="badge"></span></a></div>';
-		}
-		else if(cellvalue_array[cellvalue_array.length -1] == "begin"){
-			return '<div class="wizard"><a class="current" title="'+ firstStageTitle +'"><span class="badge"></span></a><a class="softcyanlimegreen" title="'+ secondStageTitle +'"><span class="badge"></span></a><a class="vanilla" title="'+ thirdStageTitle +'"><span class="badge"></span></a><a class="violet" title="'+ fourthStageTitle +'"><i class="fa fa-check" style="display: table-cell; float: right; margin: 8px;"></i><span class="badge"></span></a><a class="grey" title="'+ fifthStageTitle +'"><span class="badge badge-inverse"></span></a><a title="'+ sixthStageTitle +'"><span class="badge"></span></a></div>';
-		}
-		else if(cellvalue_array[cellvalue_array.length-1] == "complete"){
+      function parseExamStatusGraph(cellvalue) {
+          var cellvalue_array = cellvalue.split(',');
+          //(cellvalue_array[0].split('->')[1] != "") ? cellvalue_array[0].split('->')[1] : cellvalue_array[1].split('->')[1];
+          var firstStageTitle = cellvalue_array[0].split('->')[1]; //Order Stage
+          var secondStageTitle = cellvalue_array[1].split('->')[1]; //Scheduled stage
+          var thirdStageTitle = (cellvalue_array[3].split('->')[1] != "") ? cellvalue_array[3].split('->')[1] : cellvalue_array[4].split('->')[1]; //arrived stage
+          var fourthStageTitle = cellvalue_array[5].split('->')[1]; //begin stage
+          var fifthStageTitle = cellvalue_array[6].split('->')[1]; //complete or prelim stage
+          var sixthStageTitle = cellvalue_array[7].split('->')[1]; //final stage
 
-			return '<div class="wizard"><a class="current" title="'+ firstStageTitle +'"><span class="badge"></span></a><a class="softcyanlimegreen" title="'+ secondStageTitle +'"><span class="badge"></span></a><a class="vanilla" title="'+ thirdStageTitle +'"><span class="badge"></span></a><a class="violet" title="'+ fourthStageTitle +'"><span class="badge"></span></a><a class="darkorange" title="'+ fifthStageTitle +'"><i class="fa fa-check" style="display: table-cell; float: right; margin: 8px;"></i><span class="badge badge-inverse"></span></a><a title="'+ sixthStageTitle +'"><span class="badge"></span></a></div>';
-		}
-                else if ( (cellvalue_array[cellvalue_array.length-1]=="dictated") || (cellvalue_array[cellvalue_array.length-1]=="prelim") || (cellvalue_array[cellvalue_array.length-1]=="corrections") ){
-			return '<div class="wizard"><a class="current" title="'+ firstStageTitle +'"><span class="badge"></span></a><a class="softcyanlimegreen" title="'+ secondStageTitle +'"><span class="badge"></span></a><a class="vanilla" title="'+ thirdStageTitle +'"><span class="badge"></span></a><a class="violet" title="'+ fourthStageTitle +'"><span class="badge"></span></a><a class="darkorange" title="'+ fifthStageTitle +'"><span class="badge badge-inverse"></span></a><a class="gold" title="'+ sixthStageTitle +'"><i class="fa fa-check" style="display: table-cell; float: right; margin: 8px;"></i></a></div>';
-		}
-		else if ( (cellvalue_array[cellvalue_array.length-1]=="final") || (cellvalue_array[cellvalue_array.length-1]=="addendum") ){
-			return '<div class="wizard"><a class="current" title="'+ firstStageTitle +'"><span class="badge"></span></a><a class="softcyanlimegreen" title="'+ secondStageTitle +'"><span class="badge"></span></a><a class="vanilla" title="'+ thirdStageTitle +'"><span class="badge"></span></a><a class="violet" title="'+ fourthStageTitle +'"><span class="badge"></span></a><a class="darkorange" title="'+ fifthStageTitle +'"><span class="badge badge-inverse"></span></a><a class="green" title="'+ sixthStageTitle +'"><i class="fa fa-check" style="display: table-cell; float: right; margin: 8px;"></i></a></div>';
-		}
-		else if(cellvalue_array[cellvalue_array.length-1]=="cancelled"){
-			
-			var cancelledAtStageClass = "sixthStageClass";
-                        if(sixthStageTitle == ""){
-                          cancelledAtStageClass = "fifthStageClass";
-                          if(fifthStageTitle == ""){
-                             cancelledAtStageClass = "fourthStageClass";
-                             if(fourthStageTitle == ""){
-                                cancelledAtStageClass = "thirdStageClass";
-                                if(thirdStageTitle == ""){
-                                  cancelledAtStageClass = "secondStageClass";
-                                  if(secondStageTitle == ""){                                    
-                                    cancelledAtStageClass = "firstStageClass";
-                                  }
-                                }
-                             }
+          firstStageTitle = Datetime_tag_change(firstStageTitle);
+          secondStageTitle = Datetime_tag_change(secondStageTitle);
+          thirdStageTitle = Datetime_tag_change(thirdStageTitle);
+          fourthStageTitle = Datetime_tag_change(fourthStageTitle);
+          fifthStageTitle = Datetime_tag_change(fifthStageTitle);
+          sixthStageTitle = Datetime_tag_change(sixthStageTitle);
+
+          if (cellvalue_array[cellvalue_array.length - 1] == "order") {
+              return '<div class="wizard"><a class="current" title="' + firstStageTitle + '"><i class="fa fa-check" style="display: table-cell; float: right; margin: 8px;"></i><span class="badge"></span></a><a class="grey" title="' + secondStageTitle + '"><span class="badge"></span></a><a class="grey" title="' + thirdStageTitle + '"><span class="badge"></span></a><a class="grey" title="' + fourthStageTitle + '"><span class="badge"></span></a><a class="grey" title="' + fifthStageTitle + '"><span class="badge badge-inverse"></span></a><a title="' + sixthStageTitle + '"><span class="badge"></span></a></div>';
+          }
+          else if (cellvalue_array[cellvalue_array.length - 1] == "scheduled") {
+              return '<div class="wizard"><a class="current" title="' + firstStageTitle + '"><span class="badge"></span></a><a class="softcyanlimegreen" title="' + secondStageTitle + '"><i class="fa fa-check" style="display: table-cell; float: right; margin: 8px;"></i><span class="badge"></span></a><a class="grey" title="' + thirdStageTitle + '"><span class="badge"></span></a><a class="grey" title="' + fourthStageTitle + '"><span class="badge"></span></a><a class="grey" title="' + fifthStageTitle + '"><span class="badge badge-inverse"></span></a><a title="' + sixthStageTitle + '"><span class="badge"></span></a></div>';
+          }
+          else if (cellvalue_array[cellvalue_array.length - 1] == "arrived") {
+              return '<div class="wizard"><a class="current" title="' + firstStageTitle + '"><span class="badge"></span></a><a class="softcyanlimegreen" title="' + secondStageTitle + '"><span class="badge"></span></a><a class="vanilla" title="' + thirdStageTitle + '"><i class="fa fa-check" style="display: table-cell; float: right; margin: 8px;"></i><span class="badge"></span></a><a class="grey" title="' + fourthStageTitle + '"><span class="badge"></span></a><a class="grey" title="' + fifthStageTitle + '"><span class="badge badge-inverse"></span></a><a title="' + sixthStageTitle + '"><span class="badge"></span></a></div>';
+          }
+          else if (cellvalue_array[cellvalue_array.length - 1] == "begin") {
+              return '<div class="wizard"><a class="current" title="' + firstStageTitle + '"><span class="badge"></span></a><a class="softcyanlimegreen" title="' + secondStageTitle + '"><span class="badge"></span></a><a class="vanilla" title="' + thirdStageTitle + '"><span class="badge"></span></a><a class="violet" title="' + fourthStageTitle + '"><i class="fa fa-check" style="display: table-cell; float: right; margin: 8px;"></i><span class="badge"></span></a><a class="grey" title="' + fifthStageTitle + '"><span class="badge badge-inverse"></span></a><a title="' + sixthStageTitle + '"><span class="badge"></span></a></div>';
+          }
+          else if (cellvalue_array[cellvalue_array.length - 1] == "complete") {
+
+              return '<div class="wizard"><a class="current" title="' + firstStageTitle + '"><span class="badge"></span></a><a class="softcyanlimegreen" title="' + secondStageTitle + '"><span class="badge"></span></a><a class="vanilla" title="' + thirdStageTitle + '"><span class="badge"></span></a><a class="violet" title="' + fourthStageTitle + '"><span class="badge"></span></a><a class="darkorange" title="' + fifthStageTitle + '"><i class="fa fa-check" style="display: table-cell; float: right; margin: 8px;"></i><span class="badge badge-inverse"></span></a><a title="' + sixthStageTitle + '"><span class="badge"></span></a></div>';
+          }
+          else if ((cellvalue_array[cellvalue_array.length - 1] == "dictated") || (cellvalue_array[cellvalue_array.length - 1] == "prelim") || (cellvalue_array[cellvalue_array.length - 1] == "corrections")) {
+              return '<div class="wizard"><a class="current" title="' + firstStageTitle + '"><span class="badge"></span></a><a class="softcyanlimegreen" title="' + secondStageTitle + '"><span class="badge"></span></a><a class="vanilla" title="' + thirdStageTitle + '"><span class="badge"></span></a><a class="violet" title="' + fourthStageTitle + '"><span class="badge"></span></a><a class="darkorange" title="' + fifthStageTitle + '"><span class="badge badge-inverse"></span></a><a class="gold" title="' + sixthStageTitle + '"><i class="fa fa-check" style="display: table-cell; float: right; margin: 8px;"></i></a></div>';
+          }
+          else if ((cellvalue_array[cellvalue_array.length - 1] == "final") || (cellvalue_array[cellvalue_array.length - 1] == "addendum")) {
+              return '<div class="wizard"><a class="current" title="' + firstStageTitle + '"><span class="badge"></span></a><a class="softcyanlimegreen" title="' + secondStageTitle + '"><span class="badge"></span></a><a class="vanilla" title="' + thirdStageTitle + '"><span class="badge"></span></a><a class="violet" title="' + fourthStageTitle + '"><span class="badge"></span></a><a class="darkorange" title="' + fifthStageTitle + '"><span class="badge badge-inverse"></span></a><a class="green" title="' + sixthStageTitle + '"><i class="fa fa-check" style="display: table-cell; float: right; margin: 8px;"></i></a></div>';
+          }
+          else if (cellvalue_array[cellvalue_array.length - 1] == "cancelled") {
+
+              var cancelledAtStageClass = "sixthStageClass";
+              if (sixthStageTitle == "") {
+                  cancelledAtStageClass = "fifthStageClass";
+                  if (fifthStageTitle == "") {
+                      cancelledAtStageClass = "fourthStageClass";
+                      if (fourthStageTitle == "") {
+                          cancelledAtStageClass = "thirdStageClass";
+                          if (thirdStageTitle == "") {
+                              cancelledAtStageClass = "secondStageClass";
+                              if (secondStageTitle == "") {
+                                  cancelledAtStageClass = "firstStageClass";
+                              }
                           }
-                        }
-                        /*
-			if(sixthStageTitle == ""){
-				if(fifthStageTitle == ""){
-					if(fourthStageTitle == ""){
-						if(thirdStageTitle == ""){
-							if(secondStageTitle == ""){
-								cancelledAtStageClass = "firstStageClass";
-							}
-							else{
-								cancelledAtStageClass = "secondStageClass";
-							}
-						}
-						else{
-							cancelledAtStageClass = "thirdStageClass";
-						}
-					}
-					else{
-						cancelledAtStageClass = "fourthStageClass";
-					}
-				}
-				else{                                      
-					cancelledAtStageClass = "fifthStageClass";                                       
-				}
-			}
-			else{
-				cancelledAtStageClass = "sixthStageClass";
-			}
-                        */
-			//GraphUI to be displayed when cancelled status comes.
-			var graphStatusUI = $('<div class="wizard"><a class="firstStageClass current" title="'+ firstStageTitle +'"><span class="badge"></span></a><a class="secondStageClass softcyanlimegreen" title="'+ secondStageTitle +'"><span class="badge"></span></a><a class="thirdStageClass vanilla" title="'+ thirdStageTitle +'"><span class="badge"></span></a><a class="fourthStageClass violet" title="'+ fourthStageTitle +'"><span class="badge"></span></a><a class="fifthStageClass darkorange" title="'+ fifthStageTitle +'"><span class="badge badge-inverse"></span></a><a class="sixthStageClass green" title="'+ sixthStageTitle +'"></a></div>');
-			var cancelledStageIndex = $(graphStatusUI).find('a.'+ cancelledAtStageClass +'').index();
-			//$(graphStatusUI).find('a:lt('+cancelledStageIndex+')').addClass("current");
-			$(graphStatusUI).find('a:eq('+cancelledStageIndex+')').removeClass();
-                        $(graphStatusUI).find('a:eq('+cancelledStageIndex+')').addClass("red").append('<i class="fa fa-check" style="display: table-cell; float: right; margin: 8px;"></i>');
-                        $(graphStatusUI).find('a:gt('+cancelledStageIndex+')').removeClass();		
-                        $(graphStatusUI).find('a:gt('+cancelledStageIndex+')').addClass("grey");			
-			 return $(graphStatusUI).prop('outerHTML');
-		}
-		else{
-			return 'Can not parse "' + cellvalue + '" status';
-		}
-	  }
+                      }
+                  }
+              }
+              /*
+               if(sixthStageTitle == ""){
+               if(fifthStageTitle == ""){
+               if(fourthStageTitle == ""){
+               if(thirdStageTitle == ""){
+               if(secondStageTitle == ""){
+               cancelledAtStageClass = "firstStageClass";
+               }
+               else{
+               cancelledAtStageClass = "secondStageClass";
+               }
+               }
+               else{
+               cancelledAtStageClass = "thirdStageClass";
+               }
+               }
+               else{
+               cancelledAtStageClass = "fourthStageClass";
+               }
+               }
+               else{                                      
+               cancelledAtStageClass = "fifthStageClass";                                       
+               }
+               }
+               else{
+               cancelledAtStageClass = "sixthStageClass";
+               }
+               */
+              //GraphUI to be displayed when cancelled status comes.
+              var graphStatusUI = $('<div class="wizard"><a class="firstStageClass current" title="' + firstStageTitle + '"><span class="badge"></span></a><a class="secondStageClass softcyanlimegreen" title="' + secondStageTitle + '"><span class="badge"></span></a><a class="thirdStageClass vanilla" title="' + thirdStageTitle + '"><span class="badge"></span></a><a class="fourthStageClass violet" title="' + fourthStageTitle + '"><span class="badge"></span></a><a class="fifthStageClass darkorange" title="' + fifthStageTitle + '"><span class="badge badge-inverse"></span></a><a class="sixthStageClass green" title="' + sixthStageTitle + '"></a></div>');
+              var cancelledStageIndex = $(graphStatusUI).find('a.' + cancelledAtStageClass + '').index();
+              //$(graphStatusUI).find('a:lt('+cancelledStageIndex+')').addClass("current");
+              $(graphStatusUI).find('a:eq(' + cancelledStageIndex + ')').removeClass();
+              $(graphStatusUI).find('a:eq(' + cancelledStageIndex + ')').addClass("red").append('<i class="fa fa-check" style="display: table-cell; float: right; margin: 8px;"></i>');
+              $(graphStatusUI).find('a:gt(' + cancelledStageIndex + ')').removeClass();
+              $(graphStatusUI).find('a:gt(' + cancelledStageIndex + ')').addClass("grey");
+              return $(graphStatusUI).prop('outerHTML');
+          }
+          else {
+              return 'Can not parse "' + cellvalue + '" status';
+          }
+      }
 
       function TimeFromDateTime(mydate)
       {
           var datetext = '';
-          if ((mydate == null)|| (mydate == ''))  {
+          if ((mydate == null) || (mydate == '')) {
               return datetext;
           }
           d = new Date(mydate);
@@ -670,15 +670,23 @@
       }
       function DaysTimeWait(mydate) {
           var datetext = '';
-           if ((mydate == null)|| (mydate == ''))  {
+          if ((mydate == null) || (mydate == '')) {
               return datetext;
           }
-          d = new Date(mydate);
-          if (d != null) {
-              datetext = pad2(d.getDate()) + "d "
-              datetext += pad2(d.getHours()) + ":"
-              datetext += pad2(d.getMinutes()) + ":"
-              datetext += pad2(d.getSeconds());
+          try {
+
+
+              d = new Date(mydate);
+              if (d != null) {
+                  datetext = pad2(d.getDate()) + "d "
+                  datetext += pad2(d.getHours()) + ":"
+                  datetext += pad2(d.getMinutes()) + ":"
+                  datetext += pad2(d.getSeconds());
+              }
+
+          }
+          catch (err) {
+              console.log(err.message + "[" + mydate + "]");
           }
           return datetext;
       }
@@ -687,21 +695,27 @@
       }
 
       function format_date_time(mydate) {
-	   
+
           var datetext = '';
-           if ((mydate == null)|| (mydate == ''))  {
+          if ((mydate == null) || (mydate == '')) {
               return datetext;
           }
-            d = new Date(mydate);
-             
-             //console.info( '[' + mydate + '] + [' + d + ']')
-          if (d != null) {
-              datetext = d.getFullYear() + "-"
-              datetext += pad2(d.getMonth() + 1) + "-"
-              datetext += pad2(d.getDate()) + " "
-              datetext += pad2(d.getHours()) + ":"
-              datetext += pad2(d.getMinutes()) + ":"
-              datetext += pad2(d.getSeconds());
+          try {
+
+
+              d = new Date(mydate);
+
+              //console.info( '[' + mydate + '] + [' + d + ']')
+              if (d != null) {
+                  datetext = d.getFullYear() + "-"
+                  datetext += pad2(d.getMonth() + 1) + "-"
+                  datetext += pad2(d.getDate()) + " "
+                  datetext += pad2(d.getHours()) + ":"
+                  datetext += pad2(d.getMinutes()) + ":"
+                  datetext += pad2(d.getSeconds());
+              }
+          } catch (err) {
+              console.log(err.message + "[" + mydate + "]");
           }
 
           return datetext;
@@ -716,25 +730,27 @@
           }
 
       }
-     
-          
-     String.prototype.replaceAll = function(search, replacement)
-     {
-      var target = this;
-      return target.replace(new RegExp(search, 'g'), replacement);
-      }; 
-      
+
+
+      String.prototype.replaceAll = function (search, replacement)
+      {
+          var target = this;
+          return target.replace(new RegExp(search, 'g'), replacement);
+      };
+
       function Datetime_tag_change(mystring) {
-        if (( mystring == null)|| (mystring.trim() == ""))
-        {
-          return "";
-        } else {
-        //return format_date_time(mystring.replaceAll("-","/"));
-        return format_date_time(mystring);
+
+          if ((mystring == null) || (mystring.trim() == ""))
+          {
+              return "";
+          } else {
+              alert("inside Datetime_tag_change [" + mystring + "]")
+              //return format_date_time(mystring.replaceAll("-","/"));
+              return format_date_time(mystring);
+          }
+
       }
-        
-      }
-	
+
 
     </script>
 </body>
