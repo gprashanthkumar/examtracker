@@ -167,9 +167,10 @@ class HomeController < ApplicationController
   def get_jqgridRad
     accession_ids = params[:accession]
     exam_status = params[:status]
+    role  = params[:role]
 	
     
-    sdk("rad",accession_ids,exam_status);
+    sdk(role,accession_ids,exam_status);
   end
   
   def get_jqgridTech
