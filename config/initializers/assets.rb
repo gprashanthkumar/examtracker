@@ -27,7 +27,8 @@ Rails.application.config.assets.precompile += %w( bootstrap.min.css
                                                   plugins/datatables/dataTables.bootstrap.js
                                                   AdminLTE/app.js
                                                   jquery-ui-1.10.3.min.js 
-                                                  jquery.multiselect.js)
+                                                  jquery.multiselect.js
+												  AdminLTE/appbody1.js)
 
 
 #config.assets.precompile += [Rails.root.to_s + '/vendor/assets/stylesheets/custom/*.gif']
