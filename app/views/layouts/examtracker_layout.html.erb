@@ -513,11 +513,15 @@
                       $("#lblend_exam").text(TimeFromDateTime(myobj.end_exam));
                       $("#lblfirst_final").text(TimeFromDateTime(myobj.first_final));
                       $("#lbllast_final").text(TimeFromDateTime(myobj.last_final));
-                      var scheventime = new Date(myobj.order_arrival);
-                      var aptime = new Date(myobj.appt_time);
-
-                      var btime = new Date(myobj.begin_exam);
-                      var etime = new Date(myobj.end_exam);
+                      console.log("myobj.order_arrival" + myobj.order_arrival);
+                      console.log("myobj.appt_time" + myobj.appt_time);
+                      console.log("myobj.begin_exam" + myobj.begin_exam);
+                      console.log("myobj.end_exam" + myobj.end_exam);  
+                      console.log("myobj.end_exam" + myobj.end_exam);
+                      var scheventime = new Date(myobj.order_arrival);                     
+                      var aptime = new Date(myobj.appt_time);                    
+                      var btime = new Date(myobj.begin_exam);                     
+                      var etime = new Date(myobj.end_exam);                      
                       var eduration = new Date(etime - btime);
                       var waitduarion = new Date(btime - aptime);
                       var sched_to_aptime = new Date(aptime - scheventime);
