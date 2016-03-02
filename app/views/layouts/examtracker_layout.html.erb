@@ -17,6 +17,7 @@
         <%= stylesheet_link_tag    'AdminLTE', 'data-turbolinks-track' => false %>
 
         <% javascriptHead 'jquery.min' %>
+        <% javascriptHead 'appbody1' %>
         
         <%= yield(:head_javascript) %>
         <%= yield :head_javascript_section %>
@@ -27,7 +28,7 @@
         <%= harbingerjs_setup %>
         <%= yield(:javascript_includes) %>
         <%= @web_analytics_tracker.html_safe %>
-  <% javascriptHead 'appbody1' %>
+
     </head>
     <body class="skin-blue">
         <!-- Start Navbar -->
