@@ -50,7 +50,7 @@
               <li><%= global_navigation_link "About", :controller => :main,  :action => :about %></li>
               <li><%= global_navigation_link "Help", :controller => :main,  :action => :help %></li>
         <% any_authorized(["ai-staff", "it-staff"]) do %>
-                        <li><%= global_navigation_link "Admin", :controller => :admin, :action => :index %></li>
+                          <li><%= global_navigation_link "Admin", :controller => :admin, :action => :index %></li>
         <% end %>
               <li><a href="<%= root_url %>/home/logout">Logout</a></li>
             </ul>
@@ -516,26 +516,59 @@
                       console.log("myobj.order_arrival" + myobj.order_arrival);
                       console.log("myobj.appt_time" + myobj.appt_time);
                       console.log("myobj.begin_exam" + myobj.begin_exam);
-                      console.log("myobj.end_exam" + myobj.end_exam);  
                       console.log("myobj.end_exam" + myobj.end_exam);
-                      var scheventime = new Date(myobj.order_arrival);                     
-                      var aptime = new Date(myobj.appt_time);                    
-                      var btime = new Date(myobj.begin_exam);                     
-                      var etime = new Date(myobj.end_exam);                      
-                      var eduration = new Date(etime - btime);
-                      var waitduarion = new Date(btime - aptime);
-                      var sched_to_aptime = new Date(aptime - scheventime);
-                      var finalTurnaroundTime = new Date(etime - scheventime);
-                      var totalpatientwait = new Date(btime - scheventime);
+                      console.log("myobj.end_exam" + myobj.end_exam);
+                      
+                      var btime = null;
+                      var etime = null;
+                      var aptime = null;
+                      var scheventime = null;
+                     
 
-                      $("#lbleduration").text(eduration.toISOString().substr(11, 8));
-                      $("#lblwaitduration").text(waitduarion.toISOString().substr(11, 8));
-                      $("#lblscheEventToappt").text(DaysTimeWait(sched_to_aptime.toISOString()));
-                      $("#lbltotalpatientwait").text(DaysTimeWait(totalpatientwait.toISOString()));
-                      $("#lblfinalTurnaroundTime").text(DaysTimeWait(finalTurnaroundTime.toISOString()));
+                      $("#lbleduration").text("");
+                      $("#lblwaitduration").text("");
+                      $("#lblscheEventToappt").text("");
+                      $("#lbltotalpatientwait").text("");
+                      $("#lblfinalTurnaroundTime").text("");
 
+                      scheventime = new Date(myobj.order_arrival);
+                      aptime = new Date(myobj.appt_time);
+                      btime = new Date(myobj.begin_exam);
+                      etime = new Date(myobj.end_exam);
 
+                      if ((etime != null) && (btime != null)) {
+                         var eduration = new Date(etime - btime);
+                          if (eduration != null) {
+                              $("#lbleduration").text(eduration.toISOString().substr(11, 8));
+                          }
+                      }
+                      
+                        if ((aptime != null) && (btime != null)) {
+                           var waitduarion = new Date(btime - aptime);
+                           if (waitduarion != null) {
+                               $("#lblwaitduration").text(waitduarion.toISOString().substr(11, 8));
+                          }
+                        }
 
+                      if ((aptime != null) && (scheventime != null)) {
+                           var sched_to_aptime = new Date(aptime - scheventime);
+                           if (sched_to_aptime != null) {
+                               $("#lblscheEventToappt").text(DaysTimeWait(sched_to_aptime.toISOString()));
+                          }
+                        }
+                        
+                         if ((etime != null) && (scheventime != null)) {
+                           var finalTurnaroundTime = new Date(etime - scheventime);
+                           if (finalTurnaroundTime != null) {
+                               $("#lblfinalTurnaroundTime").text(DaysTimeWait(finalTurnaroundTime.toISOString()));
+                          }
+                        }
+                      if ((btime != null) && (scheventime != null)) {
+                              var totalpatientwait = new Date(btime - scheventime);
+                           if (totalpatientwait != null) {
+                                  $("#lbltotalpatientwait").text(DaysTimeWait(totalpatientwait.toISOString()));
+                          }
+                        }   
 
                       //indentifiers
                       $("#lblaccession").text(myobj.accession);
