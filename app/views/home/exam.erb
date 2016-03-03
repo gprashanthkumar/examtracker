@@ -1,0 +1,108 @@
+
+
+<% stylesheetHead 'bootstrap.min' %>
+<% stylesheetHead 'font-awesome.min' %>
+<% stylesheetHead 'ionicons.min' %>
+<% stylesheetHead 'radiologist' %>
+<% stylesheetHead 'jquery.multiselect' %>
+<% stylesheetHead 'jqgrid_style/ui.jqgrid' %>
+<% stylesheetHead 'jquery-ui' %>
+<% stylesheetHead 'AdminLTE' %>
+<% stylesheetHead 'custom_popup' %>
+
+
+<% content_for :head_javascript_section do %>
+	<style>
+		table#tblRadExam tbody tr td:first-child a{
+			color:skyblue;
+		}
+		
+		#fbox_tblRadExam table tbody tr td.columns select{
+			max-width:160px;
+		}
+		
+	</style>
+  <script type='text/javascript'>
+	$(document).ready(function () {
+		
+	});
+  </script>
+ <% end %>
+
+<!-- Right side column. Contains the navbar and content of the page -->
+        <aside class="right-side">
+            <!-- Content Header (Page header) -->
+            <section class="content-header">
+                <h1>Radiologist</h1>
+                <ol class="breadcrumb">
+                    <li><a href="#"><i class="fa fa-home"></i>Home</a></li>
+                    <li class="active">Radiologist</li>
+                </ol>
+            </section>
+			
+            
+<!-- Main content -->
+        <section class="content">
+                <div class="row">
+                    <div class="col-xs-12" style=" text-align: center;">
+                        <div>
+                        	<div class="col-xs-4">
+                                <select id="DdlAccessionIdSrch" title="Basic example" multiple="multiple" name="example-basic" size="5">
+                                </select>
+                            </div>
+                            <div class="col-xs-4" >
+                                <select id="DdlStatusSrch" title="Basic example" multiple="multiple" name="example-basic" >
+                                    <option value="status_1">Delay</option>
+                                    <option value="status_2">InProgress</option>
+                                    <option value="status_3">Final</option>
+                                </select>
+                            </div> 
+							<div class="col-xs-4" style=" text-align: left;">
+								<input type="button" id="BtnFilter" value="Filter" />
+							</div>
+                            
+                        </div>
+                    </div>
+                    <br />
+                    <br />
+                    <div class="col-xs-12">
+                        <div class="box">
+                            <!--<div class="box-header">
+              <h3 class="box-title">Data Table With Full Features</h3>
+            </div>-->
+                            <!-- /.box-header -->
+                            <div id="radExamGridContainer" class="box-body table-responsive">
+                                <table id="tblRadExam" class="table table-bordered table-striped">
+                                </table>
+                                <div id="tblRadExamPager"></div>
+                            </div>
+                            <!-- /.box-body -->
+                        </div>
+
+                        <!-- /.box -->
+                    </div>
+                </div>
+
+
+
+            </section>
+ <!-- /.content -->
+
+<% javascriptBody 'jquery.min.js' %>
+<% javascriptBody 'bootstrap.min' %>
+
+<%-# javascriptBody 'plugins/datatables/jquery.dataTables' -%>
+<%-# javascriptBody 'plugins/datatables/dataTables.bootstrap' -%>
+<% javascriptBody 'AdminLTE/app' %>
+
+<% javascriptBody 'jquery-ui-1.10.3.min' %>
+<% javascriptBody 'jquery.multiselect' %>
+
+<% content_for :body_javascript_section do %>
+	<%= javascript_include_tag 'jqgrid/grid.locale-en.js' %>
+	<%= javascript_include_tag 'jqgrid/jquery.jqGrid.js' %>
+	<%= javascript_tag "window._token = '#{form_authenticity_token}'" %>
+        <%= javascript_tag "window._role = '#{@role}'" %>
+        <%= javascript_include_tag 'jquery.jqGrid.run.js' %>
+  
+<% end %>  

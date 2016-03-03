@@ -9,11 +9,12 @@ class HomeController < ApplicationController
   end
   def radiologist
   @employee = nil;
+  
 	@employee = Employee.get_employee(session[:username])
   @role = nil;
   @role="rad"
   puts "<-- Inside radiologist --> \n"
-   render :radiologist
+   render :exam
   end
   
   def technologist
@@ -22,7 +23,7 @@ class HomeController < ApplicationController
      @role = nil;
     @role="tech"
     puts "<-- Inside tech --> \n"
-     render :radiologist
+     render :exam
   end
   
   def scheregistrar
@@ -31,7 +32,7 @@ class HomeController < ApplicationController
      @role = nil;
     @role="schedreg"
     puts "<-- Inside trans --> \n"
-     render :radiologist
+     render :exam
   end
   
   def transcript
@@ -40,7 +41,7 @@ class HomeController < ApplicationController
      @role = nil;
     @role="trans"
     puts "<-- Inside trans --> \n"
-     render :radiologist
+     render :exam
     
   end
   
@@ -49,7 +50,7 @@ class HomeController < ApplicationController
     @role = nil;
     @role="order"
     puts "<-- Inside order --> \n"
-     render :radiologist
+     render :exam
   end
   
   def search
@@ -777,6 +778,9 @@ class HomeController < ApplicationController
     return exam;
   end
   
+  def exam
+    
+  end
 end
 
 
