@@ -21,7 +21,7 @@ class HomeController < ApplicationController
     @employee = nil;
     @employee = Employee.get_employee(session[:username])
      @role = nil;
-    @role="tech"
+    @role="Technologist"
     puts "<-- Inside tech --> \n"
      render :bucket
   end
@@ -30,7 +30,7 @@ class HomeController < ApplicationController
     @employee = nil;
     @employee = Employee.get_employee(session[:username])
      @role = nil;
-    @role="schedreg"
+    @role="Schedule Registrar"
     puts "<-- Inside trans --> \n"
      render :bucket
   end
@@ -39,7 +39,7 @@ class HomeController < ApplicationController
     @employee = nil;
     @employee = Employee.get_employee(session[:username])
      @role = nil;
-    @role="trans"
+    @role="Transcript"
     puts "<-- Inside trans --> \n"
      render :bucket
     
@@ -48,7 +48,7 @@ class HomeController < ApplicationController
   def orders
     @employee = Employee.get_employee(session[:username])
     @role = nil;
-    @role="order"
+    @role="Ordering"
     puts "<-- Inside order --> \n"
      render :bucket
   end
@@ -67,13 +67,13 @@ class HomeController < ApplicationController
     case roletype
     when "Radiologist"
       @mysdk1 = Rad_Exam.radRoleData(@employee.id,accession,currentstatus)             
-    when "tech"
+    when "Technologist"
       @mysdk1 = Rad_Exam.techRoleData(@employee.id,accession,currentstatus)  
-    when "schedreg"
+    when "Schedule Registrar"
       @mysdk1 = Rad_Exam.schedRegRoleData(@employee.id,accession,currentstatus)  
-    when "trans"
+    when "Transcript"
       @mysdk1 = Rad_Exam.transRoleData(@employee.id,accession,currentstatus)  
-    when "order"
+    when "Ordering"
       @mysdk1 = Rad_Exam.orderingRoleData(@employee.id,accession,currentstatus)  
     end
     
