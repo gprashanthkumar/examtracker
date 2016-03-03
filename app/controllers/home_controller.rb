@@ -12,7 +12,7 @@ class HomeController < ApplicationController
   
 	@employee = Employee.get_employee(session[:username])
   @role = nil;
-  @role="rad"
+  @role="Radiologist"
   puts "<-- Inside radiologist --> \n"
    render :bucket
   end
@@ -65,7 +65,7 @@ class HomeController < ApplicationController
     @mysdk1 = nil;
     @roleType = roletype
     case roletype
-    when "rad"
+    when "Radiologist"
       @mysdk1 = Rad_Exam.radRoleData(@employee.id,accession,currentstatus)             
     when "tech"
       @mysdk1 = Rad_Exam.techRoleData(@employee.id,accession,currentstatus)  
