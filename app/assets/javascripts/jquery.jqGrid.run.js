@@ -125,7 +125,7 @@
   	$('#radExamGridContainer').html('').append('<table id="tblRadExam" class="scroll"></table> <div id="tblRadExamPager" class="scroll text-center"></div>');
         $("#tblRadExam").jqGrid({
             datatype: "json",
-            url: '/home/get_jqgridRad/',
+            url: '/home/get_jqgrid/',
             mtype: 'POST',
 			postData: {
                 accession: $("#DdlAccessionIdSrch").val(),

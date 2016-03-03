@@ -182,7 +182,7 @@ class HomeController < ApplicationController
    
   end
     
-  def get_jqgridRad
+  def get_jqgrid
     accession_ids = params[:accession]
     exam_status = params[:status]
     role = params[:role]
@@ -190,35 +190,7 @@ class HomeController < ApplicationController
     
     sdk(role,accession_ids,exam_status);
   end
-  
-  def get_jqgridTech
-    accession_ids = params[:accession]
-    exam_status = params[:status]
-    
-       sdk("tech",accession_ids,exam_status);
-  end
-  
-  def get_jqgridScheReg
-    accession_ids = params[:accession]
-    exam_status = params[:status]
-    
-    sdk("schedreg",accession_ids,exam_status);
-  end
-  
-  def get_jqgridTranscript
-    accession_ids = params[:accession]
-    exam_status = params[:status]
-    
-    sdk("trans",accession_ids,exam_status);
-  end
-    
-  def get_jqgridOthers
-    accession_ids = params[:accession]
-    exam_status = params[:status]
-    
-    sdk("order",accession_ids,exam_status);
-  end
-  
+      
   def get_jqgridSearch_exam_data 
     #search can be performed by 2 methods union or intersection.
     #if  @Search_buckets_individually value is true then its union else default intersection.
