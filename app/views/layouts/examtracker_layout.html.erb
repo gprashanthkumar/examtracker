@@ -109,6 +109,12 @@
                     <div class="user-panel">
                         <div class="pull-left image">
                             <img src="/assets/avatar5.png" class="img-circle" alt="User Image" />
+                            <%=	image_tag(url_for(controller: :pictures, action: :show, id: employee.id), {                                                                                                                                                                                 
+	      :title => employee.name,                                                                                                                                                                                                                                       
+	      :class => "avatar",                                                                                                                                                                                                                                                      
+	      :size  => "47x47",                                                                                                                                                                              
+	      :onerror => "this.src='#{image_url('placeholder.png')}'" 
+                            %>
                         </div>
                         <div class="pull-left info">
                             <p>Hello, <%= @employee.name %>   </p>
