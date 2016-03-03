@@ -14,7 +14,7 @@ class HomeController < ApplicationController
   @role = nil;
   @role="rad"
   puts "<-- Inside radiologist --> \n"
-   render :exam
+   render :bucket
   end
   
   def technologist
@@ -23,7 +23,7 @@ class HomeController < ApplicationController
      @role = nil;
     @role="tech"
     puts "<-- Inside tech --> \n"
-     render :exam
+     render :bucket
   end
   
   def scheregistrar
@@ -32,7 +32,7 @@ class HomeController < ApplicationController
      @role = nil;
     @role="schedreg"
     puts "<-- Inside trans --> \n"
-     render :exam
+     render :bucket
   end
   
   def transcript
@@ -41,7 +41,7 @@ class HomeController < ApplicationController
      @role = nil;
     @role="trans"
     puts "<-- Inside trans --> \n"
-     render :exam
+     render :bucket
     
   end
   
@@ -50,7 +50,7 @@ class HomeController < ApplicationController
     @role = nil;
     @role="order"
     puts "<-- Inside order --> \n"
-     render :exam
+     render :bucket
   end
   
   def search
