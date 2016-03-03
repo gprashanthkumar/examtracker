@@ -218,7 +218,7 @@ class HomeController < ApplicationController
     accession_ids = params[:accession]
     exam_status = params[:status]
     role = params[:role]
-
+ authenticity_token = params[:authenticity_token];
     
     sdk(role,accession_ids,exam_status);
   end
@@ -362,7 +362,7 @@ class HomeController < ApplicationController
     
     if @mysdk1.length > 0
       
-      
+       @exams = get_examsHash(@mysdk1);
     
     end
     
