@@ -13,6 +13,7 @@ class HomeController < ApplicationController
   @role = nil;
   @role="rad"
   puts "<-- Inside radiologist --> \n"
+   render :radiologist
   end
   
   def technologist
@@ -407,32 +408,6 @@ class HomeController < ApplicationController
     
   end
   
- 
-  def get_accession_old
-    @accession_id = params[:accession_id];
-    authenticity_token = params[:authenticity_token];      
-    @exams = Rad_Exam.get_accession_detail(@accession_id.to_s)   
-   
-    @exams.each do |exam| 
-      #remove this line after testing
-      #<start>
-      exam = manipulate_status(exam);
-      #<end>
-      exam = get_graph_status(exam); 
-    end
-    #@exams.graph_status = exam.graph_status;
-    #@exams.graph_status = exam.graph_status;
-    #log output data
-    log_hipaa_view(@exams);
-    if @exams.size > 0
-      @exams = @exams[0];
-    end
-    
-    
-    respond_to do |format|
-      format.json { render :json => @exams.to_json(:only => [ :accession,:mrn,:current_status,:code,:description,:modality,:resource_name,:graph_status,:current_status,:updated_at,:patient_name,:birthdate,:site_name,:patient_class,:trauma,:patient_type,:patient_location_at_exam,:radiology_department,:ordering_provider,:scheduler,:technologist,:pacs_image_count,:appt_time,:sign_in,:check_in,:begin_exam,:end_exam,:first_final,:last_final,:order_arrival,:rad1_name,:rad2_name]) }
-    end    
-  end
   def get_accession
     @accession_id = params[:accession_id];
     @mysdk1 = nil;
@@ -625,21 +600,6 @@ class HomeController < ApplicationController
       
     return exam;
   end
-  
-  
-  def get_accession_report_old
-   
-    @accession_id = params[:accession_id];
-    authenticity_token = params[:authenticity_token];      
-    @reports = Rad_Exam.get_accession_reports(@accession_id.to_s)    
-    
-    #log output data
-    log_hipaa_view(@reports);
-    respond_to do |format|
-      format.json { render :json => @reports.to_json(:only => [ :status, :report_time,:report_impression, :report_body, :rad1_name,:rad2_name]) }
-    end    
-  end
-  
   
   def get_accession_report
     @accession_id = params[:accession_id];
