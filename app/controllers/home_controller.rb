@@ -8,8 +8,7 @@ class HomeController < ApplicationController
     search();
   end
   def radiologist
-    @employee = nil;
-    @employee = Employee.get_employee(session[:username])
+   
     if (session[:username].blank?)
      logout
     
@@ -17,6 +16,8 @@ class HomeController < ApplicationController
       render :unauthorized
     else
       @role = nil;
+      @employee = nil;
+      @employee = Employee.get_employee(session[:username])
       @role="Radiologist"    
       render :bucket
     end
@@ -25,38 +26,54 @@ class HomeController < ApplicationController
   end
   
   def technologist
-    @employee = nil;
-    @employee = Employee.get_employee(session[:username])
+    if (session[:username].blank?)
+     logout
+    
+    elsif  (Employee.authorizedAs(session[:username],"technologist") == false)
+      render :unauthorized
+    else
     @role = nil;
+    @employee = nil;
+    @employee = Employee.get_employee(session[:username])    
     @role="Technologist"
-    puts "<-- Inside tech --> \n"
     render :bucket
+    end
   end
   
   def scheregistrar
-    @employee = nil;
-    @employee = Employee.get_employee(session[:username])
+     if (session[:username].blank?)
+     logout    
+    elsif  (Employee.authorizedAs(session[:username],"scheduler-registrar") == false)
+      render :unauthorized
+    else
     @role = nil;
+    @employee = nil;
+    @employee = Employee.get_employee(session[:username])    
     @role="Schedule Registrar"
-    puts "<-- Inside trans --> \n"
+    
     render :bucket
+     end
   end
   
   def transcript
-    @employee = nil;
-    @employee = Employee.get_employee(session[:username])
+     if (session[:username].blank?)
+     logout    
+    elsif  (Employee.authorizedAs(session[:username],"transcriptionist") == false)
+      render :unauthorized
+    else
     @role = nil;
-    @role="Transcript"
-    puts "<-- Inside trans --> \n"
+    @employee = nil;
+    @employee = Employee.get_employee(session[:username])    
+    @role="Transcript"    
     render :bucket
-    
+     end
   end
   
   def orders
     @employee = Employee.get_employee(session[:username])
     @role = nil;
     @role="Ordering"
-    puts "<-- Inside order --> \n"
+    
     render :bucket
   end
   
@@ -207,8 +224,7 @@ class HomeController < ApplicationController
         "rad1_name"=> rad1_name,
         "rad2_name" => rad2_name
 
-      }
-      #puts grades.to_json; 
+      } 
         
       #remove this line after testing
       #<start>
@@ -250,7 +266,7 @@ class HomeController < ApplicationController
       @Search_buckets_individually = true
     end
     @Search_buckets_individually = true
-    puts "Hello world"
+    
     
     if (@Search_buckets_individually == true) #its UNION Join
       #perform search on individual  buckets and join the records          
@@ -261,7 +277,7 @@ class HomeController < ApplicationController
           
           @exams1 = Rad_Exam.get_exams_search_sdk(@employee.id,@myvalues,true,false,false)
           if @exams1.length > 0            
-            puts "inside :my_reports length total "  +@exams1.length.to_s ;
+          
             @exams1.each  do |e|
               if !(idList.include? e.accession)
                 idList << e.accession
@@ -273,7 +289,7 @@ class HomeController < ApplicationController
        
           @exams1 = nil;    
         
-          puts idList.to_s + "is idList \n"
+          
          
         end   
         
@@ -281,7 +297,7 @@ class HomeController < ApplicationController
           
           @exams1 = Rad_Exam.get_exams_search_sdk(@employee.id,@myvalues,false,true,false)
           if @exams1.length > 0            
-            puts "inside :my_exams length total "  +@exams1.length.to_s ;
+          
             @exams1.each  do |e|
               if !(idList.include? e.accession)
                 idList << e.accession
@@ -293,7 +309,7 @@ class HomeController < ApplicationController
        
           @exams1 = nil; 
           
-          puts idList.to_s + "is idList \n"
+          
        
         end   
         
@@ -301,7 +317,7 @@ class HomeController < ApplicationController
           
           @exams1 = Rad_Exam.get_exams_search_sdk(@employee.id,@myvalues,false,false,true)
           if @exams1.length > 0            
-            puts "inside :my_orders length total "  +@exams1.length.to_s ;
+            
             @exams1.each  do |e|
               if !(idList.include? e.accession)
                 idList << e.accession
@@ -313,14 +329,9 @@ class HomeController < ApplicationController
        
           @exams1 = nil;     
            
-          puts idList.to_s + "is idList \n"
+          #puts idList.to_s + "is idList \n"
          
         end   
-       
-        puts  "kumar hello world"
-        puts idList.to_s + "is idList \n"
-        puts  "end  hello world \n"
-        
        
         @mysdk1 = Rad_Exam.get_exams_search_by_id_array(idList);
 
