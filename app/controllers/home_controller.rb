@@ -101,20 +101,25 @@ class HomeController < ApplicationController
     
     mySDK.each  do |e|
       
-     siteLocation = "";
-     ordering_provider = ""
-     scheduler = ""
-     technologist = ""
-     image_count = 0;
-     sched_time = "";
-     appt_time = "";
-     sign_in = "";
-     check_in = "";
-     begin_exam = "";
-     end_exam = "";
-     order_arrival = "";
-     report_time = "";
-     updated_at = "";
+      siteLocation = "";
+      ordering_provider = ""
+      scheduler = ""
+      technologist = ""
+      pacs_image_count = 0;
+      sched_time = "";
+      appt_time = "";
+      sign_in = "";
+      check_in = "";
+      begin_exam = "";
+      end_exam = "";
+      order_arrival = "";
+      report_time = "";
+      updated_at = "";
+      rad1_name = "Rad1";
+      rad2_name = "Rad2";
+      first_final ="";
+      last_final="";
+
      
      if (!e.siteSublocation.blank?)        
           siteLocation += e.siteSublocation.siteLocation.location  unless e.siteSublocation.blank?;
@@ -130,17 +135,33 @@ class HomeController < ApplicationController
       end     
        
       
-      image_count = e.radPacsMetadatum.imageCount unless e.radExamMetadata.blank?
+      pacs_image_count = e.radPacsMetadatum.imageCount unless e.radExamMetadata.blank?
       
-      if (!e.radExamTime.nil?)      
-      sched_time  = DateTime.parse(e.radExamTime.scheduleEvent.to_s).utc.to_s  unless e.radExamTime.scheduleEvent.blank?;
-      appt_time = DateTime.parse(e.radExamTime.appointment.to_s).utc.to_s  unless e.radExamTime.appointment.blank?;
-      sign_in = (DateTime.parse(e.radExamTime.signIn.to_s).utc.to_s) unless e.radExamTime.signIn.blank?;
-      check_in = (DateTime.parse(e.radExamTime.checkIn.to_s).utc.to_s) unless e.radExamTime.checkIn.blank?;
-      begin_exam = (DateTime.parse(e.radExamTime.beginExam.to_s).utc.to_s)  unless e.radExamTime.beginExam.blank?;      
-      end_exam =   (DateTime.parse(e.radExamTime.endExam.to_s).utc.to_s)  unless (e.radExamTime.endExam.blank?)      
-      order_arrival = DateTime.parse(e.radExamTime.orderArrival.to_s).utc.to_s  unless e.radExamTime.blank?;  
-      end      
+      if (!e.radExamTime.nil?)           
+            sched_time  = DateTime.parse(e.radExamTime.scheduleEvent.to_s).utc.to_s  unless e.radExamTime.scheduleEvent.blank?;
+            appt_time = DateTime.parse(e.radExamTime.appointment.to_s).utc.to_s  unless e.radExamTime.appointment.blank?;
+            sign_in = (DateTime.parse(e.radExamTime.signIn.to_s).utc.to_s) unless e.radExamTime.signIn.blank?;
+            check_in = (DateTime.parse(e.radExamTime.checkIn.to_s).utc.to_s) unless e.radExamTime.checkIn.blank?;
+            begin_exam = (DateTime.parse(e.radExamTime.beginExam.to_s).utc.to_s)  unless e.radExamTime.beginExam.blank?;      
+            end_exam =   (DateTime.parse(e.radExamTime.endExam.to_s).utc.to_s)  unless (e.radExamTime.endExam.blank?)      
+            order_arrival = DateTime.parse(e.radExamTime.orderArrival.to_s).utc.to_s  unless e.radExamTime.blank?;  
+      end     
+      
+         if(!e.firstFinalReport.blank?)
+             first_final = DateTime.parse(e.firstFinalReport.reportEvent.to_s).utc.to_s  unless e.firstFinalReport.blank?; 
+        end
+        
+        if(!e.lastFinalReport.blank?)
+          last_final = DateTime.parse(e.lastFinalReport.reportEvent.to_s).utc.to_s  unless e.lastFinalReport.blank?; 
+        end
+        
+        if (!e.currentReport.blank? )
+           rad1_name = e.currentReport.rad1.name unless e.currentReport.rad1.blank?
+           rad2_name = e.currentReport.rad2.name unless e.currentReport.rad2.blank?
+        end
+        
+        
+
       updated_at =  DateTime.parse(e.updatedAt.to_s).utc.to_s  unless e.updatedAt.blank?                    
       report_time = DateTime.parse(e.currentReport.reportEvent.to_s).utc.to_s  unless e.currentReport.blank?
     
@@ -165,7 +186,7 @@ class HomeController < ApplicationController
            "ordering_provider" => ordering_provider,
            "scheduler" => scheduler,
            "technologist" => technologist,
-           "image_count" => image_count,
+           "pacs_image_count" => pacs_image_count,
            "sched_time" => sched_time.to_s,
            "appt_time" => appt_time.to_s,
            "sign_in" => sign_in.to_s,
@@ -173,7 +194,12 @@ class HomeController < ApplicationController
            "begin_exam" => begin_exam.to_s,
            "end_exam" => end_exam.to_s,
            "order_arrival" => order_arrival.to_s,
-           "report_time" => report_time.to_s
+           "report_time" => report_time.to_s,
+          "first_final"=> first_final.to_s,
+          "last_final" => last_final.to_s,
+          "rad1_name"=> rad1_name,
+          "rad2_name" => rad2_name
+
          }
         #puts grades.to_json; 
         
