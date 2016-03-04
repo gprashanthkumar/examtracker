@@ -9,12 +9,16 @@ class HomeController < ApplicationController
   end
   def radiologist
     @employee = nil;
-  
-    @employee = Employee.get_employee(session[:username])
+    if (any_authorized(["radiologist"]) == false)
+       render :unauthorized
+    else
+       @employee = Employee.get_employee(session[:username])
     @role = nil;
-    @role="Radiologist"
-    puts "<-- Inside radiologist --> \n"
+    @role="Radiologist"    
     render :bucket
+    end
+   
+   
   end
   
   def technologist

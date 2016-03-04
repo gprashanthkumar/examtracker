@@ -1,0 +1,68 @@
+
+
+<% stylesheetHead 'bootstrap.min' %>
+<% stylesheetHead 'font-awesome.min' %>
+<% stylesheetHead 'ionicons.min' %>
+<% stylesheetHead 'radiologist' %>
+<% stylesheetHead 'jquery.multiselect' %>
+<% stylesheetHead 'jqgrid_style/ui.jqgrid' %>
+<% stylesheetHead 'jquery-ui' %>
+<% stylesheetHead 'AdminLTE' %>
+<% stylesheetHead 'custom_popup' %>
+
+
+<% content_for :head_javascript_section do %>
+	<style>
+		table#tblRadExam tbody tr td:first-child a{
+			color:skyblue;
+		}
+		
+		#fbox_tblRadExam table tbody tr td.columns select{
+			max-width:160px;
+		}
+		
+	</style>
+ 
+ <% end %>
+
+<!-- Right side column. Contains the navbar and content of the page -->
+        <aside class="right-side">
+            <!-- Content Header (Page header) -->
+            <section class="content-header">
+                <h1><%=@role%></h1>
+                <ol class="breadcrumb">
+                    <li><a href="#"><i class="fa fa-home"></i>Home</a></li>
+                    <li class="active">Unauthorized</li>
+                </ol>
+            </section>
+			
+            
+<!-- Main content -->
+        <section class="content">
+                <div class="row">
+                    <div class="col-xs-12" style=" text-align: center;">
+                       <div class="page-header">
+  <h1>Unauthorized</h1>
+</div>
+
+
+
+                    </div>
+                   
+                </div>
+
+
+
+            </section>
+ <!-- /.content -->
+
+<% javascriptBody 'jquery.min.js' %>
+<% javascriptBody 'bootstrap.min' %>
+
+
+
+<% content_for :body_javascript_section do %>
+	<%= javascript_tag "window._token = '#{form_authenticity_token}'" %>
+        
+  
+<% end %>  
