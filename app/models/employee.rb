@@ -12,4 +12,16 @@ class Employee < ActiveRecord::Base
     #@employee = self.where("name = ?",username).first
     return @employee
   end
+  
+  def self.authorizedAs(username,role)
+     authorized = false;
+    if !(username.blank?)
+      me = Java::HarbingerSdkData::Employee.withUserName(username)
+      authorized = me.authorizedAs(role);
+      
+    end
+    return authorized
+  end
+  
+  
 end

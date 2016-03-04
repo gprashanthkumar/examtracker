@@ -12,7 +12,7 @@ class HomeController < ApplicationController
     @employee = Employee.get_employee(session[:username])
     if (!session[:username].blank?)
       logout
-    elseif  (@employee.authorizedAs("radiologist") == false)
+    elseif  (Employee.authorizedAs(session[:username],"radiologist") == false)
       render :unauthorized
     else
      @role = nil;
