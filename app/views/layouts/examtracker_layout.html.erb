@@ -132,13 +132,28 @@
                     <!-- /.search form -->
                     <!-- sidebar menu: : style can be found in sidebar.less -->
                     <ul class="sidebar-menu">
-                        <li class="active">
-
-                            <a href="radiologist"><i class="fa fa-comment"></i><span>Radiologist</span> </a></li>
-                        <li><a href="technologist"><i class="fa fa-exclamation"></i><span>Technologist</span> </a></li>
-                        <li><a href="scheregistrar"><i class="fa fa-file-text-o"></i><span>Sche-Registrar</span> </a></li>
-                        <li><a href="transcript"><i class="fa fa-stethoscope"></i><span>Transcript</span> </a></li>
-                        <li><a href="orders"><i class="fa fa-medkit"></i><span>Ordering</span></a></li>
+                         <% any_authorized(["radiologist"]) do %> 
+                         <li>                                    
+                        <a href="radiologist"><i class="fa fa-comment"></i><span>Radiologist</span> </a></li>
+                        <% end %>
+                        
+                         <% any_authorized(["technologist"]) do %> 
+                          <li><a href="technologist"><i class="fa fa-exclamation"></i><span>Technologist</span> </a></li>
+                        <% end %>
+                       
+                         <% any_authorized(["scheduler-registrar"]) do %> 
+                         <li><a href="scheregistrar"><i class="fa fa-file-text-o"></i><span>Sche-Registrar</span> </a></li>
+                        <% end %>
+                        
+                         <% any_authorized(["transcriptionist"]) do %> 
+                         <li><a href="transcript"><i class="fa fa-stethoscope"></i><span>Transcript</span> </a></li>
+                        <% end %>
+                        
+                         <% any_authorized(["Ordering"]) do %> 
+                        
+                        <% end %>
+                         <li><a href="orders"><i class="fa fa-medkit"></i><span>Ordering</span></a></li>
+                        
                         <li><a href="search"><i class="fa fa-eye"></i><span>Search</span></a></li>
                     </ul>
                 </section>
