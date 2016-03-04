@@ -13,6 +13,8 @@ class HomeController < ApplicationController
      logout
     
     elsif  (Employee.authorizedAs(session[:username],"radiologist") == false)
+       @employee = nil;
+      @employee = Employee.get_employee(session[:username])
       render :unauthorized
     else
       @role = nil;
@@ -30,6 +32,8 @@ class HomeController < ApplicationController
      logout
     
     elsif  (Employee.authorizedAs(session[:username],"technologist") == false)
+      @employee = nil;
+      @employee = Employee.get_employee(session[:username])
       render :unauthorized
     else
     @role = nil;
@@ -44,6 +48,8 @@ class HomeController < ApplicationController
      if (session[:username].blank?)
      logout    
     elsif  (Employee.authorizedAs(session[:username],"scheduler-registrar") == false)
+      @employee = nil;
+      @employee = Employee.get_employee(session[:username])
       render :unauthorized
     else
     @role = nil;
@@ -59,6 +65,8 @@ class HomeController < ApplicationController
      if (session[:username].blank?)
      logout    
     elsif  (Employee.authorizedAs(session[:username],"transcriptionist") == false)
+      @employee = nil;
+      @employee = Employee.get_employee(session[:username])
       render :unauthorized
     else
     @role = nil;
@@ -73,6 +81,8 @@ class HomeController < ApplicationController
      if (session[:username].blank?)
      logout    
     elsif  (Employee.authorizedAs(session[:username],"attending") == false)
+      @employee = nil;
+      @employee = Employee.get_employee(session[:username])
       render :unauthorized
     else
     @employee = Employee.get_employee(session[:username])
