@@ -70,11 +70,16 @@ class HomeController < ApplicationController
   end
   
   def orders
+     if (session[:username].blank?)
+     logout    
+    elsif  (Employee.authorizedAs(session[:username],"attending") == false)
+      render :unauthorized
+    else
     @employee = Employee.get_employee(session[:username])
     @role = nil;
-    @role="Ordering"
-    
+    @role="Ordering"    
     render :bucket
+     end
   end
   
   def search
