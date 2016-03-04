@@ -4,19 +4,3 @@
  */
 
 .hide { display: none; }
-#primary-navbar { margin-bottom: 0; }                                          
-	#primary-navbar .navbar-header {                                                 
-	  /*background-image: url(asset-path("ai-small-trans-24.png", image)); */ 
-	  background-repeat: no-repeat;                                                         
-	  background-position: 10px 18px;                                                     
-	}
-	
-	.navbar-right {                                                                    
-	  margin-right: 0px;                                                                   
-	  float: right;                                                                         
-	}                                                                                                                                                                                          	
-	.navbar-header { float:left; }                                                                               
-	.navbar-brand {                                                                                   
-	  font-size: 20px;                                                                    
-	  font-weight: 200;                                                                    
-	}
