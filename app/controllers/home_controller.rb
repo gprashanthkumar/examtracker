@@ -365,15 +365,35 @@ class HomeController < ApplicationController
     
     if @mysdk1.length > 0
       
-      
-      @mysdk1.each  do |e|
+     @exams = get_accessionHash(@mysdk1)
+     
+    end
+     grades= "";
+     @exams.each  do |e|
+       grades = e;
+     end
+    
+    #log output data
+    log_hipaa_view(@mysdk1);
+    
+    
+    #JSON.parse(@exams.to_json)
+    respond_to do |format|
+      format.json { render :json => grades.to_json }
+    end
+    
+  end
+  
+  def get_accessionHash(mySDK)
+    exams = [];
+    mySDK.each  do |e|
         
         
         siteLocation = "";
         ordering_provider = ""
         scheduler = ""
         technologist = ""
-        image_count = 0;
+        pacs_image_count = 0;
         sched_time = "";
         appt_time = "";
         sign_in = "";
@@ -390,8 +410,9 @@ class HomeController < ApplicationController
         
        
         
-        siteLocation += e.siteSublocation.siteLocation.location  unless e.siteSublocation.blank?;
-        if (!e.siteSublocation.blank?)        
+       
+        if (!e.siteSublocation.blank?)   
+          siteLocation += e.siteSublocation.siteLocation.location  unless e.siteSublocation.blank?;
           siteLocation += ", " + e.siteSublocation.room unless e.siteSublocation.room.blank? ;
           siteLocation += "-" + e.siteSublocation.bed unless e.siteSublocation.bed.blank?;
           
@@ -426,7 +447,7 @@ class HomeController < ApplicationController
         end
         
         
-        image_count = e.radPacsMetadatum.imageCount unless e.radExamMetadata.blank?
+        pacs_image_count = e.radPacsMetadatum.imageCount unless e.radExamMetadata.blank?
         updated_at =  DateTime.parse(e.updatedAt.to_s).utc.to_s  unless e.updatedAt.blank?                    
         report_time = DateTime.parse(e.currentReport.reportEvent.to_s).utc.to_s  unless e.currentReport.blank?
         
@@ -451,7 +472,7 @@ class HomeController < ApplicationController
           "ordering_provider" => ordering_provider,
           "scheduler" => scheduler,
           "technologist" => technologist,
-          "pacs_image_count" => image_count,
+          "pacs_image_count" => pacs_image_count,
           "sched_time" => sched_time.to_s,
           "appt_time" => appt_time.to_s,
           "sign_in" => sign_in.to_s,
@@ -474,22 +495,13 @@ class HomeController < ApplicationController
         
         grades = get_graph_status_hash(grades);  
         #puts grades["graph_status"]
-        @exams << grades ;
+        exams << grades ;
         
       end 
       #end @mysdk1 loop
-    end
-    
-    #log output data
-    log_hipaa_view(@mysdk1);
-    
-    
-    #JSON.parse(@exams.to_json)
-    respond_to do |format|
-      format.json { render :json => grades.to_json }
-    end
-    
+      return exams;
   end
+
    
   def get_graph_status_hash(exam={} )
     gstatus = ""
