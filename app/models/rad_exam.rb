@@ -201,7 +201,7 @@ class Rad_Exam < ActiveRecord::Base
   end 
 
   
-  def self.radRoleData(employeeid,accessions,current_status)
+  def self.radRoleData(employeeid,accessions,current_status,page,rows,sord)
     @mysdk1 = " ";  
     q1 = Java::HarbingerSdkData::RadExam.createQuery(@entity_manager)         
  
@@ -253,7 +253,7 @@ class Rad_Exam < ActiveRecord::Base
     
   end
   
-  def self.techRoleData(employeeid,accessions,current_status)
+  def self.techRoleData(employeeid,accessions,current_status,page,rows,sord)
     @mysdk1 = " ";  
     q1 = Java::HarbingerSdkData::RadExam.createQuery(@entity_manager)  
    
@@ -310,7 +310,7 @@ class Rad_Exam < ActiveRecord::Base
     
   end
   
-  def self.schedRegRoleData(employeeid,accessions,current_status)
+  def self.schedRegRoleData(employeeid,accessions,current_status,page,rows,sord)
     @mysdk1 = " ";  
     q1 = Java::HarbingerSdkData::RadExam.createQuery(@entity_manager)  
 
@@ -363,7 +363,7 @@ class Rad_Exam < ActiveRecord::Base
     
   end
   
-  def self.transRoleData(employeeid,accessions,current_status)
+  def self.transRoleData(employeeid,accessions,current_status,page,rows,sord)
     @mysdk1 = " ";  
     q1 = Java::HarbingerSdkData::RadExam.createQuery(@entity_manager)  
 
@@ -404,7 +404,7 @@ class Rad_Exam < ActiveRecord::Base
     
   end
   
-  def self.orderingRoleData(employeeid,accessions,current_status)
+  def self.orderingRoleData(employeeid,accessions,current_status,page,rows,sord)
   
     @mysdk1 = " ";  
     q1 = Java::HarbingerSdkData::RadExam.createQuery(@entity_manager)  
