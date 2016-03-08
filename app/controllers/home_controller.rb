@@ -105,13 +105,13 @@ class HomeController < ApplicationController
     @roleType = roletype
     case roletype
     when "Radiologist"
-      @mysdk1 = Rad_Exam.radRoleData(@employee.id,accession,currentstatus)             
+      @mysdk1 = Rad_Exam.radRoleData(@employee.id,accession,currentstatus,page,rows,sord)             
     when "Technologist"
-      @mysdk1 = Rad_Exam.techRoleData(@employee.id,accession,currentstatus)  
+      @mysdk1 = Rad_Exam.techRoleData(@employee.id,accession,currentstatus,page,rows,sord)  
     when "Schedule Registrar"
-      @mysdk1 = Rad_Exam.schedRegRoleData(@employee.id,accession,currentstatus)  
+      @mysdk1 = Rad_Exam.schedRegRoleData(@employee.id,accession,currentstatus,page,rows,sord)  
     when "Transcript"
-      @mysdk1 = Rad_Exam.transRoleData(@employee.id,accession,currentstatus)  
+      @mysdk1 = Rad_Exam.transRoleData(@employee.id,accession,currentstatus,page,rows,sord)  
     when "Ordering"
       @mysdk1 = Rad_Exam.orderingRoleData(@employee.id,accession,currentstatus,page,rows,sord)  
     end
