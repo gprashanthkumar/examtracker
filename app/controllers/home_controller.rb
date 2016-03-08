@@ -100,7 +100,7 @@ class HomeController < ApplicationController
     @exams = [];
     @employee = nil;
     @employee = Employee.get_employee(session[:username])
-    @total = 0;
+    @total = "0";
   
     @mysdk1 = nil;
     @roleType = roletype
@@ -115,6 +115,7 @@ class HomeController < ApplicationController
       @mysdk1 = Rad_Exam.transRoleData(@employee.id,accession,currentstatus,page,rows,sord)  
     when "Ordering"
       @mysdk1 = Rad_Exam.orderingRoleData(@employee.id,accession,currentstatus,page,rows,sord,@total)  
+      puts @total
     end
     
     @exams = get_examsHash(@mysdk1);
