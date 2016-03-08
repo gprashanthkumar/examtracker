@@ -407,6 +407,7 @@ class Rad_Exam < ActiveRecord::Base
   def self.orderingRoleData(employeeid,accessions,current_status,page,rows,sord)
   
     @mysdk1 = " ";  
+    @mysdkTotal =0;
     q1 = Java::HarbingerSdkData::RadExam.createQuery(@entity_manager)  
     if ( (accessions.blank? == false) && (current_status.blank? == false) ) 
       q1.where(q1.and(
@@ -452,6 +453,8 @@ class Rad_Exam < ActiveRecord::Base
         )
       )
     end
+    @mysdkTotal = q1.list.count.to_s
+    Puts @mysdkTotal + "Total from query ---->";
   @mysdk1=  q1.limit(rows).list.to_a 
     
   end
