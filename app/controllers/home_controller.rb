@@ -259,6 +259,10 @@ class HomeController < ApplicationController
     accession_ids = params[:accession]
     exam_status = params[:status]
     role = params[:role]
+    @gridRows = params[:rows];
+    @gridPage = params[:page];
+    @gridSortOrder = params[:sord];
+    @authenticity_token = params[:authenticity_token];
 
     
     sdk(role,accession_ids,exam_status);
@@ -271,6 +275,11 @@ class HomeController < ApplicationController
     @Search_buckets_individually = false;
     @employee = Employee.get_employee(session[:username])  
     @myvalues = params[:allSearchCriteriaInJson];
+    @gridRows = params[:rows];
+    @gridPage = params[:page];
+    @gridSortOrder = params[:sord];
+    @authenticity_token = params[:authenticity_token];
+    
     symbolize_keys_deep! @myvalues;
     
     if ((@myvalues[:search_individual_buckets]== "on" ) ||
