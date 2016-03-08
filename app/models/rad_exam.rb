@@ -404,7 +404,7 @@ class Rad_Exam < ActiveRecord::Base
     
   end
   
-  def self.orderingRoleData(employeeid,accessions,current_status,page,rows,sord,&total)
+  def self.orderingRoleData(employeeid,accessions,current_status,page,rows,sord,total)
   
     @mysdk1 = " ";  
     @mysdkTotal =0;
