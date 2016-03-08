@@ -249,7 +249,7 @@ class Rad_Exam < ActiveRecord::Base
       )
     end
 
-    @mysdk1=  q1.list.to_a 
+  @mysdk1=  q1.list.limit(rows).to_a 
     
   end
   
@@ -306,7 +306,7 @@ class Rad_Exam < ActiveRecord::Base
     end
 
 
-    @mysdk1=  q1.list.to_a 
+  @mysdk1=  q1.list.limit(rows).to_a 
     
   end
   
@@ -359,7 +359,7 @@ class Rad_Exam < ActiveRecord::Base
       )
     end
 
-    @mysdk1=  q1.list.to_a 
+  @mysdk1=  q1.list.limit(rows).to_a 
     
   end
   
@@ -400,7 +400,7 @@ class Rad_Exam < ActiveRecord::Base
       )
     end
 
-    @mysdk1=  q1.list.to_a 
+    @mysdk1=  q1.list.limit(rows).to_a 
     
   end
   
@@ -452,7 +452,7 @@ class Rad_Exam < ActiveRecord::Base
         )
       )
     end
-    @mysdk1=  q1.list.to_a 
+  @mysdk1=  q1.list.limit(rows).to_a 
     
   end
 end
