@@ -454,7 +454,7 @@ class Rad_Exam < ActiveRecord::Base
       )
     end
     @mysdkTotal = q1.list.count.to_s
-    Puts @mysdkTotal + "Total from query ---->";
+    puts @mysdkTotal + "Total from query ---->";
   @mysdk1=  q1.limit(rows).list.to_a 
     
   end
