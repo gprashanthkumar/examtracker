@@ -853,7 +853,7 @@ body .ui-tooltip {
 }
 .ui-widget-header {
 	border: 1px solid #d49768;
-	background: #cb842e url("images/ui-bg_glass_25_cb842e_1x400.png") 50% 50% repeat-x;
+	background: darkorange url("images/ui-bg_glass_25_cb842e_1x400.png") 50% 50% repeat-x;
 	color: #ffffff;
 	font-weight: bold;
 }
