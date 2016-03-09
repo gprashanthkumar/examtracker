@@ -249,7 +249,12 @@ class Rad_Exam < ActiveRecord::Base
       )
     end
 
-  @mysdk1=  q1.list.limit(rows).to_a 
+  if (total)    
+     return q1.list.count.to_s
+   else 
+      @mysdk1=  q1.limit(rows).list.to_a 
+      return @mysdk1
+   end
     
   end
   
