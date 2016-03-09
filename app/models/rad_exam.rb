@@ -404,7 +404,7 @@ class Rad_Exam < ActiveRecord::Base
     
   end
   
-  def self.orderingRoleData(employeeid,accessions,current_status,page,rows,sord,total)
+  def self.orderingRoleData(employeeid,accessions,current_status,page,rows,sord,total=false)
   
     @mysdk1 = " ";  
     @mysdkTotal =0;
@@ -453,9 +453,16 @@ class Rad_Exam < ActiveRecord::Base
         )
       )
     end
-    total = q1.list.count.to_s
-    puts total + "Total from query ---->";
-  @mysdk1=  q1.limit(rows).list.to_a 
+   if (total)
+     return q1.list.count.to_s
+   else 
+      @mysdk1=  q1.limit(rows).list.to_a 
+      return @mysdk1
+   end
+     
+      
+    
+ 
     
   end
 end
