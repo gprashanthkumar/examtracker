@@ -118,7 +118,7 @@ class HomeController < ApplicationController
      @mysdk1 = Rad_Exam.orderingRoleData(@employee.id,accession,currentstatus,page,rows,sord,false)  
      
       
-      puts @total
+      puts "<--- prashanth" + @total.to_s
     end
     
     @exams = get_examsHash(@mysdk1);

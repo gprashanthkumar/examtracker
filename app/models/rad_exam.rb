@@ -454,6 +454,7 @@ class Rad_Exam < ActiveRecord::Base
       )
     end
    if (total)
+     puts q1.list.count.to_s + " from rad_exam -->"
      return q1.list.count.to_s
    else 
       @mysdk1=  q1.limit(rows).list.to_a 
