@@ -203,6 +203,7 @@ class Rad_Exam < ActiveRecord::Base
   
   def self.radRoleData(employeeid,accessions,current_status,page,rows,sord,total = false)
     @mysdk1 = " ";  
+    @mysdkTotal = 0;
     q1 = Java::HarbingerSdkData::RadExam.createQuery(@entity_manager)         
  
     if ( (accessions.blank? == false) && (current_status.blank? == false) ) 
@@ -248,11 +249,15 @@ class Rad_Exam < ActiveRecord::Base
             q1.equal(".currentReport.rad1.id",employeeid),q1.equal(".currentReport.rad2.id",employeeid),q1.equal(".currentReport.rad3.id",employeeid),q1.equal(".currentReport.rad4.id",employeeid)]  )
       )
     end
-
+@mysdkTotal = q1.list.count 
   if (total)    
-     return q1.list.count.to_s
+     return @mysdkTotal.to_s
    else 
+     if @mysdkTotal > 0 
       @mysdk1=  q1.limit(rows).list.to_a 
+     else
+        @mysdk1=  q1.list.to_a 
+      end     
       return @mysdk1
    end
     
@@ -473,8 +478,9 @@ class Rad_Exam < ActiveRecord::Base
         )
       )
     end
+    @mysdkTotal = q1.list.count
    if (total)    
-     return q1.list.count.to_s
+     return @mysdkTotal.to_s
    else 
       @mysdk1=  q1.limit(rows).list.to_a 
       return @mysdk1
