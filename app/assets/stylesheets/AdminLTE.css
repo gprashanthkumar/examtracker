@@ -2579,10 +2579,16 @@ Component: timeline
 .skin-black .navbar .nav .open > a:hover,
 .skin-black .navbar .nav .open > a:focus {
   background: #333;
-  color: #f8a944;
+  color: #f8a944 !important;
 }
 .skin-black .navbar .navbar-right > .nav {
   margin-right: 10px;
+}
+.skin-black .navbar-nav > .user-menu > .dropdown-menu > li.user-body > div > a {
+  color: #f8981d;
+}
+.skin-black .navbar-nav > .user-menu > .dropdown-menu > li.user-body > div > a:hover {
+  color: #f8a944;
 }
 .skin-black .navbar .sidebar-toggle .icon-bar {
   background: #f8981d;
@@ -3467,7 +3473,7 @@ height:28px; margin-right:5px; background:#666; position:relative; display:inlin
 	width: 75%
 }
 
-input[type=button]{
+input[type=button], button{
 	background:#5d97c0;
 	border: medium none;
     border-radius: 3px;
