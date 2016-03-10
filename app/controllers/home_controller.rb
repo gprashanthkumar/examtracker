@@ -368,19 +368,19 @@ class HomeController < ApplicationController
        @mysdk1 = Rad_Exam.get_exams_search_by_id_array(idList);
 
       else
-        @mysdk1 = Rad_Exam.get_exams_search_sdk(@employee.id,@myvalues,false,false,false)
+         @mysdkTotal = Rad_Exam.get_exams_search_sdk(@employee.id,@myvalues,false,false,false,true,false)
+             @mysdk1 = Rad_Exam.get_exams_search_sdk(@employee.id,@myvalues,false,false,false,false,true)
       end   
     
     
-    else #its  intersection  join NOT UNION Join
+    else #its  intersection join, NOT a UNION Join
       #@exams = Rad_Exam.get_exams_search(@employee.id,@myvalues,(@myvalues[:my_orders] == "on"),(@myvalues[:my_exams] == "on"),(@myvalues[:my_reports] == "on"))  ;    
-      @mysdk1 = Rad_Exam.get_exams_search_sdk(@employee.id,@myvalues,false,false,false)
+       @mysdkTotal = Rad_Exam.get_exams_search_sdk(@employee.id,@myvalues,false,false,false,true,false)
+       @mysdk1 = Rad_Exam.get_exams_search_sdk(@employee.id,@myvalues,false,false,false,false,true)
     end
   
     
     @exams = get_examsHash(@mysdk1);
-    puts @gridRows + "Exam Hash count"
-   
     
     #log output data
     log_hipaa_view(@mysdk1);
