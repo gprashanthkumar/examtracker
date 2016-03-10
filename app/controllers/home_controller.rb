@@ -129,7 +129,7 @@ class HomeController < ApplicationController
     
     #log output data
     log_hipaa_view(@mysdk1);
-    @pages =  (@total.to_f / rows.to_f);
+    @pages =  (@total.to_f / rows.to_f).to_i;;
     @pages = @pages + 1 unless (@total.to_f%rows.to_f == 0)
     #puts @exams.to_json;
     json_data = {
