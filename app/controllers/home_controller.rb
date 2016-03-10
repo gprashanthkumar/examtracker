@@ -272,10 +272,6 @@ class HomeController < ApplicationController
     @gridPage = params[:page];
     @gridSortOrder = params[:sord];
     @authenticity_token = params[:authenticity_token];
-    puts @gridRows.to_s + " no of Rows --->\n"
-    puts @gridPage.to_s + "--Page No -> \n"
-    
-    #,@gridPage,@gridRows,@gridSortOrder
     sdk(role,accession_ids,exam_status,@gridPage.to_i,@gridRows.to_i,@gridSortOrder);
   end
       
@@ -286,8 +282,8 @@ class HomeController < ApplicationController
     @Search_buckets_individually = false;
     @employee = Employee.get_employee(session[:username])  
     @myvalues = params[:allSearchCriteriaInJson];
-    @gridRows = params[:rows];
     @gridPage = params[:page];
+    @gridRows = params[:rows];   
     @gridSortOrder = params[:sord];
     @authenticity_token = params[:authenticity_token];
     

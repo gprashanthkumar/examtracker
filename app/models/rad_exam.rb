@@ -3,10 +3,11 @@ class Rad_Exam < ActiveRecord::Base
  
   
   
-  def self.get_exams_search_sdk(employeeid,params,myreports = false,myexams = false,myorders = false)    
+  def self.get_exams_search_sdk(employeeid,params,myreports = false,myexams = false,myorders = false,total=false,paginate=true,page=1,rows=10,sorder="asc")    
      
     
     @mysdk1 = " ";  
+    @mysdkTotal= 0;
     qmyreports = nil;
     qmyexams =nil;
     qmyorders = nil;   
@@ -141,6 +142,23 @@ class Rad_Exam < ActiveRecord::Base
       ));
     
     puts q1.toSQL;
+    @mysdkTotal = q1.list.count ;
+   
+    if (total)    
+      return @mysdkTotal.to_s
+    else 
+      if @mysdkTotal > 0 
+         if (paginate)
+            @mysdk1=  q1.limit(rows).list.to_a 
+         else
+            @mysdk1=  q1.list.to_a 
+         end       
+      else
+        @mysdk1=  q1.list.to_a 
+      end     
+      return @mysdk1
+    end
+    
     return q1.list.to_a ;
 
   
