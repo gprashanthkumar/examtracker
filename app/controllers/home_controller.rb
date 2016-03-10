@@ -279,6 +279,7 @@ class HomeController < ApplicationController
     #search can be performed by 2 methods union or intersection.
     #if  @Search_buckets_individually value is true then its union else default intersection.
     @exams = [];
+    @mysdkTotal = 0;
     @Search_buckets_individually = false;
     @employee = Employee.get_employee(session[:username])  
     @myvalues = params[:allSearchCriteriaInJson];
@@ -363,8 +364,8 @@ class HomeController < ApplicationController
           #puts idList.to_s + "is idList \n"
          
         end   
-       
-        @mysdk1 = Rad_Exam.get_exams_search_by_id_array(idList);
+       @mysdkTotal = Rad_Exam.get_exams_search_by_id_array(idList,true);
+       @mysdk1 = Rad_Exam.get_exams_search_by_id_array(idList);
 
       else
         @mysdk1 = Rad_Exam.get_exams_search_sdk(@employee.id,@myvalues,false,false,false)
@@ -386,9 +387,9 @@ class HomeController < ApplicationController
    
     #puts @exams.to_json;
     json_data = {
-      :page=>"1",
-      :total=>"3",
-      :records=>"6", 
+      :page=> @gridPage.to_s|| "1",
+      :total=> @mysdkTotal.to_s || "10",
+      :records=> "10", 
       #:rows=> JSON.parse(@exams.to_json(:only => [ :accession,:mrn,:current_status,:code,:description,:modality,:resource_name,:graph_status,:current_status,:updated_at,:patient_name,:birthdate,:site_name,:patient_class,:patient_type,:patient_location_at_exam,:radiology_department,:ordering_provider,:scheduler,:technologist,:pacs_image_count,:appt_time,:sign_in,:check_in,:begin_exam,:end_exam]))    
       :rows=> JSON.parse(@exams.to_json)
     }    
