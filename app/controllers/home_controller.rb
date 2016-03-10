@@ -379,7 +379,7 @@ class HomeController < ApplicationController
   
     
     @exams = get_examsHash(@mysdk1);
-    
+    puts @exams.count.to_s + "Exam Hash count"
    
     
     #log output data
