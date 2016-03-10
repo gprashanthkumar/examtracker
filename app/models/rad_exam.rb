@@ -275,7 +275,11 @@ class Rad_Exam < ActiveRecord::Base
       return @mysdkTotal.to_s
     else 
       if @mysdkTotal > 0 
-        @mysdk1=  q1.limit(rows).list.to_a 
+         @offset = (page - 1)*rows
+          if @offset < 0 
+            @offset = 0
+          end
+          @mysdk1=  q1.offset(@offset).limit(rows).list.to_a 
       else
         @mysdk1=  q1.list.to_a 
       end     
@@ -340,7 +344,11 @@ class Rad_Exam < ActiveRecord::Base
     if (total)    
       return q1.list.count.to_s
     else 
-      @mysdk1=  q1.limit(rows).list.to_a 
+      @offset = (page - 1)*rows
+      if @offset < 0 
+        @offset = 0
+      end
+      @mysdk1=  q1.offset(@offset).limit(rows).list.to_a 
       return @mysdk1
     end
     
@@ -398,7 +406,11 @@ class Rad_Exam < ActiveRecord::Base
     if (total)    
       return q1.list.count.to_s
     else 
-      @mysdk1=  q1.limit(rows).list.to_a 
+      @offset = (page - 1)*rows
+      if @offset < 0 
+        @offset = 0
+      end
+      @mysdk1=  q1.offset(@offset).limit(rows).list.to_a 
       return @mysdk1
     end
     
@@ -444,7 +456,11 @@ class Rad_Exam < ActiveRecord::Base
     if (total)    
       return q1.list.count.to_s
     else 
-      @mysdk1=  q1.limit(rows).list.to_a 
+      @offset = (page - 1)*rows
+      if @offset < 0 
+        @offset = 0
+      end
+      @mysdk1=  q1.offset(@offset).limit(rows).list.to_a 
       return @mysdk1
     end
     
