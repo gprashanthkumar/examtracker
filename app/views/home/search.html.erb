@@ -375,8 +375,8 @@ colNames: ['A#','Progress Status','Current Status','Status Last Changed','Patien
                 autowidth: true,
                 //width:'90%',
                 scrollOffset: 0,
-                rowNum: 20,
-                rowList: [20, 30, 40, 50],
+                rowNum: 5,
+                rowList: [5, 10, 15, 20],
                 height: '250',
                 sortname: 'Id',
                 sortorder: "asc",
@@ -385,7 +385,7 @@ colNames: ['A#','Progress Status','Current Status','Status Last Changed','Patien
                 pager: '#searchExamGridPagerDiv',
                 caption: "Exam Details",
                 rownumbers: true,
-                loadonce: true,
+                loadonce: false, // true,
                 loadComplete: function (data) {
 
                     var datacount = $("#tblSearchExam").getGridParam("reccount");
