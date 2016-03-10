@@ -129,12 +129,13 @@ class HomeController < ApplicationController
     
     #log output data
     log_hipaa_view(@mysdk1);
-   
+    @pages =  @total/ rows
+    
     #puts @exams.to_json;
     json_data = {
       :page=> page.to_s ||  "1",
-      :total=> @total.to_s || "100",
-      :records=> rows.to_s || "10", 
+      :total=>  @pages.to_s || "100",
+      :records=> @total.to_s|| "10", 
       #:rows=> JSON.parse(@exams.to_json(:only => [ :accession,:mrn,:current_status,:code,:description,:modality,:resource_name,:graph_status,:current_status,:updated_at,:patient_name,:birthdate,:site_name,:patient_class,:patient_type,:patient_location_at_exam,:radiology_department,:ordering_provider,:scheduler,:technologist,:pacs_image_count,:appt_time,:sign_in,:check_in,:begin_exam,:end_exam]))    
       :rows=> JSON.parse(@exams.to_json)
     }    
