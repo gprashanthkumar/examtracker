@@ -272,9 +272,9 @@ class HomeController < ApplicationController
     @gridPage = params[:page];
     @gridSortOrder = params[:sord];
     @authenticity_token = params[:authenticity_token];
-
     
-    sdk(role,accession_ids,exam_status,@gridPage,@gridRows,@gridSortOrder);
+    #,@gridPage,@gridRows,@gridSortOrder
+    sdk(role,accession_ids,exam_status);
   end
       
   def get_jqgridSearch_exam_data 
