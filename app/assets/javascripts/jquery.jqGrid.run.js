@@ -185,7 +185,7 @@
             pager: '#tblRadExamPager',
             caption: "Exam Details",
             rownumbers: true,
-            loadonce:true,
+            loadonce:false,//true,
             loadComplete: function (data) {
                 var datacount = $("#tblRadExam").getGridParam("reccount");
                 if (datacount == 0) {
