@@ -141,7 +141,7 @@ class Rad_Exam < ActiveRecord::Base
         ]
       ));
     
-    puts q1.toSQL;
+    #puts q1.toSQL;
     @mysdkTotal = q1.list.count ;
    
     if (total)    
@@ -159,8 +159,7 @@ class Rad_Exam < ActiveRecord::Base
       return @mysdk1
     end
     
-    return q1.list.to_a ;
-
+    
   
   end
   

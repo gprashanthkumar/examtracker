@@ -268,8 +268,8 @@ class HomeController < ApplicationController
     accession_ids = params[:accession]
     exam_status = params[:status]
     role = params[:role]
-    @gridRows = params[:rows];
     @gridPage = params[:page];
+    @gridRows = params[:rows];    
     @gridSortOrder = params[:sord];
     @authenticity_token = params[:authenticity_token];
     sdk(role,accession_ids,exam_status,@gridPage.to_i,@gridRows.to_i,@gridSortOrder);
@@ -307,7 +307,7 @@ class HomeController < ApplicationController
 
         if (@myvalues[:my_reports] == "on")
           
-          @exams1 = Rad_Exam.get_exams_search_sdk(@employee.id,@myvalues,true,false,false)
+          @exams1 = Rad_Exam.get_exams_search_sdk(@employee.id,@myvalues,true,false,false,false,false)
           if @exams1.length > 0            
           
             @exams1.each  do |e|
@@ -327,7 +327,7 @@ class HomeController < ApplicationController
         
         if (@myvalues[:my_exams] == "on")
           
-          @exams1 = Rad_Exam.get_exams_search_sdk(@employee.id,@myvalues,false,true,false)
+          @exams1 = Rad_Exam.get_exams_search_sdk(@employee.id,@myvalues,false,true,false,false,false)
           if @exams1.length > 0            
           
             @exams1.each  do |e|
@@ -347,7 +347,7 @@ class HomeController < ApplicationController
         
         if (@myvalues[:my_orders] == "on")
           
-          @exams1 = Rad_Exam.get_exams_search_sdk(@employee.id,@myvalues,false,false,true)
+          @exams1 = Rad_Exam.get_exams_search_sdk(@employee.id,@myvalues,false,false,true,false,false)
           if @exams1.length > 0            
             
             @exams1.each  do |e|
