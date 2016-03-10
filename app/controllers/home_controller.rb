@@ -276,7 +276,7 @@ class HomeController < ApplicationController
     puts @gridPage.to_s + "--Page No -> \n"
     
     #,@gridPage,@gridRows,@gridSortOrder
-    sdk(role,accession_ids,exam_status,@gridPage,@gridRows);
+    sdk(role,accession_ids,exam_status,@gridPage,10);
   end
       
   def get_jqgridSearch_exam_data 
