@@ -272,8 +272,8 @@ class HomeController < ApplicationController
     @gridPage = params[:page];
     @gridSortOrder = params[:sord];
     @authenticity_token = params[:authenticity_token];
-    puts @gridRows.to_s + "\n"
-    puts @gridPage.to_s + "\n"
+    puts @gridRows.to_s + " no of Rows --->\n"
+    puts @gridPage.to_s + "--Page No -> \n"
     
     #,@gridPage,@gridRows,@gridSortOrder
     sdk(role,accession_ids,exam_status,@gridPage);
