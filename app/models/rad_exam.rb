@@ -503,7 +503,11 @@ class Rad_Exam < ActiveRecord::Base
     if (total)    
       return @mysdkTotal.to_s
     else 
-      @mysdk1=  q1.limit(rows).list.to_a 
+      @offset = (page - 1)*rows
+      if @offset < 0 
+        @offset = 0
+      end
+      @mysdk1=  q1.offset(@offset).limit(rows).list.to_a 
       return @mysdk1
     end
      
