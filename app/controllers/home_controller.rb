@@ -274,7 +274,7 @@ class HomeController < ApplicationController
     @authenticity_token = params[:authenticity_token];
 
     
-    sdk(role,accession_ids,exam_status);
+    sdk(role,accession_ids,exam_status,@gridPage,@gridRows,@gridSortOrder);
   end
       
   def get_jqgridSearch_exam_data 
@@ -432,58 +432,7 @@ class HomeController < ApplicationController
     
   end
   
- def get_graph_status_hash(exam={} )
-    gstatus = ""
-    gstatus = exam["graph_status"];
-    exam["graph_status"] ="";
-    if not( (exam["order_arrival"].nil?) || (exam["order_arrival"].blank?))         
-      exam["graph_status"] += "order_time->" + exam["order_arrival"].to_s + "," 
-    else
-      exam["graph_status"]  += "order_time->"  + ","  
-    end
-      
-    if not( (exam["sched_time"].nil?) || (exam["sched_time"].blank?))         
-      exam["graph_status"] += "sched_time->" + exam["sched_time"].to_s + "," 
-    else
-      exam["graph_status"]  += "sched_time->"  + ","  
-    end
-      
-    if not( (exam["appt_time"].nil?) || (exam["appt_time"].blank?))
-      exam["graph_status"] += "appt_time->" + exam["appt_time"].to_s + "," 
-    else
-      exam["graph_status"] += "appt_time->" +  "," 
-    end
-    if not( (exam["sign_in"].nil?) || (exam["sign_in"].blank?))
-      exam["graph_status"] += "sign_in->" + exam["sign_in"].to_s + ","
-    else
-      exam["graph_status"] += "sign_in->" +  ","
-    end  
-    if not( (exam["check_in"].nil?) || (exam["check_in"].blank?))
-      exam["graph_status"] += "check_in->" + exam["check_in"].to_s + ","
-    else
-      exam["graph_status"] += "check_in->"  + ","
-    end  
-    if not( (exam["begin_exam"].nil?) || (exam["begin_exam"].blank?))
-      exam["graph_status"] += "begin_exam->" + exam["begin_exam"].to_s + ","
-    else
-      exam["graph_status"] += "begin_exam->" + ","
-    end  
-    if not( (exam["end_exam"].nil?) || (exam["end_exam"].blank?))
-      exam["graph_status"] += "end_exam->" + exam["end_exam"].to_s + ","
-    else
-      exam["graph_status"] += "end_exam->" +  ","
-    end 
-    if not( (exam["report_time"].nil?) || (exam["report_time"].blank?))
-      exam["graph_status"] += "final_time->" + exam["report_time"].to_s + ","
-    else
-      exam["graph_status"] += "final_time->" +  ","
-    end      
-    exam["graph_status"] += gstatus;
-      
-    return exam;
-  end
-  
-  def get_accession_report
+   def get_accession_report
     @accession_id = params[:accession_id];
     @mysdk1 = nil;
     @exams = [];
@@ -535,6 +484,58 @@ class HomeController < ApplicationController
     end
     
   end
+  
+ def get_graph_status_hash(exam={} )
+    gstatus = ""
+    gstatus = exam["graph_status"];
+    exam["graph_status"] ="";
+    if not( (exam["order_arrival"].nil?) || (exam["order_arrival"].blank?))         
+      exam["graph_status"] += "order_time->" + exam["order_arrival"].to_s + "," 
+    else
+      exam["graph_status"]  += "order_time->"  + ","  
+    end
+      
+    if not( (exam["sched_time"].nil?) || (exam["sched_time"].blank?))         
+      exam["graph_status"] += "sched_time->" + exam["sched_time"].to_s + "," 
+    else
+      exam["graph_status"]  += "sched_time->"  + ","  
+    end
+      
+    if not( (exam["appt_time"].nil?) || (exam["appt_time"].blank?))
+      exam["graph_status"] += "appt_time->" + exam["appt_time"].to_s + "," 
+    else
+      exam["graph_status"] += "appt_time->" +  "," 
+    end
+    if not( (exam["sign_in"].nil?) || (exam["sign_in"].blank?))
+      exam["graph_status"] += "sign_in->" + exam["sign_in"].to_s + ","
+    else
+      exam["graph_status"] += "sign_in->" +  ","
+    end  
+    if not( (exam["check_in"].nil?) || (exam["check_in"].blank?))
+      exam["graph_status"] += "check_in->" + exam["check_in"].to_s + ","
+    else
+      exam["graph_status"] += "check_in->"  + ","
+    end  
+    if not( (exam["begin_exam"].nil?) || (exam["begin_exam"].blank?))
+      exam["graph_status"] += "begin_exam->" + exam["begin_exam"].to_s + ","
+    else
+      exam["graph_status"] += "begin_exam->" + ","
+    end  
+    if not( (exam["end_exam"].nil?) || (exam["end_exam"].blank?))
+      exam["graph_status"] += "end_exam->" + exam["end_exam"].to_s + ","
+    else
+      exam["graph_status"] += "end_exam->" +  ","
+    end 
+    if not( (exam["report_time"].nil?) || (exam["report_time"].blank?))
+      exam["graph_status"] += "final_time->" + exam["report_time"].to_s + ","
+    else
+      exam["graph_status"] += "final_time->" +  ","
+    end      
+    exam["graph_status"] += gstatus;
+      
+    return exam;
+  end  
+ 
   #convert hash to symbols
   def symbolize_keys_deep!(h)
     h.keys.each do |k|

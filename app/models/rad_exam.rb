@@ -147,21 +147,32 @@ class Rad_Exam < ActiveRecord::Base
   end
   
   #Definition:  This is the definition called to return list of  exam records matching passed eccessionid list idList
-  def self.get_exams_search_by_id_array(idList)
-    
+  def self.get_exams_search_by_id_array(idList,page,rows,sord,total = false)
+    @mysdkTotal = 0;
     
     q1 = Java::HarbingerSdkData::RadExam.createQuery(@entity_manager) 
     if (idList.length > 0)
       q1.where(
         q1.in(".accession", idList)
       );
-     
+       @mysdkTotal = q1.list.count 
     else
       q1.where(
         q1.equal(".id", -1)
       );
     end
-    return q1.list.to_a 
+   
+   
+    if (total)    
+      return @mysdkTotal.to_s
+    else 
+      if @mysdkTotal > 0 
+        @mysdk1=  q1.limit(rows).list.to_a 
+      else
+        @mysdk1=  q1.list.to_a 
+      end     
+      return @mysdk1
+    end
     
   end
   
@@ -181,13 +192,6 @@ class Rad_Exam < ActiveRecord::Base
       );
     end
     return q1.list.to_a 
-  end
-  
-  
-  #Definitions: This is the definition to return resultset of reports records for passed accessionid as accession of the reports
-  def self.get_accession_reports_sdk(accessionid)
-    reports = self.join_Main.Radiologist_Reports.where(" rad_exams.accession = ? ",accessionid).order("id desc").all;
-    return reports;
   end
   
   #Definitions: This is the  utility definition 
