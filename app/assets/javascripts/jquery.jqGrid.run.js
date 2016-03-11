@@ -185,7 +185,7 @@
             pager: '#tblRadExamPager',
             caption: "Exam Details",
             rownumbers: true,
-            loadonce:false,//true,
+            loadonce:true,
 			recordtext:"View {0}-{1} of {2}",
 			onPaging:function(){
 				$("#tblRadExam").setGridParam({datatype:'json'});
