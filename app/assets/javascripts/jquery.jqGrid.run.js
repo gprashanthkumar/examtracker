@@ -187,7 +187,7 @@
             rownumbers: true,
             loadonce:true,
 			recordtext:"View {0}-{1} of {2}",
-			onPaging:function(){
+			onPaging:function(which_button){
 				$("#tblRadExam").setGridParam({datatype:'json'});
 			},
             loadComplete: function (data) {
