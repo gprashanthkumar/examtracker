@@ -168,7 +168,7 @@
     //records: "records"
 			//},
             jsonReader: { repeatitems: false, id: "id", root: function (obj) { return obj.rows; }, page: function (obj) { return obj.page; }, total: function (obj) { return obj.total; },
-    records: function (obj) { return (obj.rows.length ); }
+    records: function (obj) { return (obj.records ); }
 			},
 			beforeSelectRow: function() { return false; },
             multiselect: false,
