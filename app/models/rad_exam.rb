@@ -172,7 +172,7 @@ class Rad_Exam < ActiveRecord::Base
   #Definition:  This is the definition called to return list of  exam records matching passed eccessionid list idList
   def self.get_exams_search_by_id_array(idList,total=false,page=1,rows=10,sord="asc")
     @mysdkTotal = 0;
-    
+    @offset =0;
     q1 = Java::HarbingerSdkData::RadExam.createQuery(@entity_manager) 
     if (idList.length > 0)
       q1.where(

@@ -367,9 +367,8 @@ class HomeController < ApplicationController
          
         end  
         puts "<---- start of id list \n"
-       @mysdkTotal = Rad_Exam.get_exams_search_by_id_array(idList,true,@gridPage,@gridRows);
-     
-       @mysdk1 = Rad_Exam.get_exams_search_by_id_array(idList,false,@gridPage,@gridRows);
+       @mysdkTotal = Rad_Exam.get_exams_search_by_id_array(idList,true,@gridPage.to_i,@gridRows.to_i);     
+       @mysdk1 = Rad_Exam.get_exams_search_by_id_array(idList,false,@gridPage.to_i,@gridRows.to_i);
          
 
       else
