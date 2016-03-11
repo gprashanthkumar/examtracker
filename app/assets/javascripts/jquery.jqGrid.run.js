@@ -167,9 +167,9 @@
             //jsonReader: { repeatitems: false, id: "id", root: "rows", page: "page", total: "total",
     //records: "records"
 			//},
-            jsonReader: { repeatitems: false, id: "id", root: function (obj) { return obj.rows; }, page: function (obj) { return obj.page; }, total: function (obj) { return obj.total; },
-    records: function (obj) { return (obj.records ); }
-			},
+            //jsonReader: { repeatitems: false, id: "id", root: function (obj) { return obj.rows; }, page: function (obj) { return //obj.page; }, total: function (obj) { return obj.total; },
+    //records: function (obj) { return (obj.records ); }
+		//	},
 			beforeSelectRow: function() { return false; },
             multiselect: false,
             autowidth: true,
@@ -185,14 +185,14 @@
             pager: '#tblRadExamPager',
             caption: "Exam Details",
             rownumbers: true,
-            loadonce: true, //true,
+            //loadonce: false, //true,
 			recordtext:"View {0}-{1} of {2}",
-			//onPaging:function(which_button){
-			//	$("#tblRadExam").setGridParam({datatype:'json'});
-			//},
+			onPaging:function(which_button){
+				$("#tblRadExam").setGridParam({datatype:'json'});
+			},
             loadComplete: function (data) {
 								
-				//$("#tblRadExam").setGridParam({datatype:'local'});
+				$("#tblRadExam").setGridParam({datatype:'local'});
 				
                 var datacount = $("#tblRadExam").getGridParam("reccount");
                 if (datacount == 0) {
