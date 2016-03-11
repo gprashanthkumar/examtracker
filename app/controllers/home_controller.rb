@@ -586,29 +586,6 @@ class HomeController < ApplicationController
     return exam;
   end  
  
-  def cellToColumnSort (colName,orderby)
-    result = "";
-    case colName
-    when "Id"
-      result = ".id "
-    when "current_status"
-      result = ".currentStatus.universalEventType.eventType "    
-    when "graph_status" 
-      result = ".currentStatus.universalEventType.eventType "
-    when "graph_status" 
-      result = ".currentStatus.universalEventType.eventType "
-    when   "modality"
-      result = ".resource.modality.modality "
-    when  "resource_name"
-      result = ".resource.name "
-    when "patient_name" 
-      result = ".patient.name "
-    when  "birthdate" 
-      result = ".patient.birthdate "
-    end
-    
-    return result + orderby;
-  end
 end
 
 
