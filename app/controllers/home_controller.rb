@@ -365,11 +365,13 @@ class HomeController < ApplicationController
            
           #puts idList.to_s + "is idList \n"
          
-        end   
+        end  
+        puts "<---- start of id list \n"
        @mysdkTotal = Rad_Exam.get_exams_search_by_id_array(idList,true);
-       @mysdk1 = Rad_Exam.get_exams_search_by_id_array(idList);
+       @mysdk1 = Rad_Exam.get_exams_search_by_id_array(idList, @gridPage,@gridRows,@gridSortOrder);
 
       else
+         puts "<---- start of id list \n"
          @mysdkTotal = Rad_Exam.get_exams_search_sdk(@employee.id,@myvalues,false,false,false,true,false)
              @mysdk1 = Rad_Exam.get_exams_search_sdk(@employee.id,@myvalues,false,false,false,false,true)
       end   
