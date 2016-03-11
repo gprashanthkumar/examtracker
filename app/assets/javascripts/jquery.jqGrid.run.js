@@ -186,6 +186,7 @@
             caption: "Exam Details",
             rownumbers: true,
             loadonce:false,//true,
+			recordtext:"View {0}-{1} of {2}",
             loadComplete: function (data) {
                 var datacount = $("#tblRadExam").getGridParam("reccount");
                 if (datacount == 0) {
