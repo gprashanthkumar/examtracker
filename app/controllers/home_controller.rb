@@ -371,7 +371,7 @@ class HomeController < ApplicationController
        @mysdk1 = Rad_Exam.get_exams_search_by_id_array(idList,false,@gridPage,@gridRows);
 
       else
-         puts "<---- start of id list \n"
+         puts "<---- start of no chekc box list \n"
          @mysdkTotal = Rad_Exam.get_exams_search_sdk(@employee.id,@myvalues,false,false,false,true,false)
              @mysdk1 = Rad_Exam.get_exams_search_sdk(@employee.id,@myvalues,false,false,false,false,true)
       end   
@@ -379,6 +379,7 @@ class HomeController < ApplicationController
     
     else #its  intersection join, NOT a UNION Join
       #@exams = Rad_Exam.get_exams_search(@employee.id,@myvalues,(@myvalues[:my_orders] == "on"),(@myvalues[:my_exams] == "on"),(@myvalues[:my_reports] == "on"))  ;    
+         puts "<---- start of intersection \n"
        @mysdkTotal = Rad_Exam.get_exams_search_sdk(@employee.id,@myvalues,false,false,false,true,false)
        @mysdk1 = Rad_Exam.get_exams_search_sdk(@employee.id,@myvalues,false,false,false,false,true)
     end
