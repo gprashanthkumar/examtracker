@@ -366,15 +366,15 @@ class HomeController < ApplicationController
           #puts idList.to_s + "is idList \n"
          
         end  
-        puts  @gridPage.to_s +  "<---- start of id list " + @gridRows.to_s  + "\n"
+        
        @mysdkTotal = Rad_Exam.get_exams_search_by_id_array(idList,true);     
        @mysdk1 = Rad_Exam.get_exams_search_by_id_array(idList,false,@gridPage.to_i,@gridRows.to_i);
          
 
       else
-         puts "<---- start of no chekc box list \n"
+         puts "<---- start of no check box list \n"
          @mysdkTotal = Rad_Exam.get_exams_search_sdk(@employee.id,@myvalues,false,false,false,true,false)
-             @mysdk1 = Rad_Exam.get_exams_search_sdk(@employee.id,@myvalues,false,false,false,false,true)
+             @mysdk1 = Rad_Exam.get_exams_search_sdk(@employee.id,@myvalues,false,false,false,false,true,@gridPage.to_i,@gridRows.to_i)
       end   
     
     
@@ -382,7 +382,7 @@ class HomeController < ApplicationController
       #@exams = Rad_Exam.get_exams_search(@employee.id,@myvalues,(@myvalues[:my_orders] == "on"),(@myvalues[:my_exams] == "on"),(@myvalues[:my_reports] == "on"))  ;    
          puts "<---- start of intersection \n"
        @mysdkTotal = Rad_Exam.get_exams_search_sdk(@employee.id,@myvalues,false,false,false,true,false)
-       @mysdk1 = Rad_Exam.get_exams_search_sdk(@employee.id,@myvalues,false,false,false,false,true)
+       @mysdk1 = Rad_Exam.get_exams_search_sdk(@employee.id,@myvalues,false,false,false,false,true,@gridPage.to_i,@gridRows.to_i)
     end
   
     
