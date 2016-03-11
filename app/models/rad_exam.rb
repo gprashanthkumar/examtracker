@@ -8,6 +8,7 @@ class Rad_Exam < ActiveRecord::Base
     
     @mysdk1 = " ";  
     @mysdkTotal= 0;
+    @offset = 0
     qmyreports = nil;
     qmyexams =nil;
     qmyorders = nil;   
@@ -148,11 +149,16 @@ class Rad_Exam < ActiveRecord::Base
       return @mysdkTotal.to_s
     else 
       if @mysdkTotal > 0 
-         if (paginate)
-            @mysdk1=  q1.limit(rows).list.to_a 
-         else
-            @mysdk1=  q1.list.to_a 
-         end       
+        if (paginate)
+          @offset = (page - 1)*rows
+          if @offset < 0 
+            @offset = 0
+          end
+          @mysdk1=  q1.offset(@offset).limit(rows).list.to_a 
+          return @mysdk1       
+        else
+          @mysdk1=  q1.list.to_a 
+        end       
       else
         @mysdk1=  q1.list.to_a 
       end     
@@ -172,7 +178,7 @@ class Rad_Exam < ActiveRecord::Base
       q1.where(
         q1.in(".accession", idList)
       );
-       @mysdkTotal = q1.list.count 
+      @mysdkTotal = q1.list.count 
     else
       q1.where(
         q1.equal(".id", -1)
@@ -275,11 +281,11 @@ class Rad_Exam < ActiveRecord::Base
       return @mysdkTotal.to_s
     else 
       if @mysdkTotal > 0 
-         @offset = (page - 1)*rows
-          if @offset < 0 
-            @offset = 0
-          end
-          @mysdk1=  q1.offset(@offset).limit(rows).list.to_a 
+        @offset = (page - 1)*rows
+        if @offset < 0 
+          @offset = 0
+        end
+        @mysdk1=  q1.offset(@offset).limit(rows).list.to_a 
       else
         @mysdk1=  q1.list.to_a 
       end     
