@@ -271,7 +271,8 @@ class HomeController < ApplicationController
     role = params[:role]
     @gridPage = params[:page];
     @gridRows = params[:rows];    
-    @gridSortOrder = params[:sord];
+    @gridSortId = params[:sidx];
+     @gridSortOrder = params[:sord];
     @authenticity_token = params[:authenticity_token];
     sdk(role,accession_ids,exam_status,@gridPage.to_i,@gridRows.to_i,@gridSortOrder);
   end
@@ -584,11 +585,7 @@ class HomeController < ApplicationController
     
     return exam;
   end  
-  
-  
-  def exam
-    
-  end
+ 
 end
 
 
