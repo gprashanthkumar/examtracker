@@ -138,7 +138,7 @@
                 { name: 'accession', index: 'accession', align: 'center', width:40, fixed:true, formatter: makeIdAsLinkFormatter }
 				,{ name: 'graph_status', index: 'graph_status', align: 'center', width:325, fixed:true, formatter: parseStatusOfExamFormatter }
 				,{ name: 'current_status', index: 'current_status', align: 'center', width:100, fixed:true }
-				,{ name: 'updated_at', index: 'updated_at', align: 'center', width:150, fixed:true , formatter:format_date_time }
+				,{ name: 'updated_at', index: 'updated_at', align: 'center', width:150, fixed:true , formatter:format_date_time ,sorttype: 'date'}
 				,{ name: 'patient_name', index: 'patient_name', align: 'center', width:140, fixed:true }
                                 ,{ name: 'mrn', index: 'mrn', align: 'center', width:120, fixed:true }
 				,{ name: 'birthdate', index: 'birthdate', align: 'center', width:140, fixed:true }
@@ -167,9 +167,9 @@
             //jsonReader: { repeatitems: false, id: "id", root: "rows", page: "page", total: "total",
     //records: "records"
 			//},
-            //jsonReader: { repeatitems: false, id: "id", root: function (obj) { return obj.rows; }, page: function (obj) { return //obj.page; }, total: function (obj) { return obj.total; },
-    //records: function (obj) { return (obj.records ); }
-		//	},
+            jsonReader: { repeatitems: false, id: "id", root: function (obj) { return obj.rows; }, page: function (obj) { return obj.page; }, total: function (obj) { return obj.total; },
+			records: function (obj) { return (obj.records ); }
+			},
 			beforeSelectRow: function() { return false; },
             multiselect: false,
             autowidth: true,
