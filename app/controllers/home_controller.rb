@@ -368,7 +368,9 @@ class HomeController < ApplicationController
         end  
         puts "<---- start of id list \n"
        @mysdkTotal = Rad_Exam.get_exams_search_by_id_array(idList,true);
+       puts  @mysdkTotal.to_s "<---- start of id list total \n" 
        @mysdk1 = Rad_Exam.get_exams_search_by_id_array(idList,false,@gridPage,@gridRows);
+         
 
       else
          puts "<---- start of no chekc box list \n"
