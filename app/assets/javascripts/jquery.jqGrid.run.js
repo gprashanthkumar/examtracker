@@ -194,7 +194,13 @@
             loadComplete: function (data) {
 				debugger;
 				//$("#tblRadExam").setGridParam({loadonce:true});
-				$("#tblRadExam").setGridParam({datatype:'local'});
+				$("#tblRadExam").setGridParam({
+					datatype: 'local',
+					data: data.rows,
+					pageServer: data.page,
+					recordsServer: data.records,
+					lastpageServer: data.total});
+				
 				
                 var datacount = $("#tblRadExam").getGridParam("reccount");
                 if (datacount == 0) {
