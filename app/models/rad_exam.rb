@@ -190,7 +190,7 @@ class Rad_Exam < ActiveRecord::Base
     if (total)    
       return @mysdkTotal
     else 
-       puts rows.to_s + "Prashanth <<<--->>>\n\n"
+       puts rows.to_s + "Prashanth <<<--->>>" +  page.to_s + "\n\n"
        if @mysdkTotal > 0 
         @offset = (page - 1)*rows;
         if @offset < 0 
