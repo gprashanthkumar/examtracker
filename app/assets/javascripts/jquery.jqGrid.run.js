@@ -185,15 +185,16 @@
             pager: '#tblRadExamPager',
             caption: "Exam Details",
             rownumbers: true,
-            loadonce: true, //true,
+            loadonce: false, //true,
 			recordtext:"View {0}-{1} of {2}",
 			onPaging:function(which_button){
 				$("#tblRadExam").setGridParam({loadonce:false});
-				//$("#tblRadExam").setGridParam({datatype:'json'});
+				$("#tblRadExam").setGridParam({datatype:'json'});
 			},
             loadComplete: function (data) {
+				debugger;
 				$("#tblRadExam").setGridParam({loadonce:true});
-				//$("#tblRadExam").setGridParam({datatype:'local'});
+				$("#tblRadExam").setGridParam({datatype:'local'});
 				
                 var datacount = $("#tblRadExam").getGridParam("reccount");
                 if (datacount == 0) {
