@@ -194,13 +194,38 @@
             loadComplete: function (data) {
 				debugger;
 				//$("#tblRadExam").setGridParam({loadonce:true});
-				$("#tblRadExam").setGridParam({
-					datatype: 'local',
-					data: data.rows,
-					pageServer: data.page,
-					recordsServer: data.records,
-					lastpageServer: data.total});
-				
+				var $this = $(this);
+    if ($this.jqGrid('getGridParam', 'datatype') === 'json') {
+        // because one use repeatitems: false option and uses no
+        // jsonmap in the colModel the setting of data parameter
+        // is very easy. We can set data parameter to data.rows:
+        $this.jqGrid('setGridParam', {
+            datatype: 'local',
+            data: data.rows,
+            pageServer: data.page,
+            recordsServer: data.records,
+            lastpageServer: data.total
+        });
+
+        // because we changed the value of the data parameter
+        // we need update internal _index parameter:
+        this.refreshIndex();
+
+        if ($this.jqGrid('getGridParam', 'sortname') !== '') {
+            // we need reload grid only if we use sortname parameter,
+            // but the server return unsorted data
+            $this.triggerHandler('reloadGrid');
+        }
+    } else {
+        $this.jqGrid('setGridParam', {
+            page: $this.jqGrid('getGridParam', 'pageServer'),
+            records: $this.jqGrid('getGridParam', 'recordsServer'),
+            lastpage: $this.jqGrid('getGridParam', 'lastpageServer')
+        });
+        this.updatepager(false, true);
+    }
+			
+			
 				
                 var datacount = $("#tblRadExam").getGridParam("reccount");
                 if (datacount == 0) {
