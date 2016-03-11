@@ -187,7 +187,13 @@
             rownumbers: true,
             loadonce:false,//true,
 			recordtext:"View {0}-{1} of {2}",
+			onPaging:function(){
+				$("#tblRadExam").setGridParam({datatype:'json'});
+			},
             loadComplete: function (data) {
+								
+				$("#tblRadExam").setGridParam({datatype:'local'});
+				
                 var datacount = $("#tblRadExam").getGridParam("reccount");
                 if (datacount == 0) {
                     $('.ui-jqgrid-bdiv').removeClass('JqgridAutoHeight'); 
