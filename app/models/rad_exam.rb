@@ -185,7 +185,7 @@ class Rad_Exam < ActiveRecord::Base
       );
     end
    
-   
+   puts rows.to_s + "Prashanth <<<--->>>\n\n"
    
     if (total)    
       return @mysdkTotal
