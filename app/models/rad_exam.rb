@@ -185,12 +185,15 @@ class Rad_Exam < ActiveRecord::Base
       );
     end
    
-    puts "page" +page.to_s + "---\n"
-    puts "rows" +rows.to_s + "---\n"
+   
    
     if (total)    
-      return @mysdkTotal.to_s
+      
     else 
+       puts "page" +page.to_s + "---\n"
+       puts "rows" +rows.to_s + "---\n"
+      return @mysdkTotal.to_s
+      
        if @mysdkTotal > 0 
         @offset = (page.to_i - 1)*rows.to_i;
         if @offset < 0 
