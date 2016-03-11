@@ -185,10 +185,10 @@
             pager: '#tblRadExamPager',
             caption: "Exam Details",
             rownumbers: true,
-            loadonce: false, //true,
+            //loadonce: false, //true,
 			recordtext:"View {0}-{1} of {2}",
 			onPaging:function(which_button){
-				$("#tblRadExam").setGridParam({loadonce:false});
+				//$("#tblRadExam").setGridParam({loadonce:false});
 				$("#tblRadExam").setGridParam({datatype:'json'});
 			},
             loadComplete: function (data) {
