@@ -105,15 +105,15 @@ class HomeController < ApplicationController
     @mysdk1 = nil;
     @roleType = roletype
     case roletype
-    when "Radiologist"
-      @mysdk1 = Rad_Exam.radRoleData(@employee.id,accession,currentstatus,page,rows,sord) 
+    when "Radiologist"     
       @total = Rad_Exam.radRoleData(@employee.id,accession,currentstatus,page,rows,sord,true) 
-    when "Technologist"
-      @mysdk1 = Rad_Exam.techRoleData(@employee.id,accession,currentstatus,page,rows,sord)  
+       @mysdk1 = Rad_Exam.radRoleData(@employee.id,accession,currentstatus,page,rows,sord) 
+    when "Technologist"    
       @total = Rad_Exam.techRoleData(@employee.id,accession,currentstatus,page,rows,sord,true)  
+        @mysdk1 = Rad_Exam.techRoleData(@employee.id,accession,currentstatus,page,rows,sord)  
     when "Schedule Registrar"
-      @mysdk1 = Rad_Exam.schedRegRoleData(@employee.id,accession,currentstatus,page,rows,sord)  
-      @total = Rad_Exam.schedRegRoleData(@employee.id,accession,currentstatus,page,rows,sord,true)  
+       @total = Rad_Exam.schedRegRoleData(@employee.id,accession,currentstatus,page,rows,sord,true)  
+      @mysdk1 = Rad_Exam.schedRegRoleData(@employee.id,accession,currentstatus,page,rows,sord)       
     when "Transcript"
        @total = Rad_Exam.transRoleData(@employee.id,accession,currentstatus,page,rows,sord,true)  
       @mysdk1 = Rad_Exam.transRoleData(@employee.id,accession,currentstatus,page,rows,sord)  
@@ -372,7 +372,7 @@ class HomeController < ApplicationController
          
 
       else
-         puts "<---- start of no check box list \n"
+         
          @mysdkTotal = Rad_Exam.get_exams_search_sdk(@employee.id,@myvalues,false,false,false,true,false)
              @mysdk1 = Rad_Exam.get_exams_search_sdk(@employee.id,@myvalues,false,false,false,false,true,@gridPage.to_i,@gridRows.to_i)
       end   
@@ -380,7 +380,7 @@ class HomeController < ApplicationController
     
     else #its  intersection join, NOT a UNION Join
       #@exams = Rad_Exam.get_exams_search(@employee.id,@myvalues,(@myvalues[:my_orders] == "on"),(@myvalues[:my_exams] == "on"),(@myvalues[:my_reports] == "on"))  ;    
-         puts "<---- start of intersection \n"
+         
        @mysdkTotal = Rad_Exam.get_exams_search_sdk(@employee.id,@myvalues,false,false,false,true,false)
        @mysdk1 = Rad_Exam.get_exams_search_sdk(@employee.id,@myvalues,false,false,false,false,true,@gridPage.to_i,@gridRows.to_i)
     end

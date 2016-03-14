@@ -188,10 +188,9 @@ class Rad_Exam < ActiveRecord::Base
   
    
     if (total)   
-      puts "inside total \n\n"
+   
       return @mysdkTotal
-    else 
-       puts rows.to_s + "Prashanth <<<--->>>" +  page.to_s + "\n\n"
+    else     
        if @mysdkTotal > 0 
         @offset = (page - 1)*rows;
         if @offset < 0 
@@ -245,10 +244,15 @@ class Rad_Exam < ActiveRecord::Base
         
       q1.where(q1.and(
           [
-            q1.in(".accession", accessions), q1.in(".currentStatus.universalEventType.eventType", current_status),
+            q1.in(".accession", accessions), 
+            q1.in(".currentStatus.universalEventType.eventType", current_status),
             q1.or(
               [
-                q1.equal(".currentReport.rad1.id",employeeid),q1.equal(".currentReport.rad2.id",employeeid),q1.equal(".currentReport.rad3.id",employeeid),q1.equal(".currentReport.rad4.id",employeeid),q1.equal(".radExamPersonnel.performingId",employeeid)
+                q1.equal(".currentReport.rad1.id",employeeid),
+                q1.equal(".currentReport.rad2.id",employeeid),
+                q1.equal(".currentReport.rad3.id",employeeid),
+                q1.equal(".currentReport.rad4.id",employeeid),
+                q1.equal(".radExamPersonnel.performingId",employeeid)
               ]
             )         
           ] 
@@ -261,7 +265,11 @@ class Rad_Exam < ActiveRecord::Base
             q1.in(".accession", accessions),
             q1.or(
               [
-                q1.equal(".currentReport.rad1.id",employeeid),q1.equal(".currentReport.rad2.id",employeeid),q1.equal(".currentReport.rad3.id",employeeid),q1.equal(".currentReport.rad4.id",employeeid),q1.equal(".radExamPersonnel.performingId",employeeid)
+                q1.equal(".currentReport.rad1.id",employeeid),
+                q1.equal(".currentReport.rad2.id",employeeid),
+                q1.equal(".currentReport.rad3.id",employeeid),
+                q1.equal(".currentReport.rad4.id",employeeid),
+                q1.equal(".radExamPersonnel.performingId",employeeid)
               ]
             )         
           ] 
