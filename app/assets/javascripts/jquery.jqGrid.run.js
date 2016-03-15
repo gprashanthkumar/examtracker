@@ -16,6 +16,8 @@ $(document).ready(function () {
     });
 	
 	 $("#btnReload").click(function () {
+		 $("#DdlAccessionIdSrch").multiselect("uncheckAll");
+		 $("#DdlStatusSrch").multiselect("uncheckAll");
         createOrUpdateRadExamGrid();
     });
     //=====End Search functionality==============
