@@ -33,9 +33,9 @@ $(document).ready(function () {
 
         firstStageTitle = "Ordered: " + Datetime_tag_change(firstStageTitle);
         secondStageTitle = "Scheduled: " + Datetime_tag_change(secondStageTitle);
-        thirdStageTitle = Datetime_tag_change(thirdStageTitle);
-        fourthStageTitle = Datetime_tag_change(fourthStageTitle);
-        fifthStageTitle = Datetime_tag_change(fifthStageTitle);
+        thirdStageTitle = "Arrived: " + Datetime_tag_change(thirdStageTitle);
+        fourthStageTitle = "Begin: " + Datetime_tag_change(fourthStageTitle);
+        fifthStageTitle = "Complete: " + Datetime_tag_change(fifthStageTitle);
         sixthStageTitle = Datetime_tag_change(sixthStageTitle);
 
         if (cellvalue_array[cellvalue_array.length - 1] == "order") {
@@ -55,10 +55,10 @@ $(document).ready(function () {
             return '<div class="wizard"><a class="current" title="' + firstStageTitle + '"><span class="badge"></span></a><a class="softcyanlimegreen" title="' + secondStageTitle + '"><span class="badge"></span></a><a class="vanilla" title="' + thirdStageTitle + '"><span class="badge"></span></a><a class="violet" title="' + fourthStageTitle + '"><span class="badge"></span></a><a class="darkorange" title="' + fifthStageTitle + '"><i class="fa fa-check" style="display: table-cell; float: right; margin: 8px;"></i><span class="badge badge-inverse"></span></a><a title="' + sixthStageTitle + '"><span class="badge"></span></a></div>';
         }
         else if ((cellvalue_array[cellvalue_array.length - 1] == "dictated") || (cellvalue_array[cellvalue_array.length - 1] == "prelim") || (cellvalue_array[cellvalue_array.length - 1] == "corrections")) {
-            return '<div class="wizard"><a class="current" title="' + firstStageTitle + '"><span class="badge"></span></a><a class="softcyanlimegreen" title="' + secondStageTitle + '"><span class="badge"></span></a><a class="vanilla" title="' + thirdStageTitle + '"><span class="badge"></span></a><a class="violet" title="' + fourthStageTitle + '"><span class="badge"></span></a><a class="darkorange" title="' + fifthStageTitle + '"><span class="badge badge-inverse"></span></a><a class="gold" title="' + sixthStageTitle + '"><i class="fa fa-check" style="display: table-cell; float: right; margin: 8px;"></i></a></div>';
+            return '<div class="wizard"><a class="current" title="' + firstStageTitle + '"><span class="badge"></span></a><a class="softcyanlimegreen" title="' + secondStageTitle + '"><span class="badge"></span></a><a class="vanilla" title="' + thirdStageTitle + '"><span class="badge"></span></a><a class="violet" title="' + fourthStageTitle + '"><span class="badge"></span></a><a class="darkorange" title="' + fifthStageTitle + '"><span class="badge badge-inverse"></span></a><a class="gold" title="' + cellvalue_array[cellvalue_array.length - 1] + ":" + sixthStageTitle + '"><i class="fa fa-check" style="display: table-cell; float: right; margin: 8px;"></i></a></div>';
         }
         else if ((cellvalue_array[cellvalue_array.length - 1] == "final") || (cellvalue_array[cellvalue_array.length - 1] == "addendum")) {
-            return '<div class="wizard"><a class="current" title="' + firstStageTitle + '"><span class="badge"></span></a><a class="softcyanlimegreen" title="' + secondStageTitle + '"><span class="badge"></span></a><a class="vanilla" title="' + thirdStageTitle + '"><span class="badge"></span></a><a class="violet" title="' + fourthStageTitle + '"><span class="badge"></span></a><a class="darkorange" title="' + fifthStageTitle + '"><span class="badge badge-inverse"></span></a><a class="green" title="' + sixthStageTitle + '"><i class="fa fa-check" style="display: table-cell; float: right; margin: 8px;"></i></a></div>';
+            return '<div class="wizard"><a class="current" title="' + firstStageTitle + '"><span class="badge"></span></a><a class="softcyanlimegreen" title="' + secondStageTitle + '"><span class="badge"></span></a><a class="vanilla" title="' + thirdStageTitle + '"><span class="badge"></span></a><a class="violet" title="' + fourthStageTitle + '"><span class="badge"></span></a><a class="darkorange" title="' + fifthStageTitle + '"><span class="badge badge-inverse"></span></a><a class="green" title="' + cellvalue_array[cellvalue_array.length - 1] + ":" + sixthStageTitle + '"><i class="fa fa-check" style="display: table-cell; float: right; margin: 8px;"></i></a></div>';
         }
         else if (cellvalue_array[cellvalue_array.length - 1] == "cancelled") {
 
