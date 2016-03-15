@@ -13,126 +13,126 @@ class Rad_Exam < ActiveRecord::Base
     qmyexams =nil;
     qmyorders = nil;   
     
-    q1 = Java::HarbingerSdkData::RadExam.createQuery(@entity_manager) 
+    querySDK = Java::HarbingerSdkData::RadExam.createQuery(@entity_manager) 
     
     if( myreports == true) 
       qmyreports =   
-        q1.or([
-          q1.equal(".currentReport.rad1.id",employeeid),\
-            q1.equal(".currentReport.rad2.id",employeeid),\
-            q1.equal(".currentReport.rad3.id",employeeid),\
-            q1.equal(".currentReport.rad4.id",employeeid)
+        querySDK.or([
+          querySDK.equal(".currentReport.rad1.id",employeeid),\
+            querySDK.equal(".currentReport.rad2.id",employeeid),\
+            querySDK.equal(".currentReport.rad3.id",employeeid),\
+            querySDK.equal(".currentReport.rad4.id",employeeid)
         ].delete_if {myreports != true}
       );
     else
-      qmyreports =   q1.equal(".id",".id");
+      qmyreports =   querySDK.equal(".id",".id");
     end
     
     if (myexams == true)
         
       qmyexams =   
-        q1.or([
-          q1.equal(".radExamPersonnel.performing.id",employeeid),\
-            q1.equal(".radExamPersonnel.technologist.id",employeeid),\
-            q1.equal(".radExamPersonnel.scheduler.id",employeeid)
+        querySDK.or([
+          querySDK.equal(".radExamPersonnel.performing.id",employeeid),\
+            querySDK.equal(".radExamPersonnel.technologist.id",employeeid),\
+            querySDK.equal(".radExamPersonnel.scheduler.id",employeeid)
         ].delete_if {myexams != true}
       );
     else
-      qmyexams = q1.equal(".id",".id");
+      qmyexams = querySDK.equal(".id",".id");
     end
              
      
     if (myorders == true)       
       
       qmyorders =   
-        q1.or([
-          q1.equal(".radExamPersonnel.attending.id",employeeid),\
-            q1.equal(".radExamPersonnel.ordering.id",employeeid),\
-            q1.equal(".radExamPersonnel.authorizing.id",employeeid)
+        querySDK.or([
+          querySDK.equal(".radExamPersonnel.attending.id",employeeid),\
+            querySDK.equal(".radExamPersonnel.ordering.id",employeeid),\
+            querySDK.equal(".radExamPersonnel.authorizing.id",employeeid)
         ].delete_if {myorders != true}
       );
     else
-      qmyorders = q1.equal(".id",".id");
+      qmyorders = querySDK.equal(".id",".id");
     end 
         
     #visit
-    qmyvisit =  q1.equal(".id",".id");     
+    qmyvisit =  querySDK.equal(".id",".id");     
     if ((params[:visit] != "") && !(params[:visit].nil?) && !(params[:visit].blank?)) 
-      qmyvisit = q1.ilike(".visit.visitNumber", "%#{params[:visit]}%");
+      qmyvisit = querySDK.ilike(".visit.visitNumber", "%#{params[:visit]}%");
     end
      
     #:order_id
-    qmyorder =  q1.equal(".id",".id");     
+    qmyorder =  querySDK.equal(".id",".id");     
     if ((params[:order_id] != "") && !(params[:order_id].nil?) && !(params[:order_id].blank?)) 
-      qmyorder = q1.ilike(".order.orderNumber", "%#{params[:order_id]}%");
+      qmyorder = querySDK.ilike(".order.orderNumber", "%#{params[:order_id]}%");
     end
     
     #:accession
-    qmyaccession =  q1.equal(".id",".id");
+    qmyaccession =  querySDK.equal(".id",".id");
     if ((params[:accession] != "") && !(params[:accession].nil?) && !(params[:accession].blank?))            
-      qmyaccession = q1.ilike(".accession", "%#{params[:accession]}%");
+      qmyaccession = querySDK.ilike(".accession", "%#{params[:accession]}%");
     end 
     
     #:patient_type
-    qmypatientType =  q1.equal(".id",".id");
+    qmypatientType =  querySDK.equal(".id",".id");
     if ((params[:patient_type] != "") && !(params[:patient_type].nil?) && !(params[:patient_type].blank?))            
-      qmypatientType = q1.ilike(".siteClass.patientType.patientType", "#{params[:patient_type]}");
+      qmypatientType = querySDK.ilike(".siteClass.patientType.patientType", "#{params[:patient_type]}");
     end 
     
     #:mrn 
-    qmymrn =  q1.equal(".id",".id");
+    qmymrn =  querySDK.equal(".id",".id");
     if ((params[:mrn] != "") && !(params[:mrn].nil?) && !(params[:mrn].blank?))            
-      qmymrn = q1.ilike(".patientMrn.mrn", "%#{params[:mrn]}");
+      qmymrn = querySDK.ilike(".patientMrn.mrn", "%#{params[:mrn]}");
     end 
     
     #:patient_name
-    qmyname =  q1.equal(".id",".id");
+    qmyname =  querySDK.equal(".id",".id");
     if ((params[:patient_name] != "") && !(params[:patient_name].nil?) && !(params[:patient_name].blank?))          
-      qmyname  = q1.ilike(".patientMrn.patient.name", "%#{params[:patient_name]}%");
+      qmyname  = querySDK.ilike(".patientMrn.patient.name", "%#{params[:patient_name]}%");
     end   
     #:modality
-    qmymodality =  q1.equal(".id",".id");
+    qmymodality =  querySDK.equal(".id",".id");
     if ((params[:modality] != "") && !(params[:modality].nil?) && !(params[:modality].blank?))          
-      qmymodality =  q1.ilike(".resource.modality.modality", "%#{params[:modality]}%");
+      qmymodality =  querySDK.ilike(".resource.modality.modality", "%#{params[:modality]}%");
     end
     
     #:code 
-    qmycode  =  q1.equal(".id",".id");
+    qmycode  =  querySDK.equal(".id",".id");
     if ((params[:code] != "") && !(params[:code].nil?) && !(params[:code].blank?))          
-      qmycode =  q1.ilike(".procedure.code", "%#{params[:code]}%");
+      qmycode =  querySDK.ilike(".procedure.code", "%#{params[:code]}%");
     end
     
     #:resource_name
-    qmyresourceName  =  q1.equal(".id",".id");
+    qmyresourceName  =  querySDK.equal(".id",".id");
     if ((params[:resource_name] != "") && !(params[:resource_name].nil?) && !(params[:resource_name].blank?))          
-      qmyresourceName  =  q1.ilike(".resource.name", "%#{params[:resource_name]}%");
+      qmyresourceName  =  querySDK.ilike(".resource.name", "%#{params[:resource_name]}%");
     end
     
       
     #:rad_exam_dept
-    qmyradExamDept =  q1.equal(".id",".id");
+    qmyradExamDept =  querySDK.equal(".id",".id");
     if ((params[:rad_exam_dept] != "") && !(params[:rad_exam_dept].nil?) && !(params[:rad_exam_dept].blank?))   
-      qmyradExamDept  =  q1.ilike(".radExamDepartment.description", "%#{params[:rad_exam_dept]}%");
+      qmyradExamDept  =  querySDK.ilike(".radExamDepartment.description", "%#{params[:rad_exam_dept]}%");
     end
      
     # :current_status
-    qmycurrentStatus =  q1.equal(".id",".id");
+    qmycurrentStatus =  querySDK.equal(".id",".id");
     if ((params[:current_status] != "") && !(params[:current_status].nil?) && !(params[:current_status].blank?))          
-      qmycurrentStatus =  q1.ilike(".currentStatus.universalEventType.eventType", "%#{params[:current_status]}%");
+      qmycurrentStatus =  querySDK.ilike(".currentStatus.universalEventType.eventType", "%#{params[:current_status]}%");
     end
   
-    qmypatientExamLocation =  q1.equal(".id",".id");
+    qmypatientExamLocation =  querySDK.equal(".id",".id");
     if ((params[:patient_location_at_exam] != "") && !(params[:patient_location_at_exam].nil?) && !(params[:patient_location_at_exam].blank?))          
-      qmypatientExamLocation =  q1.ilike(".siteSublocation.siteLocation.location", "%#{params[:patient_location_at_exam]}%");
+      qmypatientExamLocation =  querySDK.ilike(".siteSublocation.siteLocation.location", "%#{params[:patient_location_at_exam]}%");
     end
      
-    qmysiteName =  q1.equal(".id",".id");
+    qmysiteName =  querySDK.equal(".id",".id");
     if ((params[:site_name] != "") && !(params[:site_name].nil?) && !(params[:site_name].blank?))
-      qmysiteName =  q1.ilike(".site.site", "%#{params[:site_name]}%");
+      qmysiteName =  querySDK.ilike(".site.site", "%#{params[:site_name]}%");
     end
      
     #Build final query to execute
-    q1.where(q1.and(
+    querySDK.where(querySDK.and(
         [qmyreports,qmyexams,qmyorders,qmyvisit,\
             qmyorder,qmyaccession,qmypatientType,\
             qmymrn,qmyname,qmymodality,qmycode,qmyresourceName,\
@@ -142,8 +142,8 @@ class Rad_Exam < ActiveRecord::Base
         ]
       ));
     
-    #puts q1.toSQL;
-    @mysdkTotal = q1.list.count ;
+    #puts querySDK.toSQL;
+    @mysdkTotal = querySDK.list.count ;
    
     if (total)    
       return @mysdkTotal.to_s
@@ -154,13 +154,13 @@ class Rad_Exam < ActiveRecord::Base
           if @offset < 0 
             @offset = 0
           end
-          @mysdk1=  q1.offset(@offset).limit(rows).list.to_a 
+          @mysdk1=  querySDK.offset(@offset).limit(rows).list.to_a 
           return @mysdk1       
         else
-          @mysdk1=  q1.list.to_a 
+          @mysdk1=  querySDK.list.to_a 
         end       
       else
-        @mysdk1=  q1.list.to_a 
+        @mysdk1=  querySDK.list.to_a 
       end     
       return @mysdk1
     end
@@ -173,15 +173,15 @@ class Rad_Exam < ActiveRecord::Base
   def self.get_exams_search_by_id_array(idList,total=false,page=1,rows=10,sord="asc")
     @mysdkTotal = 0;
     @offset =0;
-    q1 = Java::HarbingerSdkData::RadExam.createQuery(@entity_manager) 
+    querySDK = Java::HarbingerSdkData::RadExam.createQuery(@entity_manager) 
     if (idList.length > 0)
-      q1.where(
-        q1.in(".accession", idList)
+      querySDK.where(
+        querySDK.in(".accession", idList)
       );
-      @mysdkTotal = q1.list.count 
+      @mysdkTotal = querySDK.list.count 
     else
-      q1.where(
-        q1.equal(".id", -1)
+      querySDK.where(
+        querySDK.equal(".id", -1)
       );
     end
    
@@ -196,9 +196,9 @@ class Rad_Exam < ActiveRecord::Base
         if @offset < 0 
           @offset = 0
         end
-        @mysdk1=  q1.offset(@offset).limit(rows).list.to_a 
+        @mysdk1=  querySDK.offset(@offset).limit(rows).list.to_a 
       else
-        @mysdk1=  q1.list.to_a 
+        @mysdk1=  querySDK.list.to_a 
       end       
       return @mysdk1
     end
@@ -209,18 +209,18 @@ class Rad_Exam < ActiveRecord::Base
  
   def self.get_accession_detail_sdk(accessionid)
   
-    q1 = Java::HarbingerSdkData::RadExam.createQuery(@entity_manager) 
+    querySDK = Java::HarbingerSdkData::RadExam.createQuery(@entity_manager) 
     if (!accessionid.blank?)
-      q1.where(
-        q1.equal(".accession", accessionid)      
+      querySDK.where(
+        querySDK.equal(".accession", accessionid)      
       );
      
     else
-      q1.where(
-        q1.equal(".id", -1)
+      querySDK.where(
+        querySDK.equal(".id", -1)
       );
     end
-    return q1.list.to_a 
+    return querySDK.list.to_a 
   end
   
   #Definitions: This is the  utility definition 
@@ -237,22 +237,22 @@ class Rad_Exam < ActiveRecord::Base
   def self.radRoleData(employeeid,accessions,current_status,page,rows,sord,total = false)
     @mysdk1 = " ";  
     @mysdkTotal = 0;
-    q1 = Java::HarbingerSdkData::RadExam.createQuery(@entity_manager)         
+    querySDK = Java::HarbingerSdkData::RadExam.createQuery(@entity_manager)         
  
     if ( (accessions.blank? == false) && (current_status.blank? == false) ) 
    
         
-      q1.where(q1.and(
+      querySDK.where(querySDK.and(
           [
-            q1.in(".accession", accessions), 
-            q1.in(".currentStatus.universalEventType.eventType", current_status),
-            q1.or(
+            querySDK.in(".accession", accessions), 
+            querySDK.in(".currentStatus.universalEventType.eventType", current_status),
+            querySDK.or(
               [
-                q1.equal(".currentReport.rad1.id",employeeid),
-                q1.equal(".currentReport.rad2.id",employeeid),
-                q1.equal(".currentReport.rad3.id",employeeid),
-                q1.equal(".currentReport.rad4.id",employeeid),
-                q1.equal(".radExamPersonnel.performingId",employeeid)
+                querySDK.equal(".currentReport.rad1.id",employeeid),
+                querySDK.equal(".currentReport.rad2.id",employeeid),
+                querySDK.equal(".currentReport.rad3.id",employeeid),
+                querySDK.equal(".currentReport.rad4.id",employeeid),
+                querySDK.equal(".radExamPersonnel.performingId",employeeid)
               ]
             )         
           ] 
@@ -260,38 +260,38 @@ class Rad_Exam < ActiveRecord::Base
    
     elsif (accessions.blank? == false)
    
-      q1.where(q1.and(
+      querySDK.where(querySDK.and(
           [
-            q1.in(".accession", accessions),
-            q1.or(
+            querySDK.in(".accession", accessions),
+            querySDK.or(
               [
-                q1.equal(".currentReport.rad1.id",employeeid),
-                q1.equal(".currentReport.rad2.id",employeeid),
-                q1.equal(".currentReport.rad3.id",employeeid),
-                q1.equal(".currentReport.rad4.id",employeeid),
-                q1.equal(".radExamPersonnel.performingId",employeeid)
+                querySDK.equal(".currentReport.rad1.id",employeeid),
+                querySDK.equal(".currentReport.rad2.id",employeeid),
+                querySDK.equal(".currentReport.rad3.id",employeeid),
+                querySDK.equal(".currentReport.rad4.id",employeeid),
+                querySDK.equal(".radExamPersonnel.performingId",employeeid)
               ]
             )         
           ] 
         ));
     elsif (current_status.blank? == false)
    
-      q1.where(q1.and(
+      querySDK.where(querySDK.and(
           [
-            q1.in(".currentStatus.universalEventType.eventType", current_status),
-            q1.or(
+            querySDK.in(".currentStatus.universalEventType.eventType", current_status),
+            querySDK.or(
               [
-                q1.equal(".currentReport.rad1.id",employeeid),q1.equal(".currentReport.rad2.id",employeeid),q1.equal(".currentReport.rad3.id",employeeid),q1.equal(".currentReport.rad4.id",employeeid),q1.equal(".radExamPersonnel.performingId",employeeid)
+                querySDK.equal(".currentReport.rad1.id",employeeid),querySDK.equal(".currentReport.rad2.id",employeeid),querySDK.equal(".currentReport.rad3.id",employeeid),querySDK.equal(".currentReport.rad4.id",employeeid),querySDK.equal(".radExamPersonnel.performingId",employeeid)
               ]
             )         
           ] 
         ));
     else 
-      q1.where(q1.or ( [
-            q1.equal(".currentReport.rad1.id",employeeid),q1.equal(".currentReport.rad2.id",employeeid),q1.equal(".currentReport.rad3.id",employeeid),q1.equal(".currentReport.rad4.id",employeeid)]  )
+      querySDK.where(querySDK.or ( [
+            querySDK.equal(".currentReport.rad1.id",employeeid),querySDK.equal(".currentReport.rad2.id",employeeid),querySDK.equal(".currentReport.rad3.id",employeeid),querySDK.equal(".currentReport.rad4.id",employeeid)]  )
       )
     end
-    @mysdkTotal = q1.list.count 
+    @mysdkTotal = querySDK.list.count 
     if (total)    
       return @mysdkTotal.to_s
     else 
@@ -300,9 +300,9 @@ class Rad_Exam < ActiveRecord::Base
         if @offset < 0 
           @offset = 0
         end
-        @mysdk1=  q1.offset(@offset).limit(rows).list.to_a 
+        @mysdk1=  querySDK.offset(@offset).limit(rows).list.to_a 
       else
-        @mysdk1=  q1.list.to_a 
+        @mysdk1=  querySDK.list.to_a 
       end     
       return @mysdk1
     end
@@ -311,17 +311,17 @@ class Rad_Exam < ActiveRecord::Base
   
   def self.techRoleData(employeeid,accessions,current_status,page,rows,sord,total=false)
     @mysdk1 = " ";  
-    q1 = Java::HarbingerSdkData::RadExam.createQuery(@entity_manager)  
+    querySDK = Java::HarbingerSdkData::RadExam.createQuery(@entity_manager)  
    
     if ( (accessions.blank? == false) && (current_status.blank? == false) ) 
    
         
-      q1.where(q1.and(
+      querySDK.where(querySDK.and(
           [
-            q1.in(".accession", accessions), q1.in(".currentStatus.universalEventType.eventType", current_status),
-            q1.or(
+            querySDK.in(".accession", accessions), querySDK.in(".currentStatus.universalEventType.eventType", current_status),
+            querySDK.or(
               [
-                q1.equal(".radExamPersonnel.assistingTech1.id",employeeid),q1.equal(".radExamPersonnel.assistingTech2.id",employeeid),q1.equal(".radExamPersonnel.assistingTech3.id",employeeid),q1.equal(".radExamPersonnel.technologist.id",employeeid)
+                querySDK.equal(".radExamPersonnel.assistingTech1.id",employeeid),querySDK.equal(".radExamPersonnel.assistingTech2.id",employeeid),querySDK.equal(".radExamPersonnel.assistingTech3.id",employeeid),querySDK.equal(".radExamPersonnel.technologist.id",employeeid)
               ]
             )         
           ] 
@@ -329,33 +329,33 @@ class Rad_Exam < ActiveRecord::Base
    
     elsif (accessions.blank? == false)
    
-      q1.where(q1.and(
+      querySDK.where(querySDK.and(
           [
-            q1.in(".accession", accessions),
-            q1.or(
+            querySDK.in(".accession", accessions),
+            querySDK.or(
               [
-                q1.equal(".radExamPersonnel.assistingTech1.id",employeeid),q1.equal(".radExamPersonnel.assistingTech2.id",employeeid),q1.equal(".radExamPersonnel.assistingTech3.id",employeeid),q1.equal(".radExamPersonnel.technologist.id",employeeid)
+                querySDK.equal(".radExamPersonnel.assistingTech1.id",employeeid),querySDK.equal(".radExamPersonnel.assistingTech2.id",employeeid),querySDK.equal(".radExamPersonnel.assistingTech3.id",employeeid),querySDK.equal(".radExamPersonnel.technologist.id",employeeid)
               ]
             )         
           ] 
         ));
     elsif (current_status.blank? == false)
    
-      q1.where(q1.and(
+      querySDK.where(querySDK.and(
           [
-            q1.in(".currentStatus.universalEventType.eventType", current_status),
-            q1.or(
+            querySDK.in(".currentStatus.universalEventType.eventType", current_status),
+            querySDK.or(
               [
-                q1.equal(".radExamPersonnel.assistingTech1.id",employeeid),q1.equal(".radExamPersonnel.assistingTech2.id",employeeid),q1.equal(".radExamPersonnel.assistingTech3.id",employeeid),q1.equal(".radExamPersonnel.technologist.id",employeeid)
+                querySDK.equal(".radExamPersonnel.assistingTech1.id",employeeid),querySDK.equal(".radExamPersonnel.assistingTech2.id",employeeid),querySDK.equal(".radExamPersonnel.assistingTech3.id",employeeid),querySDK.equal(".radExamPersonnel.technologist.id",employeeid)
               ]
             )         
           ] 
         ));
     else 
    
-      q1.where(q1.or(
+      querySDK.where(querySDK.or(
           [
-            q1.equal(".radExamPersonnel.assistingTech1.id",employeeid),q1.equal(".radExamPersonnel.assistingTech2.id",employeeid),q1.equal(".radExamPersonnel.assistingTech3.id",employeeid),q1.equal(".radExamPersonnel.technologist.id",employeeid)            
+            querySDK.equal(".radExamPersonnel.assistingTech1.id",employeeid),querySDK.equal(".radExamPersonnel.assistingTech2.id",employeeid),querySDK.equal(".radExamPersonnel.assistingTech3.id",employeeid),querySDK.equal(".radExamPersonnel.technologist.id",employeeid)            
           ] 
         )
       )
@@ -363,13 +363,13 @@ class Rad_Exam < ActiveRecord::Base
 
 
     if (total)    
-      return q1.list.count.to_s
+      return querySDK.list.count.to_s
     else 
       @offset = (page - 1)*rows
       if @offset < 0 
         @offset = 0
       end
-      @mysdk1=  q1.offset(@offset).limit(rows).list.to_a 
+      @mysdk1=  querySDK.offset(@offset).limit(rows).list.to_a 
       return @mysdk1
     end
     
@@ -377,17 +377,17 @@ class Rad_Exam < ActiveRecord::Base
   
   def self.schedRegRoleData(employeeid,accessions,current_status,page,rows,sord,total=false)
     @mysdk1 = " ";  
-    q1 = Java::HarbingerSdkData::RadExam.createQuery(@entity_manager)  
+    querySDK = Java::HarbingerSdkData::RadExam.createQuery(@entity_manager)  
 
     if ( (accessions.blank? == false) && (current_status.blank? == false) ) 
    
         
-      q1.where(q1.and(
+      querySDK.where(querySDK.and(
           [
-            q1.in(".accession", accessions), q1.in(".currentStatus.universalEventType.eventType", current_status),
-            q1.or(
+            querySDK.in(".accession", accessions), querySDK.in(".currentStatus.universalEventType.eventType", current_status),
+            querySDK.or(
               [
-                q1.equal(".radExamPersonnel.scheduler.id",employeeid),q1.equal(".radExamPersonnel.checkin.id",employeeid),q1.equal(".radExamPersonnel.beginExam.id",employeeid)
+                querySDK.equal(".radExamPersonnel.scheduler.id",employeeid),querySDK.equal(".radExamPersonnel.checkin.id",employeeid),querySDK.equal(".radExamPersonnel.beginExam.id",employeeid)
                 
               ]
             )         
@@ -396,42 +396,42 @@ class Rad_Exam < ActiveRecord::Base
    
     elsif (accessions.blank? == false)
    
-      q1.where(q1.and(
+      querySDK.where(querySDK.and(
           [
-            q1.in(".accession", accessions),
-            q1.or(
+            querySDK.in(".accession", accessions),
+            querySDK.or(
               [
-                q1.equal(".currentReport.rad1.id",employeeid),q1.equal(".currentReport.rad2.id",employeeid),q1.equal(".currentReport.rad3.id",employeeid),q1.equal(".currentReport.rad4.id",employeeid),q1.equal(".radExamPersonnel.performingId",employeeid)
+                querySDK.equal(".currentReport.rad1.id",employeeid),querySDK.equal(".currentReport.rad2.id",employeeid),querySDK.equal(".currentReport.rad3.id",employeeid),querySDK.equal(".currentReport.rad4.id",employeeid),querySDK.equal(".radExamPersonnel.performingId",employeeid)
               ]
             )         
           ] 
         ));
     elsif (current_status.blank? == false)
    
-      q1.where(q1.and(
+      querySDK.where(querySDK.and(
           [
-            q1.in(".currentStatus.universalEventType.eventType", current_status),
-            q1.or(
+            querySDK.in(".currentStatus.universalEventType.eventType", current_status),
+            querySDK.or(
               [
-                q1.equal(".currentReport.rad1.id",employeeid),q1.equal(".currentReport.rad2.id",employeeid),q1.equal(".currentReport.rad3.id",employeeid),q1.equal(".currentReport.rad4.id",employeeid),q1.equal(".radExamPersonnel.performingId",employeeid)
+                querySDK.equal(".currentReport.rad1.id",employeeid),querySDK.equal(".currentReport.rad2.id",employeeid),querySDK.equal(".currentReport.rad3.id",employeeid),querySDK.equal(".currentReport.rad4.id",employeeid),querySDK.equal(".radExamPersonnel.performingId",employeeid)
               ]
             )         
           ] 
         ));
     else 
-      q1.where(q1.or ( [
-            q1.equal(".currentReport.rad1.id",employeeid),q1.equal(".currentReport.rad2.id",employeeid),q1.equal(".currentReport.rad3.id",employeeid),q1.equal(".currentReport.rad4.id",employeeid)]  )
+      querySDK.where(querySDK.or ( [
+            querySDK.equal(".currentReport.rad1.id",employeeid),querySDK.equal(".currentReport.rad2.id",employeeid),querySDK.equal(".currentReport.rad3.id",employeeid),querySDK.equal(".currentReport.rad4.id",employeeid)]  )
       )
     end
 
     if (total)    
-      return q1.list.count.to_s
+      return querySDK.list.count.to_s
     else 
       @offset = (page - 1)*rows
       if @offset < 0 
         @offset = 0
       end
-      @mysdk1=  q1.offset(@offset).limit(rows).list.to_a 
+      @mysdk1=  querySDK.offset(@offset).limit(rows).list.to_a 
       return @mysdk1
     end
     
@@ -439,49 +439,49 @@ class Rad_Exam < ActiveRecord::Base
   
   def self.transRoleData(employeeid,accessions,current_status,page,rows,sord,total=false)
     @mysdk1 = " ";  
-    q1 = Java::HarbingerSdkData::RadExam.createQuery(@entity_manager)  
+    querySDK = Java::HarbingerSdkData::RadExam.createQuery(@entity_manager)  
 
     if ( (accessions.blank? == false) && (current_status.blank? == false) ) 
    
        
-      q1.where(q1.and(
+      querySDK.where(querySDK.and(
           [
-            q1.in(".accession", accessions), q1.in(".currentStatus.universalEventType.eventType", current_status),
-            q1.equal(".currentReport.transcriptionist.id",employeeid)         
+            querySDK.in(".accession", accessions), querySDK.in(".currentStatus.universalEventType.eventType", current_status),
+            querySDK.equal(".currentReport.transcriptionist.id",employeeid)         
           ] 
         ));
    
     elsif (accessions.blank? == false)
    
-      q1.where(q1.and(
+      querySDK.where(querySDK.and(
           [
-            q1.in(".accession", accessions),
-            q1.equal(".currentReport.transcriptionist.id",employeeid)                             
+            querySDK.in(".accession", accessions),
+            querySDK.equal(".currentReport.transcriptionist.id",employeeid)                             
           ] 
         )
       );
     elsif (current_status.blank? == false)
    
-      q1.where(q1.and(
+      querySDK.where(querySDK.and(
           [
-            q1.in(".currentStatus.universalEventType.eventType", current_status),
-            q1.equal(".currentReport.transcriptionist.id",employeeid)                
+            querySDK.in(".currentStatus.universalEventType.eventType", current_status),
+            querySDK.equal(".currentReport.transcriptionist.id",employeeid)                
           ] 
         ));
     else 
-      q1.where(
-        q1.equal(".currentReport.transcriptionist.id",employeeid)         
+      querySDK.where(
+        querySDK.equal(".currentReport.transcriptionist.id",employeeid)         
       )
     end
 
     if (total)    
-      return q1.list.count.to_s
+      return querySDK.list.count.to_s
     else 
       @offset = (page - 1)*rows
       if @offset < 0 
         @offset = 0
       end
-      @mysdk1=  q1.offset(@offset).limit(rows).list.to_a 
+      @mysdk1=  querySDK.offset(@offset).limit(rows).list.to_a 
       return @mysdk1
     end
     
@@ -491,14 +491,14 @@ class Rad_Exam < ActiveRecord::Base
   
     @mysdk1 = " ";  
     @mysdkTotal =0;
-    q1 = Java::HarbingerSdkData::RadExam.createQuery(@entity_manager)  
+    querySDK = Java::HarbingerSdkData::RadExam.createQuery(@entity_manager)  
     if ( (accessions.blank? == false) && (current_status.blank? == false) ) 
-      q1.where(q1.and(
+      querySDK.where(querySDK.and(
           [
-            q1.in(".accession", accessions), q1.in(".currentStatus.universalEventType.eventType", current_status),
-            q1.or(
+            querySDK.in(".accession", accessions), querySDK.in(".currentStatus.universalEventType.eventType", current_status),
+            querySDK.or(
               [
-                q1.equal(".radExamPersonnel.ordering.id",employeeid),q1.equal(".radExamPersonnel.attending.id",employeeid),q1.equal(".radExamPersonnel.authorizing.id",employeeid)
+                querySDK.equal(".radExamPersonnel.ordering.id",employeeid),querySDK.equal(".radExamPersonnel.attending.id",employeeid),querySDK.equal(".radExamPersonnel.authorizing.id",employeeid)
               ]
             )         
           ] 
@@ -506,37 +506,37 @@ class Rad_Exam < ActiveRecord::Base
    
     elsif (accessions.blank? == false)
    
-      q1.where(q1.and(
+      querySDK.where(querySDK.and(
           [
-            q1.in(".accession", accessions),
-            q1.or(
+            querySDK.in(".accession", accessions),
+            querySDK.or(
               [
-                q1.equal(".radExamPersonnel.ordering.id",employeeid),q1.equal(".radExamPersonnel.attending.id",employeeid),q1.equal(".radExamPersonnel.authorizing.id",employeeid)
+                querySDK.equal(".radExamPersonnel.ordering.id",employeeid),querySDK.equal(".radExamPersonnel.attending.id",employeeid),querySDK.equal(".radExamPersonnel.authorizing.id",employeeid)
               ]
             )         
           ] 
         ));
     elsif (current_status.blank? == false)
    
-      q1.where(q1.and(
+      querySDK.where(querySDK.and(
           [
-            q1.in(".currentStatus.universalEventType.eventType", current_status),
-            q1.or(
+            querySDK.in(".currentStatus.universalEventType.eventType", current_status),
+            querySDK.or(
               [
-                q1.equal(".radExamPersonnel.ordering.id",employeeid),q1.equal(".radExamPersonnel.attending.id",employeeid),q1.equal(".radExamPersonnel.authorizing.id",employeeid)
+                querySDK.equal(".radExamPersonnel.ordering.id",employeeid),querySDK.equal(".radExamPersonnel.attending.id",employeeid),querySDK.equal(".radExamPersonnel.authorizing.id",employeeid)
               ]
             )         
           ] 
         ));
     else 
-      q1.where(q1.or( 
+      querySDK.where(querySDK.or( 
           [
-            q1.equal(".radExamPersonnel.ordering.id",employeeid),q1.equal(".radExamPersonnel.attending.id",employeeid),q1.equal(".radExamPersonnel.authorizing.id",employeeid)
+            querySDK.equal(".radExamPersonnel.ordering.id",employeeid),querySDK.equal(".radExamPersonnel.attending.id",employeeid),querySDK.equal(".radExamPersonnel.authorizing.id",employeeid)
           ]  
         )
       )
     end
-    @mysdkTotal = q1.list.count
+    @mysdkTotal = querySDK.list.count
     if (total)    
       return @mysdkTotal.to_s
     else 
@@ -544,7 +544,7 @@ class Rad_Exam < ActiveRecord::Base
       if @offset < 0 
         @offset = 0
       end
-      @mysdk1=  q1.offset(@offset).limit(rows).list.to_a 
+      @mysdk1=  querySDK.offset(@offset).limit(rows).list.to_a 
       return @mysdk1
     end
      
