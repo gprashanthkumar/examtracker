@@ -6,8 +6,8 @@ class Rad_Exam < ActiveRecord::Base
   def self.get_exams_search_sdk(employeeid,params,myreports = false,myexams = false,myorders = false,total=false,paginate=true,page=1,rows=10,sorder="asc")    
      
     
-    @mysdk1 = " ";  
-    @mysdkTotal= 0;
+    @mysdkResult = " ";  
+    @mysdkTotalResult= 0;
     @offset = 0
     qmyreports = nil;
     qmyexams =nil;
@@ -143,26 +143,26 @@ class Rad_Exam < ActiveRecord::Base
       ));
     
     #puts querySDK.toSQL;
-    @mysdkTotal = querySDK.list.count ;
+    @mysdkTotalResult = querySDK.list.count ;
    
     if (total)    
-      return @mysdkTotal.to_s
+      return @mysdkTotalResult.to_s
     else 
-      if @mysdkTotal > 0 
+      if @mysdkTotalResult > 0 
         if (paginate)
           @offset = (page - 1)*rows
           if @offset < 0 
             @offset = 0
           end
-          @mysdk1=  querySDK.offset(@offset).limit(rows).list.to_a 
-          return @mysdk1       
+          @mysdkResult=  querySDK.offset(@offset).limit(rows).list.to_a 
+          return @mysdkResult       
         else
-          @mysdk1=  querySDK.list.to_a 
+          @mysdkResult=  querySDK.list.to_a 
         end       
       else
-        @mysdk1=  querySDK.list.to_a 
+        @mysdkResult=  querySDK.list.to_a 
       end     
-      return @mysdk1
+      return @mysdkResult
     end
     
     
@@ -171,14 +171,14 @@ class Rad_Exam < ActiveRecord::Base
   
   #Definition:  This is the definition called to return list of  exam records matching passed eccessionid list idList
   def self.get_exams_search_by_id_array(idList,total=false,page=1,rows=10,sord="asc")
-    @mysdkTotal = 0;
+    @mysdkTotalResult = 0;
     @offset =0;
     querySDK = Java::HarbingerSdkData::RadExam.createQuery(@entity_manager) 
     if (idList.length > 0)
       querySDK.where(
         querySDK.in(".accession", idList)
       );
-      @mysdkTotal = querySDK.list.count 
+      @mysdkTotalResult = querySDK.list.count 
     else
       querySDK.where(
         querySDK.equal(".id", -1)
@@ -189,18 +189,18 @@ class Rad_Exam < ActiveRecord::Base
    
     if (total)   
    
-      return @mysdkTotal
+      return @mysdkTotalResult
     else     
-       if @mysdkTotal > 0 
+       if @mysdkTotalResult > 0 
         @offset = (page - 1)*rows;
         if @offset < 0 
           @offset = 0
         end
-        @mysdk1=  querySDK.offset(@offset).limit(rows).list.to_a 
+        @mysdkResult=  querySDK.offset(@offset).limit(rows).list.to_a 
       else
-        @mysdk1=  querySDK.list.to_a 
+        @mysdkResult=  querySDK.list.to_a 
       end       
-      return @mysdk1
+      return @mysdkResult
     end
     
   end
@@ -235,8 +235,8 @@ class Rad_Exam < ActiveRecord::Base
 
   
   def self.radRoleData(employeeid,accessions,current_status,page,rows,sord,total = false)
-    @mysdk1 = " ";  
-    @mysdkTotal = 0;
+    @mysdkResult = " ";  
+    @mysdkTotalResult = 0;
     querySDK = Java::HarbingerSdkData::RadExam.createQuery(@entity_manager)         
  
     if ( (accessions.blank? == false) && (current_status.blank? == false) ) 
@@ -291,26 +291,26 @@ class Rad_Exam < ActiveRecord::Base
             querySDK.equal(".currentReport.rad1.id",employeeid),querySDK.equal(".currentReport.rad2.id",employeeid),querySDK.equal(".currentReport.rad3.id",employeeid),querySDK.equal(".currentReport.rad4.id",employeeid)]  )
       )
     end
-    @mysdkTotal = querySDK.list.count 
+    @mysdkTotalResult = querySDK.list.count 
     if (total)    
-      return @mysdkTotal.to_s
+      return @mysdkTotalResult.to_s
     else 
-      if @mysdkTotal > 0 
+      if @mysdkTotalResult > 0 
         @offset = (page - 1)*rows
         if @offset < 0 
           @offset = 0
         end
-        @mysdk1=  querySDK.offset(@offset).limit(rows).list.to_a 
+        @mysdkResult=  querySDK.offset(@offset).limit(rows).list.to_a 
       else
-        @mysdk1=  querySDK.list.to_a 
+        @mysdkResult=  querySDK.list.to_a 
       end     
-      return @mysdk1
+      return @mysdkResult
     end
     
   end
   
   def self.techRoleData(employeeid,accessions,current_status,page,rows,sord,total=false)
-    @mysdk1 = " ";  
+    @mysdkResult = " ";  
     querySDK = Java::HarbingerSdkData::RadExam.createQuery(@entity_manager)  
    
     if ( (accessions.blank? == false) && (current_status.blank? == false) ) 
@@ -369,14 +369,14 @@ class Rad_Exam < ActiveRecord::Base
       if @offset < 0 
         @offset = 0
       end
-      @mysdk1=  querySDK.offset(@offset).limit(rows).list.to_a 
-      return @mysdk1
+      @mysdkResult=  querySDK.offset(@offset).limit(rows).list.to_a 
+      return @mysdkResult
     end
     
   end
   
   def self.schedRegRoleData(employeeid,accessions,current_status,page,rows,sord,total=false)
-    @mysdk1 = " ";  
+    @mysdkResult = " ";  
     querySDK = Java::HarbingerSdkData::RadExam.createQuery(@entity_manager)  
 
     if ( (accessions.blank? == false) && (current_status.blank? == false) ) 
@@ -431,14 +431,14 @@ class Rad_Exam < ActiveRecord::Base
       if @offset < 0 
         @offset = 0
       end
-      @mysdk1=  querySDK.offset(@offset).limit(rows).list.to_a 
-      return @mysdk1
+      @mysdkResult=  querySDK.offset(@offset).limit(rows).list.to_a 
+      return @mysdkResult
     end
     
   end
   
   def self.transRoleData(employeeid,accessions,current_status,page,rows,sord,total=false)
-    @mysdk1 = " ";  
+    @mysdkResult = " ";  
     querySDK = Java::HarbingerSdkData::RadExam.createQuery(@entity_manager)  
 
     if ( (accessions.blank? == false) && (current_status.blank? == false) ) 
@@ -481,16 +481,16 @@ class Rad_Exam < ActiveRecord::Base
       if @offset < 0 
         @offset = 0
       end
-      @mysdk1=  querySDK.offset(@offset).limit(rows).list.to_a 
-      return @mysdk1
+      @mysdkResult=  querySDK.offset(@offset).limit(rows).list.to_a 
+      return @mysdkResult
     end
     
   end
   
   def self.orderingRoleData(employeeid,accessions,current_status,page,rows,sord,total=false)
   
-    @mysdk1 = " ";  
-    @mysdkTotal =0;
+    @mysdkResult = " ";  
+    @mysdkTotalResult =0;
     querySDK = Java::HarbingerSdkData::RadExam.createQuery(@entity_manager)  
     if ( (accessions.blank? == false) && (current_status.blank? == false) ) 
       querySDK.where(querySDK.and(
@@ -536,16 +536,16 @@ class Rad_Exam < ActiveRecord::Base
         )
       )
     end
-    @mysdkTotal = querySDK.list.count
+    @mysdkTotalResult = querySDK.list.count
     if (total)    
-      return @mysdkTotal.to_s
+      return @mysdkTotalResult.to_s
     else 
       @offset = (page - 1)*rows
       if @offset < 0 
         @offset = 0
       end
-      @mysdk1=  querySDK.offset(@offset).limit(rows).list.to_a 
-      return @mysdk1
+      @mysdkResult=  querySDK.offset(@offset).limit(rows).list.to_a 
+      return @mysdkResult
     end
      
       
