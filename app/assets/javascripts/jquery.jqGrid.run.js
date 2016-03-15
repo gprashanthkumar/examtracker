@@ -135,10 +135,10 @@ $(document).ready(function () {
             },
             colNames: ['A#', 'Progress Status', 'Current Status', 'Status Last Changed', 'Patient Name', 'Patient MRN', 'Patient DOB', 'Appt Time', 'Begin Exam', 'End Exam', 'SignIn', 'CheckIn', 'Site', 'Patient Class', 'Patient Type', 'Patient Location at exam', 'Radiology Department', 'Exam Resource', 'Modality', 'Proc Code', 'Proc Description', 'Ordering Provider', 'Scheduler', 'Technologist', 'PACS Image Count'],
             colModel: [
-                {name: 'accession', index: 'accession', align: 'center', width: 40, fixed: true, formatter: makeIdAsLinkFormatter}
+                {name: 'accession', index: 'accession', align: 'center', width: 40, fixed: true, sortable:true, formatter: makeIdAsLinkFormatter}
                 , {name: 'graph_status', index: 'graph_status', align: 'center', width: 325, fixed: true, formatter: parseStatusOfExamFormatter}
                 , {name: 'current_status', index: 'current_status', align: 'center', width: 100, fixed: true}
-                , {name: 'updated_at', index: 'updated_at', align: 'center', width: 150, fixed: true, formatter: format_date_time, sorttype: 'date'}
+                , {name: 'updated_at', index: 'updated_at', align: 'center', width: 150, fixed: true, sortable:true, formatter: format_date_time, sorttype: 'date'}
                 , {name: 'patient_name', index: 'patient_name', align: 'center', width: 140, fixed: true}
                 , {name: 'mrn', index: 'mrn', align: 'center', width: 120, fixed: true}
                 , {name: 'birthdate', index: 'birthdate', align: 'center', width: 140, fixed: true}
