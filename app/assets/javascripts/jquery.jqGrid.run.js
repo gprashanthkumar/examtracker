@@ -176,7 +176,7 @@ $(document).ready(function () {
                 $("#tblRadExam").setGridParam({datatype: 'json'});
             },
             loadComplete: function (data) {
-                debugger;
+               
                 //$("#tblRadExam").setGridParam({loadonce:true});
                 var $this = $(this);
                 if ($this.jqGrid('getGridParam', 'datatype') === 'json') {
