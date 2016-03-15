@@ -102,33 +102,33 @@ class HomeController < ApplicationController
     @employee = Employee.get_employee(session[:username])
     @total = "0";
   
-    @mysdk1 = nil;
+    @mysdkResult = nil;
     @roleType = roletype
     case roletype
     when "Radiologist"     
       @total = Rad_Exam.radRoleData(@employee.id,accession,currentstatus,page,rows,sord,true) 
-       @mysdk1 = Rad_Exam.radRoleData(@employee.id,accession,currentstatus,page,rows,sord) 
+       @mysdkResult = Rad_Exam.radRoleData(@employee.id,accession,currentstatus,page,rows,sord) 
     when "Technologist"    
       @total = Rad_Exam.techRoleData(@employee.id,accession,currentstatus,page,rows,sord,true)  
-        @mysdk1 = Rad_Exam.techRoleData(@employee.id,accession,currentstatus,page,rows,sord)  
+        @mysdkResult = Rad_Exam.techRoleData(@employee.id,accession,currentstatus,page,rows,sord)  
     when "Schedule Registrar"
        @total = Rad_Exam.schedRegRoleData(@employee.id,accession,currentstatus,page,rows,sord,true)  
-      @mysdk1 = Rad_Exam.schedRegRoleData(@employee.id,accession,currentstatus,page,rows,sord)       
+      @mysdkResult = Rad_Exam.schedRegRoleData(@employee.id,accession,currentstatus,page,rows,sord)       
     when "Transcript"
        @total = Rad_Exam.transRoleData(@employee.id,accession,currentstatus,page,rows,sord,true)  
-      @mysdk1 = Rad_Exam.transRoleData(@employee.id,accession,currentstatus,page,rows,sord)  
+      @mysdkResult = Rad_Exam.transRoleData(@employee.id,accession,currentstatus,page,rows,sord)  
     when "Ordering"
      @total =  Rad_Exam.orderingRoleData(@employee.id,accession,currentstatus,page,rows,sord,true)       
-     @mysdk1 = Rad_Exam.orderingRoleData(@employee.id,accession,currentstatus,page,rows,sord,false)  
+     @mysdkResult = Rad_Exam.orderingRoleData(@employee.id,accession,currentstatus,page,rows,sord,false)  
      
       
       puts "<--- prashanth" + @total.to_s
     end
     
-    @exams = get_examsHash(@mysdk1);
+    @exams = get_examsHash(@mysdkResult);
     
     #log output data
-    log_hipaa_view(@mysdk1);
+    log_hipaa_view(@mysdkResult);
     @pages =  (@total.to_f / rows.to_f).to_i;;
     @pages = @pages + 1 unless (@total.to_f%rows.to_f == 0)
     #puts @exams.to_json;
@@ -260,7 +260,7 @@ class HomeController < ApplicationController
   
       exams << grades ;    
     end 
-    #end @mysdk1 loop
+    #end @mysdkResult loop
     
     return exams;
   end
@@ -272,7 +272,7 @@ class HomeController < ApplicationController
     @gridPage = params[:page];
     @gridRows = params[:rows];    
     @gridSortId = params[:sidx];
-     @gridSortOrder = params[:sord];
+    @gridSortOrder = params[:sord];
     @authenticity_token = params[:authenticity_token];
     sdk(role,accession_ids,exam_status,@gridPage.to_i,@gridRows.to_i,@gridSortOrder);
   end
@@ -368,13 +368,13 @@ class HomeController < ApplicationController
         end  
         
        @mysdkTotal = Rad_Exam.get_exams_search_by_id_array(idList,true);     
-       @mysdk1 = Rad_Exam.get_exams_search_by_id_array(idList,false,@gridPage.to_i,@gridRows.to_i);
+       @mysdkResult = Rad_Exam.get_exams_search_by_id_array(idList,false,@gridPage.to_i,@gridRows.to_i);
          
 
       else
          
          @mysdkTotal = Rad_Exam.get_exams_search_sdk(@employee.id,@myvalues,false,false,false,true,false)
-             @mysdk1 = Rad_Exam.get_exams_search_sdk(@employee.id,@myvalues,false,false,false,false,true,@gridPage.to_i,@gridRows.to_i)
+             @mysdkResult = Rad_Exam.get_exams_search_sdk(@employee.id,@myvalues,false,false,false,false,true,@gridPage.to_i,@gridRows.to_i)
       end   
     
     
@@ -382,14 +382,14 @@ class HomeController < ApplicationController
       #@exams = Rad_Exam.get_exams_search(@employee.id,@myvalues,(@myvalues[:my_orders] == "on"),(@myvalues[:my_exams] == "on"),(@myvalues[:my_reports] == "on"))  ;    
          
        @mysdkTotal = Rad_Exam.get_exams_search_sdk(@employee.id,@myvalues,false,false,false,true,false)
-       @mysdk1 = Rad_Exam.get_exams_search_sdk(@employee.id,@myvalues,false,false,false,false,true,@gridPage.to_i,@gridRows.to_i)
+       @mysdkResult = Rad_Exam.get_exams_search_sdk(@employee.id,@myvalues,false,false,false,false,true,@gridPage.to_i,@gridRows.to_i)
     end
   
     
-    @exams = get_examsHash(@mysdk1);
+    @exams = get_examsHash(@mysdkResult);
     
     #log output data
-    log_hipaa_view(@mysdk1);
+    log_hipaa_view(@mysdkResult);
     @pages =  (@mysdkTotal.to_f / @gridRows.to_f).to_i;
     @pages = @pages + 1 unless (@mysdkTotal.to_f%@gridRows.to_f == 0)
     #puts @exams.to_json;
@@ -408,19 +408,19 @@ class HomeController < ApplicationController
   
   def get_accession
     @accession_id = params[:accession_id];
-    @mysdk1 = nil;
+    @mysdkResult = nil;
     @exams = [];
     grades= "";
     authenticity_token = params[:authenticity_token];
     
     
     #@exams = Rad_Exam.get_accession_detail(@accession_id.to_s)   
-    @mysdk1 = Rad_Exam.get_accession_detail_sdk(@accession_id.to_s)     
+    @mysdkResult = Rad_Exam.get_accession_detail_sdk(@accession_id.to_s)     
     #log output data
     
     
-    if @mysdk1.length > 0
-          @exams = get_examsHash(@mysdk1);     
+    if @mysdkResult.length > 0
+          @exams = get_examsHash(@mysdkResult);     
     end
     
     @exams.each  do |e|
@@ -428,7 +428,7 @@ class HomeController < ApplicationController
     end
     
     #log output data
-    log_hipaa_view(@mysdk1);
+    log_hipaa_view(@mysdkResult);
     
     
     #JSON.parse(@exams.to_json)
@@ -440,18 +440,18 @@ class HomeController < ApplicationController
   
    def get_accession_report
     @accession_id = params[:accession_id];
-    @mysdk1 = nil;
+    @mysdkResult = nil;
     @exams = [];
     grades= "";
     authenticity_token = params[:authenticity_token];
     
     
     #@exams = Rad_Exam.get_accession_detail(@accession_id.to_s)   
-    @mysdk1 = Rad_Exam.get_accession_detail_sdk(@accession_id.to_s)   
+    @mysdkResult = Rad_Exam.get_accession_detail_sdk(@accession_id.to_s)   
     
     #log output data
-    if @mysdk1.length > 0
-      @mysdk1.each  do |e|
+    if @mysdkResult.length > 0
+      @mysdkResult.each  do |e|
         
         if(!e.radReports.blank?)
           
@@ -477,11 +477,11 @@ class HomeController < ApplicationController
         
         
       end 
-      #end @mysdk1 loop
+      #end @mysdkResult loop
     end
     
     #log output data
-    log_hipaa_view(@mysdk1);
+    log_hipaa_view(@mysdkResult);
     json_data = "";
     json_data =   JSON.parse(@exams.to_json)
     #JSON.parse(@exams.to_json)
