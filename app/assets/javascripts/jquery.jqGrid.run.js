@@ -14,6 +14,10 @@ $(document).ready(function () {
     $("#BtnFilter").click(function () {
         createOrUpdateRadExamGrid();
     });
+	
+	 $("#btnReload").click(function () {
+        createOrUpdateRadExamGrid();
+    });
     //=====End Search functionality==============
 
 
