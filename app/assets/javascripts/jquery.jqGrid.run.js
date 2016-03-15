@@ -200,6 +200,13 @@ $(document).ready(function () {
                         // but the server return unsorted data
                         $this.triggerHandler('reloadGrid');
                     }
+					
+					if (data.total > 0) {
+						$("#btnReload").show();
+						
+					} else {
+						$("#btnReload").hide();
+					}
                 } else {
                     $this.jqGrid('setGridParam', {
                         page: $this.jqGrid('getGridParam', 'pageServer'),
