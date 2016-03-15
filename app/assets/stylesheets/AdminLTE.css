@@ -371,6 +371,7 @@ body > .header .navbar .sidebar-toggle .icon-bar + .icon-bar {
 body > .header .navbar .nav > li.user > a {
   font-weight: bold;
   color:#eee;
+  padding:15px 10px;
 }
 body > .header .navbar .nav > li.user > a > .fa,
 body > .header .navbar .nav > li.user > a > .glyphicon,
