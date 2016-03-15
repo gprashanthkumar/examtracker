@@ -31,8 +31,8 @@ $(document).ready(function () {
         var fifthStageTitle = cellvalue_array[6].split('->')[1]; //complete or prelim stage
         var sixthStageTitle = cellvalue_array[7].split('->')[1]; //final stage
 
-        firstStageTitle = Datetime_tag_change(firstStageTitle);
-        secondStageTitle = Datetime_tag_change(secondStageTitle);
+        firstStageTitle = "Ordered: " + Datetime_tag_change(firstStageTitle);
+        secondStageTitle = "Scheduled: " + Datetime_tag_change(secondStageTitle);
         thirdStageTitle = Datetime_tag_change(thirdStageTitle);
         fourthStageTitle = Datetime_tag_change(fourthStageTitle);
         fifthStageTitle = Datetime_tag_change(fifthStageTitle);
@@ -111,7 +111,7 @@ $(document).ready(function () {
                 {name: 'accession', index: 'accession', align: 'center', width: 40, fixed: true, sortable:true, formatter: makeIdAsLinkFormatter}
                 , {name: 'graph_status', index: 'graph_status', align: 'center', width: 325, fixed: true, formatter: parseStatusOfExamFormatter}
                 , {name: 'current_status', index: 'current_status', align: 'center', width: 100, fixed: true}
-                , {name: 'updated_at', index: 'updated_at', align: 'center', width: 150, fixed: true, formatter: format_date_time, sorttype: 'date'}
+                , {name: 'updated_at', index: 'updated_at', align: 'center', width: 150, fixed: true, sortable:true, formatter: format_date_time, sorttype: 'date'}
                 , {name: 'patient_name', index: 'patient_name', align: 'center', width: 140, fixed: true}
                 , {name: 'mrn', index: 'mrn', align: 'center', width: 120, fixed: true}
                 , {name: 'birthdate', index: 'birthdate', align: 'center', width: 140, fixed: true}
