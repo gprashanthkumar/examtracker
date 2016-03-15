@@ -169,6 +169,7 @@ $(document).ready(function () {
             caption: "Exam Details",
             rownumbers: true,
             //loadonce: false, //true,
+			emptyrecords: 'No Records found matching this group or filter criteria.',
             recordtext: "View {0}-{1} of {2}",
             onPaging: function (which_button) {
                 //$("#tblRadExam").setGridParam({loadonce:false});
