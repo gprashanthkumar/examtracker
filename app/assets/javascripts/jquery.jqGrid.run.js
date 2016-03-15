@@ -78,34 +78,7 @@ $(document).ready(function () {
                     }
                 }
             }
-            /*
-             if(sixthStageTitle == ""){
-             if(fifthStageTitle == ""){
-             if(fourthStageTitle == ""){
-             if(thirdStageTitle == ""){
-             if(secondStageTitle == ""){
-             cancelledAtStageClass = "firstStageClass";
-             }
-             else{
-             cancelledAtStageClass = "secondStageClass";
-             }
-             }
-             else{
-             cancelledAtStageClass = "thirdStageClass";
-             }
-             }
-             else{
-             cancelledAtStageClass = "fourthStageClass";
-             }
-             }
-             else{                                      
-             cancelledAtStageClass = "fifthStageClass";                                       
-             }
-             }
-             else{
-             cancelledAtStageClass = "sixthStageClass";
-             }
-             */
+           
             //GraphUI to be displayed when cancelled status comes.
             var graphStatusUI = $('<div class="wizard"><a class="firstStageClass current" title="' + firstStageTitle + '"><span class="badge"></span></a><a class="secondStageClass softcyanlimegreen" title="' + secondStageTitle + '"><span class="badge"></span></a><a class="thirdStageClass vanilla" title="' + thirdStageTitle + '"><span class="badge"></span></a><a class="fourthStageClass violet" title="' + fourthStageTitle + '"><span class="badge"></span></a><a class="fifthStageClass darkorange" title="' + fifthStageTitle + '"><span class="badge badge-inverse"></span></a><a class="sixthStageClass green" title="' + sixthStageTitle + '"></a></div>');
             var cancelledStageIndex = $(graphStatusUI).find('a.' + cancelledAtStageClass + '').index();
