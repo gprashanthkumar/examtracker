@@ -299,7 +299,7 @@ class HomeController < ApplicationController
       #set as union Join search
       @Search_buckets_individually = true
     end
-    @Search_buckets_individually = true
+    #@Search_buckets_individually = true
     
     
     if (@Search_buckets_individually == true) #its UNION Join
