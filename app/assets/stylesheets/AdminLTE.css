@@ -469,22 +469,25 @@ body > .header .logo .icon {
   .navbar-nav {
     margin: 0;
     float: left;
-  }*/
+  }
   .navbar-nav > li > a {
     padding-top: 10px;
     padding-bottom: 10px;
     line-height: normal;
-  }
+  }*/
   .navbar .navbar-right {
     float: none;
   }
   .navbar-toggle{
-	  padding:6px 10px;
-	  width:100%;
-	  padding:0;
-	  background:#4c4c4c;
-	  border:none;
+	  padding:7px 10px;
+	  z-index:99999;
   }
+  .navbar-collapse{
+	  width:100%;
+	  background:#4c4c4c;
+	  padding:0;
+	  border:none;
+	  }
   .open > .dropdown-menu{
 	  padding:0;
   }
