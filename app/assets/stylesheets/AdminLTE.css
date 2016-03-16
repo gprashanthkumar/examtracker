@@ -371,7 +371,7 @@ body > .header .navbar .sidebar-toggle .icon-bar + .icon-bar {
 body > .header .navbar .nav > li.user > a {
   font-weight: bold;
   color:#eee;
-  padding:15px 10px;
+  padding:15px 9px;
 }
 body > .header .navbar .nav > li.user > a > .fa,
 body > .header .navbar .nav > li.user > a > .glyphicon,
@@ -451,6 +451,7 @@ body > .header .logo .icon {
 .right-side > .content-header > .breadcrumb > li + li:before {
   content: '>\00a0';
 }
+.nav{ margin:0;}
 @media screen and (max-width: 767px) {
   .right-side > .content-header > .breadcrumb {
     position: relative;
@@ -462,20 +463,30 @@ body > .header .logo .icon {
   }
 }
 @media (max-width: 767px) {
-  .navbar .navbar-nav > li {
+  /*.navbar .navbar-nav > li {
     float: left;
   }
   .navbar-nav {
     margin: 0;
     float: left;
-  }
+  }*/
   .navbar-nav > li > a {
-    padding-top: 15px;
-    padding-bottom: 15px;
-    line-height: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    line-height: normal;
   }
   .navbar .navbar-right {
-    float: right;
+    float: none;
+  }
+  .navbar-toggle{
+	  padding:6px 10px;
+	  width:100%;
+	  padding:0;
+	  background:#4c4c4c;
+	  border:none;
+  }
+  .open > .dropdown-menu{
+	  padding:0;
   }
 }
 @media screen and (max-width: 560px) {
@@ -639,8 +650,8 @@ body > .header .logo .icon {
   margin-right: 10px;
 }
 .dropdown-menu > li > a:hover {
-  background-color: #3c8dbc;
-  color: #f9f9f9;
+  background-color: #666;
+  color: #fff;
 }
 /*Drodown in navbars*/
 .skin-blue .navbar .dropdown-menu > li > a {
@@ -2573,6 +2584,8 @@ Component: timeline
 .skin-black .navbar .nav a {
   color: #fff;
 }
+.skin-black .navbar .nav .dropdown-menu > li > a{ color:#4c4c4c;}
+.skin-black .navbar .nav .dropdown-menu > li > a:hover{ color:#f8a944;}
 .skin-black .navbar .nav > li > a:hover,
 .skin-black .navbar .nav > li > a:active,
 .skin-black .navbar .nav > li > a:focus,
