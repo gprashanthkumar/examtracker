@@ -342,10 +342,10 @@ body > .header .navbar {
 }
 body > .header .navbar .sidebar-toggle {
   float: left;
-  padding: 0;
-  margin-top: 5px;
+  padding: 9px 10px;
+  margin-top: 8px;
   margin-right: 0;
-  margin-bottom: 5px;
+  margin-bottom: 8px;
   margin-left: 5px;
   background-color: transparent;
   background-image: none;
@@ -475,6 +475,10 @@ body > .header .logo .icon {
     padding-bottom: 10px;
     line-height: normal;
   }*/
+  body > .header .navbar .sidebar-toggle {
+  padding: 9px 10px;
+  margin:8px 0 8px 5px;
+}
   .navbar .navbar-right {
     float: none;
   }
@@ -490,6 +494,8 @@ body > .header .logo .icon {
 	  background:#4c4c4c;
 	  padding:0;
 	  border:none;
+	  position: absolute;
+    top: 49px;
 	  }
   .open > .dropdown-menu{
 	  padding:0;
