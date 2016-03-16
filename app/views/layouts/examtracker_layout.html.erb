@@ -1,44 +1,30 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Exam Tracker</title>
-        <%= yield(:head_stylesheet) %>
-        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-        <!--[if lt IE 9]>
+<head>
+<title>Exam Tracker</title>
+<%= yield(:head_stylesheet) %>
+<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
               <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
               <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
             <![endif]-->
 
-        <%-#= stylesheet_link_tag    'bootstrap.min', 'data-turbolinks-track' => true -%>
-        <%= stylesheet_link_tag    'bootstrap.min', 'data-turbolinks-track' => false %>
-        <%= stylesheet_link_tag    'font-awesome.min', 'data-turbolinks-track' => false %>
-        <%= stylesheet_link_tag    'datatables/dataTables.bootstrap', 'data-turbolinks-track' => false %>
-        <%= stylesheet_link_tag    'AdminLTE', 'data-turbolinks-track' => false %>
-
-        <% javascriptHead 'jquery.min' %>
-        <% javascriptHead 'appHead1' %>
-        
-        <%= yield(:head_javascript) %>
-        <%= yield :head_javascript_section %>
-
-<%#= stylesheet_link_tag    "application", :media => "all" %>
-<%#= javascript_include_tag "application" %>
-        <%= csrf_meta_tags %>
-        <%= harbingerjs_setup %>
-        <%= yield(:javascript_includes) %>
-        <%= @web_analytics_tracker.html_safe %>
-
-    </head>
-    <body class="skin-black">
-        <!-- Start Navbar -->
-        <!--div id="primary-navbar" class="navbar navbar-default navbar-static-top" role="navigation">
+<%-#= stylesheet_link_tag    'bootstrap.min', 'data-turbolinks-track' => true -%>
+<%= stylesheet_link_tag    'bootstrap.min', 'data-turbolinks-track' => false %><%= stylesheet_link_tag    'font-awesome.min', 'data-turbolinks-track' => false %><%= stylesheet_link_tag    'datatables/dataTables.bootstrap', 'data-turbolinks-track' => false %><%= stylesheet_link_tag    'AdminLTE', 'data-turbolinks-track' => false %>
+<% javascriptHead 'jquery.min' %>
+<% javascriptHead 'appHead1' %>
+<%= yield(:head_javascript) %><%= yield :head_javascript_section %><%#= stylesheet_link_tag    "application", :media => "all" %><%#= javascript_include_tag "application" %><%= csrf_meta_tags %><%= harbingerjs_setup %><%= yield(:javascript_includes) %><%= @web_analytics_tracker.html_safe %>
+</head>
+<body class="skin-black">
+<!-- Start Navbar --> 
+<!--div id="primary-navbar" class="navbar navbar-default navbar-static-top" role="navigation">
         <div class="container-fluid">
           <div class="navbar-header">
-            <a class="navbar-brand" id="app-name" href="<%= root_url %>">Vanilla Application</a-->
+            <a class="navbar-brand" id="app-name" href="<%= root_url %>">Vanilla Application</a--> 
 
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <!--div class="navbar-header">
+<!-- Brand and toggle get grouped for better mobile display --> 
+<!--div class="navbar-header">
               <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false">
                 <span class="sr-only">Toggle navigation</span>
                 <span class="icon-bar"></span>
@@ -60,347 +46,316 @@
         </div>
       </div-->
 
-        <header class="header">
-            <a href="#" class="logo">
-                <!-- Add the class icon to your logo image or logo icon to add the margining -->
-                Exam Tracker </a>
-            <!-- Header Navbar: style can be found in header.less -->
-            <nav class="navbar navbar-static-top" role="navigation">
-                <!-- Sidebar toggle button-->
-                <a href="#" class="navbar-btn sidebar-toggle" data-toggle="offcanvas" role="button"><span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></a>
-                <div class="navbar-right">
-                    <ul class="nav navbar-nav">
-                        <li class="user user-menu"><a href="<%= root_url %>" class="dropdown-toggle" data-toggle=""><span>Home</span> </a></li>
-                        <!-- User Account: style can be found in dropdown.less -->
-                        <li class="dropdown user user-menu"><a href="#" class="dropdown-toggle" data-toggle="dropdown"><span>Reports <i class="caret"></i></span></a>
-                            <ul class="dropdown-menu" style="width: 150px;">
-
-                                <!-- Menu Body -->
-                                <li class="user-body">
-                                    <div class="col-xs-12 text-center"><a href="#">Sub item 1</a> </div>
-                                    <div class="col-xs-12 text-center"><a href="#">Sub item 2</a> </div>
-                                    <div class="col-xs-12 text-center"><a href="#">Sub item 3</a> </div>
-                                </li>
-                            </ul>
-                        </li>
-                        <li class="dropdown user user-menu"><a href="#" class="dropdown-toggle" data-toggle="dropdown"><span>Admin <i class="caret"></i></span></a>
-                            <ul class="dropdown-menu" style="width: 150px;">
-
-                                <!-- Menu Body -->
-                                <li class="user-body">
-                                    <div class="col-xs-12 text-center"><a href="#">Sub item 1</a> </div>
-                                    <div class="col-xs-12 text-center"><a href="#">Sub item 2</a> </div>
-                                    <div class="col-xs-12 text-center"><a href="#">Sub item 3</a> </div>
-                                </li>
-                            </ul>
-                        </li>
-                        <li class="user user-menu"><a href="<%= root_url %>/home/logout" class="dropdown-toggle" data-toggle=""><span>Logout</span> </a></li>
-                    </ul>
-                </div>
-            </nav>
-        </header>
-
-        <div class="wrapper row-offcanvas row-offcanvas-left">
-            <!-- Left side column. contains the logo and sidebar -->
-            <aside class="left-side sidebar-offcanvas">
-                <!-- sidebar: style can be found in sidebar.less -->
-                <section class="sidebar">
-                    <!-- Sidebar user panel -->
-                    <div class="user-panel">
-                        <div class="pull-left image">
-                           <!-- <img src="/assets/avatar5.png" class="img-circle" alt="User Image" /> -->                           
-                            <%=	image_tag(url_for(controller: :pictures, action: :show, id: @employee.id), {                                                                                                                                                
+<header class="header"> <a href="#" class="logo"> 
+  <!-- Add the class icon to your logo image or logo icon to add the margining --> 
+  Exam Tracker </a> 
+  <!-- Header Navbar: style can be found in header.less -->
+  <nav class="navbar navbar-static-top" role="navigation"> 
+    <!-- Sidebar toggle button--> 
+    <a href="#" class="navbar-btn sidebar-toggle" data-toggle="offcanvas" role="button"><span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></a>
+    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
+      <i class="fa fa-bars"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbar-collapse">
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="<%= root_url %>">Home</a></li>
+        <li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown">Reports <span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <li><a href="#">Sub item 1</a></li>
+            <li><a href="#">Sub item 2</a></li>
+            <li><a href="#">Sub item 3</a></li>
+          </ul>
+        </li>
+        <li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown">Admin <span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <li><a href="#">Sub item 1</a></li>
+            <li><a href="#">Sub item 2</a></li>
+            <li><a href="#">Sub item 3</a></li>
+          </ul>
+        </li>
+        <li><a href="<%= root_url %>/home/logout">Logout</a></li>
+      </ul>
+    </div>
+    <!-- /.navbar-collapse --> 
+  </nav>
+</header>
+<div class="wrapper row-offcanvas row-offcanvas-left"> 
+  <!-- Left side column. contains the logo and sidebar -->
+  <aside class="left-side sidebar-offcanvas"> 
+    <!-- sidebar: style can be found in sidebar.less -->
+    <section class="sidebar"> 
+      <!-- Sidebar user panel -->
+      <div class="user-panel">
+        <div class="pull-left image"> 
+          <!-- <img src="/assets/avatar5.png" class="img-circle" alt="User Image" /> --> 
+          <%=	image_tag(url_for(controller: :pictures, action: :show, id: @employee.id), {                                                                                                                                                
 	      :title => @employee.name,                                                                                                                                                                                                                                       
 	      :class => "avatar",                                                                                                                                                                                                                                                      
 	      :size  => "47x47",                                                                                                                                                                              
-	      :onerror => "this.src='#{image_url('avatar5.png')}'"}) %>
-                        </div>
-                        <div class="pull-left info">
-                            <p>Hello, <%= @employee.name %>   </p>
-
-                            <!--<a href="#"><i class="fa fa-circle text-success"></i>Online</a> -->
-                        </div>
-                    </div>
-                    <!-- search form -->
-                    <!--<form action="#" method="get" class="sidebar-form">
+	      :onerror => "this.src='#{image_url('avatar5.png')}'"}) %> </div>
+        <div class="pull-left info">
+          <p>Hello, <%= @employee.name %> </p>
+          
+          <!--<a href="#"><i class="fa fa-circle text-success"></i>Online</a> --> 
+        </div>
+      </div>
+      <!-- search form --> 
+      <!--<form action="#" method="get" class="sidebar-form">
             <div class="input-group">
               <input type="text" name="q" class="form-control" placeholder="Search..."/>
               <span class="input-group-btn">
               <button type='submit' name='seach' id='search-btn' class="btn btn-flat"><i class="fa fa-search"></i></button>
               </span> </div>
-          </form>-->
-                    <!-- /.search form -->
-                    <!-- sidebar menu: : style can be found in sidebar.less -->
-                    <ul class="sidebar-menu">
-                         <% any_authorized(["radiologist"]) do %> 
-                         <li>                                    
-                        <a href="radiologist"><i class="fa fa-comment"></i><span>Radiologist</span> </a></li>
-                        <% end %>
-                        
-                         <% any_authorized(["technologist"]) do %> 
-                          <li><a href="technologist"><i class="fa fa-exclamation"></i><span>Technologist</span> </a></li>
-                        <% end %>
-                       
-                         <% any_authorized(["scheduler-registrar"]) do %> 
-                         <li><a href="scheregistrar"><i class="fa fa-file-text-o"></i><span>Sche-Registrar</span> </a></li>
-                        <% end %>
-                        
-                         <% any_authorized(["transcriptionist"]) do %> 
-                         <li><a href="transcript"><i class="fa fa-stethoscope"></i><span>Transcript</span> </a></li>
-                        <% end %>
-                        
-                         <% any_authorized(["Ordering"]) do %> 
-                        
-                        <% end %>
-                         <li><a href="orders"><i class="fa fa-medkit"></i><span>Ordering</span></a></li>
-                        
-                        <li><a href="search"><i class="fa fa-eye"></i><span>Search</span></a></li>
-                    </ul>
-                </section>
-                <!-- /.sidebar -->
-            </aside>
+          </form>--> 
+      <!-- /.search form --> 
+      <!-- sidebar menu: : style can be found in sidebar.less -->
+      <ul class="sidebar-menu">
+        <% any_authorized(["radiologist"]) do %>
+        <li> <a href="radiologist"><i class="fa fa-comment"></i><span>Radiologist</span> </a></li>
+        <% end %>
+        <% any_authorized(["technologist"]) do %>
+        <li><a href="technologist"><i class="fa fa-exclamation"></i><span>Technologist</span> </a></li>
+        <% end %>
+        <% any_authorized(["scheduler-registrar"]) do %>
+        <li><a href="scheregistrar"><i class="fa fa-file-text-o"></i><span>Sche-Registrar</span> </a></li>
+        <% end %>
+        <% any_authorized(["transcriptionist"]) do %>
+        <li><a href="transcript"><i class="fa fa-stethoscope"></i><span>Transcript</span> </a></li>
+        <% end %>
+        <% any_authorized(["Ordering"]) do %>
+        <% end %>
+        <li><a href="orders"><i class="fa fa-medkit"></i><span>Ordering</span></a></li>
+        <li><a href="search"><i class="fa fa-eye"></i><span>Search</span></a></li>
+      </ul>
+    </section>
+    <!-- /.sidebar --> 
+  </aside>
+  
+  <!--aside class="right-side" This line will come from pages who use this layout--> 
+  <%= yield %>
+  </aside>
+</div>
 
-            <!--aside class="right-side" This line will come from pages who use this layout-->
-            <%= yield %>             
-        </aside>
-    </div>
-
-    <!-- popp modal start -->
-    <div class="modal fade" id="ExamDetailPopupDiv" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-
-                    <button aria-hidden="true" data-dismiss="modal" class="close" type="button">X</button>
-                    <h4 id="lblPopupTitle" class="modal-title clrwhite">Exam Details</h4>
-                    <!-- color changed-->
-                </div>
-                <div class="modal-body">
-                    <div class="loadingModal" id="resultLoadingview" role="dialog" data-backdrop="static" data-keyboard="false">
-                        <div class='centered' style='width: 250px; height: 65px; text-align: center;'>
-                            <div class='circularDivContainer centered'>
-                                <div class='circularDiv circularDiv_1'></div>
-                                <div class='circularDiv circularDiv_2'></div>
-                                <div class='circularDiv circularDiv_3'></div>
-                                <div class='circularDiv circularDiv_4'></div>
-                                <div class='circularDiv circularDiv_5'></div>
-                                <div class='circularDiv circularDiv_6'></div>
-                                <div class='circularDiv circularDiv_7'></div>
-                                <div class='circularDiv circularDiv_8'></div>
-                            </div>
-                            <br />
-                            <p style='color: black; width: 250px;'><b>Please wait while we process your request...</b></p>
-                        </div>
-                    </div>
-
-                    <div>
-                        <section class="content">
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <!-- general form elements disabled -->
-                                    <!--<h1>Exam Details</h1>-->
-                                    <h3 id="currentStatusH3" style="color: green; text-transform: uppercase;"></h3>
-                                    <div id="divstatus">
-                                        <div class="wizard">
-                                            <a class="grey"><span class="badge"></span></a>
-                                            <a class="grey"><span class="badge"></span></a>
-                                            <a class="grey"><span class="badge"></span></a>
-                                            <a class="grey"><span class="badge"></span></a>
-                                            <a class="grey"><span class="badge badge-inverse"></span></a>
-                                            <a class="grey"><span class="badge"></span></a>
-                                        </div>
-                                    </div>
-
-                                    <!-- /.box -->
-                                    <!--h3><font color="purple">Delivered</font></h3-->
-                                    <h4><font color="purple"><span id="lblRadiologist"></span></font></h4>
-                                    <div>
-
-                                        <table border="0" cellpadding="0" cellspacing="0" width="489" style='border-collapse: collapse; table-layout: fixed; width: 367pt'>
-                                            <col width="193" style='mso-width-source: userset; mso-width-alt: 7058; width: 145pt'>
-                                            <col width="196" style='mso-width-source: userset; mso-width-alt: 7168; width: 147pt'>
-                                            <col width="100" style='mso-width-source: userset; mso-width-alt: 3657; width: 75pt'>
-                                            <tr height="21" style='height: 15.75pt'>
-                                                <td height="21" class="xl65" width="193" style='height: 15.75pt; width: 145pt'>&nbsp;</td>
-                                                <td class="xl66" width="196" style='border-left: none; width: 147pt'>&nbsp;</td>
-                                                <td class="xl67" width="100" style='border-left: none; width: 75pt'>Type</td>
-                                            </tr>
-                                            <tr height="21" style='height: 15.75pt'>
-                                                <td height="21" class="xl65" style='height: 15.75pt; border-top: none'>Exam
-                                                    Information</td>
-                                                <td class="xl66" style='border-top: none; border-left: none'>&nbsp;</td>
-                                                <td class="xl66" style='border-top: none; border-left: none'>&nbsp;</td>
-                                            </tr>
-                                            <tr height="21" style='height: 15.75pt'>
-                                                <td height="21" class="xl65" style='height: 15.75pt; border-top: none'>&nbsp;</td>
-                                                <td class="xl66" style='border-top: none; border-left: none'>Procedure</td>
-                                                <td id="lblProcedure" class="xl66" style='border-top: none; border-left: none'>label</td>
-                                            </tr>
-                                            <tr height="21" style='height: 15.75pt'>
-                                                <td height="21" class="xl65" style='height: 15.75pt; border-top: none'>&nbsp;</td>
-                                                <td class="xl66" style='border-top: none; border-left: none'>Patient type class</td>
-                                                <td id="lblpatient_class" class="xl66" style='border-top: none; border-left: none'>label</td>
-                                            </tr>
-                                            <tr height="21" style='height: 15.75pt'>
-                                                <td height="21" class="xl65" style='height: 15.75pt; border-top: none'>&nbsp;</td>
-                                                <td class="xl66" style='border-top: none; border-left: none'>Trauma Emg</td>
-                                                <td id="lbltrauma" class="xl66" style='border-top: none; border-left: none'>label</td>
-                                            </tr>
-                                            <tr height="21" style='height: 15.75pt'>
-                                                <td height="21" class="xl65" style='height: 15.75pt; border-top: none'>&nbsp;</td>
-                                                <td class="xl66" style='border-top: none; border-left: none'>Resource</td>
-                                                <td id="lblresource" class="xl66" style='border-top: none; border-left: none'>label</td>
-                                            </tr>
-                                            <tr height="21" style='height: 15.75pt'>
-                                                <td height="21" class="xl65" style='height: 15.75pt; border-top: none'>&nbsp;</td>
-                                                <td class="xl66" style='border-top: none; border-left: none'>Modality</td>
-                                                <td id="lblmodality" class="xl66" style='border-top: none; border-left: none'>label</td>
-                                            </tr>
-                                            <tr height="21" style='height: 15.75pt'>
-                                                <td height="21" class="xl65" style='height: 15.75pt; border-top: none'>Staff</td>
-                                                <td class="xl66" style='border-top: none; border-left: none'>&nbsp;</td>
-                                                <td class="xl66" style='border-top: none; border-left: none'>&nbsp;</td>
-                                            </tr>
-                                            <tr height="21" style='height: 15.75pt'>
-                                                <td height="21" class="xl65" style='height: 15.75pt; border-top: none'>&nbsp;</td>
-                                                <td class="xl66" style='border-top: none; border-left: none'>Techno</td>
-                                                <td id="lbltechnologist" class="xl66" style='border-top: none; border-left: none'>label</td>
-                                            </tr>
-                                            <tr height="21" style='height: 15.75pt'>
-                                                <td height="21" class="xl65" style='height: 15.75pt; border-top: none'>&nbsp;</td>
-                                                <td class="xl66" style='border-top: none; border-left: none'>Finalizing Radiologist</td>
-                                                <td id="lblfinalRadiologist" class="xl66" style='border-top: none; border-left: none'>label</td>
-                                            </tr>
-                                            <tr height="21" style='height: 15.75pt'>
-                                                <td height="21" class="xl65" style='height: 15.75pt; border-top: none'>&nbsp;</td>
-                                                <td class="xl66" style='border-top: none; border-left: none'>&nbsp;</td>
-                                                <td class="xl66" style='border-top: none; border-left: none'>&nbsp;</td>
-                                            </tr>
-                                            <tr height="21" style='height: 15.75pt'>
-                                                <td height="21" class="xl65" style='height: 15.75pt; border-top: none'>Time</td>
-                                                <td class="xl66" style='border-top: none; border-left: none'>&nbsp;</td>
-                                                <td class="xl66" style='border-top: none; border-left: none'>&nbsp;</td>
-                                            </tr>
-                                            <tr height="21" style='height: 15.75pt'>
-                                                <td height="21" class="xl65" style='height: 15.75pt; border-top: none'>&nbsp;</td>
-                                                <td class="xl66" style='border-top: none; border-left: none'>Order</td>
-                                                <td id="lblorder" class="xl66" style='border-top: none; border-left: none'>label</td>
-                                            </tr>
-
-                                            <tr height="21" style='height: 15.75pt'>
-                                                <td height="21" class="xl65" style='height: 15.75pt; border-top: none'>&nbsp;</td>
-                                                <td class="xl66" style='border-top: none; border-left: none'>Appointment</td>
-                                                <td id="lblappt_time" class="xl66" style='border-top: none; border-left: none'>label</td>
-                                            </tr>
-                                            <tr height="21" style='height: 15.75pt'>
-                                                <td height="21" class="xl65" style='height: 15.75pt; border-top: none'>&nbsp;</td>
-                                                <td class="xl66" style='border-top: none; border-left: none'>Sign In</td>
-                                                <td id="lblsign_in" class="xl66" style='border-top: none; border-left: none'>label</td>
-                                            </tr>
-                                            <tr height="21" style='height: 15.75pt'>
-                                                <td height="21" class="xl65" style='height: 15.75pt; border-top: none'>&nbsp;</td>
-                                                <td class="xl66" style='border-top: none; border-left: none'>Begin Exam</td>
-                                                <td id="lblbegin_exam" class="xl66" style='border-top: none; border-left: none'>label</td>
-                                            </tr>
-                                            <tr height="21" style='height: 15.75pt'>
-                                                <td height="21" class="xl65" style='height: 15.75pt; border-top: none'>&nbsp;</td>
-                                                <td class="xl66" style='border-top: none; border-left: none'>End Exam</td>
-                                                <td id="lblend_exam" class="xl66" style='border-top: none; border-left: none'>label</td>
-                                            </tr>
-                                            <tr height="21" style='height: 15.75pt'>
-                                                <td height="21" class="xl65" style='height: 15.75pt; border-top: none'>&nbsp;</td>
-                                                <td class="xl66" style='border-top: none; border-left: none'>First Final</td>
-                                                <td id="lblfirst_final" class="xl66" style='border-top: none; border-left: none'>label</td>
-                                            </tr>
-                                            <tr height="21" style='height: 15.75pt'>
-                                                <td height="21" class="xl65" style='height: 15.75pt; border-top: none'>&nbsp;</td>
-                                                <td class="xl66" style='border-top: none; border-left: none'>Last Final</td>
-                                                <td id="lbllast_final" class="xl66" style='border-top: none; border-left: none'>label</td>
-                                            </tr>
-                                            <tr height="21" style='height: 15.75pt'>
-                                                <td height="21" class="xl65" style='height: 15.75pt; border-top: none'>Metrics</td>
-                                                <td class="xl66" style='border-top: none; border-left: none'>&nbsp;</td>
-                                                <td class="xl66" style='border-top: none; border-left: none'>&nbsp;</td>
-                                            </tr>
-                                            <tr height="21" style='height: 15.75pt'>
-                                                <td height="21" class="xl65" style='height: 15.75pt; border-top: none'>&nbsp;</td>
-                                                <td class="xl66" style='border-top: none; border-left: none'>Sche Event to app
-                                                    time</td>
-                                                <td id="lblscheEventToappt" class="xl66" style='border-top: none; border-left: none'>label</td>
-                                            </tr>
-                                            <tr height="21" style='height: 15.75pt'>
-                                                <td height="21" class="xl65" style='height: 15.75pt; border-top: none'>&nbsp;</td>
-                                                <td class="xl66" style='border-top: none; border-left: none'>Appt to Begin</td>
-                                                <td id="lblwaitduration" class="xl66" style='border-top: none; border-left: none'>label</td>
-                                            </tr>
-                                            <tr height="21" style='height: 15.75pt'>
-                                                <td height="21" class="xl65" style='height: 15.75pt; border-top: none'>&nbsp;</td>
-                                                <td class="xl66" style='border-top: none; border-left: none'>Total patient Wait</td>
-                                                <td id="lbltotalpatientwait" class="xl66" style='border-top: none; border-left: none'>label</td>
-                                            </tr>
-                                            <tr height="21" style='height: 15.75pt'>
-                                                <td height="21" class="xl65" style='height: 15.75pt; border-top: none'>&nbsp;</td>
-                                                <td class="xl66" style='border-top: none; border-left: none'>Exam Duration</td>
-                                                <td id="lbleduration" class="xl66" style='border-top: none; border-left: none'>label</td>
-                                            </tr>
-                                            <tr height="21" style='height: 15.75pt'>
-                                                <td height="21" class="xl65" style='height: 15.75pt; border-top: none'>&nbsp;</td>
-                                                <td class="xl66" style='border-top: none; border-left: none'>Final Turnaround Time</td>
-                                                <td id="lblfinalTurnaroundTime" class="xl66" style='border-top: none; border-left: none'>label</td>
-                                            </tr>
-                                            <tr height="21" style='height: 15.75pt'>
-                                                <td height="21" class="xl65" style='height: 15.75pt; border-top: none'>Indentifiers</td>
-                                                <td class="xl66" style='border-top: none; border-left: none'>&nbsp;</td>
-                                                <td class="xl66" style='border-top: none; border-left: none'>&nbsp;</td>
-                                            </tr>
-                                            <tr height="21" style='height: 15.75pt'>
-                                                <td height="21" class="xl65" style='height: 15.75pt; border-top: none'>&nbsp;</td>
-                                                <td class="xl66" style='border-top: none; border-left: none'>Accession#</td>
-                                                <td id="lblaccession" class="xl66" style='border-top: none; border-left: none'>label</td>
-                                            </tr>
-                                            <tr height="20" style='height: 15.0pt'>
-                                                <td height="20" class="xl66" style='height: 15.0pt; border-top: none'>&nbsp;</td>
-                                                <td class="xl66" style='border-top: none; border-left: none'>MRN(AI:MWebWare Hospital)</td>
-                                                <td id="lblmrn" class="xl66" style='border-top: none; border-left: none'>label</td>
-                                            </tr>
-                                            <![if supportMisalignedColumns]>
-                                            <tr height="0" style='display: none'>
-                                                <td width="193" style='width: 145pt'></td>
-                                                <td width="196" style='width: 147pt'></td>
-                                                <td width="100" style='width: 75pt'></td>
-                                            </tr>
-                                            <![endif]>
-                                        </table>
-                                    </div>
-
-                                </div>
-
-                                <div class="col-md-6">
-                                    <!-- general form elements disabled -->
-                                    <h2>Report History</h2>
-                                    <div id="reportHistoryContainerDiv">
-                                    </div>
-                                    <!-- /.box -->
-                                </div>
-
-                            </div>
-                            <!-- /.row -->
-                        </section>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="Btns BtnClose pull-right" id="" data-dismiss="modal">Close</button>
-                </div>
+<!-- popp modal start -->
+<div class="modal fade" id="ExamDetailPopupDiv" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button aria-hidden="true" data-dismiss="modal" class="close" type="button">X</button>
+        <h4 id="lblPopupTitle" class="modal-title clrwhite">Exam Details</h4>
+        <!-- color changed--> 
+      </div>
+      <div class="modal-body">
+        <div class="loadingModal" id="resultLoadingview" role="dialog" data-backdrop="static" data-keyboard="false">
+          <div class='centered' style='width: 250px; height: 65px; text-align: center;'>
+            <div class='circularDivContainer centered'>
+              <div class='circularDiv circularDiv_1'></div>
+              <div class='circularDiv circularDiv_2'></div>
+              <div class='circularDiv circularDiv_3'></div>
+              <div class='circularDiv circularDiv_4'></div>
+              <div class='circularDiv circularDiv_5'></div>
+              <div class='circularDiv circularDiv_6'></div>
+              <div class='circularDiv circularDiv_7'></div>
+              <div class='circularDiv circularDiv_8'></div>
             </div>
+            <br />
+            <p style='color: black; width: 250px;'><b>Please wait while we process your request...</b></p>
+          </div>
         </div>
+        <div>
+          <section class="content">
+            <div class="row">
+              <div class="col-md-6"> 
+                <!-- general form elements disabled --> 
+                <!--<h1>Exam Details</h1>-->
+                <h3 id="currentStatusH3" style="color: green; text-transform: uppercase;"></h3>
+                <div id="divstatus">
+                  <div class="wizard"> <a class="grey"><span class="badge"></span></a> <a class="grey"><span class="badge"></span></a> <a class="grey"><span class="badge"></span></a> <a class="grey"><span class="badge"></span></a> <a class="grey"><span class="badge badge-inverse"></span></a> <a class="grey"><span class="badge"></span></a> </div>
+                </div>
+                
+                <!-- /.box --> 
+                <!--h3><font color="purple">Delivered</font></h3-->
+                <h4><font color="purple"><span id="lblRadiologist"></span></font></h4>
+                <div>
+                  <table border="0" cellpadding="0" cellspacing="0" width="489" style='border-collapse: collapse; table-layout: fixed; width: 367pt'>
+                    <col width="193" style='mso-width-source: userset; mso-width-alt: 7058; width: 145pt'>
+                    <col width="196" style='mso-width-source: userset; mso-width-alt: 7168; width: 147pt'>
+                    <col width="100" style='mso-width-source: userset; mso-width-alt: 3657; width: 75pt'>
+                    <tr height="21" style='height: 15.75pt'>
+                      <td height="21" class="xl65" width="193" style='height: 15.75pt; width: 145pt'>&nbsp;</td>
+                      <td class="xl66" width="196" style='border-left: none; width: 147pt'>&nbsp;</td>
+                      <td class="xl67" width="100" style='border-left: none; width: 75pt'>Type</td>
+                    </tr>
+                    <tr height="21" style='height: 15.75pt'>
+                      <td height="21" class="xl65" style='height: 15.75pt; border-top: none'>Exam
+                        Information</td>
+                      <td class="xl66" style='border-top: none; border-left: none'>&nbsp;</td>
+                      <td class="xl66" style='border-top: none; border-left: none'>&nbsp;</td>
+                    </tr>
+                    <tr height="21" style='height: 15.75pt'>
+                      <td height="21" class="xl65" style='height: 15.75pt; border-top: none'>&nbsp;</td>
+                      <td class="xl66" style='border-top: none; border-left: none'>Procedure</td>
+                      <td id="lblProcedure" class="xl66" style='border-top: none; border-left: none'>label</td>
+                    </tr>
+                    <tr height="21" style='height: 15.75pt'>
+                      <td height="21" class="xl65" style='height: 15.75pt; border-top: none'>&nbsp;</td>
+                      <td class="xl66" style='border-top: none; border-left: none'>Patient type class</td>
+                      <td id="lblpatient_class" class="xl66" style='border-top: none; border-left: none'>label</td>
+                    </tr>
+                    <tr height="21" style='height: 15.75pt'>
+                      <td height="21" class="xl65" style='height: 15.75pt; border-top: none'>&nbsp;</td>
+                      <td class="xl66" style='border-top: none; border-left: none'>Trauma Emg</td>
+                      <td id="lbltrauma" class="xl66" style='border-top: none; border-left: none'>label</td>
+                    </tr>
+                    <tr height="21" style='height: 15.75pt'>
+                      <td height="21" class="xl65" style='height: 15.75pt; border-top: none'>&nbsp;</td>
+                      <td class="xl66" style='border-top: none; border-left: none'>Resource</td>
+                      <td id="lblresource" class="xl66" style='border-top: none; border-left: none'>label</td>
+                    </tr>
+                    <tr height="21" style='height: 15.75pt'>
+                      <td height="21" class="xl65" style='height: 15.75pt; border-top: none'>&nbsp;</td>
+                      <td class="xl66" style='border-top: none; border-left: none'>Modality</td>
+                      <td id="lblmodality" class="xl66" style='border-top: none; border-left: none'>label</td>
+                    </tr>
+                    <tr height="21" style='height: 15.75pt'>
+                      <td height="21" class="xl65" style='height: 15.75pt; border-top: none'>Staff</td>
+                      <td class="xl66" style='border-top: none; border-left: none'>&nbsp;</td>
+                      <td class="xl66" style='border-top: none; border-left: none'>&nbsp;</td>
+                    </tr>
+                    <tr height="21" style='height: 15.75pt'>
+                      <td height="21" class="xl65" style='height: 15.75pt; border-top: none'>&nbsp;</td>
+                      <td class="xl66" style='border-top: none; border-left: none'>Techno</td>
+                      <td id="lbltechnologist" class="xl66" style='border-top: none; border-left: none'>label</td>
+                    </tr>
+                    <tr height="21" style='height: 15.75pt'>
+                      <td height="21" class="xl65" style='height: 15.75pt; border-top: none'>&nbsp;</td>
+                      <td class="xl66" style='border-top: none; border-left: none'>Finalizing Radiologist</td>
+                      <td id="lblfinalRadiologist" class="xl66" style='border-top: none; border-left: none'>label</td>
+                    </tr>
+                    <tr height="21" style='height: 15.75pt'>
+                      <td height="21" class="xl65" style='height: 15.75pt; border-top: none'>&nbsp;</td>
+                      <td class="xl66" style='border-top: none; border-left: none'>&nbsp;</td>
+                      <td class="xl66" style='border-top: none; border-left: none'>&nbsp;</td>
+                    </tr>
+                    <tr height="21" style='height: 15.75pt'>
+                      <td height="21" class="xl65" style='height: 15.75pt; border-top: none'>Time</td>
+                      <td class="xl66" style='border-top: none; border-left: none'>&nbsp;</td>
+                      <td class="xl66" style='border-top: none; border-left: none'>&nbsp;</td>
+                    </tr>
+                    <tr height="21" style='height: 15.75pt'>
+                      <td height="21" class="xl65" style='height: 15.75pt; border-top: none'>&nbsp;</td>
+                      <td class="xl66" style='border-top: none; border-left: none'>Order</td>
+                      <td id="lblorder" class="xl66" style='border-top: none; border-left: none'>label</td>
+                    </tr>
+                    <tr height="21" style='height: 15.75pt'>
+                      <td height="21" class="xl65" style='height: 15.75pt; border-top: none'>&nbsp;</td>
+                      <td class="xl66" style='border-top: none; border-left: none'>Appointment</td>
+                      <td id="lblappt_time" class="xl66" style='border-top: none; border-left: none'>label</td>
+                    </tr>
+                    <tr height="21" style='height: 15.75pt'>
+                      <td height="21" class="xl65" style='height: 15.75pt; border-top: none'>&nbsp;</td>
+                      <td class="xl66" style='border-top: none; border-left: none'>Sign In</td>
+                      <td id="lblsign_in" class="xl66" style='border-top: none; border-left: none'>label</td>
+                    </tr>
+                    <tr height="21" style='height: 15.75pt'>
+                      <td height="21" class="xl65" style='height: 15.75pt; border-top: none'>&nbsp;</td>
+                      <td class="xl66" style='border-top: none; border-left: none'>Begin Exam</td>
+                      <td id="lblbegin_exam" class="xl66" style='border-top: none; border-left: none'>label</td>
+                    </tr>
+                    <tr height="21" style='height: 15.75pt'>
+                      <td height="21" class="xl65" style='height: 15.75pt; border-top: none'>&nbsp;</td>
+                      <td class="xl66" style='border-top: none; border-left: none'>End Exam</td>
+                      <td id="lblend_exam" class="xl66" style='border-top: none; border-left: none'>label</td>
+                    </tr>
+                    <tr height="21" style='height: 15.75pt'>
+                      <td height="21" class="xl65" style='height: 15.75pt; border-top: none'>&nbsp;</td>
+                      <td class="xl66" style='border-top: none; border-left: none'>First Final</td>
+                      <td id="lblfirst_final" class="xl66" style='border-top: none; border-left: none'>label</td>
+                    </tr>
+                    <tr height="21" style='height: 15.75pt'>
+                      <td height="21" class="xl65" style='height: 15.75pt; border-top: none'>&nbsp;</td>
+                      <td class="xl66" style='border-top: none; border-left: none'>Last Final</td>
+                      <td id="lbllast_final" class="xl66" style='border-top: none; border-left: none'>label</td>
+                    </tr>
+                    <tr height="21" style='height: 15.75pt'>
+                      <td height="21" class="xl65" style='height: 15.75pt; border-top: none'>Metrics</td>
+                      <td class="xl66" style='border-top: none; border-left: none'>&nbsp;</td>
+                      <td class="xl66" style='border-top: none; border-left: none'>&nbsp;</td>
+                    </tr>
+                    <tr height="21" style='height: 15.75pt'>
+                      <td height="21" class="xl65" style='height: 15.75pt; border-top: none'>&nbsp;</td>
+                      <td class="xl66" style='border-top: none; border-left: none'>Sche Event to app
+                        time</td>
+                      <td id="lblscheEventToappt" class="xl66" style='border-top: none; border-left: none'>label</td>
+                    </tr>
+                    <tr height="21" style='height: 15.75pt'>
+                      <td height="21" class="xl65" style='height: 15.75pt; border-top: none'>&nbsp;</td>
+                      <td class="xl66" style='border-top: none; border-left: none'>Appt to Begin</td>
+                      <td id="lblwaitduration" class="xl66" style='border-top: none; border-left: none'>label</td>
+                    </tr>
+                    <tr height="21" style='height: 15.75pt'>
+                      <td height="21" class="xl65" style='height: 15.75pt; border-top: none'>&nbsp;</td>
+                      <td class="xl66" style='border-top: none; border-left: none'>Total patient Wait</td>
+                      <td id="lbltotalpatientwait" class="xl66" style='border-top: none; border-left: none'>label</td>
+                    </tr>
+                    <tr height="21" style='height: 15.75pt'>
+                      <td height="21" class="xl65" style='height: 15.75pt; border-top: none'>&nbsp;</td>
+                      <td class="xl66" style='border-top: none; border-left: none'>Exam Duration</td>
+                      <td id="lbleduration" class="xl66" style='border-top: none; border-left: none'>label</td>
+                    </tr>
+                    <tr height="21" style='height: 15.75pt'>
+                      <td height="21" class="xl65" style='height: 15.75pt; border-top: none'>&nbsp;</td>
+                      <td class="xl66" style='border-top: none; border-left: none'>Final Turnaround Time</td>
+                      <td id="lblfinalTurnaroundTime" class="xl66" style='border-top: none; border-left: none'>label</td>
+                    </tr>
+                    <tr height="21" style='height: 15.75pt'>
+                      <td height="21" class="xl65" style='height: 15.75pt; border-top: none'>Indentifiers</td>
+                      <td class="xl66" style='border-top: none; border-left: none'>&nbsp;</td>
+                      <td class="xl66" style='border-top: none; border-left: none'>&nbsp;</td>
+                    </tr>
+                    <tr height="21" style='height: 15.75pt'>
+                      <td height="21" class="xl65" style='height: 15.75pt; border-top: none'>&nbsp;</td>
+                      <td class="xl66" style='border-top: none; border-left: none'>Accession#</td>
+                      <td id="lblaccession" class="xl66" style='border-top: none; border-left: none'>label</td>
+                    </tr>
+                    <tr height="20" style='height: 15.0pt'>
+                      <td height="20" class="xl66" style='height: 15.0pt; border-top: none'>&nbsp;</td>
+                      <td class="xl66" style='border-top: none; border-left: none'>MRN(AI:MWebWare Hospital)</td>
+                      <td id="lblmrn" class="xl66" style='border-top: none; border-left: none'>label</td>
+                    </tr>
+                    <![if supportMisalignedColumns]>
+                    <tr height="0" style='display: none'>
+                      <td width="193" style='width: 145pt'></td>
+                      <td width="196" style='width: 147pt'></td>
+                      <td width="100" style='width: 75pt'></td>
+                    </tr>
+                    <![endif]>
+                  </table>
+                </div>
+              </div>
+              <div class="col-md-6"> 
+                <!-- general form elements disabled -->
+                <h2>Report History</h2>
+                <div id="reportHistoryContainerDiv"> </div>
+                <!-- /.box --> 
+              </div>
+            </div>
+            <!-- /.row --> 
+          </section>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="Btns BtnClose pull-right" id="" data-dismiss="modal">Close</button>
+      </div>
     </div>
-    <!-- popp modal End -->
+  </div>
+</div>
+<!-- popp modal End --> 
 
-    <!--div class="container">
+<!--div class="container">
 <%#= yield %>
-  </div-->
+  </div--> 
 
-    <%= yield(:body_javascript) %>
-    <%= yield :body_javascript_section %>  
+<%= yield(:body_javascript) %> <%= yield :body_javascript_section %>
 </body>
 </html>
