@@ -20,11 +20,14 @@
 		#fbox_tblRadExam table tbody tr td.columns select{
 			max-width:160px;
 		}
-		.ordPage > div{
-			margin-bottom:5px;
+				
+		.ordPage button{
+			float:left;
+			margin:0 10px 10px 0;
 		}
-		.ordPage > div button{
-			font-size:12px !important; 
+		.ordPage input{
+			float:left;
+			margin:0 10px 10px 0;
 		}
 	</style>
   <script type='text/javascript'>
@@ -51,21 +54,18 @@
                 <div class="row">
                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                         <div class="ordPage">
-                        	<div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+                        	
                                 <select id="DdlAccessionIdSrch" title="Basic example" multiple="multiple" name="example-basic" size="5">
                                 </select>
-                            </div>
-                            <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4" >
+                            
                                 <select id="DdlStatusSrch" title="Basic example" multiple="multiple" name="example-basic" >
                                     <option value="status_1">Delay</option>
                                     <option value="status_2">InProgress</option>
                                     <option value="status_3">Final</option>
                                 </select>
-                            </div> 
-							<div class="col-xs-4">
-								<input type="button" id="BtnFilter" value="Filter" class="btn btn-primary" />
-								<input type="button" id="btnReload" value="Reset GridData" class="btn btn-danger"/>
-								 
+                            
+								<input type="button" id="BtnFilter" value="Filter" />
+								<!--<input type="button" id="btnReload" value="Reset GridData" class="btn btn-danger"/>-->
 							</div>
                             
                         </div>
