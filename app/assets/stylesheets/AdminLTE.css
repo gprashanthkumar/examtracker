@@ -342,10 +342,10 @@ body > .header .navbar {
 }
 body > .header .navbar .sidebar-toggle {
   float: left;
-  padding: 9px 5px;
-  margin-top: 8px;
+  padding: 0;
+  margin-top: 5px;
   margin-right: 0;
-  margin-bottom: 8px;
+  margin-bottom: 5px;
   margin-left: 5px;
   background-color: transparent;
   background-image: none;
@@ -479,9 +479,11 @@ body > .header .logo .icon {
     float: none;
   }
   .navbar-toggle{
-	  padding:7px 10px;
-	  z-index:99999;
-	  position:absolute;
+	margin: 0;
+    padding: 0 4px;
+    position: absolute;
+    top: 25px;
+    z-index: 99999;
   }
   .navbar-collapse{
 	  width:100%;
@@ -494,6 +496,13 @@ body > .header .logo .icon {
   }
 }
 @media screen and (max-width: 560px) {
+	.navbar-toggle{
+		top:15px;
+	}
+	body > .header .navbar .sidebar-toggle{
+		margin:8px 0 8px 5px;
+		padding:9px 10px;
+	}
   body > .header {
     position: relative;
   }
@@ -2588,7 +2597,7 @@ Component: timeline
 .skin-black .navbar .nav a {
   color: #fff;
 }
-.skin-black .navbar .nav .dropdown-menu > li > a{ color:#4c4c4c;}
+.skin-black .navbar .nav .dropdown-menu > li > a{ color:#fff;}
 .skin-black .navbar .nav .dropdown-menu > li > a:hover{ color:#f8a944;}
 .skin-black .navbar .nav > li > a:hover,
 .skin-black .navbar .nav > li > a:active,
