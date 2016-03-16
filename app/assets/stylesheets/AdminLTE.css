@@ -451,7 +451,7 @@ body > .header .logo .icon {
 .right-side > .content-header > .breadcrumb > li + li:before {
   content: '>\00a0';
 }
-.nav{ margin:0;}
+.nav{ margin:0 !important;}
 @media screen and (max-width: 767px) {
   .right-side > .content-header > .breadcrumb {
     position: relative;
@@ -481,6 +481,7 @@ body > .header .logo .icon {
   .navbar-toggle{
 	  padding:7px 10px;
 	  z-index:99999;
+	  position:absolute;
   }
   .navbar-collapse{
 	  width:100%;
