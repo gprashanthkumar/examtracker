@@ -482,16 +482,16 @@ body > .header .logo .icon {
   }*/
   body > .header .navbar .sidebar-toggle {
   padding: 0;
-  margin:8px 0 8px 5px;
+  margin:28px 0 8px 5px;
 }
   .navbar .navbar-right {
     float: none;
   }
   .navbar-toggle{
 	margin: 0;
-    padding: 0 10px;
+    padding: 0 4px;
     position: absolute;
-    top: 25px;
+    top: 0px;
     z-index: 99999;
   }
   .navbar-collapse{
@@ -508,11 +508,12 @@ body > .header .logo .icon {
 }
 @media screen and (max-width: 560px) {
 	.navbar-toggle {
-    left: 10px;
-    top: 15px;
-}
+		left: 15px;
+		top: 15px;
+		padding: 0;
+	}
 	body > .header .navbar .sidebar-toggle{
-		margin:5px 0 5px 5px;
+		margin:8px 0 8px 5px;
 		padding:9px 10px;
 	}
   body > .header {
