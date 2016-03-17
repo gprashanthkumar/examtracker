@@ -492,6 +492,7 @@ body > .header .logo .icon {
     padding: 0 4px;
     position: absolute;
     top: 0px;
+	left: 220px;
     z-index: 99999;
   }
   .navbar-collapse{
