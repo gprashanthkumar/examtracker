@@ -207,12 +207,12 @@ $(document).ready(function () {
                         $this.triggerHandler('reloadGrid');
                     }
 					
-					if (data.total > 0) {
-						$("#btnReload").show();
+					//if (data.total > 0) {
+					//	$("#btnReload").show();
 						
-					} else {
-						$("#btnReload").hide();
-					}
+					//} else {
+					//	$("#btnReload").hide();
+					//}
                 } else {
                     $this.jqGrid('setGridParam', {
                         page: $this.jqGrid('getGridParam', 'pageServer'),
