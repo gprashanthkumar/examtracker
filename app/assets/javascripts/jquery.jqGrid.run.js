@@ -20,6 +20,10 @@ $(document).ready(function () {
 		 $("#DdlStatusSrch").multiselect("uncheckAll");
         createOrUpdateRadExamGrid();
     });
+	
+	 $("#3Stripes").click(function () {
+		alert('left menu clicked');
+    });
     //=====End Search functionality==============
 
 
