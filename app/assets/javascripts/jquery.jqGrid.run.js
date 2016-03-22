@@ -21,9 +21,7 @@ $(document).ready(function () {
         createOrUpdateRadExamGrid();
     });
 	
-	 $("#3Stripes").click(function () {
-		alert('left menu clicked');
-    });
+	 
     //=====End Search functionality==============
 
 
