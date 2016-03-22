@@ -286,10 +286,18 @@ $(document).ready(function () {
                 //$('#pg_UsersGridPager table:eq(1) tr td.nRCls').remove();
             }, sopt: ['cn', 'nc']
         });
+		//end of jQGrid load
 
         $('.ui-icon-refresh').click(function () {
             $("#tblRadExam").setGridParam({datatype: 'json', page: 1, postData: {accession: "", status: "", authenticity_token: window._token}}).trigger('reloadGrid');
         });
+		
+		// force rezie when menu pushes to left.
+		$("#radExamGridContainer").bind('resize', function() {
+			$("#tblRadExam").setGridWidth($("#radExamGridContainer").width());
+			}).trigger('resize');
+		
+		
     }
 
     $('#tblRadExamPager .ui-icon-refresh').click(function () {
