@@ -301,3 +301,12 @@ colNames: ['A#','Progress Status','Current Status','Status Last Changed','Patien
 
     });
   // =======End of documnet.ready()
+   $(document).ready(function () {
+
+        $("#example1 tr td:first-child a").click(function (e) {
+
+            e.preventDefault();
+            $("#ExamDetailPopupDiv").modal('show');
+        });
+
+    });
