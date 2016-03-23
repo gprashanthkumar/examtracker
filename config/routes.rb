@@ -64,7 +64,8 @@ VanillaApplication::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-  root :to => redirect('demo/accession-search')
+  #root :to => redirect('demo/accession-search')
+  root :to => redirect('home/search')
 
   # See how all your routes lay out with "rake routes"
 end
