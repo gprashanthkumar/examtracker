@@ -90,5 +90,9 @@ table#tblRadExam tbody tr td:first-child a {
 <% javascriptBody 'jquery-ui-1.10.3.min' %>
 <% javascriptBody 'jquery.multiselect' %>
 <% content_for :body_javascript_section do %>
-<%= javascript_include_tag 'jqgrid/grid.locale-en.js' %> <%= javascript_include_tag 'jqgrid/jquery.jqGrid.js' %> <%= javascript_tag "window._token = '#{form_authenticity_token}'" %> <%= javascript_tag "window._role = '#{@role}'" %> <%= javascript_include_tag 'jquery.jqGrid.run.js' %>
+<%= javascript_include_tag 'jqgrid/grid.locale-en.js' %> 
+<%= javascript_include_tag 'jqgrid/jquery.jqGrid.js' %>
+<%= javascript_tag "window._token = '#{form_authenticity_token}'" %> 
+<%= javascript_tag "window._role = '#{@role}'" %> 
+<%= javascript_include_tag 'jquery.jqGrid.run.js' %>
 <% end %>
